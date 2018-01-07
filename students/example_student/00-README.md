@@ -24,3 +24,6 @@ For each exercise, please do the following:
   * There is an alternative method using cryptographic signatures to verify your
     identity, but that is not strictly necessary.
 
+This might seem a bit complex at the moment, but it will become second nature.
+
+Try running our example exercise!

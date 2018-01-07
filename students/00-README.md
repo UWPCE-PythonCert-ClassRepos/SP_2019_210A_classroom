@@ -13,7 +13,10 @@ When you join the course, please do the following:
   * Tell us what you want to get out of this course.
   * Who's you're favorite figure in the Python community? 
     * [Kenneth Reitz](https://www.kennethreitz.org)?
-    * [Kenneth Love](https://thekennethlove.com)?
+    * [Diane Chen](http://purplediane.github.io)?
     * [Kenneth Alfred Lambert](http://home.wlu.edu/~lambertk/)?
+    * [Anna Makarudze](https://twitter.com/amakarudze)?
+    * [Kenneth Love](https://thekennethlove.com)?
+
   * Protip: [Always start a project with a README](https://www.kennethreitz.org/essays/how-i-develop-things-and-why). 
     What if Two-Years-Older-*You* forgets what the project was about?

@@ -1,7 +1,7 @@
 # Class Repository Template
 
 This is a repo that serves as a template for a repository for a particular
-instance of a class for the UWPCE Python Certificate.
+instance of a class for the [UWPCE Python Certificate](https://www.pce.uw.edu/certificates/python-programming).
 
 Make a copy of this repo for each class, so that it can be used by the class to
 share information and for students to submit their work.
@@ -10,11 +10,10 @@ share information and for students to submit their work.
 
 The class repo has three top level directories:
 
-* `examples`: Used to put example code, etc in for the class.
+* `examples`: Used to store example code and example documents for the class.
 
-* `solutions`: Used to post solutions to the exercises
+* `solutions`: Used to post solutions to the exercises.
 
 * `students`: Used for the students to submit their work. Each student will create
-a directory in the students directory in which to put their work.
-
+a directory, then store work for each exercise in a subdirectory of that.
 

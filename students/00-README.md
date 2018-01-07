@@ -11,5 +11,9 @@ When you join the course, please do the following:
   * Feel free to personalize it a bit!
   * Share some things about what makes you you.
   * Tell us what you want to get out of this course.
-  * Protip: Never make a project without a README. What if Two-Years-Older-*You*
-    forgets what the project was about?
+  * Who's you're favorite figure in the Python community? 
+    * [Kenneth Reitz](https://www.kennethreitz.org)?
+    * [Kenneth Love](https://thekennethlove.com)?
+    * [Kenneth Alfred Lambert](http://home.wlu.edu/~lambertk/)?
+  * Protip: [Always start a project with a README](https://www.kennethreitz.org/essays/how-i-develop-things-and-why). 
+    What if Two-Years-Older-*You* forgets what the project was about?

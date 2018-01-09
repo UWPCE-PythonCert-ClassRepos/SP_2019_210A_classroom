@@ -1,5 +1,1 @@
-import this
-print()
-import __hello__
-print()
-print("This is simple example with some advice and easter eggs.")
+print("'Hello World!' is your first step towards making great things.")

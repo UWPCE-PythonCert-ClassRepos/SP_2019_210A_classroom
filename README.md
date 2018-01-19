@@ -1,5 +1,7 @@
 # Class Repository Template
 
+**WARNING** This is a template -- it is not an actual class repo. Students should find the proper repo for their class, and make a fork of that.
+
 This is a repo that serves as a template for a repository for a particular
 instance of a class for the UWPCE Python Certificate.
 

@@ -5,7 +5,7 @@ Class notes are published here:
 https://uwpce-pythoncert-classrepos.github.io/Fall2018-PY210A/
 
 This repository is used for submitting and reviewing student's work for the
-Fall 2018 classrooom section of University of Washington Continuing and Professional
+Spring 2019 classrooom section of University of Washington Continuing and Professional
 Education Python certificate program.
 
 https://www.pce.uw.edu/certificates/python-programming

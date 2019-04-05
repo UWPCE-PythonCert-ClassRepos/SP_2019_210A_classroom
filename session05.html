@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Notes for Session 05 &mdash; IntroToPython: Fall 2018 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> IntroToPython: Fall 2018
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="session01.html">Notes for Session 01</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lightning_talks.html">Lightning Talks: Spring 2019 Class</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IntroToPython: Fall 2018</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Notes for Session 05</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/session05.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="notes-for-session-05">
+<span id="notes-session05"></span><h1>Notes for Session 05<a class="headerlink" href="#notes-for-session-05" title="Permalink to this headline">¶</a></h1>
+<p>November 6, 2018 – Election Day!!!</p>
+<p>A collection of notes to go over in class, to keep things organized.</p>
+<div class="section" id="lightning-talks">
+<h2>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h2>
+<p>Brian E Nisonger</p>
+<p>Carol Louise  Farris</p>
+<p>Dianna  Tingg</p>
+<p>Manmeet S Dosanjh</p>
+</div>
+<div class="section" id="issues-that-came-up-during-the-week">
+<h2>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="git-and-generated-files">
+<h3>git and generated files<a class="headerlink" href="#git-and-generated-files" title="Permalink to this headline">¶</a></h3>
+<p>In general, you don’t want to put generated files in git.</p>
+<p>In this case, the letters your mailroom program created.</p>
+<p><strong>Caution:</strong> be very careful with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">*</span></code> – generally better to specifically add the files you now you need.</p>
+</div>
+<div class="section" id="style">
+<h3>Style<a class="headerlink" href="#style" title="Permalink to this headline">¶</a></h3>
+<p>Use PEP8 style – really!</p>
+<p><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p>
+<p>The ONLY exception is if you work in an organization that has a different style guide. It can make sense for your python code to match other code in an organization. But otherwise, use a style consistent with the rest of the Python world.</p>
+<p>And don’t use “Hungarian Notation” – it is really non-pythonic, and sometimes actually wrong – and a string called <code class="docutils literal notranslate"><span class="pre">intSomething</span></code> just adds confusion!</p>
+<p>The best way to do this is with a linter in your editor – like the Anaconda package in Sublime. A number of you are getting really annoyed by all the “noise” that the linter creates. But if you keep your code in PEP8 style, it won’t be there!</p>
+</div>
+<div class="section" id="minor-issues">
+<h3>Minor Issues<a class="headerlink" href="#minor-issues" title="Permalink to this headline">¶</a></h3>
+<p>Remember that:</p>
+<p><code class="docutils literal notranslate"><span class="pre">something</span> <span class="pre">in</span> <span class="pre">a_dict</span></code> checks if <code class="docutils literal notranslate"><span class="pre">this</span></code> is a key</p>
+<p>similarly:</p>
+<p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">k</span> <span class="pre">in</span> <span class="pre">dict:</span></code></p>
+<p>loops through the keys. So no need for:</p>
+<p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">k</span> <span class="pre">in</span> <span class="pre">dict.keys():</span></code></p>
+</div>
+<div class="section" id="sum">
+<h3><code class="docutils literal notranslate"><span class="pre">sum</span></code><a class="headerlink" href="#sum" title="Permalink to this headline">¶</a></h3>
+<p>Did everyone find the <code class="docutils literal notranslate"><span class="pre">sum()</span></code> built in function?</p>
+<p>How about <code class="docutils literal notranslate"><span class="pre">max()</span></code> and <code class="docutils literal notranslate"><span class="pre">min()</span></code></p>
+</div>
+<div class="section" id="getting-an-arbitrary-key-from-a-dict">
+<h3>Getting an arbitrary key from a dict<a class="headerlink" href="#getting-an-arbitrary-key-from-a-dict" title="Permalink to this headline">¶</a></h3>
+<p>See <code class="docutils literal notranslate"><span class="pre">arbitrary_key.py</span></code> in <cite>examples/session05</cite></p>
+</div>
+<div class="section" id="nifty-formatting">
+<h3>nifty formatting<a class="headerlink" href="#nifty-formatting" title="Permalink to this headline">¶</a></h3>
+<p>what the heck is this?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">data_print</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">widths</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    takes in donor information and widths and returns a string formatted for</span>
+<span class="sd">    printing for a donor report.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">output_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">output_string</span> <span class="o">+=</span> <span class="s1">&#39;{:&lt;{width0}} ${:&gt;{width1}.2f} {:^{width2}} ${:&gt;{width3}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">width0</span><span class="o">=</span><span class="n">widths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">width1</span><span class="o">=</span><span class="n">widths</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">width2</span><span class="o">=</span><span class="n">widths</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">width3</span><span class="o">=</span><span class="n">widths</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>cleaned up a bit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;{:&lt;</span><span class="si">{widths[0]}</span><span class="s1">} ${:&gt;</span><span class="si">{widths[1]}</span><span class="s1">.2f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="s2">&quot;fred&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="n">widths</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="islice">
+<h3>islice<a class="headerlink" href="#islice" title="Permalink to this headline">¶</a></h3>
+<p>This constuct is pertty cool for trigrams:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w3</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">word_list</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">word_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">word_list</span><span class="p">[</span><span class="mi">2</span><span class="p">:]):</span>
+</pre></div>
+</div>
+<p>but remeber that slicing makes a copy – so this is making three copies of the full work list. Computers have a LOT of memory these days, but it’s still better to not waste it.</p>
+<p>Turns out there is a alternative:</p>
+<p><a class="reference external" href="https://docs.python.org/3.7/library/itertools.html#itertools.islice">https://docs.python.org/3.7/library/itertools.html#itertools.islice</a></p>
+</div>
+<div class="section" id="coding-workflow">
+<h3>Coding Workflow<a class="headerlink" href="#coding-workflow" title="Permalink to this headline">¶</a></h3>
+<p>As you are developing your code, you <em>really</em> want to have an quick and efficient way to run you code and see if it’s working, how it’s changed, etc.</p>
+<p>You may have noticed that for a program like Mailroom, you may have to do a few steps if user interaction to get to the part of the code you are working on. So how do you work on that efficiently?</p>
+<p>The “right” way to do it is something called “Test Driven Development”, which we will get to soon. But in the meantime:</p>
+<ul class="simple">
+<li>You want to break your code down into small functions that each do one thing.</li>
+<li>You should be able to run each function by itself.</li>
+</ul>
+<p>If you are doing that, then as you develop your code, you can write and run each function until it’s doing what it’s supposed to do, and THEN put it all together.</p>
+<p>One way to run a function is to call it in the <code class="docutils literal notranslate"><span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code> block. You can then comment and uncomment each call as you work on your code.</p>
+<p>Also: you really, really need a way to run your code with a couple keystrokes!!</p>
+<p>I’ll demonstrate this when we review code.</p>
+</div>
+</div>
+<div class="section" id="review-of-last-week-s-assignments">
+<h2>Review of last week’s assignments<a class="headerlink" href="#review-of-last-week-s-assignments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mailroom-review">
+<h3>Mailroom review<a class="headerlink" href="#mailroom-review" title="Permalink to this headline">¶</a></h3>
+<p>Anyone up for a review?</p>
+</div>
+<div class="section" id="trigrams-review">
+<h3>Trigrams review<a class="headerlink" href="#trigrams-review" title="Permalink to this headline">¶</a></h3>
+<p>Anyone want to look at theirs?</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Lightning Talks<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Let’s take a break and do them now.</p>
+</div>
+<div class="section" id="new-assignments">
+<h2>New Assignments<a class="headerlink" href="#new-assignments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="comprehensions">
+<h3>Comprehensions<a class="headerlink" href="#comprehensions" title="Permalink to this headline">¶</a></h3>
+<p>Let’s take a few minutes to go through it in class:</p>
+<p><a class="reference external" href="https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/comprehensions_lab.html">https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/comprehensions_lab.html</a></p>
+</div>
+<div class="section" id="exceptions">
+<h3>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h3>
+<p>Exceptions take a little while to “wrap your head around”.</p>
+<p>Shall we do the Exercise together?</p>
+<p><a class="reference external" href="https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/except_exercise.html">https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/except_exercise.html</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Christopher H. Barker.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

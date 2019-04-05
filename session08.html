@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Notes for Session 08 &mdash; IntroToPython: Fall 2018 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> IntroToPython: Fall 2018
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="session01.html">Notes for Session 01</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lightning_talks.html">Lightning Talks: Spring 2019 Class</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IntroToPython: Fall 2018</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Notes for Session 08</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/session08.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="notes-for-session-08">
+<span id="notes-session08"></span><h1>Notes for Session 08<a class="headerlink" href="#notes-for-session-08" title="Permalink to this headline">¶</a></h1>
+<p>1/27/2018</p>
+<p>A collection of notes to go over in class, to keep things organized.</p>
+<div class="section" id="lightning-talks-last">
+<h2>Lightning Talks (last)<a class="headerlink" href="#lightning-talks-last" title="Permalink to this headline">¶</a></h2>
+<p>Austen  Rawle</p>
+<p>Drew A  Smith</p>
+<p>Jugal Kishore</p>
+</div>
+<div class="section" id="issues-that-came-up-during-the-week">
+<h2>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-to-test-and-how">
+<h3>What to test? And how?<a class="headerlink" href="#what-to-test-and-how" title="Permalink to this headline">¶</a></h3>
+<p>Make sure you test what matters about a function’s result – it’s easiest (particularly if you wrote the code first) to simply match results, but your system will be more flexible if you test for the parts that matter, and won’t change.</p>
+<p>Ideally, your tests should be as isolated as possible. So if you, for instance, need to test that the correct letter is generated from a donor object, then create a donor object in the test, and pass that in, rather than pulling it from the donor_db – that way, the donor_db could be broken, and the individual tests will pass.</p>
+<p>If the object(s) you need to create are complex, then you can use “fixtures” to set things up for you. We’ll get into that in the next quarter.</p>
+<p>This will start to make more and more sense as we do more testing – and particularly when we do TDD and write the tests along with the code.</p>
+<div class="section" id="example">
+<h4>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_p_tag</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">Para</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s1">&#39;p&#39;</span>
+</pre></div>
+</div>
+<p>I know I started out that way – ‘cause there wasn’t anything else to test. But this is really testing an implementation detail – the Para elements has a attribute named “tag” that is ‘p’. But is that a public part of the API? do we care? – No. What we care about is that the correct tag gets rendered, so a test for THAT makes more sense:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_render_para</span><span class="p">():</span>
+    <span class="n">my_stuff</span> <span class="o">=</span> <span class="s1">&#39;spam, spam, spam&#39;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Para</span><span class="p">(</span><span class="n">my_stuff</span><span class="p">)</span>
+    <span class="n">more_stuff</span> <span class="o">=</span> <span class="s1">&#39;eggs, eggs, eggs&#39;</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">more_stuff</span><span class="p">)</span>
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">render_element</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">contents</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">contents</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;&lt;/p&gt;&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">my_stuff</span> <span class="ow">in</span> <span class="n">contents</span>
+    <span class="k">assert</span> <span class="n">more_stuff</span> <span class="ow">in</span> <span class="n">contents</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="do-you-always-need-an-init">
+<h3>Do you always need an <code class="docutils literal notranslate"><span class="pre">__init__</span></code>?<a class="headerlink" href="#do-you-always-need-an-init" title="Permalink to this headline">¶</a></h3>
+<p>No – you don’t :-)</p>
+<p>The ONLY thing “special” about <code class="docutils literal notranslate"><span class="pre">__init__</span></code> is that it is automatically called when an instance is created.  Other than that, it’s a regular method. So if you don’t define one, then the superclass’ <code class="docutils literal notranslate"><span class="pre">__init__</span></code> will be called.</p>
+<p>That’s what inheritance is all about – the subclass inherits ALL the superclasses methods – including <code class="docutils literal notranslate"><span class="pre">__init__</span></code>.</p>
+<p>So never write an <code class="docutils literal notranslate"><span class="pre">__init__</span></code> that does nothing but call the superclass <code class="docutils literal notranslate"><span class="pre">__init__</span></code></p>
+</div>
+<div class="section" id="subclasses-and-self">
+<h3>Subclasses and <code class="docutils literal notranslate"><span class="pre">self</span></code><a class="headerlink" href="#subclasses-and-self" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">self</span></code> is the first parameter in all methods. But why??</p>
+<p><code class="docutils literal notranslate"><span class="pre">self</span></code> is the “current” instance of the object. This means that you don’t know at code writing time what type it is – is it the current class? some subclass?</p>
+<p>Let’s experiment with that.</p>
+</div>
+<div class="section" id="html-render">
+<h3>html_render<a class="headerlink" href="#html-render" title="Permalink to this headline">¶</a></h3>
+<p>Let’s look at up to step 3….</p>
+<p>And move along…</p>
+</div>
+<div class="section" id="lightning-talks">
+<h3>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h3>
+<p>Circle class…</p>
+<p><a class="reference external" href="https://uwpce-pythoncert.github.io/PythonCertDevel/modules/StaticAndClassMethods.html">https://uwpce-pythoncert.github.io/PythonCertDevel/modules/StaticAndClassMethods.html</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Christopher H. Barker.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

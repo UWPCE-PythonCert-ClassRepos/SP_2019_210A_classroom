@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Notes for Session 10 &mdash; IntroToPython: Fall 2018 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> IntroToPython: Fall 2018
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="session01.html">Notes for Session 01</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lightning_talks.html">Lightning Talks: Spring 2019 Class</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IntroToPython: Fall 2018</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Notes for Session 10</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/session10.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="notes-for-session-10">
+<span id="notes-session10"></span><h1>Notes for Session 10<a class="headerlink" href="#notes-for-session-10" title="Permalink to this headline">¶</a></h1>
+<p>12/11/2018</p>
+<p>A collection of notes to go over in class, to keep things organized.</p>
+<div class="section" id="lightning-talks">
+<h2>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h2>
+<p>Kanahn Sethunarayanan</p>
+<p>Tim Pauley</p>
+<p>Zidan Luo</p>
+</div>
+<div class="section" id="issues-that-came-up-during-the-week">
+<h2>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classmethod">
+<h3><code class="docutils literal notranslate"><span class="pre">classmethod</span></code><a class="headerlink" href="#classmethod" title="Permalink to this headline">¶</a></h3>
+<p>I didn’t get a chance to go over this last week, so I will now.</p>
+<p>One Circle solution had this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">from_diameter</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+    <span class="bp">cls</span><span class="o">.</span><span class="n">diameter</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="bp">cls</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">val</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="bp">cls</span>
+</pre></div>
+</div>
+<p>What is wrong with this code? What is actually happening here??</p>
+<p>Let’s check it out.</p>
+</div>
+<div class="section" id="when-to-make-a-method-or-property">
+<h3>When to make a method or property?<a class="headerlink" href="#when-to-make-a-method-or-property" title="Permalink to this headline">¶</a></h3>
+<p>It is a good idea to make a property to access information in your class that requires “inside information”, For example, in a Donor class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">maxdonation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">donations</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This way, client code can get the maximum donation without knowing, or caring, how the donations are stored in the class.</p>
+<p>However, there is no need to create a property to “hide” something that is already part of the public API:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">namelength</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>There is no point to this – <code class="docutils literal notranslate"><span class="pre">a_donor.name</span></code> is expected to be a string – so if you want to know how long it is, you can simply do:  <code class="docutils literal notranslate"><span class="pre">len(a_donor.name)</span></code></p>
+<p>You <em>do</em> want to use properties to “hide” implementation details – but the name attribute being a string is part of the API, not an implementation detail.</p>
+</div>
+<div class="section" id="pointless-properties">
+<h3>Pointless properties<a class="headerlink" href="#pointless-properties" title="Permalink to this headline">¶</a></h3>
+<p>What’s wrong this?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">circle</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_radius</span> <span class="o">=</span> <span class="n">radius</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_radius</span>
+    <span class="nd">@radius.setter</span>
+    <span class="k">def</span> <span class="nf">radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_radius</span> <span class="o">=</span> <span class="n">radius</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="magic-methods">
+<h3>Magic Methods<a class="headerlink" href="#magic-methods" title="Permalink to this headline">¶</a></h3>
+<p>The “math” magic methods: <code class="docutils literal notranslate"><span class="pre">__add__</span></code>, etc, should return the object – not strings!</p>
+</div>
+<div class="section" id="anything-else-from-oo-mailroom">
+<h3>Anything else from OO mailroom?<a class="headerlink" href="#anything-else-from-oo-mailroom" title="Permalink to this headline">¶</a></h3>
+<p>Does anyone volunteer for a code review?</p>
+<p>Or should we review mine?</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Lightning Talks<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Kanahn Sethunarayanan</p>
+<p>Tim Pauley</p>
+<p>Zidan Luo</p>
+<div class="section" id="a-little-code-review-refactor">
+<h3>A little code review / refactor<a class="headerlink" href="#a-little-code-review-refactor" title="Permalink to this headline">¶</a></h3>
+<p>Reviewing a trigrams solution, I happened upon a function that needed a bit of clean-up refactoring. Let’s take a look now. It’s in the class repo here:</p>
+<p><code class="docutils literal notranslate"><span class="pre">examples/Session10/refactor_example.py</span></code></p>
+</div>
+</div>
+<div class="section" id="the-next-class">
+<h2>The Next Class<a class="headerlink" href="#the-next-class" title="Permalink to this headline">¶</a></h2>
+<p>Next quarter, you’ll finish up the core of the Python language, then go into depth on some of the more advanced features of the language. Finally, you’ll do a bit with using Python with other tools, such as databases.</p>
+</div>
+<div class="section" id="end-of-quarter">
+<h2>End of Quarter:<a class="headerlink" href="#end-of-quarter" title="Permalink to this headline">¶</a></h2>
+<p>We will review PRs through Sunday.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Christopher H. Barker.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

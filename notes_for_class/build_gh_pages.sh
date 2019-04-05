@@ -9,7 +9,7 @@
 #  -- to be nicely served by gh-pages
 
 
-GHPAGESDIR=../../Fall2018-PY210A.gh-pages/
+GHPAGESDIR=../../SP_2019_210A_classroom.gh-pages
 
 # make sure gh-pages dir is there -- exit if not
 if [ ! -d $GHPAGESDIR ]; then

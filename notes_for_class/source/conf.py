@@ -60,8 +60,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'IntroToPython: Fall 2018'
-copyright = '2018, Christopher H. Barker'
+project = 'IntroToPython: Spring 2019'
+copyright = '2019, Christopher H. Barker'
 author = 'Christopher H. Barker'
 
 # The version info for the project you're documenting, acts as replacement for

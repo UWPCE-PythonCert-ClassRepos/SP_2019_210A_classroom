@@ -1,0 +1,22 @@
+dist: trusty
+
+language: python
+
+python: "3.6"
+
+cache: pip
+
+install: "pip install -r requirements.txt"
+
+script:
+  - cd notes_for_class; make html
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: notes_for_class/build/html
+  on:
+    branch: master
+  target-branch: gh-pages

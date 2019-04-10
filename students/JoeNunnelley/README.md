@@ -2,11 +2,6 @@
 
 ### _Author_: Joe Nunnelley
 
-
-- Father of Twins
-- West Seattle Resident
-- Guitar Player
-- Automation Engineer / Build and Release Team @ Socrata
 - Technologies:
   - C# / C/C++
   - Ruby

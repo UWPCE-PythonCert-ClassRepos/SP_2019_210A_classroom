@@ -9,7 +9,13 @@
 
 # def syntaxError()
 
-def typeError():
-    return len(42)
+# def typeError():
+#     return len(42)
 
-typeError()
+# typeError()
+
+def atMe():
+    aInt = 8
+    aInt.append(4)
+
+atMe()

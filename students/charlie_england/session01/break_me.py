@@ -16,5 +16,3 @@ def syntax_error():
 
 def attribute_error():
     pass
-
-name_error()

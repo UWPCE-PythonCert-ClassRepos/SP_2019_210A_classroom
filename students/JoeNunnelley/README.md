@@ -19,5 +19,5 @@
 
 
 - What I want out of this course:
-  - An more detailed understanding of the Python programming language
+  - A more detailed understanding of the Python programming language
   - Some exposure to web development

@@ -1,16 +1,18 @@
 def NameError():
     printx("Here's a name error")
     
-NameError()
-
 def TypeError():
-
-TypeError()
+    age = 30
+    print(str(age))
 
 def SyntaxError():
 
-SyntaxError()
 
 def AttributeError():
 
+
+
+NameError()
+TypeError()
+SyntaxError()
 AttributeError()

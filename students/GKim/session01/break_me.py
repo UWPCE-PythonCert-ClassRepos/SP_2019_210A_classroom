@@ -4,7 +4,12 @@
 
 # name_error()
 
-def syntaxError():
-    return hello there
+# def syntaxError():
+#     return hello there
 
-def syntaxError()
+# def syntaxError()
+
+def typeError():
+    return len(42)
+
+typeError()

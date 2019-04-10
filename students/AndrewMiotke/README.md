@@ -1,4 +1,7 @@
 # README for Andrew Miotke
 
-Pull from upstream master
-`git pull upstream master`
+## Instructions
+* Create a Pull Request(PR) from my fork to merge into master for grading
+
+* Pull from upstream master
+	* `git pull upstream master`

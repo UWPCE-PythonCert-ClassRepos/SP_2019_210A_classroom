@@ -7,33 +7,14 @@
 Notes for Session 07
 ####################
 
-11/20/2018
+**NOTE:**  These notes are "live" -- they will change up until the class starts.
 
 A collection of notes to go over in class, to keep things organized.
 
 Lightning Talks
 ===============
 
-Adolphe Aime  Ndilingiye
-Udo (Michael) Uduhiri
-Zachary A Connaughton (Zach)
 
-Scheduling:
-===========
-
-Turkey Day weekend
-------------------
-
-I'm around all weekend, so can do office hours -- do you want them?
-
-The usual times?
-
-Next Week:
-----------
-
-I'll be out of town, leaving you in Charles Capable hands.
-
-But I'll be trying to keep up with email and gitHub....
 
 
 Issues that came up during the week.

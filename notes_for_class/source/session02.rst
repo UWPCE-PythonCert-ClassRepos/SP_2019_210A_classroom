@@ -6,6 +6,8 @@
 Notes for Session 02
 ####################
 
+**NOTE:**  These notes are "live" -- they will change up until the class starts..
+
 A collection of notes to go over in class, to keep things organized.
 
 Lightning Talks
@@ -13,12 +15,6 @@ Lightning Talks
 
 Up today:
 
-|
-| Habtamu H Asfaw
-| Jim Jenkins
-| Eric Streit
-| Vincent M Aquila
-|
 
 Are you ready? We'll do them in the middle of the session.
 

@@ -7,20 +7,15 @@
 Notes for Session 05
 ####################
 
-November 6, 2018 -- Election Day!!!
+**NOTE:**  These notes are "live" -- they will change up until the class starts..
+
 
 A collection of notes to go over in class, to keep things organized.
 
 Lightning Talks
 ===============
 
-Brian E Nisonger
 
-Carol Louise  Farris
-
-Dianna  Tingg
-
-Manmeet S Dosanjh
 
 
 Issues that came up during the week.

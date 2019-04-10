@@ -7,18 +7,12 @@
 Notes for Session 10
 ####################
 
-12/11/2018
+**NOTE:**  These notes are "live" -- they will change up until the class starts..
 
 A collection of notes to go over in class, to keep things organized.
 
 Lightning Talks
 ===============
-
-Kanahn Sethunarayanan
-
-Tim Pauley
-
-Zidan Luo
 
 Issues that came up during the week.
 ====================================

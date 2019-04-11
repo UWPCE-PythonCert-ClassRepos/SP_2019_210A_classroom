@@ -5,6 +5,15 @@ def name_error():
     print ("the name error function")
     printx("actual name error")
 
-name_error()
+#name_error()
 
+def type_error():
+    a = 5
+    b = "1"
+    x = a + b
+#type_error()
 
+def syntax_error():
+    -pass
+
+syntax_error()

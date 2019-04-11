@@ -13,7 +13,13 @@ def type_error():
     x = a + b
 #type_error()
 
-def syntax_error():
-    -pass
+#def syntax_error():
+#    -pass
 
-syntax_error()
+#syntax_error()
+
+def attribute_error():
+    a = 100
+    b = a.split(" ")
+
+attribute_error()

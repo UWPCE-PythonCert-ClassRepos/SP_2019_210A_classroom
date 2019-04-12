@@ -42,3 +42,15 @@ a _symbol_ is bound to a _value_ with the assignment operator, `=`
 * Python standard is 4 spaces for indentation
 * Tabs are *not* Spaces and Spaces are *not* tabs
 * `TypeErrors` are only checked at run time
+
+### Functions
+* Define a function using `def`
+	* `def` is a statement
+* Create a basic function like this:
+```python
+def simple():
+	print("a simple function")
+```
+* To call a function state the name and add `()` to the end of the function name.
+	* To call the simple function about use `simple()`
+

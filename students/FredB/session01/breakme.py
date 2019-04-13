@@ -15,6 +15,8 @@ c=a+b
 
 
 #SyntaxError
+"
+
 
 
 #AttributeError

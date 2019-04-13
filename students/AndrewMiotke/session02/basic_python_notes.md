@@ -51,6 +51,30 @@ a _symbol_ is bound to a _value_ with the assignment operator, `=`
 def simple():
 	print("a simple function")
 ```
-* To call a function state the name and add `()` to the end of the function name.
+* To call a function, state the name and add `()` to the end of the function name.
 	* To call the simple function about use `simple()`
+* Calling a function is how you run the code in that function
+* *Function Call Stack* is when a function calls another function.
+	* This is often what a _trace back_ often refers to in exceptions
+* Trace backs are listed in reverse order
+
+### Functions `return`
+* Every function ends by returning a value
+```python
+# the simplest possible function
+def simple_return():
+	return None
+```
+* If you don't put a `return` at the end, Python will return `None`
+* Only one `return` will be run per function
+* Any code after `return` will never be ran
+```python3
+def no_error():
+	return `done`
+	# no more will happen - the `return` ends the function
+	print("this wont run")
+```
+* Functions _can_ return multiple results
+
+### Function Parameters
 

@@ -44,7 +44,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lightning Talks: Spring 2019 Class" href="lightning_talks.html" />
+    <link rel="prev" title="Notes for Session 09" href="session09.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,8 +94,37 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="session01.html">Notes for Session 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session02.html">Notes for Session 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session03.html">Notes for Session 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session04.html">Notes for Session 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session05.html">Notes for Session 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session06.html">Notes for Session 06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session07.html">Notes for Session 07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session08.html">Notes for Session 08</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session09.html">Notes for Session 09</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Notes for Session 10</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#june-11-2019">June 11, 2019</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lightning-talks">Lightning Talks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issues-that-came-up-during-the-week">Issues that came up during the week.</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#classmethod"><code class="docutils literal notranslate"><span class="pre">classmethod</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#when-to-make-a-method-or-property">When to make a method or property?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pointless-properties">Pointless properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#magic-methods">Magic Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#anything-else-from-oo-mailroom">Anything else from OO mailroom?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Lightning Talks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a-little-code-review-refactor">A little code review / refactor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-next-class">The Next Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#end-of-quarter">End of Quarter:</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="lightning_talks.html">Lightning Talks: Spring 2019 Class</a></li>
@@ -163,15 +194,17 @@
             
   <div class="section" id="notes-for-session-10">
 <span id="notes-session10"></span><h1>Notes for Session 10<a class="headerlink" href="#notes-for-session-10" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="june-11-2019">
+<h2>June 11, 2019<a class="headerlink" href="#june-11-2019" title="Permalink to this headline">¶</a></h2>
 <p><strong>NOTE:</strong>  These notes are “live” – they will change up until the class starts..</p>
 <p>A collection of notes to go over in class, to keep things organized.</p>
 <div class="section" id="lightning-talks">
-<h2>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h2>
+<h3>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="issues-that-came-up-during-the-week">
-<h2>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h2>
+<h3>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="classmethod">
-<h3><code class="docutils literal notranslate"><span class="pre">classmethod</span></code><a class="headerlink" href="#classmethod" title="Permalink to this headline">¶</a></h3>
+<h4><code class="docutils literal notranslate"><span class="pre">classmethod</span></code><a class="headerlink" href="#classmethod" title="Permalink to this headline">¶</a></h4>
 <p>I didn’t get a chance to go over this last week, so I will now.</p>
 <p>One Circle solution had this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@classmethod</span>
@@ -185,7 +218,7 @@
 <p>Let’s check it out.</p>
 </div>
 <div class="section" id="when-to-make-a-method-or-property">
-<h3>When to make a method or property?<a class="headerlink" href="#when-to-make-a-method-or-property" title="Permalink to this headline">¶</a></h3>
+<h4>When to make a method or property?<a class="headerlink" href="#when-to-make-a-method-or-property" title="Permalink to this headline">¶</a></h4>
 <p>It is a good idea to make a property to access information in your class that requires “inside information”, For example, in a Donor class:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">maxdonation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -203,7 +236,7 @@
 <p>You <em>do</em> want to use properties to “hide” implementation details – but the name attribute being a string is part of the API, not an implementation detail.</p>
 </div>
 <div class="section" id="pointless-properties">
-<h3>Pointless properties<a class="headerlink" href="#pointless-properties" title="Permalink to this headline">¶</a></h3>
+<h4>Pointless properties<a class="headerlink" href="#pointless-properties" title="Permalink to this headline">¶</a></h4>
 <p>What’s wrong this?</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">circle</span><span class="p">():</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
@@ -219,33 +252,34 @@
 </div>
 </div>
 <div class="section" id="magic-methods">
-<h3>Magic Methods<a class="headerlink" href="#magic-methods" title="Permalink to this headline">¶</a></h3>
+<h4>Magic Methods<a class="headerlink" href="#magic-methods" title="Permalink to this headline">¶</a></h4>
 <p>The “math” magic methods: <code class="docutils literal notranslate"><span class="pre">__add__</span></code>, etc, should return the object – not strings!</p>
 </div>
 <div class="section" id="anything-else-from-oo-mailroom">
-<h3>Anything else from OO mailroom?<a class="headerlink" href="#anything-else-from-oo-mailroom" title="Permalink to this headline">¶</a></h3>
+<h4>Anything else from OO mailroom?<a class="headerlink" href="#anything-else-from-oo-mailroom" title="Permalink to this headline">¶</a></h4>
 <p>Does anyone volunteer for a code review?</p>
 <p>Or should we review mine?</p>
 </div>
 </div>
 <div class="section" id="id1">
-<h2>Lightning Talks<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h3>Lightning Talks<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Kanahn Sethunarayanan</p>
 <p>Tim Pauley</p>
 <p>Zidan Luo</p>
 <div class="section" id="a-little-code-review-refactor">
-<h3>A little code review / refactor<a class="headerlink" href="#a-little-code-review-refactor" title="Permalink to this headline">¶</a></h3>
+<h4>A little code review / refactor<a class="headerlink" href="#a-little-code-review-refactor" title="Permalink to this headline">¶</a></h4>
 <p>Reviewing a trigrams solution, I happened upon a function that needed a bit of clean-up refactoring. Let’s take a look now. It’s in the class repo here:</p>
 <p><code class="docutils literal notranslate"><span class="pre">examples/Session10/refactor_example.py</span></code></p>
 </div>
 </div>
 <div class="section" id="the-next-class">
-<h2>The Next Class<a class="headerlink" href="#the-next-class" title="Permalink to this headline">¶</a></h2>
+<h3>The Next Class<a class="headerlink" href="#the-next-class" title="Permalink to this headline">¶</a></h3>
 <p>Next quarter, you’ll finish up the core of the Python language, then go into depth on some of the more advanced features of the language. Finally, you’ll do a bit with using Python with other tools, such as databases.</p>
 </div>
 <div class="section" id="end-of-quarter">
-<h2>End of Quarter:<a class="headerlink" href="#end-of-quarter" title="Permalink to this headline">¶</a></h2>
+<h3>End of Quarter:<a class="headerlink" href="#end-of-quarter" title="Permalink to this headline">¶</a></h3>
 <p>We will review PRs through Sunday.</p>
+</div>
 </div>
 </div>
 
@@ -254,6 +288,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lightning_talks.html" class="btn btn-neutral float-right" title="Lightning Talks: Spring 2019 Class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="session09.html" class="btn btn-neutral float-left" title="Notes for Session 09" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

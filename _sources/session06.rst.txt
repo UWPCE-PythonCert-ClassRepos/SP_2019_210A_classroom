@@ -7,27 +7,26 @@
 Notes for Session 06
 ####################
 
-11/13/2018
+May 14, 2019
+************
+
+
+**NOTE:**  These notes are "live" -- they will change up until the class starts.
+
 
 A collection of notes to go over in class, to keep things organized.
 
 Lightning Talks
 ===============
 
-Daniel Andrew Cornutt (Dan)
 
-Jackie  Cao
-
-Maxwell Morelly
-
-Thanh H Nhan
 
 mailroom 4!!!!
 ==============
 
 **WTF?**
 
-What if Ihaven't gotten version 2 done yet???
+What if I haven't gotten version 2 done yet???
 
 
 Issues that came up during the week.

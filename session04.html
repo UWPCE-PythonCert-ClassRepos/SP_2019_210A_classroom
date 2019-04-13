@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Notes for Session 05" href="session05.html" />
+    <link rel="prev" title="Notes for Session 03" href="session03.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -80,8 +82,37 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="session01.html">Notes for Session 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session02.html">Notes for Session 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session03.html">Notes for Session 03</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Notes for Session 04</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#april-30-2019">April 30, 2019</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lightning-talks">Lightning Talks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issues-that-came-up-during-the-week">Issues that came up during the week.</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#built-in-names">Built in names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mutable-default-parameters">Mutable default parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recursion-in-an-interactive-loop">Recursion in an interactive loop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#slicing-and-list-labs">Slicing and List labs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#my-solutions">My solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Lightning Talks:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#new-material">New Material</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mailroom-part-2">mailroom part 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trigrams">trigrams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="session05.html">Notes for Session 05</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session06.html">Notes for Session 06</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session07.html">Notes for Session 07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session08.html">Notes for Session 08</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session09.html">Notes for Session 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session10.html">Notes for Session 10</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="lightning_talks.html">Lightning Talks: Spring 2019 Class</a></li>
@@ -151,19 +182,17 @@
             
   <div class="section" id="notes-for-session-04">
 <span id="notes-session04"></span><h1>Notes for Session 04<a class="headerlink" href="#notes-for-session-04" title="Permalink to this headline">¶</a></h1>
-<p>10/30/2018</p>
+<div class="section" id="april-30-2019">
+<h2>April 30, 2019<a class="headerlink" href="#april-30-2019" title="Permalink to this headline">¶</a></h2>
+<p><strong>NOTE:</strong>  These notes are “live” – they will change up until the class starts..</p>
 <p>A collection of notes to go over in class, to keep things organized.</p>
 <div class="section" id="lightning-talks">
-<h2>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h2>
-<p>Guy Chiu-Kai Chan
-Jae Kim
-Yaovi Metemey (obed)
-Zach Russell  Cooper</p>
+<h3>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="issues-that-came-up-during-the-week">
-<h2>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h2>
+<h3>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="built-in-names">
-<h3>Built in names<a class="headerlink" href="#built-in-names" title="Permalink to this headline">¶</a></h3>
+<h4>Built in names<a class="headerlink" href="#built-in-names" title="Permalink to this headline">¶</a></h4>
 <p>Python has a number of “key words” that are reserved. If you try to use them as a variable name, you will get an error:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="k">for</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-1-36df406aa65d&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
@@ -220,7 +249,7 @@ Zach Russell  Cooper</p>
 </div>
 </div>
 <div class="section" id="mutable-default-parameters">
-<h3>Mutable default parameters<a class="headerlink" href="#mutable-default-parameters" title="Permalink to this headline">¶</a></h3>
+<h4>Mutable default parameters<a class="headerlink" href="#mutable-default-parameters" title="Permalink to this headline">¶</a></h4>
 <p>There was a video on this – any questions about it?</p>
 <p>If not then we’ll move on…</p>
 <p>This is a real “gotcha” in Python. Someone wrote a non-recursive solution to the sum_series problem. It worked great – EXCEPT if it got called more than once! Any idea what the problem is?</p>
@@ -255,7 +284,7 @@ Out[22]: 1
 <p>Let’s explore that some more, and some solutions….</p>
 </div>
 <div class="section" id="recursion-in-an-interactive-loop">
-<h3>Recursion in an interactive loop<a class="headerlink" href="#recursion-in-an-interactive-loop" title="Permalink to this headline">¶</a></h3>
+<h4>Recursion in an interactive loop<a class="headerlink" href="#recursion-in-an-interactive-loop" title="Permalink to this headline">¶</a></h4>
 <p>not a great idea!</p>
 <p>you can do something like:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mainloop</span><span class="p">():</span>
@@ -271,10 +300,10 @@ Out[22]: 1
 <p>(do a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">master</span></code> if you don’t see it.)</p>
 </div>
 <div class="section" id="slicing-and-list-labs">
-<h3>Slicing and List labs<a class="headerlink" href="#slicing-and-list-labs" title="Permalink to this headline">¶</a></h3>
+<h4>Slicing and List labs<a class="headerlink" href="#slicing-and-list-labs" title="Permalink to this headline">¶</a></h4>
 <p>Any questions?</p>
 <div class="section" id="altering-a-list-while-looping-through-it">
-<h4>Altering a list while looping through it<a class="headerlink" href="#altering-a-list-while-looping-through-it" title="Permalink to this headline">¶</a></h4>
+<h5>Altering a list while looping through it<a class="headerlink" href="#altering-a-list-while-looping-through-it" title="Permalink to this headline">¶</a></h5>
 <p>what could go wrong with this code?</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a_list</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">some_condition</span><span class="p">:</span>
@@ -285,38 +314,39 @@ Out[22]: 1
 <p><code class="docutils literal notranslate"><span class="pre">examples/session04/deleting_in_loop.py</span></code></p>
 </div>
 <div class="section" id="sorting">
-<h4>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h4>
+<h5>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h5>
 <p>Anyone confused about sorting? Shall we go over it?</p>
 <p><code class="docutils literal notranslate"><span class="pre">examples/session04/sort_example.py</span></code></p>
 </div>
 </div>
 <div class="section" id="my-solutions">
-<h3>My solutions<a class="headerlink" href="#my-solutions" title="Permalink to this headline">¶</a></h3>
+<h4>My solutions<a class="headerlink" href="#my-solutions" title="Permalink to this headline">¶</a></h4>
 <p>Let’s look at my solutions quickly.</p>
 <div class="section" id="mailroom">
-<h4>mailroom<a class="headerlink" href="#mailroom" title="Permalink to this headline">¶</a></h4>
+<h5>mailroom<a class="headerlink" href="#mailroom" title="Permalink to this headline">¶</a></h5>
 <p>Anyone get it done?</p>
 <p>Should we look at my solution – or review one of yours?</p>
 <p>Or wait ?</p>
 </div>
 </div>
 <div class="section" id="id1">
-<h3>Lightning Talks:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h4>Lightning Talks:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>Let’s take a break and do them…</p>
 </div>
 </div>
 <div class="section" id="new-material">
-<h2>New Material<a class="headerlink" href="#new-material" title="Permalink to this headline">¶</a></h2>
+<h3>New Material<a class="headerlink" href="#new-material" title="Permalink to this headline">¶</a></h3>
 <p>Any questions on dictionaries, set or files?</p>
 <p>This gets fun now!</p>
 <div class="section" id="mailroom-part-2">
-<h3>mailroom part 2<a class="headerlink" href="#mailroom-part-2" title="Permalink to this headline">¶</a></h3>
+<h4>mailroom part 2<a class="headerlink" href="#mailroom-part-2" title="Permalink to this headline">¶</a></h4>
 <p>How might you use dictionaries in mailroom? If you haven’t finished it without dicts, why not add them now?</p>
 </div>
 <div class="section" id="trigrams">
-<h3>trigrams<a class="headerlink" href="#trigrams" title="Permalink to this headline">¶</a></h3>
+<h4>trigrams<a class="headerlink" href="#trigrams" title="Permalink to this headline">¶</a></h4>
 <p>This is a really fun one – but challenging.</p>
 <p>Let’s get a start on it!</p>
+</div>
 </div>
 </div>
 </div>
@@ -326,6 +356,15 @@ Out[22]: 1
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="session05.html" class="btn btn-neutral float-right" title="Notes for Session 05" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="session03.html" class="btn btn-neutral" title="Notes for Session 03" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

@@ -6,6 +6,12 @@
 Notes for Session 03
 ####################
 
+April 23, 2019
+**************
+
+
+**NOTE:**  These notes are "live" -- they will change up until the class starts..
+
 A collection of notes to go over in class, to keep things organized.
 
 Lightning Talks
@@ -13,13 +19,7 @@ Lightning Talks
 
 Up today:
 
-Fyfy Nguyen
-
-Jon Serpas
-
-Kyle  Barry
-
-Ron Tallman
+ ...
 
 Are you ready? We'll do them in the middle of the session.
 

@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Notes for Session 07" href="session07.html" />
+    <link rel="prev" title="Notes for Session 05" href="session05.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -80,8 +82,38 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="session01.html">Notes for Session 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session02.html">Notes for Session 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session03.html">Notes for Session 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session04.html">Notes for Session 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session05.html">Notes for Session 05</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Notes for Session 06</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#may-14-2019">May 14, 2019</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lightning-talks">Lightning Talks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mailroom-4">mailroom 4!!!!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issues-that-came-up-during-the-week">Issues that came up during the week.</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#looping-through-a-dict">looping through a dict</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dict-as-switch-how-do-you-leave-the-loop">dict as switch – how do you leave the loop?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quit">quit()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#readlines"><code class="docutils literal notranslate"><span class="pre">readlines()</span></code> ?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#binary-vs-text-files">binary vs text files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#any-questions-about-the-homework-or-anything">Any Questions about the homework – or anything?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#break-and-lightning-talks">Break and Lightning talks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#testing">Testing?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-argument-passing">Advanced Argument Passing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="session07.html">Notes for Session 07</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session08.html">Notes for Session 08</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session09.html">Notes for Session 09</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session10.html">Notes for Session 10</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="lightning_talks.html">Lightning Talks: Spring 2019 Class</a></li>
@@ -151,24 +183,22 @@
             
   <div class="section" id="notes-for-session-06">
 <span id="notes-session06"></span><h1>Notes for Session 06<a class="headerlink" href="#notes-for-session-06" title="Permalink to this headline">¶</a></h1>
-<p>11/13/2018</p>
+<div class="section" id="may-14-2019">
+<h2>May 14, 2019<a class="headerlink" href="#may-14-2019" title="Permalink to this headline">¶</a></h2>
+<p><strong>NOTE:</strong>  These notes are “live” – they will change up until the class starts.</p>
 <p>A collection of notes to go over in class, to keep things organized.</p>
 <div class="section" id="lightning-talks">
-<h2>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h2>
-<p>Daniel Andrew Cornutt (Dan)</p>
-<p>Jackie  Cao</p>
-<p>Maxwell Morelly</p>
-<p>Thanh H Nhan</p>
+<h3>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="mailroom-4">
-<h2>mailroom 4!!!!<a class="headerlink" href="#mailroom-4" title="Permalink to this headline">¶</a></h2>
+<h3>mailroom 4!!!!<a class="headerlink" href="#mailroom-4" title="Permalink to this headline">¶</a></h3>
 <p><strong>WTF?</strong></p>
-<p>What if Ihaven’t gotten version 2 done yet???</p>
+<p>What if I haven’t gotten version 2 done yet???</p>
 </div>
 <div class="section" id="issues-that-came-up-during-the-week">
-<h2>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h2>
+<h3>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="looping-through-a-dict">
-<h3>looping through a dict<a class="headerlink" href="#looping-through-a-dict" title="Permalink to this headline">¶</a></h3>
+<h4>looping through a dict<a class="headerlink" href="#looping-through-a-dict" title="Permalink to this headline">¶</a></h4>
 <p>If you need just the keys:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">a_dict</span><span class="p">:</span>
    <span class="o">...</span>
@@ -186,16 +216,16 @@
 </div>
 </div>
 <div class="section" id="dict-as-switch-how-do-you-leave-the-loop">
-<h3>dict as switch – how do you leave the loop?<a class="headerlink" href="#dict-as-switch-how-do-you-leave-the-loop" title="Permalink to this headline">¶</a></h3>
+<h4>dict as switch – how do you leave the loop?<a class="headerlink" href="#dict-as-switch-how-do-you-leave-the-loop" title="Permalink to this headline">¶</a></h4>
 <p>Let’s look at a particularly nifty solution:</p>
 <p><code class="docutils literal notranslate"><span class="pre">solutions/Lesson05/mailroom_dict_as_switch</span></code></p>
 </div>
 <div class="section" id="quit">
-<h3>quit()<a class="headerlink" href="#quit" title="Permalink to this headline">¶</a></h3>
+<h4>quit()<a class="headerlink" href="#quit" title="Permalink to this headline">¶</a></h4>
 <p>In my solution to mailroom, I created a function called <code class="docutils literal notranslate"><span class="pre">quit</span></code> to quit the program. THat is not a great idea, as there is a built-in called <code class="docutils literal notranslate"><span class="pre">quit</span></code>.  In my defense, the <code class="docutils literal notranslate"><span class="pre">quit()</span></code> built-in didn’t exist when I learned Python :-).</p>
 </div>
 <div class="section" id="readlines">
-<h3><code class="docutils literal notranslate"><span class="pre">readlines()</span></code> ?<a class="headerlink" href="#readlines" title="Permalink to this headline">¶</a></h3>
+<h4><code class="docutils literal notranslate"><span class="pre">readlines()</span></code> ?<a class="headerlink" href="#readlines" title="Permalink to this headline">¶</a></h4>
 <p>quite a few of you have code like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">full_lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
@@ -216,33 +246,34 @@
 <p>And one less line of code :-)</p>
 </div>
 <div class="section" id="binary-vs-text-files">
-<h3>binary vs text files<a class="headerlink" href="#binary-vs-text-files" title="Permalink to this headline">¶</a></h3>
+<h4>binary vs text files<a class="headerlink" href="#binary-vs-text-files" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">open()</span></code> uses text mode (utf-8) by default. It will try to decode the file into text. If you open a binary file that way it will likely barf.</p>
 <p>try: <code class="docutils literal notranslate"><span class="pre">open(the_filename,</span> <span class="pre">'rb'</span></code></p>
 <p>For more on what “decode” means:</p>
 <p><a class="reference external" href="https://uwpce-pythoncert.github.io/PythonCertDevel/modules/Unicode.html?highlight=unicode">Unicode in Python</a></p>
 </div>
 <div class="section" id="any-questions-about-the-homework-or-anything">
-<h3>Any Questions about the homework – or anything?<a class="headerlink" href="#any-questions-about-the-homework-or-anything" title="Permalink to this headline">¶</a></h3>
+<h4>Any Questions about the homework – or anything?<a class="headerlink" href="#any-questions-about-the-homework-or-anything" title="Permalink to this headline">¶</a></h4>
 <p>review trigrams?</p>
 <p>review mailroom?</p>
 </div>
 </div>
 <div class="section" id="break-and-lightning-talks">
-<h2>Break and Lightning talks<a class="headerlink" href="#break-and-lightning-talks" title="Permalink to this headline">¶</a></h2>
+<h3>Break and Lightning talks<a class="headerlink" href="#break-and-lightning-talks" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="testing">
-<h3>Testing?<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<h4>Testing?<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h4>
 <p>Did y’all do the testing exercise with a coding bat example?</p>
 <p>We could do one now.</p>
 <p>Or…</p>
 </div>
 <div class="section" id="advanced-argument-passing">
-<h3>Advanced Argument Passing<a class="headerlink" href="#advanced-argument-passing" title="Permalink to this headline">¶</a></h3>
+<h4>Advanced Argument Passing<a class="headerlink" href="#advanced-argument-passing" title="Permalink to this headline">¶</a></h4>
 <p>All this <code class="docutils literal notranslate"><span class="pre">*arg</span></code>, <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> stuff a bit confusing?</p>
 <p>Let’s explore it a bit.</p>
 <p>AND – we’ll use TDD to do it.</p>
 <p>Exercise here:</p>
 <p><a class="reference external" href="https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/args_kwargs_lab.html">https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/args_kwargs_lab.html</a></p>
+</div>
 </div>
 </div>
 </div>
@@ -252,6 +283,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="session07.html" class="btn btn-neutral float-right" title="Notes for Session 07" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="session05.html" class="btn btn-neutral" title="Notes for Session 05" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

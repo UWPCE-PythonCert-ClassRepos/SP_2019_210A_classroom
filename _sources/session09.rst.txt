@@ -7,19 +7,17 @@
 Notes for Session 09
 ####################
 
-12/4/2018
+June 4, 2019
+************
+
+
+**NOTE:**  These notes are "live" -- they will change up until the class starts..
 
 A collection of notes to go over in class, to keep things organized.
 
 
 Lightning Talks
 ===============
-
-Cheng Liu
-
-Kate Koehn
-
-Parastoo Javadi
 
 Issues that came up during the week.
 ====================================

@@ -20,7 +20,9 @@ Cole Garvens Phalen
 Brian Scott Ervin
 .................
 
-Github: https://github.com/ervbrian/HikerTools
+Main topic: Python Multiprocessing
+Code Example: https://github.com/ervbrian/HikerTools/
+Overview: Processing GPS data and calculating hike statistics
 
 Week 3
 ------

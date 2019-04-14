@@ -8,10 +8,10 @@
 # make_tags('cite', 'Yay') → '<cite>Yay</cite>'
 
 def make_tags(tag, word):
-  front = "<" + tag +">"
-  end = "</" + tag + ">"
-  mtag = front + word + end
-  return mtag
+    front = "<" + tag +">"
+    end = "</" + tag + ">"
+    mtag = front + word + end
+    return mtag
 
 make_tags('i', 'Yay') 
 make_tags('i', 'Hello') 

@@ -7,6 +7,10 @@
 Notes for Session 06
 ####################
 
+May 14, 2019
+************
+
+
 **NOTE:**  These notes are "live" -- they will change up until the class starts.
 
 

@@ -13,6 +13,6 @@ def make_tags(tag, word):
     mtag = front + word + end
     return mtag
 
-make_tags('i', 'Yay') 
-make_tags('i', 'Hello') 
-make_tags('cite', 'Yay')
+print(make_tags('i', 'Yay'))
+print(make_tags('i', 'Hello'))
+print(make_tags('cite', 'Yay'))

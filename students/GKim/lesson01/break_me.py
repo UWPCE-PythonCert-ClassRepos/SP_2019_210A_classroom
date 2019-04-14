@@ -14,8 +14,8 @@
 
 # typeError()
 
-def atMe():
-    aInt = 8
-    aInt.append(4)
+# def atMe():
+#     aInt = 8
+#     aInt.append(4)
 
-atMe()
+# atMe()

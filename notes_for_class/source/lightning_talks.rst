@@ -20,6 +20,8 @@ Cole Garvens Phalen
 Brian Scott Ervin
 .................
 
+Github: https://github.com/ervbrian/HikerTools
+
 Week 3
 ------
 

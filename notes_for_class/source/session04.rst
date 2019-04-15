@@ -6,6 +6,9 @@
 Notes for Session 04
 ####################
 
+April 30, 2019
+**************
+
 
 **NOTE:**  These notes are "live" -- they will change up until the class starts..
 

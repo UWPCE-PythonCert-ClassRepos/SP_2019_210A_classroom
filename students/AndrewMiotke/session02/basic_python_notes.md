@@ -95,14 +95,14 @@ list_of_strings = ["This", "is", "a", "string"]
 
 ### `for` Loops
 * When you need to iterate over something multiple times, generally an object
-* ```python3
+```python3
 list_of_int = [1, 2, 3, 4, 5]
 
 for item in list_of_int:
 	print(item)
 ```
 
-### `range()`
+### `range()` for Loop
 * Allows you to iterate over something a set number of times
 ```python3
 for i in range(1, 11):

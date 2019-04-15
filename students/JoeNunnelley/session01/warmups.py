@@ -222,8 +222,6 @@ def reverse3(nums):
     return reverse
 
 #27
-
-
 def cigar_party(cigars, is_weekend):
     if is_weekend:
         if cigars >= 40:
@@ -234,30 +232,32 @@ def cigar_party(cigars, is_weekend):
 
     return False
 
-
+#28
 def date_fashion(you, date):
-  style = 1
-  if you >= 8 or date >= 8:
-    style = 2
-  if you <= 2 or date <= 2:
-    style = 0
+    style = 1
+    if you >= 8 or date >= 8:
+        style = 2
+    if you <= 2 or date <= 2:
+        style = 0
 
   return style
 
-  def double_char(str):
-  new_str = ""
-  for i in str:
-    new_str += i * 2
+#29
+def double_char(str):
+    new_str = ''
+    for i in str:
+        new_str += i * 2
 
-  return new_str
+    return new_str
 
-
+#30
 def count_code(str):
-  match = 0
-  i = 0
-  while i < len(str) - 3:
-    if str[i:i+2] == 'co' and str[i+3] == 'e':
-      match += 1
-    i += 1
+    match = 0
+    i = 0
+    while i < len(str) - 3:
+        if str[i:i+2] == 'co' and str[i+3] == 'e':
+            match += 1
 
-  return match
+        i += 1
+
+    return match

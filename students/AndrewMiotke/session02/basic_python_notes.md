@@ -77,4 +77,51 @@ def no_error():
 * Functions _can_ return multiple results
 
 ### Function Parameters
+* When declaring a function the values written inside the `( )` are parameters
+
+### Function Arguments
+* When you call a function your pass values into the function parameters. Thos values are called arguments.
+
+### if/elif/else
+* `elif` is Python's ways of saying `else if`
+
+### Lists
+* A way to store a bunch of stuff in order. Similar to an `array`
+* You can put any objet in a list
+```python3
+list_of_int = [1, 2, 3, 4, 5]
+list_of_strings = ["This", "is", "a", "string"]
+```
+
+### `for` Loops
+* When you need to iterate over something multiple times, generally an object
+* ```python3
+list_of_int = [1, 2, 3, 4, 5]
+
+for item in list_of_int:
+	print(item)
+```
+
+### `range()`
+* Allows you to iterate over something a set number of times
+```python3
+for i in range(1, 11):
+	print(i) # prints numbers from 1 to 10
+```
+
+### `assert`
+* Allows you to assert on a piece of code to ensure it does what you want, this is a part of unit testing
+```python3
+def add(n1, n2):
+	return n1, + n2
+
+assert add(2, 2) == 4 # this assertion would return nothing
+assert add(2, 2) == 5 # This returns the following assertion failure:
+---------------------------------------------------------------------------
+AssertionError                            Traceback (most recent call last)
+<ipython-input-24-0a40601796bd> in <module>
+----> 1 assert add(2, 2) == 3
+
+AssertionError:
+```
 

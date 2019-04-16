@@ -7,11 +7,14 @@
 # make_tags('i', 'Hello') → '<i>Hello</i>'
 # make_tags('cite', 'Yay') → '<cite>Yay</cite>'
 
+# def make_tags(tag, word):
+#     front = "<" + tag +">"
+#     end = "</" + tag + ">"
+#     mtag = front + word + end
+#     return mtag
+
 def make_tags(tag, word):
-    front = "<" + tag +">"
-    end = "</" + tag + ">"
-    mtag = front + word + end
-    return mtag
+   return "<{}>{}<{}/>".format(tag,word,tag)
 
 print(make_tags('i', 'Yay'))
 print(make_tags('i', 'Hello'))

@@ -14,7 +14,6 @@ def sleep_in(weekday, vacation):
   return(not weekday or vacation)
 
 
-
 def pos_neg(a, b, negative):
   if negative:
     return (a < 0 and b < 0)

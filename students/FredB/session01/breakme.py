@@ -1,19 +1,19 @@
 #Assignment1
 #FredBallyns
 
-#NameError
+def NameError():
 #print(undefinedText)
 
-#TypeError
+def TypeError():
 a=5
 b="5"
 #c=a+b
 
 
-#SyntaxError
+def SyntaxError():
 #"
 
-#AttributeError
+def AttributeError():
 List = 5
 List.append(4)
 

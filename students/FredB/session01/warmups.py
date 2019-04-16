@@ -1,5 +1,6 @@
-#Assignment1
+#Warmups
 #FredBallyns
+
 
 def diff21(n):
 #Returns absolute differnce with 21, but double if over 21

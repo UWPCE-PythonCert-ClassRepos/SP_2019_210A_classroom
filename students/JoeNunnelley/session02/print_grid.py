@@ -47,7 +47,12 @@ def main(argv):
     print()
 
     # make that grid
-    print_grid(dimension, scale)
+    # you may specify unique values for dimension and scale
+    # or you may simply specify dimension and it will be used
+    # for the scale value
+    # dimensnion = # of columms/rows
+    # scale = the segments count between column/row lines
+    print_grid(dimension, scale=dimension)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

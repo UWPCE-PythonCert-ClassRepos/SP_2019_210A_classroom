@@ -21,3 +21,13 @@ def lucas(n):
         return lucas(n-2) + lucas(n-1)
 
 print(lucas(10))
+
+def sum_series(n, t=0, r=1):
+    if n == 0:
+        return t
+    elif n == 1:
+        return r
+    else:
+        return sum_series(n-2) + sum_series(n-1)
+
+print(sum_series(10, 2, 1))

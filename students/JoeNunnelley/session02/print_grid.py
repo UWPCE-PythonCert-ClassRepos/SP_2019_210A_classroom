@@ -1,21 +1,23 @@
 #! /usr/bin/env python3
 
-import sys, getopt
+"""This module prints grids of various sizes depending on inputs"""
+import sys
+import getopt
 
 def print_inner(scale, dimension):
     """This function prints the inner row pattern"""
     open_row_start = "|" + ("   " * scale)
     middle_row = (open_row_start * dimension) + "|"
 
-    for i in range(scale):
+    for _ in range(scale):
         print(middle_row)
 
 def print_grid(dimension, scale):
     """This function prints the vertical edge pattern"""
     side = "+" + (" - " * scale)
-    vertical_side  = (side * dimension)  + "+"
+    vertical_side = (side * dimension)  + "+"
 
-    for i in range(dimension):
+    for _ in range(dimension):
         print(vertical_side)
         print_inner(scale, dimension)
 
@@ -23,11 +25,13 @@ def print_grid(dimension, scale):
 
 # Decided to make this a little more fun and work with inputs
 def main(argv):
+    """The main function of the program"""
+
     dimension = ''
     scale = ''
 
     try:
-        opts, args = getopt.getopt(argv, "hd:s:", ["dimension", "scale"])
+        opts, _ = getopt.getopt(argv, "hd:s:", ["dimension", "scale"])
     except getopt.GetoptError:
         print("Invalid options. Run <script> -h for help")
         sys.exit(2)
@@ -50,7 +54,7 @@ def main(argv):
     # you may specify unique values for dimension and scale
     # or you may simply specify dimension and it will be used
     # for the scale value
-    # dimensnion = # of columms/rows
+    # dimension = # of columms/rows
     # scale = the segments count between column/row lines
     print_grid(dimension, scale=dimension)
 

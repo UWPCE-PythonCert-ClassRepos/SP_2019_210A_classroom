@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def fib(n):
     """Computes through the a series of numbers by summing the previous two numbers, see Fibonacci Number on wikipedia"""
     if n == 0:
@@ -9,7 +11,6 @@ def fib(n):
 
 # Only printing to see the output. The tests should prove it's accuracy
 print(fib(10))
-
 
 def lucas(n):
     """The Lucas Numbers are a related series of integers that start with the values 2 and 1 rather than 0 and 1, see Lucas Number on wikipedia"""
@@ -23,6 +24,7 @@ def lucas(n):
 print(lucas(10))
 
 def sum_series(n, t=0, r=1):
+#TODO: Write a docstring for this method
     if n == 0:
         return t
     elif n == 1:
@@ -30,4 +32,4 @@ def sum_series(n, t=0, r=1):
     else:
         return sum_series(n-2) + sum_series(n-1)
 
-print(sum_series(10, 2, 1))
+print(sum_series(10, 2, 3))

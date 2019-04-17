@@ -27,31 +27,38 @@ def print_grid(dimension, scale):
 
     print(vertical_side)
 
+def usage():
+    print('ERROR : Inputs must be positive numbers')
+    print('Syntax: <script> -d <dimension> -s <scale>')
+
+
 # Decided to make this a little more fun and work with inputs
 def main(argv):
     """The main function of the program"""
 
-    dimension = ''
-    scale = ''
+    dimension = 0
+    scale = 0
 
     try:
         opts, _ = getopt.getopt(argv, "hd:s:", ["dimension", "scale"])
-    except getopt.GetoptError:
+    except getopt.GetoptError as err:
+        print(err)
         print("Invalid options. Run <script> -h for help")
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-h':
-            print('Syntax: <script> -d <dimension> -s <scale>')
-            print('Inputs must be positive numbers')
+            usage()
             sys.exit(1)
         elif opt in ("-d", "--dimension"):
             dimension = int(arg)
         elif opt in ("-s", "--scale"):
             scale = int(arg)
-
-    print("Dimesion : ", dimension)
-    print("Scale    : ", scale)
+    if dimension and scale:
+        print("Dimesion : ", dimension)
+        print("Scale    : ", scale)
+    else:
+        usage()
     print()
 
     # make that grid

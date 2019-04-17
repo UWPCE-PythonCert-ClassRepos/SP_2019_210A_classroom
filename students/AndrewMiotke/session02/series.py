@@ -24,7 +24,11 @@ def lucas(n):
 print(lucas(10))
 
 def sum_series(n, t=0, r=1):
-#TODO: Write a docstring for this method
+    """
+    sum_series() will compute both the Fibonacci series and the lucas series based on the parameters passed into the function call
+    To run the Fibonacci series, just pass in the value into the sum_series() call,
+    To run the Lucas series, pass in trhe value followed by a 2 and 1.
+    """
     if n == 0:
         return t
     elif n == 1:
@@ -32,4 +36,4 @@ def sum_series(n, t=0, r=1):
     else:
         return sum_series(n-2) + sum_series(n-1)
 
-print(sum_series(10, 2, 3))
+print(sum_series(10))

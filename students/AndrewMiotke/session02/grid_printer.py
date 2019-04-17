@@ -33,15 +33,17 @@ def create_post():
 
     print(post * 3)
 
-def create_grid():
+def create_grid(x, y):
     create_beam()
     create_post()
     create_post()
     create_post()
 
     create_beam()
+    create_post()
+    create_post()
+    create_post()
 
-def print_grid():
-    create_grid()
+    create_beam()
 
-print_grid()
+create_grid(5, 5)

@@ -1,6 +1,10 @@
 #! /usr/bin/env python3
 
-"""This module prints grids of various sizes depending on inputs"""
+"""
+Lesson 02 : Print Grid Dual Inputs
+Author : Joe Nunnelley
+This module prints grids of various sizes depending on inputs
+"""
 import sys
 import getopt
 

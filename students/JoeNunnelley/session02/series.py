@@ -4,7 +4,6 @@
 Lesson 2 : The Series Project
 Author : Joe Nunnelley
 """
-
 def fibonacci(n):
     """Return the nth fibonacci number"""
 

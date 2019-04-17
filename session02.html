@@ -90,7 +90,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#class-outline">Class Outline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#git-github">git / gitHub</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#exceptions">Exceptions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#coding-bat">Coding Bat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coding-bat">Coding Bat</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-assert-statement">The <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Lightning Talks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#now-some-new-stuff">Now some new stuff</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#grid-printer">Grid Printer</a></li>
@@ -186,6 +189,8 @@
 <div class="section" id="lightning-talks">
 <h3>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h3>
 <p>Up today:</p>
+<p>Cole Garvens Phalen</p>
+<p>Brian Scott Ervin</p>
 <p>Are you ready? We’ll do them in the middle of the session.</p>
 </div>
 <div class="section" id="class-outline">
@@ -207,7 +212,7 @@
 <dl class="docutils">
 <dt>Quite a few folks have changed or added files that they should not have:</dt>
 <dd><ul class="first last simple">
-<li>The central readme in the studetns folder</li>
+<li>The central readme in the students folder</li>
 <li>and extra file here or there</li>
 <li>etc….</li>
 </ul>
@@ -234,7 +239,8 @@ Changes not staged for commit:
 ...
 </pre></div>
 </div>
-<p>It even tells you want to do: use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> to stage particular files, or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> to revert a file back to its state as of the last commit. It doesn’t mention <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></code>, but that will commmit everyting that is “not staged for commit”.</p>
+<p>It even tells you want to do: use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> to stage particular files, or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code> to revert a file back to its state as of the last commit.
+It doesn’t mention <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></code>, but that will commit <em>everything</em> that is “not staged for commit”.</p>
 <p>If you are careful before the commit stage, then you won’t have to “roll back” changes very often.</p>
 <p>But if you do:</p>
 <p><a class="reference external" href="https://uwpce-pythoncert.github.io/PythonCertDevel/supplemental/dev_environment/git_hints.html#backing-out-a-change">https://uwpce-pythoncert.github.io/PythonCertDevel/supplemental/dev_environment/git_hints.html#backing-out-a-change</a></p>
@@ -249,9 +255,68 @@ Changes not staged for commit:
 </div>
 <div class="section" id="coding-bat">
 <h3>Coding Bat<a class="headerlink" href="#coding-bat" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-assert-statement">
+<h4>The <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement<a class="headerlink" href="#the-assert-statement" title="Permalink to this headline">¶</a></h4>
+<p>This is a good time to learn about <code class="docutils literal notranslate"><span class="pre">assert</span></code></p>
+<p>assert is used primarily for testing; it is a quick way to make sure that something is True.</p>
+<p>If whatever follows the <code class="docutils literal notranslate"><span class="pre">assert</span></code> is True, it is silent. If it is not True, an <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> is raised:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="k">assert</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">4</span>
+
+<span class="gp">In [5]: </span><span class="k">assert</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">5</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="mf">0e54103</span><span class="n">c2322</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">assert</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">5</span>
+
+<span class="ne">AssertionError</span>:
+</pre></div>
+</div>
+<p>If you follow the expression after the <code class="docutils literal notranslate"><span class="pre">assert</span></code> with a string, it will get passed along with the <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code></p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="k">assert</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">5</span><span class="p">,</span>  <span class="s2">&quot;4 and 5 aren&#39;t equal&quot;</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="n">dc75c89b2172</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">assert</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">5</span><span class="p">,</span>  <span class="s2">&quot;4 and 5 aren&#39;t equal&quot;</span>
+
+<span class="ne">AssertionError</span>: 4 and 5 aren&#39;t equal
+</pre></div>
+</div>
+<p>I rarely do that – it’s usually obvious what when wrong …</p>
+<p>We will learn more formal testing in a couple weeks, but you can make some quick tests with asserts to check your code.</p>
+<p>Handy for codingbat:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># String-2 count_code</span>
+<span class="c1"># Example from codingbat: https://codingbat.com/prob/p186048</span>
+
+
+<span class="k">def</span> <span class="nf">count_code</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;co&quot;</span> <span class="ow">and</span> <span class="nb">str</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;e&quot;</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span>
+
+
+<span class="k">assert</span> <span class="n">count_code</span><span class="p">(</span><span class="s1">&#39;aaacodebbb&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">count_code</span><span class="p">(</span><span class="s1">&#39;codexxcode&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="k">assert</span> <span class="n">count_code</span><span class="p">(</span><span class="s1">&#39;cozexxcope&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="k">assert</span> <span class="n">count_code</span><span class="p">(</span><span class="s1">&#39;cozexxcope&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="k">assert</span> <span class="n">count_code</span><span class="p">(</span><span class="s1">&#39;cozfxxcope&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">count_code</span><span class="p">(</span><span class="s1">&#39;xxcozeyycop&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="k">assert</span> <span class="n">count_code</span><span class="p">(</span><span class="s1">&#39;cozcop&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;all checks passed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Shall we try a couple?</p>
+<blockquote>
+<div><ul class="simple">
+<li>maybe “front3” – start with Rimlee’s solution?</li>
+</ul>
+</div></blockquote>
 <p>Anyone stuck on any of them?</p>
 <p>Anyone not like their solution?</p>
 <p>Let’s talk about it!</p>
+</div>
 </div>
 <div class="section" id="id1">
 <h3>Lightning Talks<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>

@@ -18,6 +18,10 @@ Lightning Talks
 
 Up today:
 
+Cole Garvens Phalen
+
+Brian Scott Ervin
+
 
 Are you ready? We'll do them in the middle of the session.
 
@@ -40,7 +44,7 @@ Any conceptual questions?
 **Issue:**
 
 Quite a few folks have changed or added files that they should not have:
- - The central readme in the studetns folder
+ - The central readme in the students folder
  - and extra file here or there
  - etc....
 
@@ -64,7 +68,8 @@ Note in the status report::
 
     ...
 
-It even tells you want to do: use ``git add`` to stage particular files, or ``git checkout`` to revert a file back to its state as of the last commit. It doesn't mention ``git commit -a``, but that will commmit everyting that is "not staged for commit".
+It even tells you want to do: use ``git add`` to stage particular files, or ``git checkout`` to revert a file back to its state as of the last commit.
+It doesn't mention ``git commit -a``, but that will commit *everything* that is "not staged for commit".
 
 If you are careful before the commit stage, then you won't have to "roll back" changes very often.
 
@@ -89,6 +94,73 @@ We'll get into Exception handling later.
 
 Coding Bat
 ==========
+
+The ``assert`` statement
+------------------------
+
+This is a good time to learn about ``assert``
+
+assert is used primarily for testing; it is a quick way to make sure that something is True.
+
+If whatever follows the ``assert`` is True, it is silent. If it is not True, an ``AssertionError`` is raised:
+
+.. code-block:: ipython
+
+    In [4]: assert 4 == 4
+
+    In [5]: assert 4 == 5
+    ---------------------------------------------------------------------------
+    AssertionError                            Traceback (most recent call last)
+    <ipython-input-5-0e54103c2322> in <module>
+    ----> 1 assert 4 == 5
+
+    AssertionError:
+
+If you follow the expression after the ``assert`` with a string, it will get passed along with the ``AssertionError``
+
+.. code-block:: ipython
+
+    In [8]: assert 4 == 5,  "4 and 5 aren't equal"
+    ---------------------------------------------------------------------------
+    AssertionError                            Traceback (most recent call last)
+    <ipython-input-8-dc75c89b2172> in <module>
+    ----> 1 assert 4 == 5,  "4 and 5 aren't equal"
+
+    AssertionError: 4 and 5 aren't equal
+
+I rarely do that -- it's usually obvious what when wrong ...
+
+We will learn more formal testing in a couple weeks, but you can make some quick tests with asserts to check your code.
+
+Handy for codingbat:
+
+.. code-block:: python
+
+    # String-2 count_code
+    # Example from codingbat: https://codingbat.com/prob/p186048
+
+
+    def count_code(str):
+        count = 0
+        for i in range(len(str) - 3):
+            if str[i:i + 2] == "co" and str[i + 3] == "e":
+                count += 1
+        return count
+
+
+    assert count_code('aaacodebbb') == 1
+    assert count_code('codexxcode') == 2
+    assert count_code('cozexxcope') == 2
+    assert count_code('cozexxcope') == 2
+    assert count_code('cozfxxcope') == 1
+    assert count_code('xxcozeyycop') == 1
+    assert count_code('cozcop') == 0
+
+    print("all checks passed")
+
+Shall we try a couple?
+
+  - maybe "front3" -- start with Rimlee's solution?
 
 Anyone stuck on any of them?
 

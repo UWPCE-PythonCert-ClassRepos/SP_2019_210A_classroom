@@ -6,7 +6,7 @@ def print_basic_grid(n):
     vertical_line   = ('|' + ('   ' * n)) * n + '|'
 
     print(horizontal_line)
-    for _ in range(n):
+    for i in range(n):
         for _ in range(n):
             print(vertical_line)
         print(horizontal_line)

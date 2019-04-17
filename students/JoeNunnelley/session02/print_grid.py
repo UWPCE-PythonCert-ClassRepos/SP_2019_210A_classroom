@@ -12,9 +12,6 @@ def print_inner(scale, dimension):
     for _ in range(scale):
         print(middle_row)
 
-def print_grid_basic(dimension):
-    print_grid(dimension, dimension)
-
 def print_grid(dimension, scale):
     """This function prints the vertical edge pattern"""
     side = "+" + (" - " * scale)
@@ -52,8 +49,6 @@ def main(argv):
     print("Dimesion : ", dimension)
     print("Scale    : ", scale)
     print()
-
-    print_grid_basic(dimension)
 
     # make that grid
     # you may specify unique values for dimension and scale

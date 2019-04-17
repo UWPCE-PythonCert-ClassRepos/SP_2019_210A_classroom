@@ -7,6 +7,9 @@
 Notes for Session 10
 ####################
 
+June 11, 2019
+*************
+
 **NOTE:**  These notes are "live" -- they will change up until the class starts..
 
 A collection of notes to go over in class, to keep things organized.

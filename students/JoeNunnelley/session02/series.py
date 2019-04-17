@@ -113,3 +113,18 @@ if __name__ == "__main__":
     assert sum_series(-1, 2, 1)  == lucas(-1)
     assert sum_series(5.5, 2, 1) == lucas(5.5)
     print("Testing Complete and Passed. No Failed Assertions")
+
+    # this takes minutes to complete - ick!
+    #print(fibonacci(40))
+
+
+    def fast_fib(n):
+        """ a fast non-recursive fibonacci calculator"""
+        a, b = 0, 1
+        for _ in range(n - 1):
+            a, b = b, a + b
+
+        return b
+
+    print(fast_fib(40))
+    print(fast_fib(1000))

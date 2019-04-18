@@ -16,12 +16,17 @@ def print_grid(x):
         side = (minus + space) * (x // 2)
 
     len = (column + space * x) * 2 + column
+    border = (plus + side) * 2 + plus
 
     for i in range(0, x + 2):
         if i % (x // 2 + 1) == 0:
-            print((plus + side) * 2 + plus)
+            print(border)
         else:
             print(len)
+
+    if not x % 2:
+        # This line is supposed to deal with n as an even integer
+        print(border)
 
 
 def print_grid2(x, length):

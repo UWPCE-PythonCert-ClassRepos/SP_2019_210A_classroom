@@ -10,6 +10,6 @@ def printer(n):
         print(n)
 
 def fizzbuzz(n = 100):
-    """Tester that print FizzBuzz results"""
-    for i in range(1, n):
+    """Main function that print FizzBuzz results"""
+    for i in range(1, n + 1):
         printer(i)

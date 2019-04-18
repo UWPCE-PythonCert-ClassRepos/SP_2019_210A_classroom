@@ -40,7 +40,7 @@ def print_grid2(x, length):
     wall = (column + space * (2 * length + 1)) * x + column
 
     for i in range(0, x + x * length + 1):
-        if i % (length+1) == 0:
+        if i % (length + 1) == 0:
             print(line)
         else:
             print(wall)

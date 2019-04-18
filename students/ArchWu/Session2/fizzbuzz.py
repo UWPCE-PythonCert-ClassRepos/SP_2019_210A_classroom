@@ -1,4 +1,5 @@
-def fizzbuzz(n):
+def printer(n):
+    """Do the FizzBuzz behavior"""
     if n % 3 == 0 and n % 5 == 0:
         print('FizzBuzz')
     elif n % 3 == 0:
@@ -8,6 +9,7 @@ def fizzbuzz(n):
     else:
         print(n)
 
-def start(n):
+def fizzbuzz(n = 100):
+    """Tester that print FizzBuzz results"""
     for i in range(1, n):
-        fizzbuzz(i)
+        printer(i)

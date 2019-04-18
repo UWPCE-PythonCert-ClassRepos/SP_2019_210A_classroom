@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 
 # Long hand way of creating a grid
-# def verbose_grid():
-#     print("+",  " - " * 4, "+", " - " * 4, "+")
+def verbose_grid():
+    print("+",  " - " * 4, "+", " - " * 4, "+")
 
-#     print("|              |              |")
-#     print("|              |              |")
-#     print("|              |              |")
-#     print("|              |              |")
+    print("|              |              |")
+    print("|              |              |")
+    print("|              |              |")
+    print("|              |              |")
 
-#     print("+",  " - " * 4, "+", " - " * 4, "+")
+    print("+",  " - " * 4, "+", " - " * 4, "+")
 
-#     print("|              |              |")
-#     print("|              |              |")
-#     print("|              |              |")
-#     print("|              |              |")
+    print("|              |              |")
+    print("|              |              |")
+    print("|              |              |")
+    print("|              |              |")
 
-#     print("+",  " - " * 4, "+", " - " * 4, "+")
+    print("+",  " - " * 4, "+", " - " * 4, "+")
 
-# verbose_grid()
+verbose_grid()
 
 # More general grid generator
 def create_beam():
@@ -33,17 +33,12 @@ def create_post():
 
     print(post * 3)
 
-def create_grid(x, y):
-    create_beam()
-    create_post()
-    create_post()
-    create_post()
-
-    create_beam()
-    create_post()
-    create_post()
-    create_post()
-
+def create_grid(cells):
+    for _ in range(cells):
+        create_beam()
+        create_post()
+        create_post()
+        create_post()
     create_beam()
 
-create_grid(5, 5)
+create_grid(5)

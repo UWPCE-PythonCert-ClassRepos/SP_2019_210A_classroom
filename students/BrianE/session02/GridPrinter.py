@@ -31,10 +31,11 @@ def grid(box_size=2, grid_size=2):
     output += row_divider
     return output
 
+
 def main():
-    print('box_size=1, grid_size=2:', grid(box_size=1,grid_size=2), sep='\n')
+    print('box_size=1, grid_size=2:', grid(box_size=1, grid_size=2), sep='\n')
     print()
-    print('box_size=2, grid_size=4:', grid(box_size=2,grid_size=4), sep='\n')
+    print('box_size=2, grid_size=4:', grid(box_size=2, grid_size=4), sep='\n')
 
 
 if __name__ == '__main__':

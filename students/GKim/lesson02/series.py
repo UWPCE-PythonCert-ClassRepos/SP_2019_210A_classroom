@@ -1,35 +1,66 @@
-# def fib(n):
-#     """
-#     compute the nth fibonacci number
-#     """
-#     # print("fib called with:", n)
-#     if n == 0:
-#         return 0
-#     elif n == 1:
-#         return 1
-    
-#     return fib(n-1) + fib(n-2)
 
-
-# assert fib(0) == 0
-# assert fib(1) == 1
-# assert fib(2) == 1
-# assert fib(3) == 2
-
-# def fib(n):
-#     nums = [0,1]
-#     while len(nums) < n:
-#         # new_num = nums[-1] + nums[-2]
-#         nums.append(sum(nums[-2:]))
-#     print(nums)
-#     return nums[-1]
-
-# print(fib(15))
-
-def fib(n):
+def fibonacci(n):
+    """ compute the nth Fibonacci number """
     a, b = 0, 1
     for _ in range(n-1):
         a, b = b, a + b
     return b
+    
 
-print(fib(0))
+
+def lucas(n):
+    """ compute the nth Lucas number """
+    a, b = 2, 1
+    if n == 0:
+        return a
+    elif n == 1:
+        return b
+    else:
+        for _ in range(n-1):
+            a, b = b, a + b
+        return b
+
+
+def sum_series(n, n0=None, n1=None):
+    """
+    compute the nth value of a summation series.
+
+    :param n0=0: value of zeroth element in the series
+    :param n1=1: value of first element in the series
+    
+    This function should generalize the fibonacci() and the lucas(),
+    so that this function works for any first two numbers for a sum series.
+    Once generalized that way, sum_series(n, 0, 1) should be equivalent to fibonacci(n).
+    And sum_series(n, 2, 1) should be equivalent to lucas(n).
+    """
+    if n0 == None and n1 == None:
+        return fibonacci(n)
+
+    elif n0 == 2 and n1 == 1:
+        return lucas(n)
+
+
+# ----------------------------------- #
+
+if __name__ == "__main__":
+    # run some tests
+    # assert fibonacci(0) == 0
+    assert fibonacci(1) == 1
+    assert fibonacci(2) == 1
+    assert fibonacci(3) == 2
+    assert fibonacci(4) == 3
+    assert fibonacci(5) == 5
+    assert fibonacci(6) == 8
+    assert fibonacci(7) == 13
+
+    assert lucas(0) == 2
+    assert lucas(1) == 1
+
+    assert lucas(4) == 7
+
+    assert sum_series(5) == fibonacci(5)
+
+    # test if sum_series matched lucas
+    assert sum_series(5, 2, 1) == lucas(5)
+
+    print("tests passed")

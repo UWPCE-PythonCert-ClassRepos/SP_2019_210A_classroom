@@ -1,4 +1,6 @@
-
+"""
+FYI not my code , got help from you tube... but I understand and like this method.
+"""
 
 def print_row(c): 
     """
@@ -15,8 +17,7 @@ def print_row(c):
 def print_column(c):
     """
     prints the "columns" " | " in the grid. just like the row first section is 
-    already created by the input given from user.  The colums print across and 
-    down
+    already created by the input given from user.  The colums print across 
     """
     print("|", end = " ")
     for _ in range(c - 1):
@@ -32,7 +33,7 @@ def my_grid(c,r):
     print_row(c)
     for _ in range(r): # the number of rows in the grid.  
         for _ in range(4): # range of 4 for how many | that connect each +
-            print_column(c)
+            print_column(c) # moving down
         print_row(c)
 
 

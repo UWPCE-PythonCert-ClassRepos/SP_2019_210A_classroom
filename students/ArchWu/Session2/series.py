@@ -25,7 +25,31 @@ def lucas(n):
     return b
 
 
-def test_fib():
+def sum_series(n, n0 = 0, n1 = 1):
+    """
+    compute the nth value of a summation series.
+
+    :param n0=0: value of zeroth element in the series
+    :param n1=1: value of first element in the series
+
+    This function should generalize the fibonacci() and the lucas(),
+    so that this function works for any first two numbers for a sum series.
+    Once generalized that way, sum_series(n, 0, 1) should be equivalent to fibonacci(n).
+    And sum_series(n, 2, 1) should be equivalent to lucas(n).
+    """
+    if n0 == 0 and n1 == 1:
+        return fib2(n)
+    elif n0 == 2 and n1 == 1:
+        return lucas(n)
+    else:
+        a, b = n0, n1
+        if n == 0:
+            return n0
+        for _ in range(n - 1):
+            a, b = b, a + b
+        return b
+
+if __name__ == "__main__":
     """Test the correctness of above functions"""
     assert fib(0) == 0
     assert fib2(0) == 0
@@ -45,3 +69,16 @@ def test_fib():
     assert lucas(2) == 3
     assert lucas(3) == 4
     assert lucas(4) == 7
+
+    assert sum_series(100, 2, 1) == lucas(100)
+    assert sum_series(100) == fib2(100)
+    assert sum_series(5, 3, 2) == 19
+    assert sum_series(4, 3, 2) == 12
+    assert sum_series(3, 3, 2) == 7
+    assert sum_series(2, 3, 2) == 5
+    assert sum_series(0, 3, 2) == 3
+    # 3, 2, 5, 7, 12, 19
+    assert sum_series(5, 8, 17) == 109
+    assert sum_series(0, 8, 17) == 8
+    # 8, 17, 25, 42, 67, 109
+    print('Tests Passed!')

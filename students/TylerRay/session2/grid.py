@@ -1,15 +1,15 @@
-plus = "+ "
-minus = "- "
+plus = "+"
+minus = "-"
 space = " "
-vert = "| "
+vert = "|"
 
 boxsize = int(input("Box Size: "))
 gridsize = int(input("Grid Size: "))
 
 def grid(gridsize, boxsize):
-    row1 = plus + (minus * boxsize + plus) * gridsize
-    row2 = '\n' + (vert + (space * boxsize * 2 + vert) * gridsize + '\n') * boxsize
-    row3 = (plus + minus * boxsize) * gridsize + plus
+    row1 = plus + space + ((minus + space)* boxsize + plus + space) * gridsize
+    row2 = '\n' + (vert + (space * boxsize * 2 +space + vert) * gridsize + '\n') * boxsize
+    row3 = (plus + space + (minus + space) * boxsize) * gridsize + plus
     grid = (row1 + row2) * gridsize + row3
     return grid
 

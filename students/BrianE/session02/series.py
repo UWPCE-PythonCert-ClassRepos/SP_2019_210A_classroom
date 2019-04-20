@@ -4,6 +4,7 @@ series.py
 Calculate summation value of a given number
 """
 
+
 def fibonacci(n):
     """
     Compute the nth Fibonacci value using recursion.
@@ -18,6 +19,7 @@ def fibonacci(n):
         return 1
     else:
         return fibonacci(n - 1) + fibonacci(n - 2)
+
 
 def lucas(n):
     """
@@ -34,13 +36,14 @@ def lucas(n):
     else:
         return lucas(n - 1) + lucas(n - 2)
 
+
 def sum_series(n, n0=0, n1=1):
     """
     Compute the nth value in a summation series using recursion.
 
     :param n: value of desired index
-    :param n0=0: value of zeroth element in the series
-    :param n1=1: value of first element in the series
+    :param n0: value of zeroth element in the series
+    :param n1: value of first element in the series
     :return: value of summation calculation of nth index similar to Fibonacci
     """
 
@@ -81,3 +84,4 @@ if __name__ == '__main__':
     # test if sum_series matched lucas
     assert sum_series(5, 2, 1) == lucas(5)
     print("All assertions pass")
+

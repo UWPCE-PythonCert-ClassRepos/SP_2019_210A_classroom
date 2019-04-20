@@ -1,24 +1,24 @@
 
-# def fibonacci(n):
-#     """ compute the nth Fibonacci number """
-#     a, b = 0, 1
-#     for _ in range(n-1):
-#         a, b = b, a + b
-#     return b
+def fibonacci(n):
+    """ compute the nth Fibonacci number """
+    a, b = 0, 1
+    for _ in range(n-1):
+        a, b = b, a + b
+    return b
     
 
 
-# def lucas(n):
-#     """ compute the nth Lucas number """
-#     a, b = 2, 1
-#     if n == 0:
-#         return a
-#     elif n == 1:
-#         return b
-#     else:
-#         for _ in range(n-1):
-#             a, b = b, a + b
-#         return b
+def lucas(n):
+    """ compute the nth Lucas number """
+    a, b = 2, 1
+    if n == 0:
+        return a
+    elif n == 1:
+        return b
+    else:
+        for _ in range(n-1):
+            a, b = b, a + b
+        return b
 
 
 def sum_series(n, a=0, b=1):

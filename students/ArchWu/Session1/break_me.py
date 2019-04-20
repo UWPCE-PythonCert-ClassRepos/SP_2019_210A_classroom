@@ -21,7 +21,7 @@ type_error()
 
 def syntax_error():
     # misuse of syntax
-    print()()
+    print()(
 
 syntax_error()
 

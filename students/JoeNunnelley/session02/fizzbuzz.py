@@ -1,5 +1,8 @@
 #! /usr/bin/env python3
-
+"""
+Lesson 02 : FizzBuzz
+Author : Joe Nunnelley
+"""
 def fizzbuzz(start=1, stop=100):
     """
     A function detecting specific modulus conditions

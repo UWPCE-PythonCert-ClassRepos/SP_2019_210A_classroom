@@ -17,34 +17,46 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Notes for Session 04" href="session04.html" />
     <link rel="prev" title="Notes for Session 02" href="session02.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -87,27 +99,15 @@
 <li class="toctree-l1"><a class="reference internal" href="session02.html">Notes for Session 02</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Notes for Session 03</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#april-23-2019">April 23, 2019</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#lightning-talks">Lightning Talks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#issues-that-came-up-during-the-week">Issues that came up during the week.</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#gitignore"><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#git-commit-and-pr-messages">git commit and PR messages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pep08-and-a-linter">PEP08 and a linter</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#separation-of-concerns">Separation of Concerns</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#for-vs-while"><code class="docutils literal notranslate"><span class="pre">for</span></code> vs <code class="docutils literal notranslate"><span class="pre">while</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#is-vs"><code class="docutils literal notranslate"><span class="pre">is</span></code> vs <code class="docutils literal notranslate"><span class="pre">==</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lightning-talks">Lightning Talks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#charlie-england">Charlie England</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ying-shen-sally">Ying Shen (Sally)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#review-solutions">Review Solutions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#fibonacci-fizzbuzz-print-grid">Fibonacci, FizzBuzz, print_grid</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#my-solutions">My Solutions:</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#issues-that-came-up-during-the-week">Issues that came up during the week.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#review-solutions">Review Solutions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Lightning Talks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#now-some-new-stuff">Now some new stuff</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#labs">Labs:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mailroom">Mailroom</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#now-some-new-stuff">Now some new stuff</a></li>
 </ul>
 </li>
 </ul>
@@ -195,40 +195,30 @@
 <div class="section" id="lightning-talks">
 <h3>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h3>
 <p>Up today:</p>
-<p>Charlie England</p>
-<p>Ying Shen (Sally)</p>
+<div class="section" id="charlie-england">
+<h4>Charlie England<a class="headerlink" href="#charlie-england" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="ying-shen-sally">
+<h4>Ying Shen (Sally)<a class="headerlink" href="#ying-shen-sally" title="Permalink to this headline">¶</a></h4>
 <p>Are you ready? We’ll do them in the middle of the session.</p>
+</div>
 </div>
 <div class="section" id="issues-that-came-up-during-the-week">
 <h3>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="gitignore">
-<h4><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code><a class="headerlink" href="#gitignore" title="Permalink to this headline">¶</a></h4>
 <p>You can make your own!</p>
 <p>For those of you using PyCharm, this could be handy for those pesky <code class="docutils literal notranslate"><span class="pre">.idea</span></code> files. (and <code class="docutils literal notranslate"><span class="pre">.vscode</span></code> files, etc.)</p>
 <p>Let’s do that now.</p>
-</div>
-<div class="section" id="git-commit-and-pr-messages">
-<h4>git commit and PR messages<a class="headerlink" href="#git-commit-and-pr-messages" title="Permalink to this headline">¶</a></h4>
 <p>At this point, it’s pretty obvious what you are doing. But as the projects get more complicated, it won’t be.</p>
 <p>So please put meaningful commit and PR messages – particularly PR messages!</p>
 <p>This is a <strong>really good</strong> habit to get into for future development work.</p>
-</div>
-<div class="section" id="pep08-and-a-linter">
-<h4>PEP08 and a linter<a class="headerlink" href="#pep08-and-a-linter" title="Permalink to this headline">¶</a></h4>
 <p>It is a really good idea to get in the habit of using consistent style in your code – i.e. follow PEP08.</p>
 <p>And this is really easy to do if you have a linter set up in your editor. If you haven’t gotten that to work – do try to do so soon!</p>
 <p><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p>
 <p>Even more important than all of the rest:</p>
 <p><strong>Use four spaces per indent</strong></p>
 <p><strong>ALWAYS</strong></p>
-</div>
-<div class="section" id="separation-of-concerns">
-<h4>Separation of Concerns<a class="headerlink" href="#separation-of-concerns" title="Permalink to this headline">¶</a></h4>
 <p>From print_grid: if you are going to have separate functions, better for them to return a string, and then put all the printing in the calling function, in one place. That would make it more re-usable – say you want to write to a file?</p>
 <p>This is a tiny example of what’s known as “separation of concerns”</p>
-</div>
-<div class="section" id="for-vs-while">
-<h4><code class="docutils literal notranslate"><span class="pre">for</span></code> vs <code class="docutils literal notranslate"><span class="pre">while</span></code><a class="headerlink" href="#for-vs-while" title="Permalink to this headline">¶</a></h4>
 <p>Quite a few folks used a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop in <code class="docutils literal notranslate"><span class="pre">print_grid</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">sum_series</span></code>, and …</p>
 <p>But for all these cases, a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop (and <code class="docutils literal notranslate"><span class="pre">range()</span></code>) is a better option.</p>
@@ -242,9 +232,6 @@ and <code class="docutils literal notranslate"><span class="pre">sum_series</spa
 <p>So in short:</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">while</span></code> when you want to repeat something some unknown amount – maybe a few times maybe thousands…</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">for</span></code> when you want to work with an entire collection, or a pre-determined number of times.</p>
-</div>
-<div class="section" id="is-vs">
-<h4><code class="docutils literal notranslate"><span class="pre">is</span></code> vs <code class="docutils literal notranslate"><span class="pre">==</span></code><a class="headerlink" href="#is-vs" title="Permalink to this headline">¶</a></h4>
 <p>In FizzBuzz, someone had code something like this:</p>
 <p><code class="docutils literal notranslate"><span class="pre">`</span>
 <span class="pre">if</span> <span class="pre">n</span> <span class="pre">%</span> <span class="pre">3</span> <span class="pre">is</span> <span class="pre">0:</span>
@@ -271,15 +258,9 @@ and <code class="docutils literal notranslate"><span class="pre">sum_series</spa
 <p><strong>NOTE:</strong> This is also the case for small strings.</p>
 <p><strong>Important:</strong> This is an implementation detail. Do not count on it!</p>
 </div>
-</div>
 <div class="section" id="review-solutions">
 <h3>Review Solutions<a class="headerlink" href="#review-solutions" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="fibonacci-fizzbuzz-print-grid">
-<h4>Fibonacci, FizzBuzz, print_grid<a class="headerlink" href="#fibonacci-fizzbuzz-print-grid" title="Permalink to this headline">¶</a></h4>
 <p>Anyone want to review their code?</p>
-</div>
-<div class="section" id="my-solutions">
-<h4>My Solutions:<a class="headerlink" href="#my-solutions" title="Permalink to this headline">¶</a></h4>
 <p>I’ve posted my solutions to last week’s assignments in the class repo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">pull</span> <span class="n">upstream</span> <span class="n">master</span>
 </pre></div>
@@ -289,25 +270,18 @@ and <code class="docutils literal notranslate"><span class="pre">sum_series</spa
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="id1">
 <h3>Lightning Talks<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Let’s take a break and do the lightning talks…</p>
 </div>
 <div class="section" id="now-some-new-stuff">
 <h3>Now some new stuff<a class="headerlink" href="#now-some-new-stuff" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="labs">
-<h4>Labs:<a class="headerlink" href="#labs" title="Permalink to this headline">¶</a></h4>
 <p>Get a start on your own, then we’ll come together and finish it up.</p>
 <p><a class="reference external" href="https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/slicing.html#exercise-slicing" title="(in PythonCert v5.0)"><span>Slicing Lab</span></a></p>
 <p><a class="reference external" href="https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/list_lab.html#exercise-list-lab" title="(in PythonCert v5.0)"><span>List Lab</span></a></p>
 <p><a class="reference external" href="https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/string_formatting.html#exercise-string-formatting" title="(in PythonCert v5.0)"><span>String Formatting Exercise</span></a></p>
-</div>
-<div class="section" id="mailroom">
-<h4>Mailroom<a class="headerlink" href="#mailroom" title="Permalink to this headline">¶</a></h4>
 <p>Let’s start this as a group:</p>
 <p><a class="reference external" href="https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/mailroom-part1.html#exercise-mailroom-part1" title="(in PythonCert v5.0)"><span>Mailroom Part 1</span></a></p>
-</div>
 </div>
 </div>
 </div>
@@ -323,7 +297,7 @@ and <code class="docutils literal notranslate"><span class="pre">sum_series</spa
         <a href="session04.html" class="btn btn-neutral float-right" title="Notes for Session 04" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="session02.html" class="btn btn-neutral" title="Notes for Session 02" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="session02.html" class="btn btn-neutral float-left" title="Notes for Session 02" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -332,7 +306,7 @@ and <code class="docutils literal notranslate"><span class="pre">sum_series</spa
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Christopher H. Barker.
+        &copy; Copyright 2019, Christopher H. Barker
 
     </p>
   </div>
@@ -349,33 +323,16 @@ and <code class="docutils literal notranslate"><span class="pre">sum_series</spa
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

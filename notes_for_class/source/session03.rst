@@ -35,7 +35,7 @@ Issues that came up during the week.
 
 You can make your own!
 
-For those of you using PyCharm, this could be handy for those pesky ``.idea`` files.
+For those of you using PyCharm, this could be handy for those pesky ``.idea`` files. (and ``.vscode`` files, etc.)
 
 Let's do that now.
 

@@ -65,5 +65,9 @@ if __name__ == "__main__":
     assert sum_series(5, 2, 1) == lucas(5)
 
     assert sum_series(4,3,2) == 12
+    assert sum_series(5,3,2) == 19
+    assert sum_series(6,3,2) == 31
+    assert sum_series(0,3,2) == 3
+    assert sum_series(1,3,2) == 2
 
     print("tests passed")

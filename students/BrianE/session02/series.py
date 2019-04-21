@@ -83,5 +83,12 @@ if __name__ == '__main__':
 
     # test if sum_series matched lucas
     assert sum_series(5, 2, 1) == lucas(5)
+
+    # test sum_series with custom initial values
+    assert sum_series(5, 5, 7) == 50
+    assert sum_series(5, 5, 9) == 60
+    assert sum_series(7, 5, 9) == 157
+    assert sum_series(9, 3, 9) == 369
+
     print("All assertions pass")
 

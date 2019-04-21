@@ -92,6 +92,22 @@ if __name__ == "__main__":
     print()
 
     print("Testing Sum Series Algorithm")
+    """
+    since `first` and`second` are optional and default to the fibonacci
+    initialization values implicitly, we can pass a single parameter
+    (the number to calculate a result for) and get the fibonacci behavior.
+
+    we can also explicitly call the sum_series function with the same
+    fibonacci initialization values and get the same result. tests below
+    show this behavior.
+
+    in order to get the lucas alrogithmic behaviour we must pass the
+    full initialization value set to the function.
+
+    """
+
+    # implicit fibonacci
+    print('Sum Series with implicit Fibonacci initializtion')
     assert sum_series(0)         == fibonacci(0)
     assert sum_series(1)         == fibonacci(1)
     assert sum_series(2)         == fibonacci(2)
@@ -102,6 +118,22 @@ if __name__ == "__main__":
     assert sum_series(10)        == fibonacci(10)
     assert sum_series(-1)        == fibonacci(-1)
     assert sum_series(5.5)       == fibonacci(5.5)
+
+    # explicit fibonacci
+    print('Sum Series with explicit Fibonacci initialization')
+    assert sum_series(0, 0, 1)   == fibonacci(0)
+    assert sum_series(1, 0, 1)   == fibonacci(1)
+    assert sum_series(2, 0, 1)   == fibonacci(2)
+    assert sum_series(3, 0, 1)   == fibonacci(3)
+    assert sum_series(4, 0, 1)   == fibonacci(4)
+    assert sum_series(5, 0, 1)   == fibonacci(5)
+    assert sum_series(6, 0, 1)   == fibonacci(6)
+    assert sum_series(10, 0, 1)  == fibonacci(10)
+    assert sum_series(-1, 0, 1)  == fibonacci(-1)
+    assert sum_series(5.5, 0, 1) == fibonacci(5.5)
+
+    # explicit lucas - no implicit available
+    print('Sum Series with explicit Lucas initialization')
     assert sum_series(0, 2, 1)   == lucas(0)
     assert sum_series(1, 2, 1)   == lucas(1)
     assert sum_series(2, 2, 1)   == lucas(2)

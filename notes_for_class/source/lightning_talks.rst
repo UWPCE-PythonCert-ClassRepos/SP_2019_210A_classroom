@@ -17,6 +17,8 @@ April 16, 2019
 Cole Garvens Phalen
 ...................
 
+What is Python? How does it compare to some other languages.
+
 Brian Scott Ervin
 .................
 

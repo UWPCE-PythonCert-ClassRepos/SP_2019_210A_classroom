@@ -34,6 +34,7 @@ def grid(box_size=2, grid_size=2):
 
 def main():
     print('box_size=5 (single argument, default 2x2 grid):', grid(5), sep='\n')
+    print()
     print('box_size=1, grid_size=2:', grid(box_size=1, grid_size=2), sep='\n')
     print()
     print('box_size=2, grid_size=4:', grid(box_size=2, grid_size=4), sep='\n')

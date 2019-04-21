@@ -11,17 +11,12 @@ def print_row(c, a =3):
     """
     if c % 2 == 0:
         x = int(c)/2
-        for _ in range(a-1):
-            print("+", end = "")
-            print(" - " * int(x), end = "")
-        print("+")
-
     elif c % 2 == 1:
         x = int(c-1)/2
-        for _ in range(a-1):
-            print("+", end = "")
-            print(" - " * int(x), end = "")
-        print("+")
+    for _ in range(a-1):
+        print("+", end = "")
+        print(" - " * int(x), end = "")
+    print("+")
 
 def print_column(c, a =3):
     """
@@ -30,17 +25,12 @@ def print_column(c, a =3):
     """
     if c % 2 == 0:
         x = int(c)/2
-        for _ in range(a-1):
-            print("|", end = "")
-            print("   " * int(x), end = "")
-        print("|")
-
     elif c % 2 == 1:
         x = int(c-1)/2
-        for _ in range(a-1):
-            print("|", end = "")
-            print("   " * int(x), end = "")
-        print("|")
+    for _ in range(a-1):
+        print("|", end = "")
+        print("   " * int(x), end = "")
+    print("|")
     
 
 def my_grid(c,a =3):
@@ -62,5 +52,5 @@ def my_grid(c,a =3):
 
 
 
-my_grid(9)
+my_grid(3)
 

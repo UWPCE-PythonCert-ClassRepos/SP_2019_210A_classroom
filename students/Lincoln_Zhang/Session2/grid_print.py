@@ -1,53 +1,60 @@
-#
+#!/usr/bin/env python3
+
 #Session 2 Class excercise
 #print grid like this
-#+ - - - - + - - - - +
-#|         |         |
-#|         |         |
-#|         |         |
-#|         |         |
-#+ - - - - + - - - - +
-#|         |         |
-#|         |         |
-#|         |         |
-#|         |         |
-#+ - - - - + - - - - +
 
-def print_plus():
-	print ("+",end="")
+print("Please make a script generating grid like this.")
 
-def print_minus():
-	print(" - - - - ",end="")
+print("""
++ - - - - + - - - - +
+|         |         |
+|         |         |
+|         |         |
+|         |         |
++ - - - - + - - - - +
+|         |         |
+|         |         |
+|         |         |
+|         |         |
++ - - - - + - - - - +
+""")
 
-def print_space():
-	print("         ",end="")
+boxsize = int(input("Please input box size: "))
+gridsize = int(input("Please input grid size: "))
 
-def print_pipe():
-	print("|",end="")
+def horizontal_line(boxsize):
+	return "- " * boxsize + "+ "
 
-def print_newline():
-	print("\n")
+def vertical_line(boxsize):
+	return "  " * boxsize + "| " 
 
-def grid_print(r):
-	for r in range(r):
-		if r%5 == 0:
-			print_plus()
-			print_minus()
-			print_plus()
-			print_minus()
-			print_plus()
-			print_newline()
+# def grid_print_1(boxsize, gridsize):
+# 	r = horizontal_line(boxsize)
+# 	c = vertical_line(boxsize)
+# 	for _ in range(gridsize+1):
+# 		if _%boxsize == 0:
+# 			print ("+ " + r*gridsize)
+# 		else:
+# 			for _ in range(boxsize):
+# 				print ("| " + c*gridsize)
+
+def grid_print_2(boxsize, gridsize):
+	r = horizontal_line(boxsize)
+	c = vertical_line(boxsize)
+	for _ in range((boxsize+1)*gridsize+1):
+		if _%(boxsize+1) == 0:
+			print ("+ " + r*gridsize)
 		else:
-			print_pipe()
-			print_space()
-			print_pipe()
-			print_space()
-			print_pipe()
-			print_newline()
+			print ("| " + c*gridsize)
 
-grid_print(11)
+# print("grid_print_1 output: ")
+# grid_print_1(boxsize, gridsize)
 
-#if __name__ == "__main__":
-#	print("module is imported")
-#	grid_print(11)
+print("grid_print_2 output: ")
+grid_print_2(boxsize, gridsize)
 
+print("grid_print_2 is the solution to this assignment")	
+
+# if __name__ == "__main__":
+# 	print("module is imported")
+# 	grid_print(11)

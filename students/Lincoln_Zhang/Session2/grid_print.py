@@ -21,6 +21,7 @@ print("""
 
 boxsize = int(input("Please input box size: "))
 gridsize = int(input("Please input grid size: "))
+n = int(input("Please input a positive integer: ")) + 1
 
 def horizontal_line(boxsize):
 	return "- " * boxsize + "+ "
@@ -28,15 +29,20 @@ def horizontal_line(boxsize):
 def vertical_line(boxsize):
 	return "  " * boxsize + "| " 
 
-# def grid_print_1(boxsize, gridsize):
-# 	r = horizontal_line(boxsize)
-# 	c = vertical_line(boxsize)
-# 	for _ in range(gridsize+1):
-# 		if _%boxsize == 0:
-# 			print ("+ " + r*gridsize)
-# 		else:
-# 			for _ in range(boxsize):
-# 				print ("| " + c*gridsize)
+#a scale function for a 4X4 grid
+def grid_print_1(n):
+	if not (n-1)%4:
+		r = "- "*int((n-1)/2) + "+ " + "- "*int((n-1)/2)
+		c = "  "*int((n-1)/2) + "| " + "  "*int((n-1)/2)
+
+		for _ in range(n+2):
+			if _%int((n-1)/2+1) == 0:
+				print ("+ " + r + "+")
+			else:
+				print ("| " + c + "|")
+	else:
+		n = input("Please input an integer n modulo 4 is 0: ")
+
 
 def grid_print_2(boxsize, gridsize):
 	r = horizontal_line(boxsize)
@@ -47,13 +53,13 @@ def grid_print_2(boxsize, gridsize):
 		else:
 			print ("| " + c*gridsize)
 
-# print("grid_print_1 output: ")
-# grid_print_1(boxsize, gridsize)
+print("grid_print_1 output: ")
+grid_print_1(n)
 
 print("grid_print_2 output: ")
 grid_print_2(boxsize, gridsize)
 
-print("grid_print_2 is the solution to this assignment")	
+#print("grid_print_2 is the solution to this assignment")	
 
 # if __name__ == "__main__":
 # 	print("module is imported")

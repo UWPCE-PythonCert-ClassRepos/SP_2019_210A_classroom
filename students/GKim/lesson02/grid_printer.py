@@ -9,13 +9,9 @@ def print_row(c, a =3):
     from the first intial print the  section of the column is already created
     this all prints accross
     """
-    if c % 2 == 0:
-        x = int(c)/2
-    elif c % 2 == 1:
-        x = int(c-1)/2
     for _ in range(a-1):
         print("+", end = "")
-        print(" - " * int(x), end = "")
+        print(" - " * ((c-1)//2), end = "")
     print("+")
 
 def print_column(c, a =3):
@@ -23,13 +19,9 @@ def print_column(c, a =3):
     prints the "columns" " | " in the grid. just like the row first section is 
     already created by the input given from user.  The colums print across 
     """
-    if c % 2 == 0:
-        x = int(c)/2
-    elif c % 2 == 1:
-        x = int(c-1)/2
     for _ in range(a-1):
         print("|", end = "")
-        print("   " * int(x), end = "")
+        print("   " * ((c-1)//2), end = "")
     print("|")
     
 

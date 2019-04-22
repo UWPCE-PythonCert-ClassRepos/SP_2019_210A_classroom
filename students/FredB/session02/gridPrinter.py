@@ -1,4 +1,4 @@
-#Warmups
+#gridPrinter
 #FredBallyns
 #Session02
 
@@ -26,3 +26,13 @@ def print_grid2(n, r=2,c=2):
     line1 = Corner + (Horizontal*n+ Corner)*c + "\n"
     line2 = Vertical + (Space*n + Vertical)*c + "\n"
     print(line1 + (line2*n + line1)*r,end=' ')
+
+
+if __name__ == "__main__":
+    # Run a couple tests
+    print("Tiny")
+    print_grid2(0)
+    print ("small")
+    print_grid2(3)
+    print("large")
+    print_grid2(4,7,14)

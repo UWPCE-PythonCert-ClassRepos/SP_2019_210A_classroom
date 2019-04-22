@@ -190,7 +190,7 @@ Fizz Buzz
 
 Get a start on your own, then we'll come together and finish it up.
 
-:ref:`exercise_grid_printer`
+:ref:`exercise_fizz_buzz`
 
 Recursion
 ---------

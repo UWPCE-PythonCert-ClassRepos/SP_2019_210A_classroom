@@ -21,6 +21,20 @@ def lucas(n):
         a,b = b, a+b
     return b
 
+
+def sum_series(n,a=0,b=1):
+    """
+    return the nth in a series where the next number is the sum of the last 2 (Fibonnaci or Lucas are 2 series types)
+    default is the Fibonnaci series but a and b are optional starting parameters which can change the series types
+    """
+    if n == 0:
+        return a
+    for _ in range(n-1):
+        a,b = b, a+b
+    return b
+
+#-----------------------TESTS------------------------#
+
 #testing to make sure that the first 7 degrees of the Fibonnaci series return the correct number
 assert fib(0) == 0
 assert fib(1) == 1
@@ -40,17 +54,6 @@ assert lucas(4) == 7
 assert lucas(5) == 11
 assert lucas(6) == 18
 assert lucas(7) == 29
-
-def sum_series(n,a=0,b=1):
-    """
-    return the nth in a series where the next number is the sum of the last 2 (Fibonnaci or Lucas are 2 series types)
-    default is the Fibonnaci series but a and b are optional starting parameters which can change the series types
-    """
-    if n == 0:
-        return a
-    for _ in range(n-1):
-        a,b = b, a+b
-    return b
 
 #tests the default sum_series to 7 degrees (default is the fibonnaci series)
 assert sum_series(0) == 0

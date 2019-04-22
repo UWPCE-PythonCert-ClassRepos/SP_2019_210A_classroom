@@ -1,4 +1,4 @@
-#Warmups
+#Series
 #FredBallyns
 #Session02
 
@@ -16,6 +16,7 @@ def fibonacci(n):
 
 def lucas(n):
     """ compute the nth Lucas number """
+    #Use growing list
     # set first two values
     nums=[]
     nums.append(2)

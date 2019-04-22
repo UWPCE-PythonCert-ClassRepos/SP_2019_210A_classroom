@@ -7,7 +7,8 @@ with the first 4 and the last 4 items removed, and then every other item in the 
 with the elements reversed (just with slicing).
 with the last third, then first third, then the middle third in the new order.
 """
-
+a_string = "How is this test"
+a_tuple = (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
 
 def first_last(string):
     a = string[:1]
@@ -16,27 +17,32 @@ def first_last(string):
 
     return(z + mid + a)
 
-print(first_last("how is this test"))
-
-
 def every_other(string):
     return string[::2]
-
-print(every_other("how is this test"))
-
 
 def first4_last4(string):
     return string[4:-4:2]
 
-print(first4_last4("how is this test"))
 
 def reverse(string):
     return string[::-1]
 
-print(reverse("how is this test"))
 
 def third(string):
-    x = len(string)/3
+    x = int(len(string)/3)
     beg = string[:x]
-    end = string[x + 1:]
-    mid = 
+    end = string[-x:]
+    mid = string[x:x + x]
+    return end + beg + mid
+    
+
+print(first_last(a_string))
+print(first_last(a_tuple))
+print(every_other(a_string))
+print(every_other(a_tuple))
+print(first4_last4(a_string))
+print(first4_last4(a_tuple))
+print(reverse(a_string))
+print(reverse(a_tuple))
+print(third(a_string))
+print(third(a_tuple))

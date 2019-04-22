@@ -1,29 +1,12 @@
-def pri_grid(num_rows=2, num_columns=2):
-    for x in range(num_rows*2+1):
-        if x % 2 == 0:
-            for nc in range(num_columns*2+1):
-                if nc % 2 == 0:
-                    print("+ ", end="")
-                else:
-                    print("- "*4, end="")
-                if nc == num_columns*2:
-                    print("")
-        else:
-            for _ in range(3):
-                for nc in range(num_columns*2+1):
-                    if nc % 2 == 0:
-                        print("|", end="")
-                    else:
-                        print(" "*9, end="")
-                    if nc == num_columns*2:
-                        print("")
 
+def pri_grid(size = 2, cols = 2, rows = 2): #instead of just 2 parameters, allows you to change the # of rows and cols independently
+    '''
+    prints a grid that has a size, number of columns and number of rows
+    '''
+    for _ in range(rows): # for ever row: print the +...- line and a number of the |...| lines
+        print((" +" + " -"*size)*cols+" +") #prints the +, - line. Changes number of '-' with the size and the number of + with the number of columns
+        for _ in range(size): #prints the |    | line that varies the " " and number of lines by size, also prints the repeats for the number of columns
+            print((" |" + "  "*size)*cols+" |")
+    print((" +" + " -"*size)*cols+" +") 
 
-pri_grid(3, 3)
-# print("+","-"*4,"+","-"*4,"+")
-# for num in range(4):
-#    print("|", " "*4,"|", " "*4, "|")
-# print("+","-"*4,"+","-"*4,"+")
-# for num in range(4):
-#    print("|", " "*4,"|", " "*4, "|")
-# print("+","-"*4,"+","-"*4,"+")
+pri_grid(5,5,10)

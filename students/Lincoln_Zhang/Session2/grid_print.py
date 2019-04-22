@@ -31,11 +31,15 @@ def vertical_line(boxsize):
 
 
 def grid_print_1(n):
-	r = "- "*n + "+ " + "- "*n
-	c = "  "*n + "| " + "  "*n
+	if not n%2:
+		r = "- " * int(n/2) + "+ " + "- " * int(n/2)
+		c = "  " * int(n/2) + "| " + "  " * int(n/2)
+	else:
+		r = "- " * int((n-1)/2) + "+ " + "- " * int((n-1)/2)
+		c = "  " * int((n-1)/2) + "| " + "  " * int((n-1)/2)
 
-	for _ in range(n*2+2):
-		if not _%(n+1):
+	for _ in range(n+1):
+		if not _%int((n+1)/2):
 			print ("+ " + r + "+")
 		else:
 			print ("| " + c + "|")

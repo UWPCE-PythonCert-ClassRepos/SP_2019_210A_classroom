@@ -1,6 +1,10 @@
 #! /usr/bin/env python3
 
-"""This module prints grids of various sizes depending on inputs"""
+"""
+Lesson 02 : Print Grid Dual Inputs
+Author : Joe Nunnelley
+This module prints grids of various sizes depending on inputs
+"""
 import sys
 import getopt
 
@@ -11,9 +15,6 @@ def print_inner(scale, dimension):
 
     for _ in range(scale):
         print(middle_row)
-
-def print_grid_basic(dimension):
-    print_grid(dimension, dimension)
 
 def print_grid(dimension, scale):
     """This function prints the vertical edge pattern"""
@@ -26,34 +27,39 @@ def print_grid(dimension, scale):
 
     print(vertical_side)
 
+def usage():
+    print('ERROR : Inputs must be positive numbers')
+    print('Syntax: <script> -d <dimension> -s <scale>')
+
+
 # Decided to make this a little more fun and work with inputs
 def main(argv):
     """The main function of the program"""
 
-    dimension = ''
-    scale = ''
+    dimension = 0
+    scale = 0
 
     try:
         opts, _ = getopt.getopt(argv, "hd:s:", ["dimension", "scale"])
-    except getopt.GetoptError:
+    except getopt.GetoptError as err:
+        print(err)
         print("Invalid options. Run <script> -h for help")
         sys.exit(2)
 
     for opt, arg in opts:
         if opt == '-h':
-            print('Syntax: <script> -d <dimension> -s <scale>')
-            print('Inputs must be positive numbers')
+            usage()
             sys.exit(1)
         elif opt in ("-d", "--dimension"):
             dimension = int(arg)
         elif opt in ("-s", "--scale"):
             scale = int(arg)
-
-    print("Dimesion : ", dimension)
-    print("Scale    : ", scale)
+    if dimension and scale:
+        print("Dimesion : ", dimension)
+        print("Scale    : ", scale)
+    else:
+        usage()
     print()
-
-    print_grid_basic(dimension)
 
     # make that grid
     # you may specify unique values for dimension and scale

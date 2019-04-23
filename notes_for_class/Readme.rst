@@ -16,12 +16,12 @@ Sphinx and RST were originally developed to help document the Python language an
 
 Sphinx allows you to write your documents in simple, human readable text files, and then publish is as html, PDF, eBook formats, etc.
 
-It's a very useful tool to learn if you are going to be doign Python development.
+It's a very useful tool to learn if you are going to be doing Python development.
 
 Building These Docs
 -------------------
 
-These docs are wuite readable i text form, but if you want them to look nice, or want to test any additions you may make, you can build them on your own machine with Sphinx:
+These docs are quite readable in text form, but if you want them to look nice, or want to test any additions you may make, you can build them on your own machine with Sphinx:
 
 http://www.sphinx-doc.org/en/master/
 
@@ -31,13 +31,13 @@ Sphinx is written in Python, so it can be installed as a python package, and the
 
 will install Sphinx and a couple other packages.
 
-Then you can build teh docs with::
+Then you can build the docs with::
 
   make html
 
-they will be put into the ``build/html`` dir, and you can read them by opening::
+They will be put into the ``build/html`` dir, and you can read them by opening::
 
-  /build/html/index.html
+  build/html/index.html
 
 in your browser.
 

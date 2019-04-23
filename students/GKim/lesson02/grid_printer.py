@@ -10,10 +10,7 @@ def print_symbol(c, a =2,s1="",s2=""):
     from the first intial print the  section of the column is already created
     this all prints accross
     """
-    if c % 2 == 0:
-        x = int(c)/2
-    elif c % 2 == 1:
-        x = int(c-1)/2
+    x = c // 2
     for _ in range(a):
         print("{}".format(s1), end = "")
         print(" {} ".format(s2) * int(x), end = "")
@@ -26,10 +23,7 @@ def my_grid(c,a=2):
     by the user input
 
     """
-    if c % 2 == 0:
-        x = int(c)/2
-    elif c % 2 == 1:
-        x = int(c-1)/2
+    x = c // 2
     print_symbol(c,a,s1="+",s2="-")
     for _ in range(a): # the number of rows in the grid.  
         for _ in range(int(x)): # range of 4 for how many | that connect each +
@@ -111,7 +105,7 @@ def my_grid2(c, a=2):
 
 # print(print_row(4))
 # print(print_column(4))
-my_grid(5)
+my_grid(3)
 my_grid2(3,5)
 
 

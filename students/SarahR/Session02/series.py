@@ -1,29 +1,31 @@
 def fibonacci(n):
-    """ compute the nth Fibonacci number """
+    """ (int) -> int
 
+    Parameters:
+    	n: n'th number of the Fibonacci sequence
+
+    Compute the nth Fibonacci number
+
+    """
     # first two terms
     n1 = 0
     n2 = 1
     nth = int
     count = 2
 
+    # check validity of n
     if n < 0:
         print("Please enter a positive integer")
+	# No calculations for the first 2 elements of the sequence
     elif n <2:
-
         if n == 0:
-            #print("Fibonacci", n, "th term is: ", n)
             return 0
-
         if n == 1:
-            print("Fibonacci", n, "th term is: ", n)
             return 1
-
     else:
+        #calculate the nth number
         while count <= n:
             nth = n1 + n2
-            #if count == n:
-                #print("Fibonacci", n, "th term is: ", nth)
 
             # update values
             n1 = n2
@@ -34,8 +36,15 @@ def fibonacci(n):
 
 
 def lucas(n):
-    """ compute the nth Lucas number """
+	""" (int) -> int
 
+	Parameters:
+		n: n'th number of the Lucas sequence
+
+	Compute the nth Lucas number
+
+
+    """
     n1 = 2
     n2 = 1
     nth = int
@@ -46,19 +55,14 @@ def lucas(n):
     elif n <2:
 
         if n == 0:
-            #print("Lucas", n, "th term is: ", n)
             return 2
 
         if n == 1:
-            #print("Lucas", n, "th term is: ", n)
             return 1
 
     else:
         while count <= n:
             nth = n1 + n2
-            #if count == n:
-                #print("Lucas", n, "th term is: ", nth)
-
 
             # update values
             n1 = n2
@@ -69,9 +73,18 @@ def lucas(n):
 
 
 def sum_series(n, seq0=0, seq1=1):
-	""" compute the nth value of a summation series """
+	""" (int, int, int) -> int
 
-	# first two terms
+    Parameters:
+        n: n'th number of the Lucas sequence
+        seq0: seed used for the first number of the sequence
+        seq1: seed used for the second number of the sequence
+
+    compute the nth value of a summation series. Default to 0 and 1 for the seeds (fibonnaci sequence)
+
+    """
+
+	# variables
 	n1 = seq0
 	n2 = seq1
 	nth = int
@@ -82,18 +95,15 @@ def sum_series(n, seq0=0, seq1=1):
 	elif n < 2:
 
 		if n == 0:
-			#print("Fibonacci", n, "th term is: ", n)
 			return seq0
 
 		if n == 1:
-			#print("Fibonacci", n, "th term is: ", n)
 			return seq1
 
 	else:
+		# calculate the nth number of the sequence
 		while count <= n:
 			nth = n1 + n2
-			#if count == n:
-				#print("Fibonacci", n, "th term is: ", nth)
 
 			# update values
 			n1 = n2

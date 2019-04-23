@@ -7,14 +7,22 @@ front3('abc') → 'abcabcabc'
 """
 
 def front3(str):
-  if len(str)<3:
-    str1= str*3
-  str1= (str[0:3]*3)
-  print(str1)
+	if len(str)<3:
+		str1= str*3
+	else:
+		str1= (str[0:3]*3)
+    return(str1)
+	
+def front3(str_in):
+	return str_in[:3]*3
+    
+	
 front3("Java")
 front3("Chocolate")
 front3("abcabcabc")
 front3("ab")
 front3("a")
 
+
+#assert front3("Java") == "JavJavJav"
 #------------------END-----------------------#

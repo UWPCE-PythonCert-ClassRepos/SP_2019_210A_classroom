@@ -95,6 +95,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#separation-of-concerns">Separation of Concerns</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#for-vs-while"><code class="docutils literal notranslate"><span class="pre">for</span></code> vs <code class="docutils literal notranslate"><span class="pre">while</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#is-vs"><code class="docutils literal notranslate"><span class="pre">is</span></code> vs <code class="docutils literal notranslate"><span class="pre">==</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#string-formatting-or-concatenation">String formatting or concatenation?</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#review-solutions">Review Solutions</a><ul>
@@ -271,12 +272,25 @@ and <code class="docutils literal notranslate"><span class="pre">sum_series</spa
 <p><strong>NOTE:</strong> This is also the case for small strings.</p>
 <p><strong>Important:</strong> This is an implementation detail. Do not count on it!</p>
 </div>
+<div class="section" id="string-formatting-or-concatenation">
+<h4>String formatting or concatenation?<a class="headerlink" href="#string-formatting-or-concatenation" title="Permalink to this headline">¶</a></h4>
+<p>As a rule, it’s better to use string formatting than a bunch of concatenation (string addition) – but if it’s really simple, maybe not:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grid_square</span> <span class="o">=</span> <span class="s2">&quot;|</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">grid_size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>What’s actually going on here?</p>
+<p>Let’s time it …</p>
+</div>
 </div>
 <div class="section" id="review-solutions">
 <h3>Review Solutions<a class="headerlink" href="#review-solutions" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="fibonacci-fizzbuzz-print-grid">
 <h4>Fibonacci, FizzBuzz, print_grid<a class="headerlink" href="#fibonacci-fizzbuzz-print-grid" title="Permalink to this headline">¶</a></h4>
 <p>Anyone want to review their code?</p>
+<p>Let’s take a look at Lincoln’s FizzBuzz:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">students</span><span class="o">/</span><span class="n">Lincoln_Zhang</span><span class="o">/</span><span class="n">Session2</span><span class="o">/</span><span class="n">fizzbuzz</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="my-solutions">
 <h4>My Solutions:<a class="headerlink" href="#my-solutions" title="Permalink to this headline">¶</a></h4>

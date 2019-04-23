@@ -37,6 +37,6 @@ def print_grid2(grid_size, grid_qty):
             print("{}|".format(grid_square * grid_qty))
 
 
-grid_size = input("Cell size: ")
-grid_qty = input("Cell quantity: ")
+grid_size = int(input("Cell size: "))
+grid_qty = int(input("Cell quantity: "))
 print_grid2(grid_size, grid_qty)

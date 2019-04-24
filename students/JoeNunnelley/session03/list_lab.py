@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 
+"""List Lab Excercises"""
 def series1():
     """
     When the script is run, it should accomplish the following four series of actions:
@@ -9,8 +10,10 @@ def series1():
         Display the list (plain old print() is fine…).
         Ask the user for another fruit and add it to the end of the list.
         Display the list.
-        Ask the user for a number and display the number back to the user and the fruit corresponding
-        to that number (on a 1-is-first basis). Remember that Python uses zero-based indexing, so you will need to correct.
+        Ask the user for a number and display the number back to the user and the
+        fruit corresponding
+        to that number (on a 1-is-first basis). Remember that Python uses zero-based
+        indexing, so you will need to correct.
         Add another fruit to the beginning of the list using “+” and display the list.
         Add another fruit to the beginning of the list using insert() and display the list.
         Display all the fruits that begin with “P”, using a for loop.
@@ -27,7 +30,7 @@ def series1():
     try:
         print('{} => {}'.format(response, fruit[int(response)-1]))
     except IndexError as identifier:
-        print("Index not found in list")
+        print("Index not found in list: {}\n{}".format(int(response) - 1, identifier))
 
     fruit = ["Lychee"] + fruit
     print(fruit)
@@ -41,7 +44,7 @@ def series1():
     return fruit
 
 
-def series2(fruits):
+def series2(fruits_in):
     """
     Series 2
 
@@ -57,36 +60,36 @@ def series2(fruits):
     print()
     print('>> Series 2 <<')
     print()
-    print(fruits)
-    fruits.pop()
-    print(fruits)
+    print(fruits_in)
+    fruits_in.pop()
+    print(fruits_in)
     response = input('Which fruit to delete >')
 
     try:
-        fruits.remove(response)
+        fruits_in.remove(response)
     except ValueError as identifier:
-        print("Did not find this item: {}".format(response))
+        print("Did not find this item: {}\n{}".format(response, identifier))
 
-    print(fruits)
-    fruits = fruits * 2
-    print(fruits)
+    print(fruits_in)
+    fruits_in = fruits_in * 2
+    print(fruits_in)
     match = False
 
     while not match:
-        print(fruits)
+        print(fruits_in)
         response = input('What fruit to eat? >')
-        if response in fruits:
-            while response in fruits:
+        if response in fruits_in:
+            while response in fruits_in:
                 try:
-                    fruits.remove(response)
-                    print("Chomp! {} ate {}".format(fruits, response))
+                    fruits_in.remove(response)
+                    print("Chomp! {} ate {}".format(fruits_in, response))
                 except ValueError as identifier:
-                    print("Did not find this item: {}".format(response))
+                    print("Did not find this item: {}\n{}".format(response, identifier))
 
             match = True
 
 
-def series3(fruits):
+def series3(fruits_in):
     """
     Series 3
 
@@ -102,8 +105,8 @@ def series3(fruits):
     print()
     print('>> Series 3 <<')
     print()
-    fruits_local = fruits[:]
-    for fruit in fruits:
+    fruits_local = fruits_in[:]
+    for fruit in fruits_in:
         response = None
         while response not in ['yes', 'no']:
             print(fruits_local)
@@ -115,12 +118,12 @@ def series3(fruits):
                     try:
                         fruits_local.remove(fruit)
                     except ValueError as identifier:
-                        print("Did not find this item: {}".format(response))
+                        print("Did not find this item: {}\n{}".format(response, identifier))
 
     print(fruits_local)
 
 
-def series4(fruits):
+def series4(fruits_in):
     """
     Series 4
 
@@ -134,13 +137,13 @@ def series4(fruits):
     print()
     print('>> Series 4 <<')
     print()
-    print("OLD LIST: {}".format(fruits))
+    print("OLD LIST: {}".format(fruits_in))
     fruits_local = []
-    for _ in fruits:
+    for _ in fruits_in:
         fruits_local.append(_[::-1])
 
-    fruits.pop()
-    print("SHORTEND LIST: {}".format(fruits))
+    fruits_in.pop()
+    print("SHORTEND LIST: {}".format(fruits_in))
     print("NEW LIST: {}".format(fruits_local))
 
 

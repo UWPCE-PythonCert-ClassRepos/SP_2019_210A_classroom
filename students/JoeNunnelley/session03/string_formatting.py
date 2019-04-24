@@ -1,6 +1,9 @@
 #! /usr/bin/env python3
 
-"""String Formatting Exercises"""
+"""
+String Formatting Exercises
+Author: Joe Nunnelley
+"""
 def task1(a_tuple):
     """
     Write a format string that will take the following
@@ -12,7 +15,6 @@ def task1(a_tuple):
 
         'file_002 :   123.46, 1.00e+04, 1.23e+04'
     """
-    print("INPUT: {}".format(a_tuple))
     file_name = "file_{:03d} :".format(a_tuple[0])
     col1 = "   {:06.2f}".format(a_tuple[1])
     col2 = ", {:.2e}".format(a_tuple[2])
@@ -20,7 +22,7 @@ def task1(a_tuple):
     return file_name + col1 + col2 + col3
 
 
-def task2():
+def task2(a_tuple):
     """
     Using your results from Task One, repeat the exercise,
     but this time using an alternate type of format string
@@ -28,10 +30,14 @@ def task2():
     (keywords anyone?), and also consider f-strings if you’ve
     not used them already).
     """
-    pass
+    file_name = f'file_{a_tuple[0]:03d} :'
+    col1 = f'   {a_tuple[1]:06.2f}'
+    col2 = f', {a_tuple[2]:.2e}'
+    col3 = f', {a_tuple[3]:.2e}'
+    return file_name + col1 + col2 + col3
 
 
-def task3():
+def task3(a_tuple):
     """
     Dynamically Building up format strings
 
@@ -48,11 +54,15 @@ def task3():
     In [53]: "the 3 numbers are: {:d}, {:d}, {:d}".format(*t)
     Out[53]: 'the 3 numbers are: 1, 2, 3'
 
-    The idea here is that you may have a tuple of three numbers, but might also have 4 or 5 or 2 or….
+    The idea here is that you may have a tuple of three numbers,
+    but might also have 4 or 5 or 2 or….
 
-    so you can dynamically build up the format string to accommodate the length of the tuple.
+    so you can dynamically build up the format string to accommodate
+    the length of the tuple.
 
-    The string object has the format() method, so you can call it with a string that is bound to a name, not just a string literal. For example:
+    The string object has the format() method, so you can call it
+    with a string that is bound to a name, not just a string literal.
+    For example:
 
     In [16]: form_string = "{:d}, {:d}"
 
@@ -61,9 +71,11 @@ def task3():
     In [18]: fstring.format(*nums)
     Out[18]: '34, 56'
 
-    So in the example above, how would you make a form_string that was the right length for an arbitrary tuple?
+    So in the example above, how would you make a form_string that
+    was the right length for an arbitrary tuple?
 
-    Put your code in a function that will return the final string like so:
+    Put your code in a function that will return the final string
+    like so:
 
     In [20]: formatter((2,3,5))
     Out[20]: 'the 3 numbers are: 2, 3, 5'
@@ -78,41 +90,42 @@ def task3():
 
         return form_string.format(*in_tuple)
     """
-    pass
+    tuple_len = len(a_tuple)
+    form_string = "the {} numbers are " + "{:d}, " * (tuple_len - 1) + "{:d}"
+    return form_string.format(tuple_len, *a_tuple)
 
 
-def task4():
+def task4(a_tuple):
     """
-    Task Four
-
         Given a 5 element tuple:
-
             ( 4, 30, 2017, 2, 27)
-
             use string formating to print:
-
             '02 27 2017 04 30'
-
-    Hint: use index numbers to specify positions.
     """
-    pass
+    return f'{a_tuple[3]:02d} {a_tuple[4]} {a_tuple[2]} {a_tuple[0]:02d} {a_tuple[1]}'
 
 
 def task5():
     """
     Task Five
 
-    f-strings are new to Python (version 3.6), but are very powerful and efficient. This means they are worth understanding and using. And this is made easier than it might be because they use the same, familiar formatting language that is conventionally used in Python (in .format()).
+    f-strings are new to Python (version 3.6), but are very powerful
+    and efficient. This means they are worth understanding and using.
+    And this is made easier than it might be because they use the same,
+    familiar formatting language that is conventionally used in Python
+    (in .format()).
 
     So in this exercise we are going to specifically use f-strings.
 
-    Here’s the simplest example, to show how you can use available variables in a f-string:
+    Here’s the simplest example, to show how you can use available
+    variables in a f-string:
 
     In [2]: name = 'Andy'
     In [3]: f'Your name is {name}'
     Out[3]: 'Your name is Andy'
 
-    In addition to referencing variables in the local scope, f-strings can evaluate simple expressions in line like so:
+    In addition to referencing variables in the local scope,
+    f-strings can evaluate simple expressions in line like so:
 
     In [5]: f"Your name is {name.upper()}"
     Out[5]: 'Your name is ANDY'
@@ -139,7 +152,9 @@ def task5():
 
             The weight of an orange is 1.3 and the weight of a lemon is 1.1
 
-        Now see if you can change the f-string so that it displays the names of the fruit in upper case, and the weight 20% higher (that is 1.2 times higher).
+        Now see if you can change the f-string so that it displays
+        the names of the fruit in upper case, and the weight 20% higher
+        (that is 1.2 times higher).
     """
     pass
 
@@ -148,7 +163,8 @@ def task6():
     """
     Task Six
 
-    Often it’s convenient to display data in columns. String formatting helps to make this straightforward.
+    Often it’s convenient to display data in columns. String formatting
+    helps to make this straightforward.
 
     Suppose you’d like to display something like:
 
@@ -158,20 +174,29 @@ def task6():
 
     '{:20}{:10}{:20}{:8}'.format('First', '$99.01', 'Second', '$88.09')
 
-    In this simple example everything aligns nicely. But that will not be the case when the numbers to the left of the decimal place vary. Then you will need to use alignment specifiers. Do some research on this using the links below. Then:
+    In this simple example everything aligns nicely. But that will
+    not be the case when the numbers to the left of the decimal place
+    vary. Then you will need to use alignment specifiers. Do some
+    research on this using the links below. Then:
 
-        Write some Python code to print a table of several rows, each with a name, an age and a cost. Make sure some of the costs are in the hundreds and thousands to test your alignment specifiers.
-        And for an extra task, given a tuple with 10 consecutive numbers, can you work how to quickly print the tuple in columns that are 5 charaters wide? It can be done on one short line!
+        Write some Python code to print a table of several rows,
+        each with a name, an age and a cost. Make sure some of the
+        costs are in the hundreds and thousands to test your alignment
+        specifiers.
+        And for an extra task, given a tuple with 10 consecutive
+        numbers, can you work how to quickly print the tuple in
+        columns that are 5 charaters wide? It can be done on one
+        short line!
     """
     pass
 
-
 if __name__ == "__main__":
-    A_TUPLE1 = ( 2, 123.4567, 10000, 12345.67 )
-    print("Begin")
+    A_TUPLE1 = (2, 123.4567, 10000, 12345.67)
+    print("Begin Testing")
     print(task1(A_TUPLE1))
-    task2()
-    task3()
-    task4()
+    print(task2(A_TUPLE1))
+    print(task3((0, 1, 2, 3, 4)))
+    assert task4((4, 30, 2017, 2, 27)) == '02 27 2017 04 30'
     task5()
     task6()
+    print("All tests passed")

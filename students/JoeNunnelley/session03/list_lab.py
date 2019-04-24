@@ -1,6 +1,9 @@
 #! /usr/bin/env python3
 
-"""List Lab Excercises"""
+"""
+List Lab Excercises
+Author : Joe Nunnelley
+"""
 def series1():
     """
     When the script is run, it should accomplish the following four series of actions:

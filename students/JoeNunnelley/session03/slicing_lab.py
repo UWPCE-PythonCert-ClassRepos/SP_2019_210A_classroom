@@ -10,8 +10,8 @@ a copy of that sequence:
     - with the elements reversed (just with slicing).
     - with the last third, then first third, then the middle third
       in the new order.
+Author : Joe Nunnelley
 """
-
 def exchange_first_last(seq):
     """1. exchange the first and last items in any sequence"""
     return seq[-1::] + seq[1:-1] + seq[0:1]

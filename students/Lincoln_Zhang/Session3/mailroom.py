@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
+
 import sys
 
 print("Mailroom")
 
 def Thank_You():
-    pass
+    print("in Thank you")
 
 def Report():
-    pass
+    print("in Report")
 
 def Quit():
     sys.exit()
@@ -33,7 +34,8 @@ def main_menu():
         else:
             print("Please input 1,2 or 3")
 
+#main_menu()
 
-if "__name__" == "__main__":
+if __name__ == "__main__":
     print("Welcome to mailroom!")
     main_menu()

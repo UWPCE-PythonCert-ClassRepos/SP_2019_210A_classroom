@@ -131,18 +131,6 @@ So "is" will work as a test for small integers, but not large ones:
 
 **Important:** This is an implementation detail. Do not count on it!
 
-String formatting or concatenation?
------------------------------------
-
-As a rule, it's better to use string formatting than a bunch of concatenation (string addition) -- but if it's really simple, maybe not::
-
-    grid_square = "|{}".format(' ' * grid_size)
-
-What's actually going on here?
-
-Let's time it ...
-
-
 Review Solutions
 ================
 
@@ -150,11 +138,6 @@ Fibonacci, FizzBuzz, print_grid
 -------------------------------
 
 Anyone want to review their code?
-
-Let's take a look at Lincoln's FizzBuzz::
-
-  /students/Lincoln_Zhang/Session2/fizzbuzz
-
 
 
 My Solutions:
@@ -167,6 +150,8 @@ I've posted my solutions to last week's assignments in the class repo::
 They are in::
 
   solutions/Lesson02
+
+
 
 
 Lightning Talks

@@ -21,4 +21,7 @@ assert front3("a") == "aaa"
 print("all asserts passed")
 
 
+
+
+#assert front3("Java") == "JavJavJav"
 #------------------END-----------------------#

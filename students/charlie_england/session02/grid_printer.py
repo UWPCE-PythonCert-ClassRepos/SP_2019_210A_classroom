@@ -11,7 +11,6 @@ def pri_grid(size = 2, cols = 2, rows = 2): #instead of just 2 parameters, allow
     print((" +" + " -"*size)*cols+" +") 
 
 pri_grid(5,5,10)
-=======
 pri_grid(3, 3, 5)
 # print("+","-"*4,"+","-"*4,"+")
 # for num in range(4):

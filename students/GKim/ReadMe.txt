@@ -1,2 +1,2 @@
-This is me George Kim
+This is me, George Kim, future Pythonista!!
 

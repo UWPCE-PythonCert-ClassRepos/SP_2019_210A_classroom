@@ -1,3 +1,10 @@
+# a few things specific to this repo
+gh-token
+
+# pycharm project files
+.idea*
+
+
 # Mac files
 .DS_Store
 

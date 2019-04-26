@@ -26,11 +26,34 @@ def main_menu():
             print(("You replied {}, please reply with 1, 2 or 3").format(answer))
 
 def thank_you():
-    nameinput = input("Please enter a full name, 'list' for list of names \n>>>").strip()
-    if nameinput in donors.keys():
-        print("name in keys")
+    while True:
+        name_input = input("Please enter a full name, 'list' for list of names \n>>>").strip()
+        if name_input in donors.keys():
+            donors[name_input].append(float(input("Please enter a donation amount: >>> ")))
+            #Send a thank you report
+            break
+        elif name_input == "list":
+            for name in donors.keys(): print(name)
+        else:
+            new_name_decision = input(name_input + " not found, would you like to add a new donator? y/n \n>>>").strip()
+            if new_name_decision.lower() == "y":
+                donors.update({name_input:input("Please enter a donation amount: >>> ")})
+                print(donors)
+            break
+    
 
 def report():
     pass
+
+def add_donation():
+    '''
+    requests input from the user for a list of donations and returns this when done
+    '''
+    lst = []
+    while True:
+        lst.append(float(input("Please enter a donation amount >>>"))) #need a method to make sure it's a number
+        if input("Would you like to enter another amount? y/n >>>") != "y":
+            return lst
+
 
 main_menu()

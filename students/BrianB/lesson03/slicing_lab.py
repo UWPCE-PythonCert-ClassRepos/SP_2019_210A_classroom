@@ -1,60 +1,24 @@
-print("hello world")
-
-#---------------------------------------------------------------------
-# Goal:
-# Get the basics of sequence slicing down.
-#
-# Tasks:
-#  Write some functions that take a sequence as an argument, and
-#  return a copy of that sequence:
-#    1* with the first and last items exchanged.
-#           SOLUTION == a_string[-1:] + a_string[1:-1] + a_string[:1] &
-#                       a_tuple[-1:] + a_tuple[1:-1] + a_tuple[:1]
-#    2* with every other item removed.
-#           SOLUTION == a_string[0:-1:2] &
-#                       a_tuple[0:-1:2]
-#    3* with the first 4 and the last 4 items removed, and then
-#       every other item in the remaining sequence.
-#           SOLUTION == a_string[4:-4:2] &
-#                       a_tuple[4:-4:2]
-#    4* with the elements reversed (just with slicing).
-#           SOLUTION == a_string[::-1] &
-#                       a_tuple[::-1]
-#    5* with the last third, then first third, then the middle
-#       third in the new order.
-#           SOLUTION == a_string[11:16] + a_string[0:5] + a_string[5:11] &
-#                       a_tuple[4:6] + a_tuple[0:2] + a_tuple[2:4]
-#
-# NOTE: These should work with ANY sequence – but you can use
-#       strings to test, if you like.
-#
-#
-# Tests:
-# a_string = "this is a string"
-# a_tuple = (2, 54, 13, 12, 5, 32)
-#
-# assert exchange_first_last(a_string) == "ghis is a strint"
-# assert exchange_first_last(a_tuple) == (32, 54, 13, 12, 5, 2)
-#---------------------------------------------------------------------
+#!/usr/bin/env python3
 
 a_string = "this is a string"
 a_tuple = (2, 54, 13, 12, 5, 32)
 
 
 def exchange_first_last(seq):
-    """Returns an exchange of the first and last elements."""
+    """Returns an exchange of the first element with the last element."""
     a_new_sequence = seq[-1:] + seq[1:-1] + seq[:1]
     return a_new_sequence
 
 
 def every_other(seq):
-    """Returns every other element."""
+    """Returns every other element in the sequence."""
     a_new_sequence = seq[0:-1:2]
     return a_new_sequence
 
 
 def first_last_four_every_other(seq):
-    """Returns the first four, the last four and every other element."""
+    """Returns the first four elements, then the last four\
+    elements and every other element."""
     a_new_sequence = seq[4:-4:2]
     return a_new_sequence
 
@@ -66,10 +30,11 @@ def reverse_order(seq):
 
 
 def new_order(seq):
-    """Returns the elements in a new order"""
-    a_new_sequence = seq[]
+    """Returns a New Order: the last three elements, then\
+    the first three elements and then the middle three elements"""
+    a_length = len(seq) // 3
+    a_new_sequence = seq[a_length*2:] + seq[:a_length] + seq[a_length:a_length*2]
     return a_new_sequence
-    pass
 
 
 # Assert Exchange First & Last
@@ -84,8 +49,8 @@ assert first_last_four_every_other(a_tuple) == ()
 # Assert Reverse Order
 assert reverse_order(a_string) == "gnirts a si siht"
 assert reverse_order(a_tuple) == (32, 5, 12, 13, 54, 2)
-# Assert Last Third, First Third and Middle Third
-assert exchange_first_last(a_string) == "gtringthis is a s"
-assert exchange_first_last(a_tuple) == (5, 32, 2, 54, 13, 12)
+# Assert New Order
+assert new_order(a_string) == "stringthis is a "
+assert new_order(a_tuple) == (5, 32, 2, 54, 13, 12)
 
-print("The assertions worked!")
+print("The assertions work!")

@@ -56,3 +56,6 @@ def series4():
 if __name__ == '__main__':
     print(fruits)
     series1()
+    series2()
+    series3()
+    series4()

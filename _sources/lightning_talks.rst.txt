@@ -36,17 +36,12 @@ April 23, 2019
 Charlie England
 ...............
 
-Neural networks!
-
-
 Ying Shen (Sally)
 .................
-
 Topic: Web Crawler - Music List
 
 Github: https://github.com/sallysy8/webCrawler
-
-Note: You need to install scrapy framework
+#Need to install scrapy framework
 
 
 Week 4

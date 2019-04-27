@@ -7,6 +7,12 @@ if __name__ == "__main__":
     print("Welcome to the Mailroom!")
 
 def main_menu():
+    '''
+    Main menu for the program.
+    Will loop through and requests input until 3 is entered and then quits.
+    1 will allow an addition of a donator, a new donation and the printing of a thank you later
+    2 will print a report of the donators and their donations as well as their average donation.
+    '''
     while True:
         answer = input("""What would you like to do?
             1: Send a thank you
@@ -36,24 +42,13 @@ def thank_you():
             for name in donors.keys(): print(name)
         else:
             new_name_decision = input(name_input + " not found, would you like to add a new donator? y/n \n>>>").strip()
-            if new_name_decision.lower() == "y":
+            if new_name_decision.lower() == "y": 
                 donors.update({name_input:input("Please enter a donation amount: >>> ")})
-                print(donors)
-            break
+                #send a donation
+                break
     
 
 def report():
     pass
-
-def add_donation():
-    '''
-    requests input from the user for a list of donations and returns this when done
-    '''
-    lst = []
-    while True:
-        lst.append(float(input("Please enter a donation amount >>>"))) #need a method to make sure it's a number
-        if input("Would you like to enter another amount? y/n >>>") != "y":
-            return lst
-
 
 main_menu()

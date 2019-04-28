@@ -15,6 +15,21 @@ def clear_screen():
     """
     os.system("cls" if os.name == "nt" else "clear")
 
+
+def show_list():
+    """
+    shows the donors in the list without donation amounts
+    """
+    print()
+    print("#" * 9, "The Current Donor List", "#" * 9)
+    index = 1
+    for donor in main_donors:
+        print("{}:{}".format(index, donor[0]))
+        index += 1
+    print("#" * 43)
+    print()
+    return show_list
+
 def main_menu():
     """
     Main menu options
@@ -24,7 +39,7 @@ def main_menu():
 "1: Send a Thank You",
 "2: Create a Report",
 "3: Quit",
-">>>")))
+">>> ")))
     return prompt
 
 def menu_thank_you():
@@ -50,42 +65,6 @@ Enter 'LIST' to see Donor list or 'MENU' to return to Main Menu.
 #             donors.append(add_doner)
 #             print("done adding_doner")
 #             print(donors)
-
-def send_thank_you():
-    """
-    Either adds to list or adds a new donor to the list and  a 
-    new donation amount 
-    """
-    donation_amount = None
-    while True:
-        thanks_answer = menu_thank_you()
-        thanks_answer = thanks_answer.strip()
-        if thanks_answer.upper() == "LIST":
-            clear_screen()
-            show_list()
-        elif thanks_answer.upper() == "MENU":
-            clear_screen()
-            break
-        else:
-            idx = len(main_donors)-1
-            in_main_donors = False
-            for x in range(len(main_donors)-1, -1, -1):
-                if main_donors[x][0].lower() == thanks_answer.lower():
-                    in_main_donors = True
-                    print("\nYou have chosen {}".format(thanks_answer))
-                    donation_amount = int(input("\nPlease enter the amount that {} kindly donated: ".format(thanks_answer)))
-                    main_donors[idx][1].append(donation_amount)
-                    print(main_donors)
-                idx -= 1
-            
-            if in_main_donors == False:
-                donation_amount = int(input("\nPlease enter {}'s donated amount: ".format(thanks_answer)))
-                add_new_donors = (thanks_answer,[donation_amount])
-                main_donors.append(add_new_donors)
-                print(main_donors[-1][:])
-            
-            send_email(thanks_answer, donation_amount)
-
 def send_email(name, amount):
     print("""\n
     Dear {n},
@@ -100,58 +79,108 @@ def send_email(name, amount):
     
     \n""".format(n = name, a = amount))
 
+def send_thank_you():
+    """
+    Either adds to list or adds a new donor to the list and  a 
+    new donation amount 
+    """
+    clear_screen()
+    while True:
+        thanks_answer = menu_thank_you().strip()
+        # thanks_answer = thanks_answer.strip()
+        if thanks_answer.upper() == "LIST":
+            clear_screen()
+            show_list()
+        elif thanks_answer.upper() == "MENU":
+            clear_screen()
+            break
+        else:
+            # idx = len(main_donors)-1
+            in_main_donors = False
+            for x in range(len(main_donors)-1, -1, -1):
+                if main_donors[x][0].lower() == thanks_answer.lower():
+                    in_main_donors = True
+                    print("\nThe Donor you have selected is {}".format(thanks_answer))
+                    donation_amount = int(input("\nPlease enter the amount that {} kindly donated: ".format(thanks_answer)))
+                    main_donors[x][1].append(donation_amount)
+                    print("{}: ${:.2f}".format(thanks_answer, donation_amount))
+                # idx -= 1
+            
+            if in_main_donors == False:
+                donation_amount = int(input("\nPlease enter {}'s donated amount: ".format(thanks_answer)))
+                add_new_donors = (thanks_answer,[donation_amount])
+                main_donors.append(add_new_donors)
+                print("{} was added with a donation of ${:.2f}".format(thanks_answer,donation_amount))
+            
+            send_email(thanks_answer, donation_amount)
 
-def show_list():
-    print()
-    print("#" * 9, "The Current Donor List", "#" * 9)
-    index = 1
-    for donor in main_donors:
-        print("{}:{}".format(index, donor[0]))
-        index += 1
-    print("#" * 43)
-    print()
-    return show_list
 
-def gen_stats(donor):
-    donations = donor[1]
-    total = sum(donations)
-    num = len(donations)
-    stats = (donor[0], total, num, total / num)
 
-    return stats
+def report_menu():
+    """
+    Menu for Create a Report and to give the user an option to exit
+    """
+    report_menu_answer = input(""" 
+    Welcome to the 'Create a Report option'!
+Enter 'MENU' to exit and return to the Main Menu
+Press Enter to continue
+ >>> \n""")
 
-def report():
-    print("in report")
+    return report_menu_answer
+
+
+def gen_stats(main_donors):
+    donor_stats = []
+    lst = main_donors
+    for donor in lst:
+        donations = donor[1]
+        total = sum(donations)
+        num = len(donations)
+        avg = round(total / num, 2)
+        stats = [donor[0], total, num, avg]
+        donor_stats.append(stats)
+
+    return donor_stats
+
+def create_report():
+    """
+    Generates the report of donors by donation amount from greatest to least
+    """
+    while True:
+        response = report_menu().strip()
+        # response = response.strip()
+        if response.upper() == "MENU":
+            break
+        else:
+            stats_list = gen_stats(main_donors)
+            stats_list.sort(key=lambda stats_list: stats_list[1],reverse=True)
+            
+            print("{:<20}|{:^15}|{:^15}|{:>15}".format("Donor Name", "Total Given", "Num Gifts", "Average Gifts"))
+            print("-" * 68)
+            for donor in stats_list:
+                print("{:<20}${:>15} {:>15} ${:>15}".format(donor[0], donor[1], donor[2], donor[3]))
+            print("\nEnd of Report\n")    
+       
 
 def quit():
     print("You are leaving the Mailroom!")
     sys.exit()
 
-
-    
-
-
 def mailroom_main():
-
+    """
+    Main mailroom script
+    """
     while True:
-        answer = main_menu()
-        # print("you replied:", answer)
-        answer = answer.strip()
+        answer = main_menu().strip()
+        # answer = answer.strip()
         if answer == "1":
-            clear_screen()
             send_thank_you()
         elif answer == "2":
-            report()
+            create_report()
         elif answer == "3":
             quit()
         else:
             print("Please choose a number 1-3")
 
 
-if __name__ == "__main__":
-    
-
-    # donor = ('Barney Rubble', [100, 50, 600])
-    # assert gen_stats(donor) == ('Barney Rubble', 750, 3, 250.0), str(gen_stats(donor))
-
-    mailroom_main()
+if __name__ == "__main__": mailroom_main()

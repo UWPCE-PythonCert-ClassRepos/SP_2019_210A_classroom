@@ -99,12 +99,14 @@ def series_3():
     
     new_inv = []
     while True:
-        for x in inv:
-            like_fruit = input("Do you like {}'s? ".format(x))
+        x = 0
+        for x in range(len(inv)-1, -1, -1):
+            like_fruit = input("Do you like {}'s? ".format(inv[x]))
             if like_fruit.lower() == "y" or like_fruit.lower() == "yes":
-                new_inv.append(x.lower())
+                new_inv.append(inv[x].lower())
             elif like_fruit.lower() == "n" or like_fruit.lower() == "no":
-                continue
+                inv.remove(inv[x])
+               
             else:
                 print("Please answer Yes or No (y/n)")
         print_list(new_inv)
@@ -112,11 +114,11 @@ def series_3():
         
 def series_4():
 
-    reverseWords = [reverse_word(word) for word in inv]
 
     # rev_inv = [[x[::-1]] for x in inv][::-1]
     inv.pop(-1)
     print("original list: ", inv)
+    reverseWords = [reverse_word(word) for word in inv]
     print("reversed letters list: ", reverseWords)
 
 def main():

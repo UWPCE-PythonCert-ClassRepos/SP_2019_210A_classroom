@@ -38,17 +38,22 @@ def cleanup_list(fruits):
     :return: None
     """
 
-    for fruit in fruits:
+    deleted_fruits = []
+
+    for i in range(0, len(fruits)):
         while True:
-            answer = input(f"Do you like {fruit}?").lower().strip()
+            answer = input(f"Do you like {fruits[i]}?").lower().strip()
             if answer == 'yes':
                 break
             elif answer == 'no':
-                fruits = fruits.remove(fruit)
+                deleted_fruits.append(fruits[i])
                 break
             else:
                 print(f"Please choose from the following: yes|no")
                 continue
+
+    for fruit in deleted_fruits:
+        fruits.remove(fruit)
 
 
 def main():

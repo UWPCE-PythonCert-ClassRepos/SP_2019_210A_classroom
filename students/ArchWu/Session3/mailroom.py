@@ -10,6 +10,13 @@ def get_donor():
 def report():
     return
 
+def gen_stats(donor):
+    name = donor[0]
+    donations = donor[1]
+    total = sum(donations)
+    avg = total / len(donations)
+    return (name, total, avg)
+
 def main_menu():
     while True:
         answer = input("""What would you like to do?

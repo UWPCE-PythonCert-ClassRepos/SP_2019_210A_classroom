@@ -45,6 +45,10 @@ def task_5(four_elements):
     fourElem = f"the weight of and {four_elements[0]} is {four_elements[1]} and the weight of a {four_elements[2]} is {four_elements[3]}"
     print(fourElem)
 
+def task_6():
+    t_six = print("{:<20}|{:^15}|{:^15}|{:>15}".format('First', '$99.01', 'Second', '$88.09'))
+    print(t_six)
+
 
 def main():
     task1(tup)
@@ -52,6 +56,7 @@ def main():
     formatter(tup)
     task_4(tup2)
     task_5(four_elements)
+    task_6()
 
 if __name__ == "__main__": main()
     

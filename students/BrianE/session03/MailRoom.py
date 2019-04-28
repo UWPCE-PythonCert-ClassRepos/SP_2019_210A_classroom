@@ -37,12 +37,17 @@ def generate_report(donors):
     :param donors: dictionary containing donor info
     :return: None
     """
+
+    header = f'| {"Donor Name":19} | {"Total Donated":9} | {"Num Gifts":5} | {"Average Gift":8}'
+    print(header)
+    print("-" * 64)
+
     for donor in donors.keys():
         total_donated = round(sum(donors[donor]), 2)
         num_gifts = len(donors[donor])
         average = round((total_donated / num_gifts), 2)
-        print("|Donor Name: {0:20}".format(donor), end='')
-        print("| Total Donated: {0:8} | Num Gifts: {1:5}| Avg Gift: {2:8}|".format(total_donated, num_gifts, average))
+        print("| {0:20}".format(donor), end='')
+        print("| {0:13} | {1:10}| {2:10} |".format(total_donated, num_gifts, average))
 
 def main():
 

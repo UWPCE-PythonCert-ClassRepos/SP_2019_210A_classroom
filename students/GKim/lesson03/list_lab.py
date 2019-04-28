@@ -55,8 +55,10 @@ def letter_p(lst):
             print("'P' fruits: ", x)
             return
 
-def main():
+def reverse_word(word):
+    return word[::-1]
 
+def series_1():
     print_list(inv)
     print()
     response = question()
@@ -76,32 +78,55 @@ def main():
     print_list(new_inv)
 
     letter_p(new_inv) # show fruits with the letter "P"
-   
-    print_list(new_inv)
-    new_inv.pop(-1) # removing the last item on the list.
+
+def series_2():   
+    print_list(inv)
+    inv.pop(-1) # removing the last item on the list.
     print("\nNew list with last item removed\n")
-    print_list(new_inv)
+    print_list(inv)
     while True:
         delete_f = input("What fruit would you like to delete? \n")
-        for x in new_inv:
+        for x in inv:
             if delete_f in x:
-                new_inv.remove(delete_f)
-                print(new_inv)
+                inv.remove(delete_f)
+                print(inv)
                 return False
         
         print("\nPlease check spelling and make sure its in the list\n")
+
+def series_3():
+    print_list(inv)
     
-    
-    print_list(new_inv)
-    new_inv2 = []
+    new_inv = []
     while True:
-        while True:
-            for x in new_inv:
-                like_fruit = input("Do you like {}?".format(x))
-                if like_fruit.lower() == "y" or like_fruit.lower() == "yes":
-                    new_inv2.append(x.lower())
-                elif like_fruit.lower() == "n" or like_fruit.lower() == "no":
-                    new_inv.remove(x)
-                else:
-                    pass
+        for x in inv:
+            like_fruit = input("Do you like {}'s? ".format(x))
+            if like_fruit.lower() == "y" or like_fruit.lower() == "yes":
+                new_inv.append(x.lower())
+            elif like_fruit.lower() == "n" or like_fruit.lower() == "no":
+                continue
+            else:
+                print("Please answer Yes or No (y/n)")
+        print_list(new_inv)
+        return False
+        
+def series_4():
+
+    reverseWords = [reverse_word(word) for word in inv]
+
+    # rev_inv = [[x[::-1]] for x in inv][::-1]
+    inv.pop(-1)
+    print("original list: ", inv)
+    print("reversed letters list: ", reverseWords)
+
+def main():
+    # series_1()
+    # series_2()
+    # series_3()
+    series_4()
+    
+    
+
+
+
 if __name__ == "__main__": main()

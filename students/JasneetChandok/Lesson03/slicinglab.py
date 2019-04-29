@@ -29,7 +29,7 @@ def elements_reversed(seq):
 
 def first_last_middle_thrid(seq):
 	'''Last third, then first third, then the middle third in the new order'''
-	new_sequence = seq[-3:][::-1] + seq[:3] + seq[(len(seq)//3):(len(seq)//3)*2]
+	new_sequence = seq[-3:] + seq[:3] + seq[(len(seq)//3):(len(seq)//3)*2]
 	return new_sequence
 
 
@@ -62,8 +62,8 @@ def main():
 	assert elements_reversed(a_list) ==['dog', 5, 12, 13, 'age', 2]
 
 	#Test - last third, then first third, then the middle third in the new order
-	assert first_last_middle_thrid(a_string) == "gnithiis a "
-	assert first_last_middle_thrid(a_longtuple) == (87,789,67,2,54,13,5,32,24,45)
+	assert first_last_middle_thrid(a_string) == "ingthiis a "
+	assert first_last_middle_thrid(a_longtuple) == (67,789,87,2,54,13,5,32,24,45)
 
 	print("All Assertions Passed")
 

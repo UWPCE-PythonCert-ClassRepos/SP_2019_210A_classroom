@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Tasks
 # Write some functions that take a sequence as an argument, and return a copy of that sequence:
 

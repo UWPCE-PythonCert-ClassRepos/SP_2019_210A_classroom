@@ -1,4 +1,4 @@
-import math
+#!/usr/bin/env python3
 #Donors dict Name:[[list of donations],[average of donations]]
 donors = {"Chris Christly": [1000.21, 250.80], "Bob Barley": [800.33], "Nick Nilly": [500000.12, 250000.55, 750000], "Julia July": [200.80], "Jose Hooray": [500000, 1000000, 750000]}
 

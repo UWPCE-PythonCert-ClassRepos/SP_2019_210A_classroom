@@ -19,15 +19,13 @@ def clear_screen():
 def show_list():
     """
     shows the donors in the list without donation amounts
-    """
-    print()
+    \n"""
     print("#" * 9, "The Current Donor List", "#" * 9)
     index = 1
     for donor in main_donors:
         print("{}:{}".format(index, donor[0]))
         index += 1
-    print("#" * 43)
-    print()
+    print("#" * 43 + "\n")
     return show_list
 
 def main_menu():
@@ -53,18 +51,7 @@ Enter 'LIST' to see Donor list or 'MENU' to return to Main Menu.
 >>> """)
     return thanks_answer
 
-# def search_donor(thanks_answer):
-#     donor = thanks_answer
-#     show_donor = []
-#     for x in range(len(donors)-1, -1, -1):
-#         if donors[x][0].lower() == donor.lower():
-#             show_donor.append(donors[x])
-#             print("\n{}\n".format(show_donor[0]))
-#         else:
-#             add_doner = (donor,[])
-#             donors.append(add_doner)
-#             print("done adding_doner")
-#             print(donors)
+
 def send_email(name, amount):
     print("""\n
     Dear {n},
@@ -87,7 +74,6 @@ def send_thank_you():
     clear_screen()
     while True:
         thanks_answer = menu_thank_you().strip()
-        # thanks_answer = thanks_answer.strip()
         if thanks_answer.upper() == "LIST":
             clear_screen()
             show_list()
@@ -148,7 +134,6 @@ def create_report():
     """
     while True:
         response = report_menu().strip()
-        # response = response.strip()
         if response.upper() == "MENU":
             break
         else:
@@ -172,7 +157,6 @@ def mailroom_main():
     """
     while True:
         answer = main_menu().strip()
-        # answer = answer.strip()
         if answer == "1":
             send_thank_you()
         elif answer == "2":

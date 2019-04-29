@@ -47,7 +47,7 @@ def task_5(four_elements):
 
 def task_6():
     t_six = print("{:<20}|{:^15}|{:^15}|{:>15}".format('First', '$99.01', 'Second', '$88.09'))
-    print(t_six)
+    return t_six
 
 
 def main():

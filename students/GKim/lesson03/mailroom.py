@@ -95,7 +95,7 @@ def send_thank_you():
             clear_screen()
             break
         else:
-            # idx = len(main_donors)-1
+            idx = len(main_donors)-1
             in_main_donors = False
             for x in range(len(main_donors)-1, -1, -1):
                 if main_donors[x][0].lower() == thanks_answer.lower():
@@ -104,7 +104,7 @@ def send_thank_you():
                     donation_amount = int(input("\nPlease enter the amount that {} kindly donated: ".format(thanks_answer)))
                     main_donors[x][1].append(donation_amount)
                     print("{}: ${:.2f}".format(thanks_answer, donation_amount))
-                # idx -= 1
+                idx -= 1
             
             if in_main_donors == False:
                 donation_amount = int(input("\nPlease enter {}'s donated amount: ".format(thanks_answer)))

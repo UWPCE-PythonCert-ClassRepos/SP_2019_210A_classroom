@@ -10,7 +10,14 @@ donors = [("Rufio"), [100, 200, 200],
 
 
 def thank_you():
-    print("Thank you for your donation, it is very appreciated.")
+    get_donors_name = input("Please enter your full name: ")
+    
+    for i in donors:
+        if i == get_donors_name:
+            print(f"match with {i}")
+        else:
+            print("no dice")
+
 
 def gen_stats(donor):
     donations = donor[1]
@@ -35,7 +42,7 @@ def main_menu():
     1: Send a thank you
     2: Create a report
     3: Quit
-    >>>""")
+    >>> """)
         print(f"You selected {answer}")
         print(answer)
         answer = answer.strip()
@@ -54,6 +61,6 @@ if __name__ == "__main__":
     print("Welcome to the Mailroom")
 
     donor = ("fred flinstone"), [100, 50, 600]
-    assert gen_stats(donor) == ("fred flinstone"), [750, 3, 250.0] 
+    # assert gen_stats(donor) == ("fred flinstone"), [750, 3, 250.0] 
 
     main_menu()

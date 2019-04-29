@@ -16,16 +16,17 @@ def main_menu():
             3: Quit
             >>>""").strip()
         if answer == "1":
-            #Call thank you function
+            #Call thank you function and then print the return statement
             print(thank_you())
         elif answer == "2":
-            #calls report function
+            #calls report function which returns a list and then prints every line in the list
             for line in report():
                 print(line)
         elif answer == "3":
             print("Quitting...")
             break
         else:
+            #if the item is not 1, 2, or 3, will print this and go back to beginning of while loop
             print(("You replied {}, please reply with 1, 2 or 3").format(answer))
 
 def thank_you():
@@ -37,6 +38,7 @@ def thank_you():
         elif name_input == "list":
             for name in donors.keys(): print(name)
         else:
+            #if the name_input was not list and was not already in the donors dict, will ask if the user wants to add
             new_name_decision = input(name_input + " not found, would you like to add a new donator? y/n \n>>>").strip()
             if new_name_decision.lower() == "y": 
                 donors.update({name_input:[input("Please enter a donation amount: >>> ")]})

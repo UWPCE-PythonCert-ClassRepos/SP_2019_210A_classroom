@@ -88,7 +88,7 @@ def send_thank_you():
                     in_main_donors = True
                     print("\nThe Donor you have selected is {}".format(thanks_answer))
                     donation_amount = int(input("\nPlease enter the amount that {} kindly donated: ".format(thanks_answer)))
-                    main_donors[x][1].append(donation_amount)
+                    main_donors[idx][1].append(donation_amount)
                     print("{}: ${:.2f}".format(thanks_answer, donation_amount))
                 idx -= 1
             

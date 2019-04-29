@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import sys  # imports go at the top of the file
-import random  # imports a random module for the myster display function
 
 fruits = ["Apples", "Pears", "Oranges", "Peaches"]
 
@@ -18,15 +17,15 @@ prompt = "\n".join(("Welcome to the fruit stand!",
 
 
 def view_fruits():
-    item = input("Would you like to display fruits that only begin\
- with the letter 'P'? Enter 'Yes'.  Otherwise Enter 'No' to view ALL Fruits.")
-    if item.lower() == "No" or "N":
+    item = input("Would you like to display fruits that\n"
+    "only begin with the letter 'P'? Enter 'Yes'.\n"
+    "Otherwise Enter 'No' to view ALL Fruits.")
+    if item.lower() in ("n", "no"):
         print("\n".join(fruits))
-    elif item.lower() == "Yes" or "Y":
+    elif item.lower() in ("y", "yes"):
         for fruit in fruits:
-            if fruit[0].lower() == "P":
-                fruits.remove(fruit)
-            print(fruits)
+            if fruit[0].lower() == "p":
+                print(fruit)
 
 
 def view_a_fruit():
@@ -57,47 +56,45 @@ def remove_fruit():
 
 
 def mystery_display():
-    for fruit in fruits:
-        item_3 = input("Do you like {}? (y/n): ".format(fruit.lower()))
-
-        while item_3 != "y" or item_3 != "n":
-            if item_3.lower() == "y":
+    fruit = 0
+    while fruit < len(fruits):
+        item = input("Do you like {}? (y/n): ".format(fruits[fruit].lower()))
+        print(fruit)
+        while True:
+            if item.lower() == "y":
+                fruit = fruit+1
                 break
-            if item_3.lower() == "n":
-                fruits.remove(fruit)
-                print('Removing {}'.format(fruit))
+            if item.lower() == "n":
+                print('Removing {}'.format(fruits[fruit].lower()))
+                fruits.remove(fruits[fruit])
+                print(fruit)
+                print(len(fruits))
                 break
             else:
-                print("Please answer 'yes' or 'no' only.\n")
-
-                item_3 = input(
-                    "Do you like {}? (yes/no): ".format(fruit.lower()))
+                item = input("Please answer 'yes' or 'no' only.\n")
 
     print(fruits)
 
 
 def reverse_fruit():
-    fruits_4 = fruits
-    new_fruits_4 = list()
+    for fruit in fruits:
+        transposed_fruits = fruit[::-1]
+        print(transposed_fruits)
 
-    for fruit in fruits_4:
-        reversed_fruit = fruit[::-1]
-        new_fruits_4.append(reversed_fruit)
-
-    print(new_fruits_4)
-
-    del fruits_4[-1]
-    print(fruits_4)
+    del fruits[-1]
+    print(fruits)
 
 
 def exit_program():
     print("Bye!")
-    sys.exit()  # exit the interactive script
+    # exit the interactive script
+    sys.exit()
 
 
 def main():
     while True:
-        response = input(prompt)  # continuously collect user selection
+        # continuously collect user selection
+        response = input(prompt)
         # now redirect to feature functions based on the user selection
         if response == "1":
             view_fruits()

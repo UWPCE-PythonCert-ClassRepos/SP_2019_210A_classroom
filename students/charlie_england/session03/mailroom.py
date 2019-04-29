@@ -1,6 +1,6 @@
-
+import math
 #Donors dict Name:[[list of donations],[average of donations]]
-donors = {"Chris Christly": [1000, 250], "Bob Barley": [800], "Nick Nilly": [500000, 250000, 750000], "Julia July": [200], "Jose Hooray": [500000, 1000000, 750000]}
+donors = {"Chris Christly": [1000.21, 250.80], "Bob Barley": [800.33], "Nick Nilly": [500000.12, 250000.55, 750000], "Julia July": [200.80], "Jose Hooray": [500000, 1000000, 750000]}
 
 def main_menu():
     '''
@@ -20,7 +20,8 @@ def main_menu():
             print(thank_you())
         elif answer == "2":
             #calls report function
-            print(report())
+            for line in report():
+                print(line)
         elif answer == "3":
             print("Quitting...")
             break
@@ -51,8 +52,15 @@ def compose_thank_you(name_input):
         Local Charity """.format(name_input,int(donors[name_input][-1])))
 
 def report():
-    return ("Donor Name" + " "*10 + "| Total Given " + "| Num Gifts" + "| Average Gift")        
-
+    report_list = ["Donor Name" + " "*10 + "| Total Given " + "| Num Gifts " + "| Average Gift\n" + "-"*59]
+    for donor in donors:
+        donor_sum = round(sum(donors[donor]),2)
+        donor_num_gifts = len(donors[donor])
+        donor_average = round(donor_sum/donor_num_gifts,2)
+        #used variables even though it can be fit into 1 line for readability
+        #report list is: Donor + White Space + Donor Sum + white space + num gifts + white space + donor average. amount of white space changes on length of donor items
+        report_list.append(donor + " "*(21-len(donor)) + "$" +" "*(11-len(str(donor_sum))) + str(donor_sum) + " "*(13-len(str(donor_num_gifts))) + str(donor_num_gifts) + " "*(13-len(str(donor_average))) + str(donor_average))
+    return report_list
 
 if __name__ == "__main__":
     print("Welcome to the Mailroom!")

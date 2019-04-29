@@ -6,7 +6,7 @@ def main_menu():
     '''
     Main menu for the program.
     Will loop through and requests input until 3 is entered and then quits.
-    1 will allow an addition of a donator, a new donation and the printing of a thank you later
+    1 will allow an addition of a donator, a new donation and the printing of a thank you letter
     2 will print a report of the donators and their donations as well as their average donation.
     '''
     while True:
@@ -30,11 +30,16 @@ def main_menu():
             print(("You replied {}, please reply with 1, 2 or 3").format(answer))
 
 def thank_you():
+    """
+    will ask for a name input or a list.
+    Will print a list of names if list is entered
+    If name is in the dict, will ask for a donation amount, if name is not in dict, will ask if you would like to add a new name and will ask for a donation amount
+    """
     while True:
         name_input = input("Please enter a full name, 'list' for list of names \n>>>").strip()
         if name_input in donors.keys():
-            donors[name_input].append(float(input("Please enter a donation amount: >>> ")))
-            return compose_thank_you(name_input)
+            donors[name_input].append(float(input("Please enter a donation amount: >>> "))) #Ask for donation amount and append to key in dict
+            return compose_thank_you(name_input) #Call compose thank you function and return breaking the loop
         elif name_input == "list":
             for name in donors.keys(): print(name)
         else:
@@ -54,14 +59,18 @@ def compose_thank_you(name_input):
         Local Charity """.format(name_input,int(donors[name_input][-1])))
 
 def report():
-    report_list = ["Donor Name" + " "*10 + "| Total Given " + "| Num Gifts " + "| Average Gift\n" + "-"*59]
+    """
+    return a report by adding a line for every name in the donor dictionary
+    """
+    report_list = ["Donor Name" + " "*10 + "| Total Given " + "| Num Gifts " + "| Average Gift\n" + "-"*60]
     for donor in donors:
         donor_sum = round(sum(donors[donor]),2)
         donor_num_gifts = len(donors[donor])
         donor_average = round(donor_sum/donor_num_gifts,2)
         #used variables even though it can be fit into 1 line for readability
         #report list is: Donor + White Space + Donor Sum + white space + num gifts + white space + donor average. amount of white space changes on length of donor items
-        report_list.append(donor + " "*(21-len(donor)) + "$" +" "*(11-len(str(donor_sum))) + str(donor_sum) + " "*(13-len(str(donor_num_gifts))) + str(donor_num_gifts) + " "*(13-len(str(donor_average))) + str(donor_average))
+        #report_list.append(donor + " "*(21-len(donor)) + "$" +" "*(11-len(str(donor_sum))) + str(donor_sum) + " "*(13-len(str(donor_num_gifts))) + str(donor_num_gifts) + " "*(13-len(str(donor_average))) + str(donor_average))
+        report_list.append(f"{donor:<20} $  {donor_sum:>10} {donor_num_gifts:^12} $ {donor_average:>10}")
     return report_list
 
 if __name__ == "__main__":

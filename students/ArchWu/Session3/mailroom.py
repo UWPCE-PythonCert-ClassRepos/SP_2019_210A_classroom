@@ -5,18 +5,23 @@ import operator
 #donor (Donor name, donations[])
 #donors [donor1, donor2]
 donors = []
+# The data struction used in this program, a list of tuples
+
 
 def add_donor(name, donation = 0):
+    """ Adds a new donor with an initial donation """
     donations = [donation]
     donors.append((name, donations))
     return
 
 def add_donation(name, donation):
+    """ Adds a donation to an existing donor """
     for donor, donations in donors:
         if name == donor:
             donations.append(donation)
 
 def report():
+    """ Make a report on donations received by a style as specified """
     print("Donor Name                | Total Given | Num Gifts | Average Gift")
     print("------------------------------------------------------------------")
     donors.sort(reverse = True, key = lambda item: (sum(item[1])))
@@ -30,6 +35,7 @@ def report():
     return
 
 def gen_stats(donor):
+    """ A function calculates the total and average donation of a donor """
     name = donor[0]
     donations = donor[1]
     total = round(sum(donations),2)
@@ -38,6 +44,7 @@ def gen_stats(donor):
     return (name, total, num_gifts, avg)
 
 def thank_you():
+    """ Thank-you funcion that generates an email to thank new donations """
     while True:
         answer = input("Please type the Full Name, type quit to go back to previous menu> ")
         if answer == 'list':
@@ -74,6 +81,7 @@ def thank_you():
     return
 
 def main_menu():
+    """ Main menu function """
     while True:
         answer = input("""What would you like to do?
 Pick one:

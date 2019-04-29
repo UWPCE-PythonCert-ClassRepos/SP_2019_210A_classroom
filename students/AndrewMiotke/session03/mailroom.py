@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 import sys
 
-donors = [("fred flinstone"), [100, 200, 200],
+donors = [("Rufio"), [100, 200, 200],
           ("Maggie"), [100, 2, 3000],
-          ("Gus"), [100, 32, 33222]
+          ("Gus"), [100, 32, 33222],
+          ("Kramer"), [10, 87, 886],
+          ("Polly"), [432, 32, 7896]
          ]
 
 
@@ -52,6 +54,6 @@ if __name__ == "__main__":
     print("Welcome to the Mailroom")
 
     donor = ("fred flinstone"), [100, 50, 600]
-    assert gen_stats(donor) == ("fred flinstone"), [750, 3, 250.0], str(gen_stats(donor))
+    assert gen_stats(donor) == ("fred flinstone"), [750, 3, 250.0] 
 
     main_menu()

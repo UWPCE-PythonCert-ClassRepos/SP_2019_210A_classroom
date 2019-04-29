@@ -2,10 +2,6 @@
 #Donors dict Name:[[list of donations],[average of donations]]
 donors = {"Chris Christly": [1000, 250], "Bob Barley": [800], "Nick Nilly": [500000, 250000, 750000], "Julia July": [200], "Jose Hooray": [500000, 1000000, 750000]}
 
-
-if __name__ == "__main__":
-    print("Welcome to the Mailroom!")
-
 def main_menu():
     '''
     Main menu for the program.
@@ -21,10 +17,10 @@ def main_menu():
             >>>""").strip()
         if answer == "1":
             #Call thank you function
-            thank_you()
+            print(thank_you())
         elif answer == "2":
             #calls report function
-            pass
+            print(report())
         elif answer == "3":
             print("Quitting...")
             break
@@ -36,19 +32,28 @@ def thank_you():
         name_input = input("Please enter a full name, 'list' for list of names \n>>>").strip()
         if name_input in donors.keys():
             donors[name_input].append(float(input("Please enter a donation amount: >>> ")))
-            #Send a thank you report
-            break
+            return compose_thank_you(name_input)
         elif name_input == "list":
             for name in donors.keys(): print(name)
         else:
             new_name_decision = input(name_input + " not found, would you like to add a new donator? y/n \n>>>").strip()
             if new_name_decision.lower() == "y": 
-                donors.update({name_input:input("Please enter a donation amount: >>> ")})
-                #send a donation
-                break
+                donors.update({name_input:[input("Please enter a donation amount: >>> ")]})
+                return compose_thank_you(name_input)
     
+def compose_thank_you(name_input):
+    return (
+        """Dear {},\n\n 
+        On behalf of Local Charity we would like to extend our sincerest thanks for your ${} donation.\n
+        Without people like you we could not coninue blah blah blah\n
+        Again thank you\n
+    Sincerely,\n
+        Local Charity """.format(name_input,int(donors[name_input][-1])))
 
 def report():
-    pass
+    return ("Donor Name" + " "*10 + "| Total Given " + "| Num Gifts" + "| Average Gift")        
 
-main_menu()
+
+if __name__ == "__main__":
+    print("Welcome to the Mailroom!")
+    main_menu()

@@ -6,9 +6,15 @@ import operator
 #donors [donor1, donor2]
 donors = []
 
-def add_donor(name):
-    donations = []
-    return (name, donations)
+def add_donor(name, donation = 0):
+    donations = [donation]
+    donors.append((name, donations))
+    return
+
+def add_donation(name, donation):
+    for donor, donations in donors:
+        if name == donor:
+            donations.append(donation)
 
 def report():
     print("Donor Name                | Total Given | Num Gifts | Average Gift")
@@ -32,6 +38,40 @@ def gen_stats(donor):
     return (name, total, num_gifts, avg)
 
 def thank_you():
+    while True:
+        answer = input("Please type the Full Name, type quit to go back to previous menu> ")
+        if answer == 'list':
+            for donor in donors:
+                print(donor[0])
+        elif answer == 'quit':
+            return
+        elif answer in [donor[0] for donor in donors]:
+            name = answer
+            new_user = False
+            break
+        else:
+            name = answer
+            new_user = True
+            break
+
+    while True:
+        amount = input("How much have you just donated? > ")
+        if amount == 'quit': return
+        try:
+            num_donation = float(amount)
+        except:
+            print("Please type a float number")
+        else:
+            if new_user:
+                add_donor(name, num_donation)
+            else:
+                add_donation(name, num_donation)
+            break
+    greetings = 'Dear {},\n'.format(name)
+    body = '\nThank you for your generous gift ${} to us!\n'.format(num_donation)
+    ending = '\nSincerely,\n  ABC foundations'
+    print(greetings + body + ending)
+    return
 
 def main_menu():
     while True:

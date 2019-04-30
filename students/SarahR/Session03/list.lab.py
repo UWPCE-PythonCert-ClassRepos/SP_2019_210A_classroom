@@ -1,14 +1,6 @@
-#!/usr/bin/env python3
+
 
 # SERIES 1
-# Create a list that contains “Apples”, “Pears”, “Oranges” and “Peaches”.
-# Display the list (plain old print() is fine…).
-# Ask the user for another fruit and add it to the end of the list.
-# Display the list.
-# Ask the user for a number and display the number back to the user and the fruit corresponding to that number (on a 1-is-first basis). Remember that Python uses zero-based indexing, so you will need to correct.
-# Add another fruit to the beginning of the list using “+” and display the list.
-# Add another fruit to the beginning of the list using insert() and display the list.
-# Display all the fruits that begin with “P”, using a for loop.
 
 fruits = ["Apples", "Pears", "Oranges", "Peaches"]
 
@@ -69,7 +61,7 @@ new_fruit()
 pos,returned_fruit = find_fruit()
 print(pos, returned_fruit)
 # Add another fruit to the beginning of the list using “+” and display the list.
-#list_fruits()
+list_fruits()
 fruits = add_with_plus(fruits, 'Grape')
 list_fruits()
 
@@ -84,10 +76,55 @@ start_with_p()
 
 # SERIES 2
 
-# Using the list created in series 1 above:
 # Display the list.
-# Remove the last fruit from the list.
-# Display the list.
-# Ask the user for a fruit to delete, find it and delete it.
-# Bonus: Multiply the list times two. Keep asking until a match is found. Once found, delete all occurrences.
+list_fruits()
 
+# Remove the last fruit from the list.
+del fruits[-1]
+
+# Display the list.
+list_fruits()
+
+# Ask the user for a fruit to delete, find it and delete it.
+delete = input("which fruit would you like to delete?")
+if delete in fruits:
+    fruits.remove(delete)
+
+list_fruits()
+
+
+# SERIES 3
+
+# Ask the user for input displaying a line like “Do you like apples?”
+while True:
+    for fruit in fruits:
+        answer = input("Do you like " + fruit.lower() + "? (yes/no)")
+        if answer.lower() == "yes":
+            print("Nice!")
+        # For each “no”, delete that fruit from the list.
+        if answer.lower() == "no":
+            print("Deleting " + fruit.lower() + " from the list")
+            fruits.remove(fruit)
+        else:
+            print("Your answer should be 'yes' or 'no'.")
+
+# Display the list.
+list_fruits()
+
+
+# SERIES 4
+
+# all the letters in each item reversed
+newFruits = []
+print("The reversed copy of fruits list:")
+for fruit in fruits:
+    reverse = (fruit[::-1])
+    #print(reverse)
+    newFruits.append(reverse)
+    print(fruit[::-1])
+
+
+# Delete the last item of the original list. Display the original list and the copy.
+del fruits[-1]
+print("Original list: ",  fruits)
+print("Reversed copy: ", newFruits)

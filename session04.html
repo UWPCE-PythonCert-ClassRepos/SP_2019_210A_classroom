@@ -93,6 +93,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#built-in-names">Built in names</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mutable-default-parameters">Mutable default parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#recursion-in-an-interactive-loop">Recursion in an interactive loop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#string-formatting">String formatting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#slicing-and-list-labs">Slicing and List labs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#my-solutions">My solutions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id1">Lightning Talks:</a></li>
@@ -188,6 +189,9 @@
 <p>A collection of notes to go over in class, to keep things organized.</p>
 <div class="section" id="lightning-talks">
 <h3>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h3>
+<p>This week:</p>
+<p>James S Ward</p>
+<p>George J Kim</p>
 </div>
 <div class="section" id="issues-that-came-up-during-the-week">
 <h3>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h3>
@@ -298,6 +302,15 @@ Out[22]: 1
 <p>Let’s look at this:</p>
 <p><code class="docutils literal notranslate"><span class="pre">examples/session04/recursive_mainloop.py</span></code></p>
 <p>(do a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">master</span></code> if you don’t see it.)</p>
+</div>
+<div class="section" id="string-formatting">
+<h4>String formatting<a class="headerlink" href="#string-formatting" title="Permalink to this headline">¶</a></h4>
+<p>Here’s an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tup3</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:5}</span><span class="s2"> </span><span class="si">{:5}</span><span class="s2"> </span><span class="si">{:5}</span><span class="s2"> </span><span class="si">{:5}</span><span class="s2"> </span><span class="si">{:5}</span><span class="s2"> </span><span class="si">{:5}</span><span class="s2"> </span><span class="si">{:5}</span><span class="s2"> </span><span class="si">{:5}</span><span class="s2"> </span><span class="si">{:5}</span><span class="s2"> </span><span class="si">{:5}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">tup3</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Seems like a lot of typing to me :-)</p>
 </div>
 <div class="section" id="slicing-and-list-labs">
 <h4>Slicing and List labs<a class="headerlink" href="#slicing-and-list-labs" title="Permalink to this headline">¶</a></h4>

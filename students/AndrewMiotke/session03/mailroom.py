@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 import sys
+import time
 
 donors_list = [("Rufio", [897, 200, 200]),
-          ("Maggie", [543, 2, 3000]),
-          ("Gus", [23, 32, 33222]),
-          ("Kramer", [10, 87, 886]),
-          ("Polly", [432, 32, 7896])
-         ]
+               ("Maggie", [543, 2, 3000]),
+               ("Gus", [23, 32, 33222]),
+               ("Kramer", [10, 87, 886]),
+               ("Polly", [432, 32, 7896])
+               ]
 
 
 def thank_you():
@@ -23,8 +24,21 @@ def gen_stats(donor):
 
 
 def report():
-    print("Create a report")
-    gen_stats(donor)
+    print("Generating report...")
+    time.sleep(1)  # dramatic effect of creating the report
+    generate_report_template()
+    # gen_stats(donor)
+
+
+def generate_report_template():
+    donor_name = "Donor Name"
+    total_given = "Total Given"
+    num_gifts = "Num Gifts"
+    average_gift = "Average Gift"
+
+    print(f"{donor_name}           |  {total_given}   |  {num_gifts}   |  {average_gift}")
+    print("-" * 68)
+
 
 def find_donor():
     print("Type 'list' to get a list of donors")
@@ -43,8 +57,10 @@ def find_donor():
             print(f"Adding {donor_name} to the list of donors.")
 
 
-
 def quit():
+    print("Quitting Mailroom...")
+    time.sleep(.5)
+    print("Goodbye")
     sys.exit(0)
 
 
@@ -67,7 +83,6 @@ def main_menu():
             quit()
         else:
             print("Please answer 1, 2, or 3")
-
 
 
 if __name__ == "__main__":

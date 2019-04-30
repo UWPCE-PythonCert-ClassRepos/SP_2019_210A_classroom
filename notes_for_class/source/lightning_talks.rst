@@ -58,9 +58,10 @@ James S Ward
 ............
 
 George J Kim
+............
 
 Topic: Brief History of Python
-............
+
 
 Week 5
 ------

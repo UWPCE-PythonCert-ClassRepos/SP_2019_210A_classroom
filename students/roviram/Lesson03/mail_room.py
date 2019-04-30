@@ -55,7 +55,7 @@ def intro():
 
 def thank_you():
     """Thanking the donor for their donor and adding a new donor if they are new"""
-    reset()
+
     while True:
         list_answer = input("\nThank you notes are always appreciated!\n"
                             "Want to see the list of donors to send a 'Thank You' too? (type 'Yes' or 'No')")
@@ -65,7 +65,7 @@ def thank_you():
 
         # Prompt Donor Name
         donor_name = input("Please enter the donor name: ")
-        #reset()
+
         print("You typed:", donor_name)
         match = False
         for donor in donors:
@@ -89,8 +89,6 @@ def thank_you():
 
 def main_menu():
     """This is displaying the main menu"""
-    reset()
-
     while True:
         menu_answer = input(
             "\nPlease choose from the following three options (please type 1, 2, or 3):\n"

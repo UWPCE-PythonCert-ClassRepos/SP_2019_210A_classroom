@@ -33,13 +33,13 @@ def sum_series(n, a=0, b=1):
     Once generalized that way, sum_series(n, 0, 1) should be equivalent to fibonacci(n).
     And sum_series(n, 2, 1) should be equivalent to lucas(n).
     """
-    if n == 0:
-        return a
-    elif n == 1:
-        return b
-    for _ in range(n-1):
+    # if n == 0:
+    #     return a
+    # elif n == 1:
+    #     return b 
+    for _ in range(n):
         a, b = b, a + b
-    return b
+    return a
 
 # ----------------------------------- #
 

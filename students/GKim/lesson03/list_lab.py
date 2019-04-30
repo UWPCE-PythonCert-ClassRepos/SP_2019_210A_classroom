@@ -45,18 +45,20 @@ def print_list(lst):
     return
 
 def question():
-    response = input("\nPlease enter another fruit: ")
+    response = input("\nPlease enter another fruit: \n")
     return response
 
 def letter_p(lst):
-    print("\nHere are fruits that start with the letter 'P'")
+    print("\nHere are fruits that start with the letter 'P'\n")
     for x in lst:
         if "P" in x:
             print("'P' fruits: ", x)
             return
 
-def main():
+def reverse_word(word):
+    return word[::-1]
 
+def series_1():
     print_list(inv)
     print()
     response = question()
@@ -68,29 +70,65 @@ def main():
 
     response = question()
     e_list.append(response)
-    new_inv = e_list + inv
+    new_inv = e_list + inv # concatenating two list together
     print_list(new_inv)
 
     response = question()
     new_inv.insert(0,response)
     print_list(new_inv)
 
-    letter_p(new_inv)
-   
-    print_list(new_inv)
-    new_inv.pop(-1)
-    print("\nNew list with last item removed\n")
-    print_list(new_inv)
+    letter_p(new_inv) # show fruits with the letter "P"
 
+def series_2():   
+    print_list(inv)
+    inv.pop(-1) # removing the last item on the list.
+    print("\nNew list with last item removed\n")
+    print_list(inv)
     while True:
         delete_f = input("What fruit would you like to delete? \n")
-        for x in new_inv:
+        for x in inv:
             if delete_f in x:
-                new_inv.remove(delete_f)
-                print(new_inv)
+                inv.remove(delete_f)
+                print(inv)
                 return False
+        
+        print("\nPlease check spelling and make sure its in the list\n")
+
+def series_3():
+    print_list(inv)
+    
+    new_inv = []
+    while True:
+        x = 0
+        for x in range(len(inv)-1, -1, -1):
+            like_fruit = input("Do you like {}'s? ".format(inv[x]))
+            if like_fruit.lower() == "y" or like_fruit.lower() == "yes":
+                new_inv.append(inv[x].lower())
+            elif like_fruit.lower() == "n" or like_fruit.lower() == "no":
+                inv.remove(inv[x])
+               
             else:
-                pass
+                print("Please answer Yes or No (y/n)")
         print_list(new_inv)
+        return False
+        
+def series_4():
+
+
+    # rev_inv = [[x[::-1]] for x in inv][::-1]
+    inv.pop(-1)
+    print("original list: ", inv)
+    reverseWords = [reverse_word(word) for word in inv]
+    print("reversed letters list: ", reverseWords)
+
+def main():
+    # series_1()
+    # series_2()
+    # series_3()
+    series_4()
+    
+    
+
+
 
 if __name__ == "__main__": main()

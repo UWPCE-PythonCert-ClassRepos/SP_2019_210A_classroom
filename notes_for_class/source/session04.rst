@@ -170,6 +170,17 @@ Let's look at this:
 
 (do a ``git pull upstream master`` if you don't see it.)
 
+String formatting
+-----------------
+
+Here's an example::
+
+    tup3 = tuple(range(10))
+    print("{:5} {:5} {:5} {:5} {:5} {:5} {:5} {:5} {:5} {:5}".format(*tup3))
+
+Seems like a lot of typing to me :-)
+
+
 Slicing and List labs
 ---------------------
 

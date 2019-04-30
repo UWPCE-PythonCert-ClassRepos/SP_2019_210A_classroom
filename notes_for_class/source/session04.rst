@@ -18,6 +18,12 @@ A collection of notes to go over in class, to keep things organized.
 Lightning Talks
 ===============
 
+This week:
+
+James S Ward
+
+George J Kim
+
 
 Issues that came up during the week.
 ====================================

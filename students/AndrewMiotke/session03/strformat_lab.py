@@ -3,7 +3,7 @@
 # This is missing some tasks since I didn't notice these exercises existed until I was halfway through with the mailroom excersize.
 
 def task_one():
-    one_string = "file_00{} {} {} {}"
+    one_string = "file_{:>03} {:>G} {} {}"
     print(one_string.format(2, 123.4567, 10000, 12345.67))
 
 task_one()
@@ -14,6 +14,13 @@ def task_three():
     print(three_string.format(*t))
 
 task_three()
+
+def task_four():
+
+    r = ( 4, 30, 2017, 2, 27)
+    return sorted(r)
+
+print(task_four())
 
 def formatter(in_tuple):
     form_string = "{:d}, {:d}"

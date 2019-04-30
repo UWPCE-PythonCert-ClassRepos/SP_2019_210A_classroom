@@ -46,7 +46,7 @@ def thank_you():
             #if the name_input was not list and was not already in the donors dict, will ask if the user wants to add
             new_name_decision = input(name_input + " not found, would you like to add a new donator? y/n \n>>>").strip()
             if new_name_decision.lower() == "y": 
-                donors.update({name_input:[input("Please enter a donation amount: >>> ")]})
+                donors.update({name_input:[int(input("Please enter a donation amount: >>> "))]})
                 return compose_thank_you(name_input)
     
 def compose_thank_you(name_input):

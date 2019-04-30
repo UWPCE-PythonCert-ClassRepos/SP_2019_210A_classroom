@@ -7,7 +7,7 @@ print(lst)
 lst.append(input("Please add another fruit"))
 print(lst)
 user_input = input("Please enter a number >>>")
-#print(f"{user_input} cooresponds to {lst[int(user_input)-1]}")
+print(f"{user_input} cooresponds to {lst[int(user_input)-1]}")
 #add another fruit to the beginning of the list using +?
 lst.insert(0,"Kiwis")
 print(lst)

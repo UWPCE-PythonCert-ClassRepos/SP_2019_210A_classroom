@@ -22,7 +22,7 @@ def thank_you():
         donors[response] = []
 
     newDonation = input("how much to donate?")
-    donors[response].append(newDonation)
+    donors[response].append(int(newDonation))
     email = '''
     Dear {0},
     Thank you for donating {1}!\n'''.format(response, newDonation)

@@ -18,7 +18,7 @@ def clear_screen():
 
 def show_list():
     """
-    shows the donors in the list without donation amounts
+    shows the donors in the list with donation amounts
     \n"""
     print("#" * 9, "The Current Donor List", "#" * 9)
     index = 1

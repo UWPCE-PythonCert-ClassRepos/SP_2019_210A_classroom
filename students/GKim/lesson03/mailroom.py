@@ -3,10 +3,10 @@
 import sys
 import os
 
-main_donors = [("Luke Skywalker", [100, 200, 50]),
-          ("Han Solo", [100, 50, 600]),
-          ("Yoda", [1000, 50, 600, 200]),
-          ("Ben Kenobe", [10, 5, 6]),
+main_donors = [("Luke Skywalker", [100.25, 200.55, 50]),
+          ("Han Solo", [100.80, 50.99, 600]),
+          ("Yoda", [1000.01, 50, 600.55, 200.47]),
+          ("Ben Kenobe", [101.32, 500, 60.34]),
           ]
 
 def clear_screen():
@@ -23,7 +23,7 @@ def show_list():
     print("#" * 9, "The Current Donor List", "#" * 9)
     index = 1
     for donor in main_donors:
-        print("{}:{}".format(index, donor[0]))
+        print("{}:{} ~ {}".format(index, donor[0], str(donor[1]).replace("[","").replace("]","")))
         index += 1
     print("#" * 43 + "\n")
     return show_list
@@ -87,16 +87,16 @@ def send_thank_you():
                 if main_donors[x][0].lower() == thanks_answer.lower():
                     in_main_donors = True
                     print("\nThe Donor you have selected is {}".format(thanks_answer))
-                    donation_amount = int(input("\nPlease enter the amount that {} kindly donated: ".format(thanks_answer)))
+                    donation_amount = float(input("\nPlease enter the amount that {} kindly donated: ".format(thanks_answer)))
                     main_donors[idx][1].append(donation_amount)
                     print("{}: ${:.2f}".format(thanks_answer, donation_amount))
                 idx -= 1
             
             if in_main_donors == False:
-                donation_amount = int(input("\nPlease enter {}'s donated amount: ".format(thanks_answer)))
+                donation_amount = float(input("\nPlease enter {}'s donated amount: ".format(thanks_answer)))
                 add_new_donors = (thanks_answer,[donation_amount])
                 main_donors.append(add_new_donors)
-                print("{} was added with a donation of ${:.2f}".format(thanks_answer,donation_amount))
+                print("{} was added with a donation of ${:.2f}".format(thanks_answer,float(donation_amount)))
             
             send_email(thanks_answer, donation_amount)
 

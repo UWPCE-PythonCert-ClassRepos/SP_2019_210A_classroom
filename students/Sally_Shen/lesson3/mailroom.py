@@ -6,8 +6,8 @@ import sys
 
 print("in mailroom")
 '''Writing first name is easier for testing.'''
-donors ={"Fred": [100, 200, 50], "Barney": [100, 50, 600], "William": [200, 50, 500],
-         "Peddle": [300, 40, 200]}
+donors ={"Fred Gates": [100.90, 200, 50], "Jeff Bazos": [100, 50, 600], "Mark Zuckerberg": [200, 50, 500],
+         "Paul Allen": [300, 40, 200]}
 
 
 def thank_you():
@@ -16,13 +16,13 @@ def thank_you():
     if response == "list":
         for key in donors.keys():
             print(key)
-        response = input("please type your donor name")
+        response = input("Please type your donor name.")
 
     if response not in donors.keys():
         donors[response] = []
 
     newDonation = input("how much to donate?")
-    donors[response].append(int(newDonation))
+    donors[response].append(float(newDonation))
     email = '''
     Dear {0},
     Thank you for donating {1}!\n'''.format(response, newDonation)

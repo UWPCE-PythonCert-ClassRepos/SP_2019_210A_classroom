@@ -34,6 +34,7 @@ Week 3
 April 23, 2019
 
 Charlie England
+Main Topic: Neural Networks
 ...............
 
 Ying Shen (Sally)

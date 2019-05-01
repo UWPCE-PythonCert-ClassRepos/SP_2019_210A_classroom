@@ -6,6 +6,9 @@
 Notes for Session 01
 ####################
 
+April 9, 2019
+*************
+
 A collection of notes to go over in class, to keep things organized.
 
 In-class Activities

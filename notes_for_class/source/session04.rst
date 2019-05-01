@@ -6,6 +6,9 @@
 Notes for Session 04
 ####################
 
+April 30, 2019
+**************
+
 
 **NOTE:**  These notes are "live" -- they will change up until the class starts..
 
@@ -15,9 +18,34 @@ A collection of notes to go over in class, to keep things organized.
 Lightning Talks
 ===============
 
+This week:
+
+James S Ward
+
+George J Kim
+
 
 Issues that came up during the week.
 ====================================
+
+Indexing vs Slicing
+-------------------
+
+A few of you ran into this issue in the slicing lab:
+
+If you have a sequence, say a tuple, like this::
+
+    (5, 3, 8, 12, 45, 13, 5)
+
+What does an index return?
+
+This comes up in the slicing lab: exchange the first and last items of the sequence:
+
+Let's check it out. In the class repo:
+
+``SP_2019_210A_classroom/examples/Session04/index_vs_slice.py``
+
+(``git pull upstream master``)
 
 Built in names
 --------------
@@ -160,6 +188,17 @@ Let's look at this:
 ``examples/session04/recursive_mainloop.py``
 
 (do a ``git pull upstream master`` if you don't see it.)
+
+String formatting
+-----------------
+
+Here's an example::
+
+    tup3 = tuple(range(10))
+    print("{:5} {:5} {:5} {:5} {:5} {:5} {:5} {:5} {:5} {:5}".format(*tup3))
+
+Seems like a lot of typing to me :-)
+
 
 Slicing and List labs
 ---------------------

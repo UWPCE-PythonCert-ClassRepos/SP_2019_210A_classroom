@@ -7,6 +7,10 @@
 Notes for Session 08
 ####################
 
+May 28, 2019
+************
+
+
 **NOTE:**  These notes are "live" -- they will change up until the class starts.
 
 

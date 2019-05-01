@@ -23,39 +23,43 @@ def build_trigrams(words):
 
     return trigrams
 
-def generate_new_text(trigram_dict):
-    while len(trigram_dict) > 0:
-        tri_key = random.choice(list(trigram_dict))
-        print("Current Key: {} Values: {}".format(tri_key, trigram_dict[tri_key]))
-        new_text = " ".join(tri_key)
-        value_set = trigram_dict[tri_key]
+def debug(message):
+    if str.lower(debug_set) == 'y':
+        print("DEBUG: {}".format(message))
 
-        while len(value_set) > 0:
-            next_word = random.choice(trigram_dict[tri_key])
-            trigram_dict[tri_key].remove(next_word)
-            new_text += (" {}".format(next_word))
-            tri_key = (tri_key[1], next_word)
-        else:
-            del trigram_dict[tri_key]
+def generate_new_text(trigram_dict):
+    tri_key = random.choice(list(trigram_dict))
+    new_text = " ".join(tri_key).capitalize()
+
+    while tri_key in trigram_dict:
+        debug("Current Key: {}".format(tri_key))
+        next_word = random.choice(trigram_dict[tri_key])
+        leading_char = " "
+        if str.isupper(next_word[0:1]):
+            leading_char = ". "
+
+        new_text = leading_char.join([new_text, next_word])
+        tri_key = (tri_key[1], next_word)
     else:
         print('\n\n####Generation Complete.####\n\n')
 
-    return new_text
+    return new_text + "."
 
 
 if __name__ == "__main__":
+    debug_set = input('Run in debug? (Y|N) :>')
     words = read_file(input('Process File :> '))
 
     for _ in words:
         if len(_) == 0:
             print("Empty word found")
 
-    print("{} words processed".format(len(words)))
+    debug("{} words processed".format(len(words)))
 
     trigram_dict = build_trigrams(words)
 
     for key, value in trigram_dict.items():
-        print("{} => {}".format(key, value))
+        debug("{} => {}".format(key, value))
 
     new_text = generate_new_text(trigram_dict)
 

@@ -49,12 +49,13 @@ def find_donor():
     print("Type 'List' to get a list of donors")
     donor_name = input("Type in the name of a donor: ").title()
 
-    if donor_name == "list":
+    if donor_name == "List":
         print("\nHere is your list of donors:\n")
         print(f"Donor Names      ")
-        print("-" * 34)
+        print("-" * 12)
         for donor in donors_list:
-            print(f"{donor}")
+            print(f"{donor[0]}")
+        print()
     else:
         for donor in donors_list:
             if donor_name == donor[0]:

@@ -18,19 +18,29 @@ def build_trigrams(words):
         word1 = words[i]
         word2 = words[i + 1]
         word3 = words[i + 2]
-        if (word1, word2) not in trigrams:
+        pair = (word1, word2)
+        if pair not in trigrams:
             trigrams[(word1, word2)] = [word3]
         else:
             trigrams[(word1, word2)].append(word3)
-
-
     # build up the dict here!
 
     return trigrams
 
 def make_words(in_data):
 
+    return
+
 def read_in_data(filename):
+    """
+    read the file
+    :returns: list of works in the file
+    """
+    in_data = []
+    with open(filename) as f:
+        in_data.append(f.split())
+    #f.close()
+    return in_data
 
 def build_text():
 

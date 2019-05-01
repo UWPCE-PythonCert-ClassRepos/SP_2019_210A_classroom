@@ -36,8 +36,18 @@ April 23, 2019
 Charlie England
 ...............
 
+Neural networks!
+
+
 Ying Shen (Sally)
 .................
+
+Topic: Web Crawler - Music List
+
+Github: https://github.com/sallysy8/webCrawler
+
+Note: You need to install scrapy framework
+
 
 Week 4
 ------
@@ -48,9 +58,10 @@ James S Ward
 ............
 
 George J Kim
+............
 
 Topic: Brief History of Python
-............
+
 
 Week 5
 ------

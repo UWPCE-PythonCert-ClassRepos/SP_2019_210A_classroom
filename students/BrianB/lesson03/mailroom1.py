@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from textwrap import dedent
 
 #----------------------------------------------
 # What: Lesson03: mailroom.py
@@ -7,10 +8,11 @@
 # Program Description:
 #
 # To take something off the list in iPython:
-#  donor[1].pop(1)  Takes the 1 position from donor 1
-#  donor[1].pop()  Leaving pop() blank, deletes the value in the last position
-#
-#
+#  donor[1].pop(1)  Takes the 1 position
+#                       from donor 1
+#  donor[1].pop()  Leaving pop() blank, deletes
+#                       the value in the last
+#                       position
 #----------------------------------------------
 
 import sys
@@ -34,27 +36,50 @@ donor_data = [("Guile", [1000, 589, 25000]),
 
 def thank_you():
     while True:
-        donor = input("Which Donor would you like to see?\n\
-Please enter the full name only.\n\
->>> ")
-        if donor == "list":
-            for name in donor_data:
-                print(name[0])
+        name = input("Which Donor would you like to see?\n\
+    Please enter the full name only.\n\
+    >>> ")
+        if name == "list":
+            for donor in donor_data:
+                print(donor[0])
             continue
-        for name in donor_data:
-            if donor == name[0]:
-                print("There's a match!\n", name)
+        for donor in donor_data:
+            if name == donor[0]:
+                print("There's a match!\n", donor[0])
                 new_amt = input("Please enter a donation amount:")
-                name[1].append(int(new_amt))
-                print(donor_data)
-                # create a new functin for the thank you card and have print here
-                break
+                donor[1].append(float(new_amt))
+                # print(donor_data)
+                print(dedent('''
+
+                            Dear {}!
+                             Thank for your donation of ${:,.2f}! We appreciate
+                             your contribution and without you nothing would
+                             be possible!
+
+                                                     Sincerely,
+                                                        Street Fighter, LLC
+                                                            an equal opportunity
+                                                            employer
+                                '''.format(donor[0], donor[1][-1])))
+                break  # this does not break out of [thank =_you()]
         else:
-            print(donor, ": There's a new donor!")
+            print(name, ": There's a new donor!")
             amt = input("New donor found! Please enter a donation amount:")
-            donor_data.append((donor, [int(amt)]))
+            donor_data.append((name, [float(amt)]))
             print(donor_data)
-            # create a new functin for the thank you card and have print here
+            # print(gen_letter(donor))
+            print(dedent('''
+
+                            Dear {}!
+                            Thank for your donation of ${:,.2f}! We appreciate
+                            your contribution and without you nothing would
+                            be possible!
+
+                                                     Sincerely,
+                                                        Street Fighter, LLC
+                                                            an equal opportunity
+                                                            employer
+                                '''.format(name, float(amt))))
             break
 
 
@@ -64,6 +89,22 @@ def gen_stats(donor):
     num = len(donations)
     stats = (donor[0], total, num, total/num)
     return stats
+
+
+def gen_letter():
+    return dedent('''
+
+                Dear {}!
+                     Thank for your donation of {:,.2f}! We appreciate
+                     your contribution and without you nothing would
+                     be possible!
+
+                                             Sincerely,
+                                                Street Fighter, LLC
+                                                    an equal opportunity
+                                                    employer
+                    '''.format(name, float(amt)))
+    pass
 
 
 def sort_key(donor):

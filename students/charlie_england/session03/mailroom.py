@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+#refactor to have the donors dict be 2 lists
+
 # Donors dict Name:[[list of donations],[average of donations]]
-donors = {"Chris Christly": [1000.21, 250.80], "Bob Barley": [800.33], "Nick Nilly": [
-    500000.12, 250000.55, 750000], "Julia July": [200.80], "Jose Hooray": [500000, 1000000, 750000]}
+donors = {"Chris Christly": [[1000.21, 250.80],[]], "Bob Barley": [[800.33],[]], "Nick Nilly": [[
+    500000.12, 250000.55, 750000],[]], "Julia July": [[200.80],[]], "Jose Hooray": [[500000, 1000000, 750000],[]]}
 
 
 def main_menu():
@@ -43,7 +45,7 @@ def thank_you():
             "Please enter a full name, 'list' for list of names \n>>>").strip()
         if name_input in donors.keys():
             # Ask for donation amount and append to key in dict
-            donors[name_input].append(
+            donors[name_input][0].append(
                 float(input("Please enter a donation amount: >>> ")))
             # Call compose thank you function and return breaking the loop
             return compose_thank_you(name_input)
@@ -56,7 +58,7 @@ def thank_you():
                 name_input + " not found, would you like to add a new donator? y/n \n>>>").strip()
             if new_name_decision.lower() == "y":
                 donors.update(
-                    {name_input: [int(input("Please enter a donation amount: \n>>>"))]})
+                    {name_input: [[int(input("Please enter a donation amount: \n>>>"))],[]]})
                 return compose_thank_you(name_input)
 
 
@@ -64,10 +66,10 @@ def compose_thank_you(name_input):
     return (
         """Dear {},\n\n 
         On behalf of Local Charity we would like to extend our sincerest thanks for your ${} donation.\n
-        Without people like you we could not coninue blah blah blah\n
+        Without people like you we could not continue blah blah blah\n
         Again thank you\n
     Sincerely,\n
-        Local Charity """.format(name_input, int(donors[name_input][-1])))
+        Local Charity """.format(name_input, int(donors[name_input][0][-1])))
 
 
 def report():
@@ -77,14 +79,14 @@ def report():
     report_list = ["Donor Name" + " "*10 + "| Total Given " +
                    "| Num Gifts " + "| Average Gift\n" + "-"*60]
     for donor in donors:
-        donor_sum = round(sum(donors[donor]), 2)
-        donor_num_gifts = len(donors[donor])
-        donor_average = round(donor_sum/donor_num_gifts, 2)
+        donors[donor][1].append(round(sum(donors[donor][0]),2))
+        donors[donor][1].append(len(donors[donor][0]))
+        donors[donor][1].append(round(round(sum(donors[donor][0]), 2)/len(donors[donor][0]), 2))
         # used variables even though it can be fit into 1 line for readability
         # report list is: Donor + White Space + Donor Sum + white space + num gifts + white space + donor average. amount of white space changes on length of donor items
         #report_list.append(donor + " "*(21-len(donor)) + "$" +" "*(11-len(str(donor_sum))) + str(donor_sum) + " "*(13-len(str(donor_num_gifts))) + str(donor_num_gifts) + " "*(13-len(str(donor_average))) + str(donor_average))
         report_list.append(
-            f"{donor:<20} $  {donor_sum:>10} {donor_num_gifts:^12} $ {donor_average:>10}")
+            f"{donor:<20} $  {donors[donor][1][0]:>10} {donors[donor][1][1]:^12} $ {donors[donor][1][2]:>10}")
     return report_list
 
 

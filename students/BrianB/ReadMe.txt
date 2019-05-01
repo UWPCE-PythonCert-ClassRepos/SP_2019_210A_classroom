@@ -1,1 +1,1 @@
-This is a read me file for my director in students. BrianB
+This is a read me file for my directory in students. BrianB

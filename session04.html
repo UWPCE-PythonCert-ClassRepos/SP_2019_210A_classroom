@@ -90,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#april-30-2019">April 30, 2019</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#lightning-talks">Lightning Talks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#issues-that-came-up-during-the-week">Issues that came up during the week.</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#indexing-vs-slicing">Indexing vs Slicing</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#built-in-names">Built in names</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mutable-default-parameters">Mutable default parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#recursion-in-an-interactive-loop">Recursion in an interactive loop</a></li>
@@ -195,6 +196,19 @@
 </div>
 <div class="section" id="issues-that-came-up-during-the-week">
 <h3>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="indexing-vs-slicing">
+<h4>Indexing vs Slicing<a class="headerlink" href="#indexing-vs-slicing" title="Permalink to this headline">¶</a></h4>
+<p>A few of you ran into this issue in the slicing lab:</p>
+<p>If you have a sequence, say a tuple, like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>What does an index return?</p>
+<p>This comes up in the slicing lab: exchange the first and last items of the sequence:</p>
+<p>Let’s check it out. In the class repo:</p>
+<p><code class="docutils literal notranslate"><span class="pre">SP_2019_210A_classroom/examples/Session04/index_vs_slice.py</span></code></p>
+<p>(<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">master</span></code>)</p>
+</div>
 <div class="section" id="built-in-names">
 <h4>Built in names<a class="headerlink" href="#built-in-names" title="Permalink to this headline">¶</a></h4>
 <p>Python has a number of “key words” that are reserved. If you try to use them as a variable name, you will get an error:</p>

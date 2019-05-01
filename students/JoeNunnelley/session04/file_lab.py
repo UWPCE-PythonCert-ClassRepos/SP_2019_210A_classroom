@@ -12,6 +12,7 @@ def list_cwd():
     Write a program which prints the full path for all files
     in the current directory, one per line
     """
+    print("\nList of files in: {}\n".format(os.getcwd()))
     cwd = os.getcwd()
     for filename in os.listdir():
         print("- {}/{}".format(cwd, filename))
@@ -31,6 +32,7 @@ def copy_file(source_file, destination_path, binary=False):
         Test it with both text and binary files (maybe jpeg or something of
         your choosing).
     """
+    print('\nCopy File\n')
     dest = "{}/{}".format(destination_path, source_file)
     read_mode = 'rb' if binary else 'r'
     write_mode = 'wb' if binary else 'w'
@@ -41,7 +43,7 @@ def copy_file(source_file, destination_path, binary=False):
         outfile.write(infile.read())
 
 
-def process_students(stuents_file):
+def process_students(text_file):
     """
     File reading and parsing
 
@@ -76,43 +78,51 @@ def process_students(stuents_file):
 
     Extra challenge: keep track of how many students specified each language.
     """
+    print('\nProcess Student File\n')
     lines = []
     with open(text_file) as infile:
         lines = infile.readlines()
 
+    language_sum = {}
     for line in lines[1::]:
         name, rest = line.split(':', 2)
-        rest = rest.replace(" ",',').replace('\n', '')
-        rest_array = rest.split(',')
-        print(rest_array)
+        rest_array = list(filter(None,
+                                 rest
+                                 .replace(" ", ",")
+                                 .replace('\n', '')
+                                 .split(',')))
+
         nicknames = []
         languages = []
 
-        for index, item in enumerate(rest_array):
-            print(item)
-            item = item.lstrip()
-            print(">> {}".format(item))
-            if str.isupper(item[0:1]) and len(item) > 0:
-                print("\tName: {}".format(item))
+        for item in rest_array:
+            item = item.strip()
+            if str.isupper(item[0:1]):
                 nicknames.append(item)
-                rest_array.pop(index)
-            elif str.islower and len(item) > 0:
-                print("\tLanguage: {}".format(item))
-                languages.append(item)
             else:
-                print('Didnt process {}'.format(item))
+                languages.append(item)
 
-        print(f'name: {name:20} nickname: {" ".join(nicknames):15}\tlanguages: {" ".join(languages)}')
+                if item not in language_sum.keys():
+                    language_sum[item] = 1
+                else:
+                    language_sum[item] = language_sum[item] + 1
 
+        print(f'name: {name:20} '
+              f'nickname: {" ".join(nicknames):15}\t'
+              f'languages: {" ".join(languages)}')
 
+    print("\n{:15} : {:>10}\n{}".format('Language', 'Students', '-' * 28))
+
+    for key, value in language_sum.items():
+        print("{:15} : {:>10}".format(key, value))
 
 
 if __name__ == "__main__":
-    #list_cwd()
-    text_file = 'students.txt'
-    binary_file = 'magic.jpg'
-    #destination_path = input('Copy to :> ')
-    #copy_file(text_file, destination_path)
-    #copy_file(binary_file, destination_path, True)
-    process_students(text_file)
+    TEXT_FILE = 'students.txt'
+    BINARY_FILE = 'magic.jpg'
 
+    list_cwd()
+    DESTINATION_PATH = input('Copy to :> ')
+    copy_file(TEXT_FILE, DESTINATION_PATH)
+    copy_file(BINARY_FILE, DESTINATION_PATH, True)
+    process_students(TEXT_FILE)

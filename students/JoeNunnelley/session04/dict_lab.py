@@ -50,7 +50,7 @@ def dictionaries_two():
     person = {"name": "Chris", "city": "Seattle", "cake": "Chocolate"}
     person['Tomato'] = '20'
     new_dict = {}
-    for key in person.keys():
+    for key, _ in person:
         count = key.upper().count('T')
         print('key [{}] has [{}] letters t'.format(key, count))
         new_dict[key] = count

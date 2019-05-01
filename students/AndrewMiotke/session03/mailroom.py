@@ -39,6 +39,11 @@ def generate_report_template():
     print(f"{donor_name}           |  {total_given}   |  {num_gifts}   |  {average_gift}")
     print("-" * 68)
 
+    donor_name_row = []
+    for donor in donors_list:
+        donor_name_row.append(donor[0])
+    print(f"{donor_name_row}\n")
+
 
 def find_donor():
     print("Type 'List' to get a list of donors")

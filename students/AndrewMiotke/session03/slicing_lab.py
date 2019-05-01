@@ -7,6 +7,7 @@ string_two = "just another string to be sliced"
 string_three = "Slicing is great and should be used when possible."
 
 def slicing_one(seg):
+
     return seg
 
 

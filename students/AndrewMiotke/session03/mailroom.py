@@ -41,19 +41,21 @@ def generate_report_template():
 
 
 def find_donor():
-    print("Type 'list' to get a list of donors")
-    donor_name = input("Type in the name of a donor: ")
+    print("Type 'List' to get a list of donors")
+    donor_name = input("Type in the name of a donor: ").title()
 
     if donor_name == "list":
         print("\nHere is your list of donors:\n")
+        print(f"Donor Names      ")
+        print("-" * 34)
         for donor in donors_list:
-            print(f"Donors are: {donor}")
+            print(f"{donor}")
     else:
         for donor in donors_list:
             if donor_name == donor[0]:
                 print(f"Found donor: {donor_name}")
         else:
-            donors_list.append(donor_name)
+            donors_list.append(donor_name.title())
             print(f"Adding {donor_name} to the list of donors.")
 
 

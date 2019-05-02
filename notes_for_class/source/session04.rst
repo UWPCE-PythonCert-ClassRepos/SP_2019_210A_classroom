@@ -28,6 +28,25 @@ George J Kim
 Issues that came up during the week.
 ====================================
 
+Indexing vs Slicing
+-------------------
+
+A few of you ran into this issue in the slicing lab:
+
+If you have a sequence, say a tuple, like this::
+
+    (5, 3, 8, 12, 45, 13, 5)
+
+What does an index return?
+
+This comes up in the slicing lab: exchange the first and last items of the sequence:
+
+Let's check it out. In the class repo:
+
+``SP_2019_210A_classroom/examples/Session04/index_vs_slice.py``
+
+(``git pull upstream master``)
+
 Built in names
 --------------
 

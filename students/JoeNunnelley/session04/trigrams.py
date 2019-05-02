@@ -1,83 +1,85 @@
 #! /usr/bin/env python3
+"""
+Trigrams Progject
+Author : Joe Nunnelley
+"""
 
 import random
 
 
 def read_file(filename):
     """Read a file and get its words into a list"""
-    words = []
+    words_in = []
     with open(filename, 'r') as corpus:
-        words = corpus
-                .read()
-                .replace('\n', ' ')
-                .replace(':', '')
-                .replace(',', '')
-                .replace('.', '')
-                .replace('\'', '')
-                .split(' ')
+        words_in = corpus.read().replace('\n', ' ') \
+                      .replace(':', '').replace(',', '') \
+                      .replace('.', '').replace('\'', '') \
+                      .split(' ')
 
-        words = list(filter(None, words))
+        words_in = list(filter(None, words_in))
 
-    return words
+    return words_in
 
 
-def build_trigrams(words):
+def build_trigrams(words_in):
     """
     Based on a list of words, build trigrams
     of the form [(1,2)[1,2]]
     """
     trigrams = {}
-    for index in range(len(words) - 2):
-        if words[index]:
-            key = (words[index], words[index + 1])
+    for index in range(len(words_in) - 2):
+        if words_in[index]:
+            key_in = (words_in[index], words_in[index + 1])
 
-            if key in trigrams.keys():
-                trigrams[key].append(words[index + 2])
+            if key_in in trigrams.keys():
+                trigrams[key_in].append(words_in[index + 2])
             else:
-                trigrams[key] = [words[index + 2]]
+                trigrams[key_in] = [words_in[index + 2]]
 
     return trigrams
 
 
 def debug(message):
-    if str.lower(debug_set) == 'y':
+    """Output debug messages when flag set"""
+    if str.lower(DEBUG_SET) == 'y':
         print("DEBUG: {}".format(message))
 
 
-def generate_new_text(trigram_dict):
-    tri_key = random.choice(list(trigram_dict))
-    new_text = " ".join(tri_key).capitalize()
+def generate_new_text(trigram_dict_in):
+    """Create the new text from the trigram dict"""
+    tri_key = random.choice(list(trigram_dict_in))
+    new_text_in = " ".join(tri_key).capitalize()
 
-    while tri_key in trigram_dict:
+    while tri_key in trigram_dict_in:
         debug("Current Key: {}".format(tri_key))
-        next_word = random.choice(trigram_dict[tri_key])
+        next_word = random.choice(trigram_dict_in[tri_key])
         leading_char = " "
         if str.isupper(next_word[0:1]):
             leading_char = ". "
 
-        new_text = leading_char.join([new_text, next_word])
+        new_text_in = leading_char.join([new_text_in, next_word])
         tri_key = (tri_key[1], next_word)
-    else:
-        print('\n\n####Generation Complete.####\n\n')
 
-    return new_text + "."
+    print('\n\n####Generation Complete.####\n\n')
+
+    return new_text_in + "."
 
 
 if __name__ == "__main__":
-    debug_set = input('Run in debug? (Y|N) :>')
-    words = read_file(input('Process File :> '))
+    DEBUG_SET = input('Run in debug? (Y|N) :>')
+    WORDS = read_file(input('Process File :> '))
 
-    for _ in words:
-        if len(_) == 0:
+    for _ in WORDS:
+        if not _:
             print("Empty word found")
 
-    debug("{} words processed".format(len(words)))
+    debug("{} words processed".format(len(WORDS)))
 
-    trigram_dict = build_trigrams(words)
+    TRIGRAM_DICT = build_trigrams(WORDS)
 
-    for key, value in trigram_dict.items():
+    for key, value in TRIGRAM_DICT.items():
         debug("{} => {}".format(key, value))
 
-    new_text = generate_new_text(trigram_dict)
+    NEW_TEXT = generate_new_text(TRIGRAM_DICT)
 
-    print(new_text)
+    print(NEW_TEXT)

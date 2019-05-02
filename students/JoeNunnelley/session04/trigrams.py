@@ -2,15 +2,30 @@
 
 import random
 
+
 def read_file(filename):
+    """Read a file and get its words into a list"""
     words = []
     with open(filename, 'r') as corpus:
-        words = corpus.read().replace('\n', ' ').replace(':', '').replace(',', '').replace('.', '').replace('\'','').split(' ')
+        words = corpus
+                .read()
+                .replace('\n', ' ')
+                .replace(':', '')
+                .replace(',', '')
+                .replace('.', '')
+                .replace('\'', '')
+                .split(' ')
+
         words = list(filter(None, words))
 
     return words
 
+
 def build_trigrams(words):
+    """
+    Based on a list of words, build trigrams
+    of the form [(1,2)[1,2]]
+    """
     trigrams = {}
     for index in range(len(words) - 2):
         if words[index]:
@@ -19,13 +34,15 @@ def build_trigrams(words):
             if key in trigrams.keys():
                 trigrams[key].append(words[index + 2])
             else:
-                trigrams[key] = [ words[index + 2] ]
+                trigrams[key] = [words[index + 2]]
 
     return trigrams
+
 
 def debug(message):
     if str.lower(debug_set) == 'y':
         print("DEBUG: {}".format(message))
+
 
 def generate_new_text(trigram_dict):
     tri_key = random.choice(list(trigram_dict))

@@ -43,7 +43,7 @@ def copy_file(source_file, destination_path, binary=False):
         outfile.write(infile.read())
 
 
-def process_students(stuents_file):
+def process_students(text_file):
     """
     File reading and parsing
 
@@ -88,9 +88,9 @@ def process_students(stuents_file):
         name, rest = line.split(':', 2)
         rest_array = list(filter(None,
                                  rest
-                                    .replace(" ", ",")
-                                    .replace('\n', '')
-                                    .split(',')))
+                                 .replace(" ", ",")
+                                 .replace('\n', '')
+                                 .split(',')))
 
         nicknames = []
         languages = []
@@ -107,7 +107,9 @@ def process_students(stuents_file):
                 else:
                     language_sum[item] = language_sum[item] + 1
 
-        print(f'name: {name:20} nickname: {" ".join(nicknames):15}\tlanguages: {" ".join(languages)}')
+        print(f'name: {name:20} '
+              f'nickname: {" ".join(nicknames):15}\t'
+              f'languages: {" ".join(languages)}')
 
     print("\n{:15} : {:>10}\n{}".format('Language', 'Students', '-' * 28))
 
@@ -116,12 +118,11 @@ def process_students(stuents_file):
 
 
 if __name__ == "__main__":
-    text_file = 'students.txt'
-    binary_file = 'magic.jpg'
+    TEXT_FILE = 'students.txt'
+    BINARY_FILE = 'magic.jpg'
 
     list_cwd()
-    destination_path = input('Copy to :> ')
-    copy_file(text_file, destination_path)
-    copy_file(binary_file, destination_path, True)
-    process_students(text_file)
-
+    DESTINATION_PATH = input('Copy to :> ')
+    copy_file(TEXT_FILE, DESTINATION_PATH)
+    copy_file(BINARY_FILE, DESTINATION_PATH, True)
+    process_students(TEXT_FILE)

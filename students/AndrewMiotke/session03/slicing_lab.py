@@ -10,6 +10,16 @@ thirds_strings = "split this string"
 def slicing_one(seg):
     return seg
 
+def first_to_last():
+    first = numbers[:1]
+    second = numbers[0]
+    third = numbers[-1:]
+
+    return third + second + first
+
+first_to_last()
+
+
 def slicing_two():
     new_string_one = thirds_strings[0:5]
     new_string_two = thirds_strings[7:10]

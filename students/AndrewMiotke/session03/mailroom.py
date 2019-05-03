@@ -2,6 +2,8 @@
 import sys
 import time
 
+# "{:.>20}".format("${:,.2f}".format(123.3214))
+
 donors_list = [("Rufio", [897, 200, 200]),
                ("Maggie", [543, 2, 3000]),
                ("Gus", [23, 32, 33222]),
@@ -42,7 +44,7 @@ def generate_report_template():
     donor_name_row = []
     for donor in donors_list:
         donor_name_row.append(donor[0])
-    print(f"{donor_name_row}\n")
+        print(f"{donor_name_row[0]}")
 
 
 def find_donor():

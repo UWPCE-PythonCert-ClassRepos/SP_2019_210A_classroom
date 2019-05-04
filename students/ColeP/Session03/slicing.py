@@ -18,8 +18,8 @@ def switch_first_last(seq):
     return seq
 
 
-# print(switch_first_last(a_string))
-# print(switch_first_last(a_tuple))
+print(switch_first_last(a_string))
+print(switch_first_last(a_tuple))
 
 
 def every_other(seq):
@@ -27,8 +27,8 @@ def every_other(seq):
     return seq
 
 
-# print(every_other(a_string))
-# print(every_other(a_tuple))
+print(every_other(a_string))
+print(every_other(a_tuple))
 
 
 def first4_last4(seq):
@@ -38,27 +38,24 @@ def first4_last4(seq):
     return seq
 
 
-# print(first4_last4(a_string))
-# print(first4_last4(a_tuple))
+print(first4_last4(a_string))
+print(first4_last4(a_tuple))
 
 def reverse_reverse(seq):
     seq = seq[::-1]
     return seq
 
 
-# print(reverse_reverse(a_string))
-# print(reverse_reverse(a_tuple))
+print(reverse_reverse(a_string))
+print(reverse_reverse(a_tuple))
 
 def thirds(seq):
     first_third = seq[:(len(seq)//3)]
     middle_third = seq[len(seq)//3:-len(seq)//3]
     last_third = seq[-(len(seq)//3):]
-    
+
     return last_third + first_third + middle_third
 
-
-print(len(a_string))
-print(len(a_tuple))
 
 print(thirds(a_string))
 print(thirds(a_tuple))

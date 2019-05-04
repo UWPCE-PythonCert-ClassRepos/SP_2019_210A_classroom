@@ -13,9 +13,9 @@ a_tuple = (2, 54, 13, 12, 5, 32)
 def switch_first_last(seq):
     first = seq[0:1]
     last = seq[-1:]
-    seq = seq[1:-1]
-    seq = last + seq + first
-    return seq
+    seq_mid = seq[1:-1]
+    new_seq = last + seq_mid + first
+    return new_seq
 
 
 print(switch_first_last(a_string))
@@ -23,8 +23,8 @@ print(switch_first_last(a_tuple))
 
 
 def every_other(seq):
-    seq = seq[0::2]
-    return seq
+    new_seq = seq[0::2]
+    return new_seq
 
 
 print(every_other(a_string))
@@ -32,22 +32,22 @@ print(every_other(a_tuple))
 
 
 def first4_last4(seq):
-    # first4 = seq[0:5]
-    # last4 = seq[-4:]
-    seq = seq[4:-4:2]
-    return seq
+    new_seq = seq[4:-4:2]
+    return new_seq
 
 
 print(first4_last4(a_string))
 print(first4_last4(a_tuple))
 
+
 def reverse_reverse(seq):
-    seq = seq[::-1]
-    return seq
+    new_seq = seq[::-1]
+    return new_seq
 
 
 print(reverse_reverse(a_string))
 print(reverse_reverse(a_tuple))
+
 
 def thirds(seq):
     first_third = seq[:(len(seq)//3)]

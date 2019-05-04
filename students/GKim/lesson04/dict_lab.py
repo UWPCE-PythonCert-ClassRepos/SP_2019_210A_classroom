@@ -32,7 +32,7 @@ display the union and intersection of the two sets.
 
 
 student_info = {"name": "George", "city": "Kent", "cake": "Chocolate"}
-student_info2 = {"name": "George", "city": "Kttt", "cake": "Chocolate"}
+student_info2 = {"name": "George", "city": "Kent", "cake": "Chocolate"}
 
 
 def show_dict(dct):
@@ -76,9 +76,9 @@ def dictionaries_2(dct):
     show_dict(dct)
 
 def sets():
-    s2 = set([2,4,6,8,10,12,14,16,18,20])
-    s3 =set([3,6,9,12,15,18])
-    s4 = set([4,8,16,20])
+    s2 = ({2,4,6,8,10,12,14,16,18,20})
+    s3 = ({3,6,9,12,15,18})
+    s4 = ({4,8,16,20})
     print("is s3 a subset of s2?: ", s3.issubset(s2))
     print("is s4 a subset of s2?: ", s4.issubset(s2))
 
@@ -87,8 +87,7 @@ def sets_2():
     fset = frozenset(['m','a','r','a','t','h','o','n'])
     set_union = py | fset
     print("py union fset", set_union)
-    print("py intersection fset: ", py.intersection(fset)) 
-    
+    print("py intersection fset: ", py.intersection(fset))
 
 
 def main():

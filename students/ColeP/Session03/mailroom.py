@@ -16,12 +16,14 @@ donors = [("Donny Donor", [100, 10, 45]),
 # donors[0][1].pop()
 #
 # print(donors)
-
+# formatting:
+# "{:.2f}".format(123.666666667) -> 12422.67
 
 def thanks():
     name_in = input('Who would you like to thank?\nPlease pick a name. Enter "List" to see names\n')
     if name_in == 'List':
-        print('''Donny Doner \nGav Giver \nStingy Steve \nFreaky Frank ''')
+        for i in donors:
+            print(i[0])
         thanks()
     elif name_in in donors:
         donors[0][1].append(int(input('How much did they give?')))

@@ -2,31 +2,36 @@
 import sys
 import operator
 
-#donations[]
-#donors {donor1:donations1, donor2:donations2}
-donors = {}
+#donor (Donor name, donations[])
+#donors [donor1, donor2]
+donors = []
 # The data struction used in this program, a list of tuples
 
 
 def add_donor(name, donation = 0):
     """ Adds a new donor with an initial donation """
     donations = [donation]
-    donors[name] = donations
+    donors.append((name, donations))
     return
 
 def add_donation(name, donation):
     """ Adds a donation to an existing donor """
-    donors[name].append(donation)
-    return
+    for donor, donations in donors:
+        if name == donor:
+            donations.append(donation)
 
 def report():
     """ Make a report on donations received by a style as specified """
     print("Donor Name                | Total Given | Num Gifts | Average Gift")
     print("------------------------------------------------------------------")
-    sorted_donors = sorted(donors.items(), reverse = True, key = lambda item: (sum(item[1])))
-    for donor in sorted_donors:
+    donors.sort(reverse = True, key = lambda item: (sum(item[1])))
+    for donor in donors:
         name, total, num_gifts, avg = gen_stats(donor)
-        print("{:25s}   {:11.2f}   {:9d}   {:12.2f}".format(name, total, num_gifts, avg))
+        part_1 = "{}{}".format(name, ' ' * (27 - len(name)))
+        part_2 = "${}{}".format(' ' * (11 - len(str(total))), total)
+        part_3 = "{}{}{}{}{}".format(' ' *(12 - len(str(num_gifts))), num_gifts,'  $', ' ' * (12 - len(str(avg))), avg)
+        result = part_1 + part_2 + part_3
+        print(result)
     return
 
 def gen_stats(donor):
@@ -96,6 +101,6 @@ Pick one:
             print("please answer 1, 2 or 3")
 
 if __name__ == '__main__':
-    donors = {'William Gates, III': [100000, 800227.556], 'Mark Zuckerberg': [10000, 8697.67], 'Jeff Bezos': [100, 1255], 'Paul Allen': [100, 200, 3000, 5000, 10000]}
+    donors = [('William Gates, III', [100000, 800227.556]), ('Mark Zuckerberg', [10000, 8697.67]), ('Jeff Bezos', [100, 1255]), ('Paul Allen', [100, 200, 3000, 5000, 10000])]
     print("Welcome to the mailroom!")
     main_menu()

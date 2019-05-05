@@ -26,12 +26,13 @@ def send_thankyou(donors):
             else:
                 donors[name] = [amount]
             email_message = f"Dear {name.strip()},\n" \
-                            f"    Thank you for your recent donation of ${amount}!\n\n" \
-                            f"    Sincerely,\n\n" \
-                            f"    FakeCorp, Inc"
+                f"    Thank you for your recent donation of ${amount}!\n\n" \
+                f"    Sincerely,\n\n" \
+                f"    FakeCorp, Inc"
             print(email_message)
             break
     return donors
+
 
 def generate_all_thankyou_emails(donors):
     """
@@ -44,7 +45,7 @@ def generate_all_thankyou_emails(donors):
         total_donated = round(sum(donors[donor]), 2)
         most_recent_donation = donors[donor][0]
         email_message = f"Dear {donor},\nThank you for your recent donation of ${most_recent_donation}! In total, " \
-                        f"you've donated {total_donated}!\n\n"
+            f"you've donated {total_donated}!\n\n"
 
         with tempfile.TemporaryFile(mode='w+') as email_file:
             email_file.writelines(email_message)
@@ -103,9 +104,7 @@ def main_menu(donors):
             print("Please enter a valid option. (1, 2, 3 or 9)")
 
 
-
 def main():
-
     donors = {'Brian Ervin': [100.57, 200.63, 350.47],
               'Steve Walline': [300.55, 500.14, 443.80],
               'Mike Tomson': [100.25, 300.12, 543.45],
@@ -115,7 +114,5 @@ def main():
     main_menu(donors)
 
 
-
 if __name__ == '__main__':
     main()
-

@@ -15,7 +15,7 @@ def list_full_path():
     for file in path:
         print(os.path.abspath(file))
 
-# list_full_path()
+list_full_path()
 
 
 # Write a program which copies a file from a source, to a destination (without using shutil, or the OS copy command).
@@ -35,15 +35,17 @@ def copy_file(file_name):
 
     return os.system(f"cp {source} {destination}")
 
-# copy_file("porsche_911.jpg")
 copy_file("random_file.txt")
 
+
 def advanced_copy_file(file_name):
+    create_destination = input("Name the advanced destination directory: ")
+    source = f"./{file_name}"
+    destination = f"./{create_destination}/"
+    create_directory = os.mkdir(f"./{create_destination}")
+
     with open(file_name, "rb") as input_file:
         read_data = input_file.read()
-        print(read_data)
-
-    return read_data
+        return os.system(f"cp {source} {destination}")
 
 advanced_copy_file("porsche_911.jpg")
-# advanced_copy_file("random_file.txt")

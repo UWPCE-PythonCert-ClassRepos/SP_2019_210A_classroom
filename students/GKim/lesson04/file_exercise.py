@@ -7,19 +7,10 @@ Note that for binary files, you can’t use readline() – lines don’t have an
 Test it with both text and binary files (maybe jpeg or something of your choosing).
 """
 
-
-
-
-
-
-
 import os, pathlib, pickle
 
-
-
-
 lst_copy = []
-obj_file = 
+obj_file = ""
 
 def path():
     pth = pathlib.Path("./")
@@ -27,10 +18,36 @@ def path():
     for fle in pth.iterdir():
         print(fle)
 
+def copy(filename):
+
+    chunk_size = 10000
+    with open(filename, "rb") as infile, open("2"+ filename, "wb") as outfile: 
+        while True:
+            contents = infile.read(chunk_size)
+            if contents:
+                outfile.write(contents)
+            else:
+                break
+            
+
+
+
+def reading_parsing():
+    student_lst  = []
+    with open("students.txt","r") as infile:
+        for line in infile:
+            row = line.strip().split(":")
+            dct_row = {row}
+            student_lst.append(dct_row)
+    for name in student_lst:
+        print(name)
+
+
 
 
 def main():
     # path()
-    read_data(obj_file)
+    # copy("mp2.jpg")
+    reading_parsing()
 if __name__ == "__main__": main()
     

@@ -5,10 +5,10 @@ import sys, os
 
 
 main_donors = [
-          {"name": "Luke Skywalker", "donation": [100.25, 200.55, 50]},
-          {"name": "Han Solo", "donation": [100.80, 50.99, 600]},
-          {"name": "Yoda", "donation": [1000.01, 50, 600.55, 200.47]},
-          {"name": "Ben Kenobe", "donation": [101.32, 500, 60.34]},
+          {"name": "Luke Skywalker", "donations": [100.25, 200.55, 50]},
+          {"name": "Han Solo", "donations": [100.80, 50.99, 600]},
+          {"name": "Yoda", "donations": [1000.01, 50, 600.55, 200.47]},
+          {"name": "Ben Kenobe", "donations": [101.32, 500, 60.34]},
 ]
 
 def clear_screen():
@@ -25,7 +25,7 @@ def show_list():
     print("#" * 25, "The Current Donor List", "#" * 25)
     index = 1
     for row in main_donors:
-        print("{:<1}: {:>15}{:>10}: {:<20}".format(index, row["name"], "Amt", str(row["donation"]).replace("[","").replace("]","")))
+        print("{:<1}: {:>15}{:>10}: {:<20}".format(index, row["name"], "Amt", str(row["donations"]).replace("[","").replace("]","")))
         index += 1
     print("#" * 75 + "\n")
     return show_list
@@ -72,12 +72,13 @@ def send_email(name, amount):
     
     \n""".format(n = name, a = amount))
 
-def send_to_all(name, amount):
+def send_letter(name, amount):
     """
     This function can send a letter to all but mainly to write to file
     """
-    return dedent('''Dear {},
-          Thank you for your very kind donations totaling ${:.2f}.
+    return dedent(''' 
+          Dear {},
+            Thank you for your very kind donations totaling ${:,.2f}.
           It will be put to very good use.
 
                          Sincerely,
@@ -107,7 +108,7 @@ def send_thank_you():
                     in_main_donors = True
                     print("\nThe Donor you have selected is {}".format(thanks_answer))
                     donation_amount = float(input("\nPlease enter the amount that {} kindly donated: ".format(thanks_answer)))
-                    main_donors[idx]["donation"].append(donation_amount)
+                    main_donors[idx]["donations"].append(donation_amount)
                     print("{}: ${:.2f}".format(thanks_answer, donation_amount))
                 idx -= 1
             
@@ -138,7 +139,7 @@ def gen_stats(main_donors):
     donor_stats = []
     lst = main_donors
     for donor in lst:
-        donations = donor["donation"]
+        donations = donor["donations"]
         total = sum(donations)
         num = len(donations)
         avg = round(total / num, 2)
@@ -171,14 +172,12 @@ def save_letters():
     Saves letters to disk of all donors in data base
     """
 
-    donor_stats = gen_stats(main_donors)
-    for donor in donor_stats:   
-        file_name = str(donor[0]).replace(" ", "_") + ".txt"
-        letter =  send_to_all(donor[0], donor[1])
+    for donor in main_donors:   
+        file_name = donor["name"].replace(" ", "_") + ".txt"
+        letter =  send_letter(donor["name"], donor["donations"][-1])
         with open(file_name, "w") as text_file:
             text_file.write(letter)   
-            text_file.close()
-            print("\nSaving {} file to disk".format(donor[0]))
+            print("\nSaving {} file to disk".format(donor["name"]))
     print("\nSAVING COMPLETE\n")
 
 def quit():

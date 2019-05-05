@@ -37,7 +37,7 @@ student_info2 = {"name": "George", "city": "Kent", "cake": "Chocolate"}
 
 def show_dict(dct):
     for k, v in dct.items():
-        print("{:<10}: {:<10}".format(k, v))
+        print("{:<1}: {:<10}".format(k, v))
     print("\n")
     return 
 
@@ -76,9 +76,19 @@ def dictionaries_2(dct):
     show_dict(dct)
 
 def sets():
-    s2 = ({2,4,6,8,10,12,14,16,18,20})
-    s3 = ({3,6,9,12,15,18})
-    s4 = ({4,8,16,20})
+    s2 = set()
+    s3 = set()
+    s4 = set()
+    for x in range(0, 21):
+        if x % 2 == 0:
+            s2.add(x)
+        if x % 3 == 0:
+            s3.add(x)
+        if x % 4 == 0:
+            s4.add(x)
+    print(s2)
+    print(s3)
+    print(s4)
     print("is s3 a subset of s2?: ", s3.issubset(s2))
     print("is s4 a subset of s2?: ", s4.issubset(s2))
 

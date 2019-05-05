@@ -2,30 +2,29 @@
 import sys
 import operator
 
-#donor (Donor name, donations[])
-#donors [donor1, donor2]
-donors = []
+#donations[]
+#donors {donor1:donations1, donor2:donations2}
+donors = {}
 # The data struction used in this program, a list of tuples
 
 
 def add_donor(name, donation = 0):
     """ Adds a new donor with an initial donation """
     donations = [donation]
-    donors.append((name, donations))
+    donors[name] = donations
     return
 
 def add_donation(name, donation):
     """ Adds a donation to an existing donor """
-    for donor, donations in donors:
-        if name == donor:
-            donations.append(donation)
+    donors[name].append(donation)
+    return
 
 def report():
     """ Make a report on donations received by a style as specified """
     print("Donor Name                | Total Given | Num Gifts | Average Gift")
     print("------------------------------------------------------------------")
-    donors.sort(reverse = True, key = lambda item: (sum(item[1])))
-    for donor in donors:
+    sorted_donors = sorted(donors.items(), reverse = True, key = lambda item: (sum(item[1])))
+    for donor in sorted_donors:
         name, total, num_gifts, avg = gen_stats(donor)
         print("{:25s}   {:11.2f}   {:9d}   {:12.2f}".format(name, total, num_gifts, avg))
     return
@@ -97,6 +96,6 @@ Pick one:
             print("please answer 1, 2 or 3")
 
 if __name__ == '__main__':
-    donors = [('William Gates, III', [100000, 800227.556]), ('Mark Zuckerberg', [10000, 8697.67]), ('Jeff Bezos', [100, 1255]), ('Paul Allen', [100, 200, 3000, 5000, 10000])]
+    donors = {'William Gates, III': [100000, 800227.556], 'Mark Zuckerberg': [10000, 8697.67], 'Jeff Bezos': [100, 1255], 'Paul Allen': [100, 200, 3000, 5000, 10000]}
     print("Welcome to the mailroom!")
     main_menu()

@@ -14,9 +14,8 @@ def import_text(file):
     """
 
     # Only use alpha-numeric words from file
-    # Capitalize all words to simplify processing
     with open(file=file, mode='r') as text:
-        word_list = [word.capitalize() for word in text.read().split() if word.isalnum()]
+        word_list = [word for word in text.read().split() if word.isalnum()]
     return word_list
 
 
@@ -49,7 +48,7 @@ def generate_sentence(trigram):
         4) Loop n times, using last two elements of sentence list as trigram key, and append key's value to sentence
             * Continue to append to list until '.' is the final character in the last element or 15 words are generated
             * If key doesn't exist, break loop.
-        5) Add '.' to end of sentence if not already there.
+        5) Add '.' to end of sentence if not already there and capitalize first word.
     :param trigram: dictionary
     :return: new_sentence list
     """
@@ -69,6 +68,7 @@ def generate_sentence(trigram):
             break
 
     # Cleanup sentence punctuation
+    sentence[0] = sentence[0].capitalize()
     if sentence[-1][-1] != '.':
         sentence[-1] = f'{sentence[-1]}.'
     return sentence

@@ -23,6 +23,7 @@ Description:
         template, rather than building up a big string that produces the letter in parts.
 """
 import datetime
+import os
 import sys
 import tempfile
 
@@ -30,7 +31,7 @@ import tempfile
 DONOR_SET = {"George Jetson": [100.00, 50.00, 200.00],
              "Bugs Bunny": [400.00, 55.00, 5000.00],
              "Daffy Duck": [0.00, 3.00, 5.00, 6.00, 76.00, 8.00],
-             "Elmer Fudd": [66.00, 666.00, 6666.00, 6666.00, 66666.00,],
+             "Elmer Fudd": [66.00, 666.00, 6666.00, 6666.00, 66666.00],
              "Porky Pig": [0.50, 56.45, 67.89]}
 
 BOUNDARY = '#####'
@@ -44,8 +45,7 @@ UI_MENU = {'Main':  """
             4.) Quit
         >
         """,
-           'UserSelect': "",
-           '':""}
+           'Directory Select': "Directory? ",}
 
 def send_thankyou():
     """
@@ -74,12 +74,9 @@ def send_thankyou():
     if donor:
         added_donations = add_donations()
 
-        if added_donations:
-            for donor_name, donations in DONOR_SET.items():
-                if donor_name == donor[0]:
-                    donations.extend(added_donations)
-        else:
-            print('No additional donatioms.')
+        for donor_name, donations in DONOR_SET.items():
+            if donor_name == donor[0]:
+                donations.extend(added_donations)
 
         print(f'\nSending a Thank You to {donor[0]}...\n')
         formulate_mail(donor)
@@ -134,16 +131,18 @@ def print_report():
         donation_count = len(donations)
         summed_donations = 0
 
-        for donation in donations:
-            summed_donations += donation
+        if donation_count:
+            for donation in donations:
+                summed_donations += donation
 
-        average_donations = summed_donations / donation_count
-        row = [donor,
-               summed_donations,
-               donation_count,
-               average_donations]
-        row_list.append(row)
-        row_list.sort(key=sort_by_donation_total, reverse=True)
+            average_donations = summed_donations / donation_count
+            row = [donor,
+                   summed_donations,
+                   donation_count,
+                   average_donations]
+            row_list.append(row)
+
+    row_list.sort(key=sort_by_donation_total, reverse=True)
 
     for row in row_list:
         print(row_format.format(row[0],
@@ -163,25 +162,34 @@ def quit_program():
     sys.exit(0)
 
 
-def formulate_mail(donor):
+def formulate_mail(donor_in, echo_terminal=True):
     """Send our donor a thank you mail"""
-    send_to = donor[0]
-    send_from = 'Charitable Foundation'
-    date = "Date: {}".format(datetime.datetime.now())
-    title = 'Thank you {} for your recent donation to {}'.format(send_to, send_from)
+    message = {}
+    message['Recipient'] = donor_in[0]
+    message['Sender'] = 'Charitable Foundation'
+    message['Date'] = "{}".format(datetime.datetime.now())
+    message['Title'] = 'Thank you {Recipient} for your recent ' \
+                       'donation to {Sender}'.format(**message)
     donations = ''
-    for _ in donor[1]:
-        donations += ('- {:>10.2f} USD\n'.format(_))
+    for donation in donor_in[1]:
+        donations += ('- {:>10.2f} USD\n'.format(donation))
 
-    body = "Dear {},\n\n" \
-           "Thank you for your recent donations (listed below):\n\n{}\n" \
+    message['Donations'] = donations
+
+    message['Body'] = "Dear {Recipient},\n\n" \
+           "Thank you for your recent donations. " \
            "As you know, every donation helps our mission. We are very grateful.\n\n" \
-           "Regards,\n\n{}".format(send_to, donations, send_from)
+           "Your donation history:\n\n{Donations}\n\nRegards,\n\n{Sender}".format(**message)
 
-    print(BOUNDARY)
-    print(f'Attn: {send_to}\nFrom: {send_from}\n{date}\nSubject: {title}\n\n{body}')
-    print(BOUNDARY)
-    return f'Attn: {send_to}\nFrom: {send_from}\n{date}\nSubject: {title}\n\n{body}'
+    final_message = "Attn: {Recipient}\nFrom: {Sender}\nDate: " \
+                    "{Date}\nSubject: {Title}\n\n{Body}".format(**message)
+
+    if echo_terminal:
+        print(BOUNDARY)
+        print(final_message)
+        print(BOUNDARY)
+
+    return final_message
 
 
 def add_donations():
@@ -198,7 +206,8 @@ def add_donations():
             if response.isdigit() and float(response) > 0:
                 donations.append(float(response))
             else:
-                print('Not a number. Please input positive numbers or "done"')
+                print('Not a number. Please input positive ' \
+                      'numbers or "done"')
 
     print(donations)
     return donations
@@ -221,21 +230,27 @@ def select_donor():
                 print('Found {}'.format(donor_name))
                 return (donor, donations)
 
-            DONOR_SET[donor_name] = []
-            print('{} not found in donor list. Adding...'.format(donor_name))
-            return (donor_name, DONOR_SET[donor_name])
+        DONOR_SET[donor_name] = []
+        print('{} not found in donor list. Adding...'.format(donor_name))
+        return (donor_name, DONOR_SET[donor_name])
 
-    return None
+    return ''
 
-def generate_thankyou_files():
+
+def generate_thankyou_files(output_directory):
     """
     This function will output a set of thankyou files
     one for each donor which you can then send via email or
     snailmail"""
-    print('Generating donor mails here {}'.format(tempfile.gettempdir()))
+
+    if not output_directory or not os.path.isdir(output_directory):
+        print('Output directory invalid.')
+        output_directory = tempfile.gettempdir()
+
+    print('Generating donor mails here {}'.format(output_directory))
     for donor, donations in DONOR_SET.items():
-        mail_contents = formulate_mail((donor, donations))
-        file_name = "{}/{}.txt".format(tempfile.gettempdir(), donor)
+        mail_contents = formulate_mail((donor, donations), False)
+        file_name = "{}/{}.txt".format(output_directory, donor)
         with open(file_name, "w") as outputfile:
             outputfile.write(mail_contents)
 
@@ -257,7 +272,9 @@ def main():
         elif response == "2":
             print_report()
         elif response == "3":
-            generate_thankyou_files()
+            menu_ui = UI_MENU['Directory Select']
+            output_directory = input(menu_ui)
+            generate_thankyou_files(output_directory)
         elif response == "4":
             quit_program()
         else:

@@ -6,14 +6,23 @@ Solution for trigrams problem
 
 def read_file(filename):
     """
-    :returns: list of words in the file
+    :returns: list of words in the file and removes any non-alpha-numeric item
+    #need to update with the - and -- that are in lines
     """
     #need to clean up input including punctuation
     ln_lst = []
+    alpha_num = "abcdefghijklmnopqrstuvwxyz0123456789-."
     with open(filename) as text:
         for line in text:
-            ln_lst.extend(line.split()) #extend will add to the original list instead of adding a new list
-        return ln_lst
+            line = line.split()
+            for word in line:
+                only_alpha_word = []
+                for char in word:
+                    if char in alpha_num or char in alpha_num.upper():
+                        only_alpha_word.append(char.lower())
+                ln_lst.append("".join(only_alpha_word))
+    return ln_lst
+        
             
 
 def build_trigrams(words):
@@ -30,10 +39,10 @@ def build_trigrams(words):
         pair = (w1, w2)
         #pair = f"{w1} {w2}" #creates a string variable called pair with the format "word1 word2"
         ind+=1
-        if pair in trigrams:
+        if pair in trigrams: #check to see if key is already in dictionary and update with new word if so
             trigrams[pair].append(w3)
         else:
-            trigrams.update({pair:[w3]})
+            trigrams.update({pair:[w3]}) #if key is not in dictionary, make a new key:value pair
     return trigrams
 
 def make_text(trigrams):
@@ -43,16 +52,17 @@ def make_text(trigrams):
     3) from the new random word added, pick w2+w3 as the next words to start with
     """
     rtrn_lst = []
-    start = random.choice(list(trigrams.keys()))
-    prev_words = list(start)
-    rtrn_lst.extend(start)
-    for _ in range(20):
-        r_choice = random.choice(trigrams[prev_words])
-        rtrn_lst.extend(r_choice)
-        prev_words.append(r_choice)
-        print(rtrn_lst)
+    k_words = list(random.choice(list(trigrams.keys())))
+    rtrn_lst.extend(k_words)
+    for _ in range(500):
+        r_choice = random.choice(trigrams[tuple(k_words)])
+        k_words.pop(0)
+        k_words.append(r_choice)
+        rtrn_lst.append(k_words[1])
+    return " ".join(rtrn_lst)
     
 
-words = read_file("sherlock_small.txt")
-trigram = build_trigrams(words)
-print(make_text(trigram))
+if __name__ == "__main__":
+    words = read_file("sherlock.txt")
+    trigram = build_trigrams(words)
+    print(make_text(trigram))

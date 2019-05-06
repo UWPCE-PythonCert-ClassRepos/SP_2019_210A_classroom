@@ -107,6 +107,7 @@ def send_letter_to_all_donors():
     os.mkdir(f"./{name_destination}")
 
     for donor_name in donors_list:
+        time.sleep(.5)
         source = f"{donor_name[0]}.txt"
         print(f"✅ Thank you letter created for: {source}")
         print(f"    Check {os.path.abspath(source)}\n")
@@ -147,20 +148,6 @@ def main_menu():
         }
 
         answer_dict.get(answer)()
-
-
-
-
-        # if answer == "1":
-        #     send_thank_you_letter()
-        # elif answer == "2":
-        #     report()
-        # elif answer == "3":
-        #     send_letter_to_all_donors()
-        # elif answer == "4":
-        #     quit()
-        # else:
-        #     print("Please answer 1, 2, or 3")
 
 
 if __name__ == "__main__":

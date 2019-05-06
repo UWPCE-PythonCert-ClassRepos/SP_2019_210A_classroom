@@ -35,19 +35,36 @@ def copy(filename):
 def reading_parsing():
     student_lst  = []
     with open("students.txt","r") as infile:
-        for line in infile:
+        for line in infile.readlines():
             row = line.strip().split(":")
-            dct_row = {row}
+            dct_row = {"Name": row[0], "Nickname": "", "languages": ""}
+            if row[1].islower() == False:
+                lst_row = row[1].split(",")
+                # print(lst_row)
+                lang = []
+                name = []
+                for word in lst_row:
+                    if word.islower():
+                        lang.append(word.strip())
+                    else:
+                        name.append(word.strip())
+                dct_row.update(Nickname = str(name).strip().replace("[","").replace("]", ""), languages = str(lang).strip().replace("[","").replace("]", ""))
+            else:
+                dct_row.update(languages = row[1].strip())
+            
+                    
             student_lst.append(dct_row)
-    for name in student_lst:
-        print(name)
+    idx = 0
+    for row in student_lst:
+        print("{}: {:<30}, Nickname: {:<15}, lang: {:>30}".format(idx, row["Name"], row["Nickname"], row["languages"]))
+        idx += 1
 
 
 
 
 def main():
-    # path()
-    # copy("mp2.jpg")
+    path()
+    copy("mp2.jpg")
     reading_parsing()
 if __name__ == "__main__": main()
     

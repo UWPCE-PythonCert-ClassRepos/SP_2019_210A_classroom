@@ -12,7 +12,7 @@ McCartney, Paul: nothing
 Dylan, Bob: java, python, ruby
 Springsteen, Bruce: c++, python
 Jackson, Michael: java, c#, python
-Berry, Charles: Chuck c++, matlab,
+Berry, Charles: Chuck, c++, matlab,
 Wonder, Steven: Stevie, c, perl, java, erlang, python
 Nicks, Stevie:  java, perl, c#, c++, python
 Turner, Tina: bash, python

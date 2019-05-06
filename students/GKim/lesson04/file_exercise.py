@@ -45,10 +45,10 @@ def reading_parsing():
                 name = []
                 for word in lst_row:
                     if word.islower():
-                        lang.append(word.strip())
+                        lang.append(word)
                     else:
-                        name.append(word.strip())
-                dct_row.update(Nickname = str(name).strip().replace("[","").replace("]", ""), languages = str(lang).strip().replace("[","").replace("]", ""))
+                        name.append(word)
+                dct_row.update(Nickname = str(name).strip().replace("[","").replace("]", "").replace("'",""), languages = str(lang).strip().replace("[","").replace("]", "").replace("'",""))
             else:
                 dct_row.update(languages = row[1].strip())
             
@@ -56,7 +56,7 @@ def reading_parsing():
             student_lst.append(dct_row)
     idx = 0
     for row in student_lst:
-        print("{}: {:<30}, Nickname: {:<15}, lang: {:>30}".format(idx, row["Name"], row["Nickname"], row["languages"]))
+        print("{:<2}: {:<25}-   {:^15} -{:>30}".format(idx, row["Name"], row["Nickname"], row["languages"]))
         idx += 1
 
 

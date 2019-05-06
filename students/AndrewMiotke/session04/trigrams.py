@@ -42,6 +42,7 @@ def build_trigrams(words):
 
 def make_text(trigrams):
     # use random.choice()
+    pass
 
 
 

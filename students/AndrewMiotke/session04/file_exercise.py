@@ -28,10 +28,10 @@ def copy_file(file_name):
 
     Extra note: I clearly had a bit too much fun with this.
     """
-    create_destination = input("Name the destination directory: ")
+    name_destination = input("Name the destination directory: ")
     source = f"./{file_name}"
-    destination = f"./{create_destination}/"
-    create_directory = os.mkdir(f"./{create_destination}")
+    destination = f"./{name_destination}/"
+    create_directory = os.mkdir(f"./{name_destination}")
 
     return os.system(f"cp {source} {destination}")
 
@@ -39,10 +39,10 @@ copy_file("random_file.txt")
 
 
 def advanced_copy_file(file_name):
-    create_destination = input("Name the advanced destination directory: ")
+    name_destination = input("Name the advanced destination directory: ")
     source = f"./{file_name}"
-    destination = f"./{create_destination}/"
-    create_directory = os.mkdir(f"./{create_destination}")
+    destination = f"./{name_destination}/"
+    create_directory = os.mkdir(f"./{name_destination}")
 
     with open(file_name, "rb") as input_file:
         read_data = input_file.read()

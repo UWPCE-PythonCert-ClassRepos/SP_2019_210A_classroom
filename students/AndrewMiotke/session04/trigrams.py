@@ -4,14 +4,12 @@ import random
 """
 Solution to trigram problem
 """
-WORDS = "I wish I may I wish I might"
-
 
 def read_file(filename):
     """
     returns a list of words in the file
     """
-    words = [] # empty list
+    words = [] # creates empty list
     with open(filename) as text:
         for line in text:
             words.extend(line.split())
@@ -38,9 +36,10 @@ def build_trigrams(word_list):
 
     return trigrams
 
+
 def create_sentence(trigram):
     sentence = []
-    starting_key = random.choie(list(trigram.keys()))
+    starting_key = random.choice(list(trigram.keys()))
     sentence.extend([word for word in starting_key])
     sentence.append(trigram[starting_key][random.choice(range(0, len(trigram[starting_key])))])
 
@@ -59,13 +58,13 @@ def create_sentence(trigram):
 
 def create_paragraph(trigram):
     paragraph = []
-    while len(paragraph) <= 10:
+    while len(paragraph) <= 5:
         paragraph.append(create_sentence(trigram))
     return paragraph
 
 
 def create_new_text(text):
-    for paragraph in words:
+    for paragraph in text:
         for sentence in paragraph:
             for word in sentence:
                 print(word, end=' ')
@@ -74,14 +73,19 @@ def create_new_text(text):
 
 
 def create_trigram():
+    # Small text
     import_words_from = read_file("sherlock_small.txt")
+
+    # Full Sherlock book(large text)
+    # import_words_from = read_file("sherlock.txt")
     trigram = (build_trigrams(import_words_from))
 
     new_trigram = []
-    for _ in range(10):
+    for _ in range(20):
         new_trigram.append(create_paragraph(trigram))
 
     create_new_text(new_trigram)
 
 
-create_trigram()
+if __name__ == "__main__":
+    create_trigram()

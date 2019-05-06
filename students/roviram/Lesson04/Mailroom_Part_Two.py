@@ -1,7 +1,7 @@
-#------------------- Script Details-----------------#
-# Week 3 Homework: Mailroom Part 1
-# Miguel Rovira-Gonzalez, 4/27/19, created Part 1 of the mailroom program
-#---------------------------------------------------#
+#------------------- Script Details--------------------------------------#
+# Week 4 Homework: Mailroom Part 1
+# Miguel Rovira-Gonzalez, 5/4/19, created Part 2 of the mailroom program
+#------------------------------------------------------------------------#
 """Part 1 Goal: Create a list of your donors and a history of the amounts they have donated: e.g  ([Miguel, 100], [Emma, 100, 200])
     A) The list needs to hold to have at least 5 donors and 1-3 donations.
     B) The script should prompt the user (you) to choose from a menu of 3 actions:
@@ -131,6 +131,6 @@ def main_menu():
             break
 
 # Input / Output
-#if __name__ == '__main__':
-    # intro()
-main_menu()
+if __name__ == '__main__':
+    intro()
+    main_menu()

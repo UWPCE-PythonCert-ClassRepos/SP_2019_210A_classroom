@@ -5,7 +5,7 @@ import tempfile
 #donations[]
 #donors {donor1:donations1, donor2:donations2}
 donors = {}
-# The data struction used in this program, a list of tuples
+# The data struction used in this program, a dictionary of lists
 
 
 def add_donor(name, donation = 0):
@@ -76,6 +76,9 @@ def thank_you():
     return
 
 def thanks_all():
+    """
+    create a thank you letter txt file for each donor. store those files into the system specified temp folder
+    """
     temp_path = tempfile.gettempdir()
 
     for name, donations in donors.items():

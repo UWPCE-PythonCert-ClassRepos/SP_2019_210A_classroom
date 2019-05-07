@@ -69,6 +69,8 @@ def reading_parsing(file_name):
         line = lang.split(",")
         for x in line:
             if x:
+                if x.strip() == "nothing":
+                    continue
                 if x.strip() not in specific_lang:
                     specific_lang.append(x.strip())
                     specific_lang.sort()
@@ -76,7 +78,6 @@ def reading_parsing(file_name):
     print("\nSpecific Language list: \n")
     for index, language in enumerate(specific_lang):
             print(str((index + 1)) +".", language)
-        
 
 def main():
     # path()

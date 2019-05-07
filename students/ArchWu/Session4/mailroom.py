@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import operator
-
+import tempfile
 #donations[]
 #donors {donor1:donations1, donor2:donations2}
 donors = {}
@@ -75,6 +75,18 @@ def thank_you():
     print(greetings + body + ending)
     return
 
+def thanks_all():
+    temp_path = tempfile.gettempdir()
+
+    for name, donations in donors.items():
+        with open('{}/{}.txt'.format(temp_path, name), 'w') as f:
+            num_donation = sum(donations)
+            greetings = 'Dear {},\n'.format(name)
+            body = '\nThank you for your generous gift ${} to us!\n'.format(num_donation)
+            ending = '\nSincerely,\n  ABC foundations'
+            f.write(greetings + body + ending)
+    return
+
 def main_menu():
     """ Main menu function """
     while True:
@@ -82,7 +94,8 @@ def main_menu():
 Pick one:
 1: Send a Thank you
 2: Create a report
-3: Quit
+3: Send letters to all donors
+4: Quit
 """)
         print("You replied:", answer)
         answer = answer.strip()
@@ -91,6 +104,8 @@ Pick one:
         elif answer == '2':
             report()
         elif answer == '3':
+            thanks_all()
+        elif answer == '4':
             sys.exit(0)
         else:
             print("please answer 1, 2 or 3")

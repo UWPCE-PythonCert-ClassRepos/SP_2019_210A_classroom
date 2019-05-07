@@ -65,7 +65,6 @@ def reading_parsing(file_name):
     generator = [item["languages"] for item in student_lst]
     specific_lang = []
     for lang in generator:
-        # if lang not in specific_lang:
         line = lang.split(",")
         for x in line:
             if x:
@@ -80,8 +79,8 @@ def reading_parsing(file_name):
             print(str((index + 1)) +".", language)
 
 def main():
-    # path()
-    # copy("mp2.jpg")
+    path()
+    copy("mp2.jpg")
     infile = "students.txt"
     reading_parsing(infile)
    

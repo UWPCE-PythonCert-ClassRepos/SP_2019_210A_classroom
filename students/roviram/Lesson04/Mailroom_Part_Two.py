@@ -1,5 +1,5 @@
 #------------------- Script Details--------------------------------------#
-# Week 4 Homework: Mailroom Part 1
+# Week 4 Homework: Mailroom Part 2
 # Miguel Rovira-Gonzalez, 5/4/19, created Part 2 of the mailroom program
 #------------------------------------------------------------------------#
 """Part 1 Goal: Create a list of your donors and a history of the amounts they have donated: e.g  ([Miguel, 100], [Emma, 100, 200])
@@ -106,7 +106,7 @@ def send_letters():
         with open(dict_donors["Name"] + ".txt", "w") as file_output:
             file_output.write("Dear {},\n\n"
                   "\t\tThank you for your most recent generous donation of {}.".format(dict_donors["Name"], dict_donors["Donation Amount"][-1]))
-        file_output.close()
+    print("We have sent letters to all the donors! ")
 
 def main_menu():
     """This is displaying the main menu"""
@@ -115,7 +115,7 @@ def main_menu():
             "\nPlease choose from the following three options (please type 1, 2, or 3):\n"
                    "1) Send a 'Thank You' note to a single donor \n"
                    "2) Create a Report \n"
-                   "3) Send letters to all donors\n"
+                   "3) Send letters to all donors \n"
                    "4) Quit "
             )
         # Thank You Note
@@ -124,7 +124,6 @@ def main_menu():
         # Create a Report
         elif menu_answer.strip() == '2':
             create_report(donors)
-        # Quit the Program
         elif menu_answer.strip() == '3':
             send_letters()
         elif menu_answer.strip() == '4':

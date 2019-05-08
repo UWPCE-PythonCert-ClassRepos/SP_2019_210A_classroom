@@ -13,31 +13,44 @@ def main_menu():
     1 will allow an addition of a donator, a new donation and the printing of a thank you letter
     2 will print a report of the donators and their donations as well as their average donation.
     '''
+    switcher = {
+        "1": thank_you,
+        "2": report,
+        "3": make_letters,
+    }
     while True:
-        answer = input("""What would you like to do?
+        argument = input("""What would you like to do?
             1: Send a Thank You to a single donor
             2: Create a Report
             3: Send letters to all donors
             4: Quit
             >>>""").strip()
-        if answer == "1":
-            # Call thank you function and then print the return statement
-            thanks = thank_you()
-            if thanks != 0:
-                print(thanks)
-        elif answer == "2":
-            # calls report function which returns a list and then prints every line in the list
-            for line in report():
-                print(line)
-        elif answer == "3":
-            #call function that writes letters for all people
-            make_letters()
-        elif answer == "4":
+        if argument == "4":
             print("Quitting...")
             break
+        func = switcher.get(argument, "Invalid Result")
+        if func != "Invalid Result":
+            print(func())
         else:
-            # if the item is not 1, 2, or 3, will print this and go back to beginning of while loop
-            print(f"You replied {answer}, please reply with 1, 2 or 3")
+            print(f"You entered {argument}, please enter 1,2,3 or 4.")
+        # if answer == "1":
+        #     # Call thank you function and then print the return statement
+        #     thanks = thank_you()
+        #     if thanks != 0:
+        #         print(thanks)
+        # elif answer == "2":
+        #     # calls report function which returns a list and then prints every line in the list
+        #     for line in report():
+        #         print(line)
+        # elif answer == "3":
+        #     #call function that writes letters for all people
+        #     make_letters()
+        # elif answer == "4":
+        #     print("Quitting...")
+        #     break
+        # else:
+        #     # if the item is not 1, 2, or 3, will print this and go back to beginning of while loop
+        #     print(f"You replied {answer}, please reply with 1, 2 or 3")
 
 
 def thank_you():
@@ -59,7 +72,7 @@ def thank_you():
             for name in donors.keys():
                 print(name)
         elif name_input == "back":
-            return 0
+            return "returning to main menu..."
         else:
             # if the name_input was not list and was not already in the donors dict, will ask if the user wants to add
             new_name_decision = input(
@@ -95,7 +108,7 @@ def report():
         #report_list.append(donor + " "*(21-len(donor)) + "$" +" "*(11-len(str(donor_sum))) + str(donor_sum) + " "*(13-len(str(donor_num_gifts))) + str(donor_num_gifts) + " "*(13-len(str(donor_average))) + str(donor_average))
         report_list.append(
             f"{donor:<20} $  {donors[donor][1][0]:>10} {donors[donor][1][1]:^12} $ {donors[donor][1][2]:>10}")
-    return report_list
+    return "\n".join(report_list)
 
 def make_letters():
     report() #calls report to update current sum and averages for gifts given
@@ -105,12 +118,12 @@ def make_letters():
             fh.writelines("""Dear {},\n\n 
         On behalf of Local Charity we would like to extend our sincerest thanks for your ${} donation.\n
         Without people like you we could not continue blah blah blah\n
-        Over time you have given us a total of ${} over {} donation(s) which averages out to {} per donation! \n
+        Over time you have given us a total of ${} over {} donation(s) which averages out to ${} per donation! \n
         Again thank you\n
     Sincerely,\n
         Local Charity """.format(donor, int(donors[donor][0][-1]),int(donors[donor][1][0]),int(donors[donor][1][1]),int(donors[donor][1][2])))
         fh.close()
-    print("Finished!")
+    return "Finished!"
 
 
 if __name__ == "__main__":

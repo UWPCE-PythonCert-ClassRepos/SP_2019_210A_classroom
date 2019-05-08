@@ -33,24 +33,6 @@ def main_menu():
             print(func())
         else:
             print(f"You entered {argument}, please enter 1,2,3 or 4.")
-        # if answer == "1":
-        #     # Call thank you function and then print the return statement
-        #     thanks = thank_you()
-        #     if thanks != 0:
-        #         print(thanks)
-        # elif answer == "2":
-        #     # calls report function which returns a list and then prints every line in the list
-        #     for line in report():
-        #         print(line)
-        # elif answer == "3":
-        #     #call function that writes letters for all people
-        #     make_letters()
-        # elif answer == "4":
-        #     print("Quitting...")
-        #     break
-        # else:
-        #     # if the item is not 1, 2, or 3, will print this and go back to beginning of while loop
-        #     print(f"You replied {answer}, please reply with 1, 2 or 3")
 
 def halt():
     print("Quitting...")
@@ -89,7 +71,7 @@ def thank_you():
 def compose_thank_you(name_input):
     return (
         """Dear {},\n\n 
-        On behalf of Local Charity we would like to extend our sincerest thanks for your ${} donation.\n
+        On behalf of Local Charity we would like to extend our sincerest thanks for your ${:,.2f} donation.\n
         Without people like you we could not continue blah blah blah\n
         Again thank you\n
     Sincerely,\n
@@ -100,17 +82,15 @@ def report():
     """
     return a report by adding a line for every name in the donor dictionary
     """
-    report_list = ["Donor Name" + " "*10 + "| Total Given " +
+    report_list = ["Donor Name" + " "*11 + "|" +" "*3 +" Total Given "+ " "*3 +
                    "| Num Gifts " + "| Average Gift\n" + "-"*60]
     for donor in donors:
         donors[donor][1].append(round(sum(donors[donor][0]),2))
         donors[donor][1].append(len(donors[donor][0]))
         donors[donor][1].append(round(round(sum(donors[donor][0]), 2)/len(donors[donor][0]), 2))
         # used variables even though it can be fit into 1 line for readability
-        # report list is: Donor + White Space + Donor Sum + white space + num gifts + white space + donor average. amount of white space changes on length of donor items
-        #report_list.append(donor + " "*(21-len(donor)) + "$" +" "*(11-len(str(donor_sum))) + str(donor_sum) + " "*(13-len(str(donor_num_gifts))) + str(donor_num_gifts) + " "*(13-len(str(donor_average))) + str(donor_average))
         report_list.append(
-            f"{donor:<20} $  {donors[donor][1][0]:>10} {donors[donor][1][1]:^12} $ {donors[donor][1][2]:>10}")
+            f"{donor:<20} $  {donors[donor][1][0]:>16,.2f} {donors[donor][1][1]:^12} $ {donors[donor][1][2]:>10,.2f}")
     return "\n".join(report_list)
 
 def make_letters():
@@ -121,7 +101,7 @@ def make_letters():
             fh.writelines("""Dear {},\n\n 
         On behalf of Local Charity we would like to extend our sincerest thanks for your ${} donation.\n
         Without people like you we could not continue blah blah blah\n
-        Over time you have given us a total of ${} over {} donation(s) which averages out to ${} per donation! \n
+        Over time you have given us a total of ${:,.2f} over {} donation(s) which averages out to ${:,.2f} per donation! \n
         Again thank you\n
     Sincerely,\n
         Local Charity """.format(donor, int(donors[donor][0][-1]),int(donors[donor][1][0]),int(donors[donor][1][1]),int(donors[donor][1][2])))

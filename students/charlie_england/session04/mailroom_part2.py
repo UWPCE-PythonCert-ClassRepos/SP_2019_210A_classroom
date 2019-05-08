@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #refactor to have the donors dict be 2 lists
-
+import sys
 # Donors dict Name:[[list of donations],[average of donations]]
 donors = {"Chris Christly": [[1000.21, 250.80],[]], "Bob Barley": [[800.33],[]], "Nick Nilly": [[
     500000.12, 250000.55, 750000],[]], "Julia July": [[200.80],[]], "Jose Hooray": [[500000, 1000000, 750000],[]]}
@@ -17,6 +17,7 @@ def main_menu():
         "1": thank_you,
         "2": report,
         "3": make_letters,
+        "4": halt
     }
     while True:
         argument = input("""What would you like to do?
@@ -25,9 +26,6 @@ def main_menu():
             3: Send letters to all donors
             4: Quit
             >>>""").strip()
-        if argument == "4":
-            print("Quitting...")
-            break
         func = switcher.get(argument, "Invalid Result")
         if func != "Invalid Result":
             print(func())
@@ -52,6 +50,9 @@ def main_menu():
         #     # if the item is not 1, 2, or 3, will print this and go back to beginning of while loop
         #     print(f"You replied {answer}, please reply with 1, 2 or 3")
 
+def halt():
+    print("Quitting...")
+    sys.exit()
 
 def thank_you():
     """

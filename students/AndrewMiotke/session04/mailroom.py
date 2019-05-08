@@ -153,3 +153,6 @@ def main_menu():
 if __name__ == "__main__":
     print("Welcome to the Mailroom.")
     main_menu()
+    # send_letter_to_all_donors()
+    # quit()
+    # report()

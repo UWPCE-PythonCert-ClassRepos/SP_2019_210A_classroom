@@ -114,7 +114,7 @@ def send_thank_you():
             
             if in_main_donors == False:
                 donation_amount = float(input("\nPlease enter {}'s donated amount: ".format(thanks_answer)))
-                add_new_donors = {"name": thanks_answer, "donation": [donation_amount]}
+                add_new_donors = {"name": thanks_answer, "donations": [donation_amount]}
                 main_donors.append(add_new_donors)
                 print("{} was added with a donation of ${:.2f}".format(thanks_answer,float(donation_amount)))
             
@@ -135,9 +135,8 @@ Press Enter to continue
     return report_menu_answer
 
 
-def gen_stats(main_donors):
+def gen_stats(lst):
     donor_stats = []
-    lst = main_donors
     for donor in lst:
         donations = donor["donations"]
         total = sum(donations)
@@ -199,7 +198,7 @@ def mailroom_main():
         elif answer == "4":
             quit()
         else:
-            print("Please choose a number 1-3")
+            print("Please choose a number 1-4")
 
 
 def main():

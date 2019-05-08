@@ -30,11 +30,7 @@ def build_trigrams(words_in):
     for index in range(len(words_in) - 2):
         if words_in[index]:
             key_in = (words_in[index], words_in[index + 1])
-
-            if key_in in trigrams.keys():
-                trigrams[key_in].append(words_in[index + 2])
-            else:
-                trigrams[key_in] = [words_in[index + 2]]
+            trigrams.setdefault(key_in, []).append(words_in[index + 2])
 
     return trigrams
 

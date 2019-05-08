@@ -103,8 +103,8 @@ def send_letter_to_all_donors():
     Writes their last contribution to the outfile file.
     Moves all files into the directory that was named earlier.
     """
-    name_destination = input("Name the directory to save the letters: ")
-    os.mkdir(f"./{name_destination}")
+    name_destination_directory = input("Name the directory to save the letters: ")
+    os.mkdir(f"./{name_destination_directory}")
 
     for donor_name in donors_list:
         time.sleep(.5)
@@ -116,7 +116,7 @@ def send_letter_to_all_donors():
         outfile.write(thank_you_letter(donor_name))
 
         while True:
-            destination = f"./{name_destination}/"
+            destination = f"./{name_destination_directory}/"
             os.system(f"mv {source} {destination}")
             break
 

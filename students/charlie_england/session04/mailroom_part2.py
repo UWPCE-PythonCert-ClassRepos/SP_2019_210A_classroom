@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #refactor to have the donors dict be 2 lists
 import sys
-# Donors dict Name:[[list of donations],[average of donations]]
+# Donors dict Name:[[list of donations],[sum donations, num donations, average donations]]
 donors = {"Chris Christly": [[1000.21, 250.80],[]], "Bob Barley": [[800.33],[]], "Nick Nilly": [[
     500000.12, 250000.55, 750000],[]], "Julia July": [[200.80],[]], "Jose Hooray": [[500000, 1000000, 750000],[]]}
 
@@ -12,6 +12,8 @@ def main_menu():
     Will loop through and requests input until 3 is entered and then quits.
     1 will allow an addition of a donator, a new donation and the printing of a thank you letter
     2 will print a report of the donators and their donations as well as their average donation.
+    3 will send letters to all donors by making .txt files for each
+    4 will quit the program
     '''
     switcher = {
         "1": thank_you,

@@ -5,6 +5,8 @@ An exercise in playing with Exceptions.
 Make lots of try/except blocks for fun and profit.
 
 Make sure to catch specifically the error you find, rather than all errors.
+
+Author: Joe Nunnelley
 """
 
 from except_test import fun, more_fun, last_fun

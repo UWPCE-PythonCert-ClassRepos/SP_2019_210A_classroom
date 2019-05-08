@@ -96,8 +96,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#minor-issues">Minor Issues</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sum"><code class="docutils literal notranslate"><span class="pre">sum</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#getting-an-arbitrary-key-from-a-dict">Getting an arbitrary key from a dict</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nifty-formatting">nifty formatting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nifty-formatting">Nifty formatting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#islice">islice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dict-setdefault"><code class="docutils literal notranslate"><span class="pre">dict.setdefault()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#coding-workflow">Coding Workflow</a></li>
 </ul>
 </li>
@@ -196,6 +197,8 @@
 <p>A collection of notes to go over in class, to keep things organized.</p>
 <div class="section" id="lightning-talks">
 <h3>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h3>
+<p>Miguel Antonio Rovira-Gonzalez</p>
+<p>Lincoln Zhang</p>
 </div>
 <div class="section" id="issues-that-came-up-during-the-week">
 <h3>Issues that came up during the week.<a class="headerlink" href="#issues-that-came-up-during-the-week" title="Permalink to this headline">¶</a></h3>
@@ -204,6 +207,7 @@
 <p>In general, you don’t want to put generated files in git.</p>
 <p>In this case, the letters your mailroom program created.</p>
 <p><strong>Caution:</strong> be very careful with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">*</span></code> – generally better to specifically add the files you now you need.</p>
+<p>‘.gitignore’ can help here.</p>
 </div>
 <div class="section" id="style">
 <h4>Style<a class="headerlink" href="#style" title="Permalink to this headline">¶</a></h4>
@@ -211,28 +215,40 @@
 <p><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p>
 <p>The ONLY exception is if you work in an organization that has a different style guide. It can make sense for your python code to match other code in an organization. But otherwise, use a style consistent with the rest of the Python world.</p>
 <p>And don’t use “Hungarian Notation” – it is really non-pythonic, and sometimes actually wrong – and a string called <code class="docutils literal notranslate"><span class="pre">intSomething</span></code> just adds confusion!</p>
-<p>The best way to do this is with a linter in your editor – like the Anaconda package in Sublime. A number of you are getting really annoyed by all the “noise” that the linter creates. But if you keep your code in PEP8 style, it won’t be there!</p>
+<p>The best way to do this is with a linter in your editor – like the Anaconda package in Sublime.  If there is no way to get a Python linter in your editor/IDE – find another one :-)</p>
 </div>
 <div class="section" id="minor-issues">
 <h4>Minor Issues<a class="headerlink" href="#minor-issues" title="Permalink to this headline">¶</a></h4>
-<p>Remember that:</p>
-<p><code class="docutils literal notranslate"><span class="pre">something</span> <span class="pre">in</span> <span class="pre">a_dict</span></code> checks if <code class="docutils literal notranslate"><span class="pre">this</span></code> is a key</p>
-<p>similarly:</p>
+<div class="section" id="looping-through-dicts">
+<h5>Looping through dicts<a class="headerlink" href="#looping-through-dicts" title="Permalink to this headline">¶</a></h5>
+<p>dicts are a bit odd, in that they are kind of two sequences – they keys and the values.  Sometimes you want one, sometimes the other, sometimes both.</p>
+<p>The keys are kind of the “first class” things when used with the regular sequence protocol.</p>
+<p><strong>So:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">something</span> <span class="pre">in</span> <span class="pre">a_dict</span></code> checks if <code class="docutils literal notranslate"><span class="pre">this</span></code> is a key.</p>
+<p>Similarly:</p>
 <p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">k</span> <span class="pre">in</span> <span class="pre">dict:</span></code></p>
-<p>loops through the keys. So no need for:</p>
+<p>Loops through the keys. So no need for:</p>
 <p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">k</span> <span class="pre">in</span> <span class="pre">dict.keys():</span></code></p>
+<p>But for the values:</p>
+<p><code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">in</span> <span class="pre">a_dict.values()</span></code></p>
+<p>and</p>
+<p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">v</span> <span class="pre">in</span> <span class="pre">a_dict.values()</span></code></p>
+<p>For both:</p>
+<p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">a_key,</span> <span class="pre">value</span> <span class="pre">in</span> <span class="pre">a_dict.items()</span></code></p>
+</div>
 </div>
 <div class="section" id="sum">
 <h4><code class="docutils literal notranslate"><span class="pre">sum</span></code><a class="headerlink" href="#sum" title="Permalink to this headline">¶</a></h4>
 <p>Did everyone find the <code class="docutils literal notranslate"><span class="pre">sum()</span></code> built in function?</p>
 <p>How about <code class="docutils literal notranslate"><span class="pre">max()</span></code> and <code class="docutils literal notranslate"><span class="pre">min()</span></code></p>
+<p>They are handy.</p>
 </div>
 <div class="section" id="getting-an-arbitrary-key-from-a-dict">
 <h4>Getting an arbitrary key from a dict<a class="headerlink" href="#getting-an-arbitrary-key-from-a-dict" title="Permalink to this headline">¶</a></h4>
 <p>See <code class="docutils literal notranslate"><span class="pre">arbitrary_key.py</span></code> in <cite>examples/session05</cite></p>
 </div>
 <div class="section" id="nifty-formatting">
-<h4>nifty formatting<a class="headerlink" href="#nifty-formatting" title="Permalink to this headline">¶</a></h4>
+<h4>Nifty formatting<a class="headerlink" href="#nifty-formatting" title="Permalink to this headline">¶</a></h4>
 <p>what the heck is this?</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">data_print</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">widths</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -250,13 +266,32 @@
 </div>
 <div class="section" id="islice">
 <h4>islice<a class="headerlink" href="#islice" title="Permalink to this headline">¶</a></h4>
-<p>This constuct is pertty cool for trigrams:</p>
+<p>This construct is pretty cool for trigrams:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w3</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">word_list</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">word_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">word_list</span><span class="p">[</span><span class="mi">2</span><span class="p">:]):</span>
 </pre></div>
 </div>
-<p>but remeber that slicing makes a copy – so this is making three copies of the full work list. Computers have a LOT of memory these days, but it’s still better to not waste it.</p>
+<p>But remember that slicing makes a copy – so this is making three copies of the full word list.
+Computers have a LOT of memory these days, but it’s still better to not waste it.</p>
 <p>Turns out there is a alternative:</p>
 <p><a class="reference external" href="https://docs.python.org/3.7/library/itertools.html#itertools.islice">https://docs.python.org/3.7/library/itertools.html#itertools.islice</a></p>
+<p>How would we write that with islice?</p>
+<p>Shall we do it?</p>
+</div>
+<div class="section" id="dict-setdefault">
+<h4><code class="docutils literal notranslate"><span class="pre">dict.setdefault()</span></code><a class="headerlink" href="#dict-setdefault" title="Permalink to this headline">¶</a></h4>
+<p>I don’t think anyone discovered this, but this construct:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">a_key</span> <span class="ow">in</span> <span class="n">a_dict</span><span class="p">:</span>
+    <span class="n">do_something_with</span><span class="p">(</span><span class="n">a_dict</span><span class="p">[</span><span class="n">a_key</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">a_dict</span><span class="p">[</span><span class="n">a_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">something</span>
+    <span class="n">do_something_with</span><span class="p">(</span><span class="n">something</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>seemed like a common thing to want to do – so I thought for years that there should be a better way – turn out there is!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">do_somethingwith</span><span class="p">(</span><span class="n">a_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">a_key</span><span class="p">,</span> <span class="n">something</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>For a concrete example, let’s look at trigrams:</p>
 </div>
 <div class="section" id="coding-workflow">
 <h4>Coding Workflow<a class="headerlink" href="#coding-workflow" title="Permalink to this headline">¶</a></h4>

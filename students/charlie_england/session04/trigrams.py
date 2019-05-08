@@ -39,13 +39,18 @@ def build_trigrams(words):
         pair = (w1, w2)
         #pair = f"{w1} {w2}" #creates a string variable called pair with the format "word1 word2"
         ind+=1
-        if pair in trigrams: #check to see if key is already in dictionary and update with new word if so
-            trigrams[pair].append(w3)
-        else:
-            trigrams.update({pair:[w3]}) #if key is not in dictionary, make a new key:value pair
+        trigrams.setdefault(pair,[]).append(w3)
     return trigrams
 
-def make_text(trigrams):
+def punc_check(word):
+    puncuation = "!.?"
+    if len(word) > 2:
+        if word[0].lower() != "m" and (word[1].lower() != "r" or word[1].lower() != "s"):
+            for letter in word:
+                if letter in puncuation:
+                    return 1
+
+def make_text(trigrams,length=500):
     """
     1) pick a random pair of words to start with
     2) pick a random list of following words to choose from
@@ -53,16 +58,23 @@ def make_text(trigrams):
     """
     rtrn_lst = []
     k_words = list(random.choice(list(trigrams.keys())))
-    rtrn_lst.extend(k_words)
-    for _ in range(500):
+    rtrn_lst.append(k_words[0].capitalize())
+    rtrn_lst.append(k_words[1])
+    punc = 0
+    for _ in range(length):
         r_choice = random.choice(trigrams[tuple(k_words)])
         k_words.pop(0)
         k_words.append(r_choice)
-        rtrn_lst.append(k_words[1])
+        if punc == 1 or r_choice == "i": #check if there is puncuation or if the choice is i, then capitalize it
+            rtrn_lst.append(r_choice.capitalize())
+        else:
+            rtrn_lst.append(r_choice)
+        punc = 0
+        punc = punc_check(r_choice) #checks the puncation in the r_choice and changes puncuation state to 1 if there is puncuation
     return " ".join(rtrn_lst)
     
 
 if __name__ == "__main__":
     words = read_file("sherlock.txt")
     trigram = build_trigrams(words)
-    print(make_text(trigram))
+    print(make_text(trigram,50))

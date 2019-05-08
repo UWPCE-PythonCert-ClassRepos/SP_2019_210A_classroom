@@ -3,22 +3,7 @@
 The Mailroom Program : Part 3
 Author : Joe Nunnelley
 Description:
-    Write a small command-line script called mailroom.py. This script should be executable.
-    The script should accomplish the following goals:
-    - It should have a data structure that holds a list of your donors and a history of
-      the amounts they have donated. This structure should be populated at first with
-      at least five donors, with between 1 and 3 donations each. You can store that
-      data structure in the global namespace.
-    - The script should prompt the user (you) to choose from a menu of 3 actions:
-      “Send a Thank You”, “Create a Report” or “quit”.
-      Update your mailroom program to:
-        Use dicts where appropriate.
-        See if you can use a dict to switch between the user’s selections.
-        See if you can use a dict to switch between the users selections.
-        see Using a Dictionary to switch for what this means.
-        Convert your main donor data structure to be a dict.
-        Try to use a dict and the .format() method to produce the letter as one big
-        template, rather than building up a big string that produces the letter in parts.
+    A small command line based mailroom application designed to thank donors.
 """
 import datetime
 import os
@@ -44,6 +29,7 @@ UI_MENU = {'Main':  """
         >
         """,
            'Directory Select': "Directory? ",}
+
 
 def send_thankyou():
     """
@@ -91,17 +77,13 @@ def print_report():
     Create a Report
         If the user (you) selected “Create a Report,” print a list of your donors,
         sorted by total historical donation amount.
-            - Include Donor Name, total donated, number of donations, and average
-              donation amount as values in each row. You do not need to print out
-              all of each donor’s donations, just the summary info.
-            - Using string formatting, format the output rows as nicely as possible.
-              The end result should be tabular (values in each column should align
-              with those above and below).
-            - After printing this report, return to the original prompt.
+
         At any point, the user should be able to quit their current task and return
         to the original prompt.
+
         From the original prompt, the user should be able to quit the script cleanly.
         Your report should look something like this:
+
         Donor Name                | Total Given | Num Gifts | Average Gift
         ------------------------------------------------------------------
         William Gates, III         $  653784.49           2  $   326892.24
@@ -120,18 +102,19 @@ def print_report():
     row_list = []
     for donor, donations in DONOR_SET.items():
         donation_count = len(donations)
-        summed_donations = 0
+        summed_donations = sum([donation for donation in donations if donation_count])
 
-        if donation_count:
-            for donation in donations:
-                summed_donations += donation
-
+        try:
             average_donations = summed_donations / donation_count
-            row = [donor,
-                   summed_donations,
-                   donation_count,
-                   average_donations]
-            row_list.append(row)
+        except ZeroDivisionError:
+            print('Error: Divide by Zero')
+            average_donations = 0
+
+        row = [donor,
+               summed_donations,
+               donation_count,
+               average_donations]
+        row_list.append(row)
 
     row_list.sort(key=sort_by_donation_total, reverse=True)
 
@@ -162,6 +145,7 @@ def formulate_mail(donor_in, echo_terminal=True):
     message['Title'] = 'Thank you {Recipient} for your recent ' \
                        'donation to {Sender}'.format(**message)
     donations = ''
+
     for donation in donor_in[1]:
         donations += ('- {:>10.2f} USD\n'.format(donation))
 
@@ -228,48 +212,52 @@ def select_donor():
     return ''
 
 
-def generate_thankyou_files(output_directory):
+def generate_thankyou_files():
     """
     This function will output a set of thankyou files
     one for each donor which you can then send via email or
     snailmail"""
+    menu_ui = UI_MENU['Directory Select']
+    output_directory = input(menu_ui)
 
     if not output_directory or not os.path.isdir(output_directory):
         print('Output directory invalid.')
         output_directory = tempfile.gettempdir()
 
     print('Generating donor mails here {}'.format(output_directory))
+
     for donor, donations in DONOR_SET.items():
         mail_contents = formulate_mail((donor, donations), False)
         file_name = "{}/{}.txt".format(output_directory, donor)
-        with open(file_name, "w") as outputfile:
-            outputfile.write(mail_contents)
+
+        try:
+            with open(file_name, "w") as outputfile:
+                outputfile.write(mail_contents)
+        except IOError:
+            print('Failed to write file: {}'.format(file_name))
 
 
 def main():
     """The main the program UI"""
+    operations = {"1": send_thankyou,
+                  "2": print_report,
+                  "3": generate_thankyou_files,
+                  "4": quit_program}
+
     print('Starting Mailroom...')
 
     while True:
         print(BOUNDARY)
         menu_ui = UI_MENU['Main']
         response = input(menu_ui)
-
         print(BOUNDARY)
         print("You chose: {}".format(response))
 
-        if response == "1":
-            send_thankyou()
-        elif response == "2":
-            print_report()
-        elif response == "3":
-            menu_ui = UI_MENU['Directory Select']
-            output_directory = input(menu_ui)
-            generate_thankyou_files(output_directory)
-        elif response == "4":
-            quit_program()
+        if response in operations.keys():
+            operation = operations[response]
+            operation()
         else:
-            print("Invalid input. Please input a valid number")
+            print('Invalid input. Please input a valid number.')
 
 
 if __name__ == "__main__":

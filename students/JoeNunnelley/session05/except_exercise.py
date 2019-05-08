@@ -19,7 +19,6 @@ first_try = ['spam', 'cheese', 'mr death']
 try:
     joke = fun(first_try[0])
 except NameError as name_error:
-    print('Handling Error: [\n{}\n]'.format(name_error))
     joke = fun(first_try[1])
 
 # Here is a try/except block. Add an else that prints not_joke
@@ -47,15 +46,15 @@ else:
 # parameters. (pun intended)
 
 langs = ['java', 'c', 'python']
-
+err_message = "Handling Error: {}"
 try:
     more_joke = more_fun(langs[0])
 except IndexError as index_error:
-    print('Handling Error: [\n{}\n]'.format(index_error))
+    print(err_message.format(index_error))
     try:
         more_joke = more_fun(langs[1])
         more_fun(langs[2])
     except IndexError as index_error:
-        print('Handling Error: {}'.format(index_error))
+        print(err_message.format(index_error))
 finally:
     last_fun()

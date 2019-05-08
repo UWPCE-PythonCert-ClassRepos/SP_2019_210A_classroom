@@ -46,10 +46,10 @@ Unpacking tuples in list comprehensions
 What is the output of:
 
 >>> comprehension[0]
-???
+lumberjack
 
 >>> len(comprehension[2])
-???
+16
 
 Double list comprehensions
 
@@ -130,7 +130,7 @@ count_evens([1, 3, 5]) == 0
 Can you do this with a single line comprehension?
 
 def count_evens(nums):
-   one_line_comprehension_here
+   return len([num for num in nums if num % 2 == 0])
 
 dict and set comprehensions
 
@@ -141,6 +141,7 @@ Revisiting the dict/set lab – see how much you can do with comprehensions inst
 Specifically, look at these:
 
 First a slightly bigger, more interesting (or at least bigger..) dict:
+"""
 
 food_prefs = {"name": "Chris",
               "city": "Seattle",
@@ -148,7 +149,7 @@ food_prefs = {"name": "Chris",
               "fruit": "mango",
               "salad": "greek",
               "pasta": "lasagna"}
-
+"""
 Working with this dict:
 
     Print the dict by passing it to a string format method, so that you get something like:
@@ -171,3 +172,24 @@ Working with this dict:
             Extra credit: do it all as a one-liner by nesting a set comprehension inside a list comprehension. (OK, that may be getting carried away!)
 
 """
+
+defined_format = "{name} is from {city}, and he likes {cake} cake, {fruit} fruit, {salad} salad, and {pasta} pasta"
+
+print(defined_format.format(**food_prefs))
+
+hex_dict = {num: hex(num) for num in range(0,15)}
+print(hex_dict)
+
+a_dict = {item: item.count('a') for item in food_prefs}
+print(a_dict)
+
+divisors = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+s_sets = []
+for div in divisors:
+    s_sets.append({ item for item in range(0,21) if item % div == 0 })
+
+print(s_sets)
+
+print(
+    [ { item for item in range(0,20) for s in [2,3,4,5,6,7,8,9,10] if item % s == 0  } ]
+)

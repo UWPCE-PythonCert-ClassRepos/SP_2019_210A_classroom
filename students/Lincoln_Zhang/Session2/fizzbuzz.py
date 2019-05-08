@@ -6,6 +6,24 @@
 
 
 def return_Fizz(n):
+<<<<<<< HEAD
+    if n % 5:
+        if not n % 3:
+            return "Fizz"
+        else:
+            return n
+    else:       
+        return n
+
+def return_Buzz(n):
+    if n % 3:
+        if not n % 5:
+            return "Buzz"
+        else:
+            return n
+    else:
+        return n
+=======
     if (not n % 3):
         return "Fizz"
     return ""
@@ -16,10 +34,27 @@ def return_Buzz(n):
         return "Buzz"
     return ""
 
+>>>>>>> 3122133e328a909b3207c5fb68cac942ee37f94d
 
 def return_FizzBuzz(n):
     if not n % 15:
         return "FizzBuzz"
+<<<<<<< HEAD
+    else:
+        return n
+
+
+def Fizz_Buzz_filter(n):
+    l = [return_Fizz(n), return_Buzz(n), return_FizzBuzz(n)]
+    if "Fizz" in l:
+        return "Fizz"
+    elif "Buzz" in l:
+        return "Buzz"
+    elif "FizzBuzz" in l:
+        return "FizzBuzz"
+    else:
+        return n
+=======
     # else:
     #     return n
 
@@ -41,6 +76,7 @@ def Fizz_Buzz_filter(n):
     #     return "FizzBuzz"
     # else:
     #     return n
+>>>>>>> 3122133e328a909b3207c5fb68cac942ee37f94d
 
 
 def printer(m):

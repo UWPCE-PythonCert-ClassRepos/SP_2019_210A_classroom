@@ -1,50 +1,44 @@
 #! bin/usr/env python3
 
-'''
-solutions to trigrams problem
-'''
-'''
-WORDS = "with his head sunk upon his chest and\
- his hands clasped behind him".split()
-'''
-# WORDS = "I wish I may I wish I might".split()
-
 
 def read_file(filename):
-    '''
-    return: list of words in the file
-    '''
+    """return: list of words in the file"""
+
     words = []
-    with open(filename) as text:
+    with open('sherlock_small.txt') as text:
         for line in text:
-            # print(line)
-            words.extend(line.split())
+            words.extend(line.replace("--", " ").split())
     return words
 
 
 def build_trigrams(words):
-    '''
-    takes a list of words and makes a trigram dictionary
-    '''
+    """takes a list of words and makes a trigram dictionary"""
+
     trigrams = {}
-    # pairs = []
     for ind in range(len(words) - 2):
         w1 = words[ind]
         w2 = words[ind + 1]
         w3 = words[ind + 2]
-        # pair = " ".join((w1, w2))
         pair = (w1, w2)
         if pair not in trigrams:
             trigrams[(w1, w2)] = [w3]
         else:
             trigrams[pair].append(w3)
-        # print(W1, w2, w3)
-
     return trigrams
 
 
+def print_trigram():
+    """take a trigram dictionary and returns the trigram"""
+    trig = build_trigrams(words)
+    list_trig = list(trig.items())
+    for key, value in list_trig:
+        print(key, value)
+
+
 words = read_file("/Users/brianbrumleve/SP_2019_210A_classroom/students/\
-BrianB/lesson04/Trigram text samples/sherlock_small.txt")
-# print(words)
-trigrams = build_trigrams(words)
-print(trigrams)
+    BrianB/lesson04/sherlock_small.txt")
+
+
+if __name__ == "__main__":
+
+    print_trigram()

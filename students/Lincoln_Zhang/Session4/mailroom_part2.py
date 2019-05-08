@@ -11,6 +11,7 @@ donors_db = {"Fred Flintstone":[100, 200, 50],
           }
 
 
+
 def gen_letter(name, amount):
     letter = textwrap.dedent("""
             Dear {},
@@ -22,6 +23,7 @@ def gen_letter(name, amount):
 
             """.format(name,amount))
     return letter
+
 
 
 def Mail_to_donors(a_dict):
@@ -61,6 +63,16 @@ def Thank_You():
     donor_name = input("Please tell me your name: ")
     donation = input("Please tell me how much you would like to donate: ")
     donation = float(donation)
+    find_donor(name = donor_name, cash = donation)
+    print(donors_db)
+    with open("{}.txt".format(donor_name),"w+") as f:
+
+        letter = textwrap.dedent("""
+
+        Thank you {}, 
+        your generous donation amount is ${}
+
+        """.format(donor_name,donation))
     find_donor(name=donor_name, cash=donation)
     print(donors_db)
     with open("{}.txt".format(donor_name), "w+") as f:
@@ -84,12 +96,18 @@ def gen_report(a_dict):
     """
     this func is to print a table of donors_db to screen
     """
+
+    header = "{:<20}  |{:^10}|{:^10}|{:>10}".format("Donor Name","Total Given","Num Gifts","Average Gift")
+
     header = "{:<20}  |{:^13}|{:^13}|{:>13}".format("Donor Name","Total Given","Num Gifts","Average Gift")
+
     print(header)
     for item in a_dict.items():
         k,v = item
         total, num, avg = gen_stats(v = v)
+
         row = "{:<20}  ${:^13} {:^13}${:>13}".format(k,total,num,avg)
+
         print(row)
 
 def Quit():
@@ -118,15 +136,16 @@ def main_menu():
         elif answer == "4":
             Quit()
         else:
-            print("Please input 1,2 or 3")
+            print("Please input 1,2,3 or 4")
 
 #main_menu()
 
 if __name__ == "__main__":
     print("Welcome to mailroom!")
+    main_menu()
     #main_menu()
     # gen_report(donors_db)
     # print(gen_letter("Bob Jones", 500))
     # Mail_to_donors(donors_db)
-    Thank_You()
+    #Thank_You()
 

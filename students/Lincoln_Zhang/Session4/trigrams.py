@@ -7,7 +7,13 @@
 #
 import random
 
+from itertools import islice
+
 words = "I wish I may I wish I might".split()
+
+for w in zip(words,islice(words,1,None),islice(words,2,None))
+    print(w)
+
 
 def read_file(fname):
     words = []

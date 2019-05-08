@@ -8,7 +8,7 @@ def read_file():
     :return: list of words from file
     '''
     lines_list = []
-    with open('wishI.txt', 'r+') as text:
+    with open('sherlock_small.txt', 'r+') as text:
         for line in text:
             # print(line)
             lines_list.extend(line.split())
@@ -75,17 +75,17 @@ def random_seed_pls(dicc):  # returns a random key (type tuple) in the dictionar
     return this_list[0]
 
 
-shit_table = []
+super_table = []
 
 a = random_seed_pls(trigram_boi)
 
-shit_table += [a[0]]
+super_table += [a[0]]
 
-shit_table += [a[1]]
+super_table += [a[1]]
 
-shit_table += seed_next_one(a)
+super_table += seed_next_one(a)
 
-print(shit_table)
+print(super_table)
 
 # print(seed_next_one(random_seed_pls(trigram_boi)))
 

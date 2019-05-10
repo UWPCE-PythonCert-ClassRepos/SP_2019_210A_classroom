@@ -78,11 +78,23 @@ def reading_parsing(file_name):
     for index, language in enumerate(specific_lang):
             print(str((index + 1)) +".", language)
 
+# def prog_langs(infile):
+#     """Reads "students.txt" and Returns programming
+#         languages known by the students."""
+
+#     for line in open(infile, "r"):
+#         for language in line.split(": "):
+#             if language == language.lower():
+#                 print([language])
+#                 break
+
+
 def main():
-    path()
-    copy("mp2.jpg")
+    # path()
+    # copy("mp2.jpg")
     infile = "students.txt"
     reading_parsing(infile)
+    # prog_langs(infile)
    
 if __name__ == "__main__": main()
     

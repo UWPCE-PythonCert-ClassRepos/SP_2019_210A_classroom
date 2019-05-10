@@ -26,16 +26,22 @@ with open(sourcefile_path, 'rb') as infile, open(outfile_path, 'wb') as outfile:
     outfile.write(infile.read())
     print("File was copied to the location shared")
 
-print('\n')
-print('\n')
-print('\n')
-
 # File reading and parsing
-
-path2 = path / "students.txt"
+distinct_langs = set()
+path2 = path / "students.txt" # directing the path to your student directory
 with open(path2) as stdfile:
+    stdfile.readline()
     for rows in stdfile:
-        rows = rows.strip()
-         = rows.split(":")
-        print(extract1)
+        langs = rows.split(':')[1]  
+        langs = langs.replace(',', ' ')
+        langs = langs.replace('and', ' ')
+        langs = langs.split()
+        for lang in langs:
+            if lang:
+                distinct_langs.add(lang)
+
+for lang in distinct_langs:
+    print(lang)
+
+
 

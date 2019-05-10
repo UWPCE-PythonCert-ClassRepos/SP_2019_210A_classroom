@@ -2,14 +2,14 @@
 
 """ Returns None rather than a KeyboardInterrupt error"""
 
-def save_input():
+def safe_input():
     try:
         get_input = input("Give some input: ")
+        print(get_input)
 
-    except EOFError as EOF_save_error:
+    except EOFError:
         return None
-    except KeyboardInterrupt as KeyboardInterrupt_save_error:
+    except KeyboardInterrupt:
         return None
 
-save_input()
-
+safe_input()

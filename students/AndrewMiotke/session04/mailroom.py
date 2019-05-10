@@ -1,25 +1,16 @@
 #!/usr/bin/env python3
+import os
 import sys
 import time
 from textwrap import dedent # I took this from the solutions code because I thought it was great
 
-# "{:.>20}".format("${:,.2f}".format(123.3214))
-
+# The names come from dogs that are in my office
 donors_list = [("Rufio", [897, 200, 200]),
                ("Maggie", [543, 2, 3000]),
                ("Gus", [23, 32, 33222]),
                ("Kramer", [10, 87, 886]),
                ("Polly", [432, 32, 7896])
                ]
-
-
-def gen_stats(donor):
-    donations = donor[1]
-    total = sum(donations)
-    num = len(donations)
-    stats = (donor[0], total, num, total / num)
-
-    return stats
 
 
 def report():
@@ -105,6 +96,31 @@ def sort_key(item):
     return sum(donor[1])
 
 
+def send_letter_to_all_donors():
+    """
+    Asks to name a directory then creates said directory.donors_list.
+    Loops through all donors creatign a txt file for each name.
+    Writes their last contribution to the outfile file.
+    Moves all files into the directory that was named earlier.
+    """
+    name_destination_directory = input("Name the directory to save the letters: ")
+    os.mkdir(f"./{name_destination_directory}")
+
+    for donor_name in donors_list:
+        time.sleep(.5)
+        source = f"{donor_name[0]}.txt"
+        print(f"✅ Thank you letter created for: {source}")
+        print(f"    Check {os.path.abspath(source)}\n")
+
+        outfile = open(f"{source}", "w+")
+        outfile.write(thank_you_letter(donor_name))
+
+        while True:
+            destination = f"./{name_destination_directory}/"
+            os.system(f"mv {source} {destination}")
+            break
+
+
 def quit():
     print("Quitting Mailroom...")
     time.sleep(.5)
@@ -118,21 +134,25 @@ def main_menu():
     Pick One:
     1: Send a thank you
     2: Create a report
-    3: Quit
+    3: Send letters to ALL donors
+    4: Quit
     >>> """)
         print(f"You selected {answer}")
-
         answer = answer.strip()
-        if answer == "1":
-            send_thank_you_letter()
-        elif answer == "2":
-            report()
-        elif answer == "3":
-            quit()
-        else:
-            print("Please answer 1, 2, or 3")
+
+        answer_dict = {
+            "1": send_thank_you_letter,
+            "2": report,
+            "3": send_letter_to_all_donors,
+            "4": quit,
+        }
+
+        answer_dict.get(answer)()
 
 
 if __name__ == "__main__":
-    print("Welcome to the Mailroom")
+    print("Welcome to the Mailroom.")
     main_menu()
+    # send_letter_to_all_donors()
+    # quit()
+    # report()

@@ -10,10 +10,10 @@ def delicay_comprehension():
     feast = ["lambs", "sloths", "organutans", "breakfast cereals", "fruit bats"]
 
     comprehensions = [delicay.capitalize() for delicay in feast]
-   
+
     # prints Lambs
     print(comprehensions[0])
-    
+
     # prints Sloths
     print(comprehensions[1])
 
@@ -22,14 +22,14 @@ delicay_comprehension()
 
 def filter_feast():
     feast = ["spam", "sloths", "orangutans", "breakfast cereals", "fruit bats"]
-   
+
     comp = [delicay for delicay in feast if len(delicay) > 6]
-    
+
     # prints 5
     print(len(feast))
 
-    
-    # prints 3 
+
+    # prints 3
     print(len(comp))
 
 filter_feast()
@@ -37,9 +37,9 @@ filter_feast()
 
 def unpacking_tuples():
     list_of_tuples = [(1, "lumberjack"), (2, "inquisition"), (4, "spam")]
-    
+
     comprehension = [skit * number for number, skit in list_of_tuples]
-    
+
     # prints "lumberjack"
     print(comprehension[0])
 
@@ -55,7 +55,7 @@ def double_list():
 
     comprehension = ["{0} and {1}".format(egg, meat) for egg in eggs for meat in meats]
 
-    # prints 6 
+    # prints 6
     print(len(comprehension))
 
     # prints "poached egg and lite spam"
@@ -71,3 +71,19 @@ def set_comprehensions():
     print(comprehension)
 
 set_comprehensions()
+
+
+def dictionary_comprehensions():
+    dict_of_weapons = {"first": "fear",
+                       "second": "surprise",
+                       "third": "ruthless efficiency",
+                       "fourth": "fanatical devotion",
+                       "fifth": None
+}
+
+    dict_comprehensions = { k.upper(): weapon for k, weapon in dict_of_weapons.items() if weapon }
+
+    # sets all keys to upper case and prints them followed by the value
+    print(dict_comprehensions)
+
+dictionary_comprehensions()

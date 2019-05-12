@@ -1,5 +1,6 @@
 #! bin/usr/env python3
 
+import string
 
 def read_file(filename):
     """return: list of words in the file"""
@@ -8,6 +9,7 @@ def read_file(filename):
     with open('sherlock_small.txt') as text:
         for line in text:
             words.extend(line.replace("--", " ").split())
+            string.punctuation  # '!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~'
     return words
 
 
@@ -29,9 +31,9 @@ def build_trigrams(words):
 
 def print_trigram():
     """take a trigram dictionary and returns the trigram"""
-    trig = build_trigrams(words)
-    list_trig = list(trig.items())
-    for key, value in list_trig:
+    trigrm = build_trigrams(words)
+    list_trigrm = list(trigrm.items())
+    for key, value in list_trigrm:
         print(key, value)
 
 

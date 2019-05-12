@@ -33,7 +33,8 @@ def print_dict(kwargs):
     return printed
 
 def list_comp(start = None, stop = None):
-    lst_comp = dict(zip([x for x in range(start, stop +1)], [hex(x) for x in range(start, stop +1)]))
+    lst_comp = dict([(x, hex(x)) for x in range(start, stop +1)])
+    # lst_comp = dict(zip([x for x in range(start, stop +1)], [hex(x) for x in range(start, stop +1)]))
     return lst_comp
 
 
@@ -47,7 +48,9 @@ def count_a(kwargs):
 
 def set_gen(start = None, stop = None, quant = None):
     # return set(range(start, stop + 1, steps))
-  return [set(range(start, stop + 1, x + 1)) for x in range(quant)]
+  # return [set(range(start, stop + 1, x + 1)) for x in range(quant)]
+  return [set(x for x in range(start, stop + 1) if x % quant == 0)]
+
 
 
 
@@ -60,15 +63,14 @@ def main():
     dict_comp_answer = dict_comp(1, 15)
     print(dict_comp_answer)
 
-    print(count_a(food_prefs)) 
+    a_dct = count_a(food_prefs)
+    print(a_dct) 
 
-    # set2 = set_gen(0, 20, 2) 
-    # set3 = set_gen(0, 20, 3) 
-    set4 = set_gen(0, 20, 4) 
+    set_num = set_gen(0, 20, 4) 
 
     # print(set2)
     # print(set3)
-    print(set4)
+    print(set_num)
 
 if __name__ == "__main__": main()
     

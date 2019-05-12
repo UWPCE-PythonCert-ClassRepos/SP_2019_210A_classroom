@@ -253,10 +253,10 @@ def main():
         print(BOUNDARY)
         print("You chose: {}".format(response))
 
-        if response in operations.keys():
+        try:
             operation = operations[response]
             operation()
-        else:
+        except KeyError:
             print('Invalid input. Please input a valid number.')
 
 

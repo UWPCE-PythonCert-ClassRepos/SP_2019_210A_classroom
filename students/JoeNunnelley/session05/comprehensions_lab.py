@@ -63,10 +63,10 @@ Double list comprehensions
 What is the output of:
 
 >>> len(comprehension)
-???
+6
 
 >>> comprehension[0]
-???
+poached egg and lite spam
 
 Set comprehensions
 
@@ -75,7 +75,8 @@ Set comprehensions
 What is the output of:
 
 >>> comprehension
-???
+{'a', 'b', 'c'}
+
 """
 
 
@@ -93,13 +94,13 @@ Dictionary comprehensions
 What is the output of:
 
 >>> 'first' in dict_comprehension
-???
+False
 >>> 'FIRST' in dict_comprehension
-???
+True
 >>> len(dict_of_weapons)
-???
+5
 >>> len(dict_comprehension)
-???
+4
 """
 
 

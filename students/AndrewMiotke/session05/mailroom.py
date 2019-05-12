@@ -64,9 +64,12 @@ def send_thank_you_letter():
             break
 
     while True:
-        add_amount = input("Enter an amount to donate: ")
-        donated_amount = float(add_amount)
-        break
+        try:
+            add_amount = input("Enter an amount to donate: ")
+            donated_amount = float(add_amount)
+            break
+        except ValueError:
+            print(f"\n🚨 '{add_amount}' is not a valid number. Please enter a valid number\n")
 
     donor = get_donor(donor_name)
 
@@ -152,7 +155,7 @@ def main_menu():
 
             answer_dict.get(answer)()
         except TypeError:
-            print(f"\n{answer} is not a valid option, please type 1, 2, 3 or 4\n")
+            print(f"\n🚨 {answer} is not a valid option, please type 1, 2, 3 or 4\n")
 
 
 if __name__ == "__main__":

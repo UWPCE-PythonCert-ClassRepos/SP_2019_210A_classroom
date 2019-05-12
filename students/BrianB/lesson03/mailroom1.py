@@ -53,7 +53,7 @@ def thank_you():
                 if start_over.lower() == "yes":
                     continue
                 else:
-                    break
+                    main_menu()
         else:
             print(name, ": There's a new donor!")
             amt = input("Please enter a donation amount:")

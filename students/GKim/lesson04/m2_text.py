@@ -43,6 +43,8 @@ def main_menu():
 ">>> ")))
     return prompt
 
+
+
 def menu_thank_you():
     """
     Menu to user to enter options for thank you
@@ -78,7 +80,7 @@ def send_letter(name, amount):
     """
     return dedent(''' 
           Dear {},
-            Thank you for your very kind donation of ${:,.2f}.
+            Thank you for your very kind donations totaling ${:,.2f}.
           It will be put to very good use.
 
                          Sincerely,
@@ -185,23 +187,19 @@ def quit():
 
 def mailroom_main():
     """
-    Main mailroom script
+    Main mailroom script using a switch menu to use a dictionary instead of elif statments
     """
+    switch_menu = {"1": send_thank_you, "2": create_report, "3": save_letters, "4": quit}
+            
     while True:
-        answer = main_menu().strip()
-        if answer == "1":
-            send_thank_you()
-        elif answer == "2":
-            create_report()
-        elif answer == "3":
-            save_letters()
-        elif answer == "4":
-            quit()
+        if:
+            answer = main_menu()
+            switch_menu.get(answer)()
         else:
             print("Please choose a number 1-4")
 
 
-def main():
-    mailroom_main()
+# def main():
+#     mailroom_main()
 
-if __name__ == "__main__": main()
+if __name__ == "__main__": mailroom_main()

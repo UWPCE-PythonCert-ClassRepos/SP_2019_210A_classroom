@@ -81,17 +81,23 @@ def reading_parsing(file_name):
 # def prog_langs(infile):
 #     """Reads "students.txt" and Returns programming
 #         languages known by the students."""
-
+#     lang_list = []
 #     for line in open(infile, "r"):
-#         for language in line.split(": "):
-#             if language == language.lower():
+#         for language in line.strip().split(": "):
+#              if language == language.lower():
 #                 print([language])
 #                 break
+        
+        
+            
+        
+
+           
 
 
 def main():
-    # path()
-    # copy("mp2.jpg")
+    path()
+    copy("mp2.jpg")
     infile = "students.txt"
     reading_parsing(infile)
     # prog_langs(infile)

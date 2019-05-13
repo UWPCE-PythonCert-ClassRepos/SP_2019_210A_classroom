@@ -36,35 +36,29 @@ def gen_donor():
 
 def thank_you():
     while True:
-        name = input("Which Donor would you like to see?\n"
-                     "Please enter the full name only.\n"
-                     ">>> ")
-        if name == "list":
+        donor = input("Which Donor would you like to see?\n"
+                      "Please enter the full name only.\n"
+                      ">>> ")
+        if donor == "list":
             gen_donor()
             continue
-        for donor in donor_data:
-            if name == donor[0]:
-                print(donor[0], "was found in our database!")
-                new_amt = input("Please enter a new donation amount:")
-                donor[1].append(int(new_amt))
-                print(donor_data)
-                start_over = input("If you would like to try another "
-                                   "donor enter 'yes' or 'no'.")
-                if start_over.lower() == "yes":
-                    continue
-                else:
-                    main_menu()
-        else:
-            print(name, ": There's a new donor!")
-            amt = input("Please enter a donation amount:")
-            donor_data.append((name, [int(amt)]))
+        if donor in donor_data:
+            print(donor, "was found in our database!")
+            amount = int(input("Please enter a new donation amount:"))
+            donor[1].append(amount)
+            print(donor_data)
+            break
+        if donor not in donor_data:
+            print(donor, ": There's a new donor!")
+            amount = int(input("Please enter a donation amount:"))
+            donor_data.append((donor, ([amount])))
             print(donor_data)
             break
 
-    print(gen_letter(donor))
+    print(gen_letter(donor, amount))
 
 
-def gen_letter(donor):
+def gen_letter(donor, amount):
     return dedent('''
                 Dear {},
                     Thank for your donation of {:,.2f}! We appreciate
@@ -75,7 +69,7 @@ def gen_letter(donor):
                                             Street Fighter, LLC
                                                 an equal opportunity
                                                 employer
-                '''.format(donor[0], donor[1][-1]))
+                '''.format(donor, amount))
 
 
 def gen_stats(donor):

@@ -11,8 +11,10 @@
 # ----------------------------------------------
 
 import sys
+import math
+from textwrap import dedent
 
-#print("In the Mailroom")
+# print("In the Mailroom")
 
 
 def gen_donor():
@@ -30,25 +32,18 @@ def thank_you():
             print(gen_donor())
             continue
         # enter existing donor data
-        if donor in donor_data.keys():
+        if donor in donor_data:
             print(donor, "was found in our database!")
-            amount = input("Please enter a new donation amount:")
-            donor_data[donor].append(int(amount))
+            amount = int(input("Please enter a new donation amount:"))
+            donor_data[donor].append(amount)
             # print updated donor data
             print(donor_data)
-            # returns this loop to the main menu if the user is done
-            start_over = input("If you would like to try another"
-                               "donor enter 'yes' or 'no'.")
-            if start_over.lower() == 'yes':
-                continue
-            else:
-                print(gen_letter(donor, amount))
-                main_menu()
+            break
         # enter new donor data
-        if donor not in donor_data.keys():
+        if donor not in donor_data:
             print(donor, ": There's a new donor!")
-            amount = input("Please enter a donation amount:")
-            donor_data[donor] = [int(amount)]
+            amount = int(input("Please enter a donation amount:"))
+            donor_data[donor] = [amount]
             # print updated donor data
             print(donor_data)
             break
@@ -57,27 +52,24 @@ def thank_you():
 
 
 def gen_letter(donor, amount):
-    return f"\n"\
-        f"Dear {donor},"\
-        f"Thank for your donation of ${amount:,.2f}! We appreciate\n"\
-        f"your contribution and without you nothing would\n"\
-        f"be possible!\n"\
-        f"\n"\
-        f"                    Sincerely,\n"\
-        f"                        Street Fighter, LLC\n"\
-        f"                            an equal opportunity\n"\
-        f"                            employer\n"
+    return dedent('''Dear {},
+        Thank for your donation(s) of ${:,.2f}! We appreciate
+        your contribution and without you nothing would
+        be possible!
+        
+                            Sincerely,
+                                Street Fighter, LLC
+                                    an equal opportunity
+                                    employer'''.format(donor, amount))
 
 
 def send_letter_to_all():
-    for donor in donor_data.keys():
-        letter = gen_letter(donor)
+    for donor in donor_data:
+        letter = gen_letter(donor, sum(donor_data[donor]))
         filename = donor.replace(" ", "_").replace(".", "") + ".txt"
         with open(filename, 'w') as postal:
-            print('created a thank you letter for ', donor)
-            postal.write(filename)
-            filename.close()
-    return
+            print('created a thank you letter for ', donor, donor_data[donor])
+            postal.write(letter)
 
 
 def gen_stats(items):
@@ -105,8 +97,8 @@ def gen_report():
                                                    )
     print(header),
     print("-"*81),
-    for items in donor_data.items():
-        donor, donations = items
+    for donor in donor_data.items():
+        items = gen_stats(donor, donor_data[donor])
         total, num, average = gen_stats(donations=donations)
         print(gen_stats(items))
 

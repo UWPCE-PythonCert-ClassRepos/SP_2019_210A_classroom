@@ -2,6 +2,7 @@
 import os
 import sys
 import time
+import shutil
 from textwrap import dedent # I took this from the solutions code because I thought it was great
 
 # The names come from dogs that are in my office
@@ -55,11 +56,13 @@ def get_donor(donor_name):
 
 def send_thank_you_letter():
     while True:
-        print("type 'list' to get a list of donors")
+        print("type 'list' to get a list of donors or 'exit' to go back to the main menu")
         donor_name = input("Type in the name of a donor: ")
 
         if donor_name == "list":
             print_donors()
+        elif donor_name == "exit":
+            main_menu()
         else:
             break
 
@@ -69,7 +72,7 @@ def send_thank_you_letter():
             donated_amount = float(add_amount)
             break
         except ValueError:
-            print(f"\n🚨 '{add_amount}' is not a valid number. Please enter a valid number\n")
+            print(f"\n‼️  '{add_amount}' is not a valid number. Please enter a valid number\n")
 
     donor = get_donor(donor_name)
 
@@ -120,8 +123,11 @@ def send_letter_to_all_donors():
         outfile.write(thank_you_letter(donor_name))
 
         while True:
-            destination = f"./{name_destination_directory}/"
-            os.system(f"mv {source} {destination}")
+            try:
+                destination = f"./{name_destination_directory}/"
+                shutil.move(source, destination)
+            except FileExistsError:
+                print(f"‼️ already exists, please try again.")
             break
 
 
@@ -155,7 +161,7 @@ def main_menu():
 
             answer_dict.get(answer)()
         except TypeError:
-            print(f"\n🚨 {answer} is not a valid option, please type 1, 2, 3 or 4\n")
+            print(f"\n‼️  ️{answer} is not a valid option, please select from 1, 2, 3 or 4\n")
 
 
 if __name__ == "__main__":

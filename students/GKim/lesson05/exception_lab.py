@@ -17,7 +17,7 @@ def main():
 
     answer = safe_input("Who is Yoda? ")
 
-    if answer == None:
+    if answer is None:
         print("There was an error or you pressed ^Z, ^C, ^D!!")
     else:
         print("Yoda is...", answer)

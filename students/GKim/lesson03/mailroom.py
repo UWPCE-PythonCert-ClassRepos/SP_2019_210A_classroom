@@ -18,7 +18,7 @@ def clear_screen():
 
 def show_list():
     """
-    shows the donors in the list without donation amounts
+    shows the donors in the list with donation amounts
     \n"""
     print("#" * 9, "The Current Donor List", "#" * 9)
     index = 1
@@ -110,7 +110,7 @@ def report_menu():
     Welcome to the 'Create a Report option'!
 Enter 'MENU' to exit and return to the Main Menu
 Press Enter to continue
- >>> \n""")
+ >>>  """)
 
     return report_menu_answer
 
@@ -137,6 +137,7 @@ def create_report():
         if response.upper() == "MENU":
             break
         else:
+            clear_screen()
             stats_list = gen_stats(main_donors)
             stats_list.sort(key=lambda stats_list: stats_list[1],reverse=True)
             

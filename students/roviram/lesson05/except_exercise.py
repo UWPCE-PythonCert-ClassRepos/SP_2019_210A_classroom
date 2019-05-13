@@ -1,4 +1,10 @@
 #!/usr/bin/python
+#-----------------------------------------------------------------#
+# Dev: Miguel Rovira-Gonzalez
+# Changelog: Miguel Rovira-Gonzalez, Created Script, May 11th, 2019
+#------------------------------------------------------------------#
+
+# This is the desired output
 """"
 Spam, Spam, Spam, Spam, Beautiful Spam
 
@@ -25,14 +31,16 @@ first_try = ['spam', 'cheese', 'mr death']
 try:
     joke = fun(first_try[0])
 except NameError:
+    # This prints out spam, Spam, Spam, Spam, Beautiful Spam
     joke = fun(first_try[1])
-
 
 # Here is a try/except block. Add an else that prints not_joke
 try:
     not_joke = fun(first_try[2])
 except SyntaxError:
     print('Run Away!')
+else:
+    print(not_joke)
 
 # What did that do? You can think of else in this context, as well as in
 # loops as meaning: "else if nothing went wrong"
@@ -49,7 +57,10 @@ except SyntaxError:
 # Finally, while still in the try/except block and regardless of whether
 # there were any exceptions, call the function last_fun with no
 # parameters. (pun intended)
-
-langs = ['java', 'c', 'python']
-
-more_joke = more_fun(langs[0])
+try:
+    langs = ['java', 'c', 'python']
+    more_joke = more_fun(langs[0])
+except IndexError:
+    more_joke = more_fun(langs[1])
+finally:
+    last_fun()

@@ -23,7 +23,7 @@ except NameError:
 
 # Here is a try/except block. Add an else that prints not_joke
 try:
-    not_joke = fun(first_try[2])git 
+    not_joke = fun(first_try[2])
 except SyntaxError:
     print('Run Away!')
 else:

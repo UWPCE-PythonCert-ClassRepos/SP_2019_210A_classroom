@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/string_formatting.html
 # This is missing some tasks since I didn't notice these exercises existed until I was halfway through with the mailroom excersize.
 
 def task_one():
@@ -38,3 +38,7 @@ def task_five():
     print(f"The weight of an {orange.upper()} is {orange_weight * 1.2} and the weight of a {lemon.upper()} is {lemon_weight * 1.2}")
 
 task_five()
+
+
+if __name__ == "__main__":
+    main()

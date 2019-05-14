@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Source:
+# https://towardsdatascience.com/blockchain-explained-in-7-python-functions-c49c84f34ba5
+
 import json
 import hashlib
 

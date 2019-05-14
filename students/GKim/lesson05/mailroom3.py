@@ -84,25 +84,36 @@ def add_donations():
     """
     Adding donation amount from existing or new donor
     """
-    clear_screen()
-    name = input("Enter a Name (new or existing): \n>> ")
     while True:
-        donation_amt = input ("Enter donated amount: \n>> ")
-        if not donation_amt:
+        clear_screen()
+        name = input("Enter a Name (new or existing): \n>> ")
+        if name == "":
+            print("Name must not be blank space\n")
             return
-        amount = float(donation_amt)    
-        if math.isnan(amount) or math.isinf(amount) or round(amount, 2) == 0.00:
-            print("error: donation amount is invalid\n")
-            continue
-        else:
-            break
+        try:
+            donation_amt = input ("Enter donated amount: \n>> ")
+            if not donation_amt:
+                clear_screen()
+                print("""You can not enter a blank value.\nPlease enter a number\n""")
+                return
+            amount = float(donation_amt)    
+            if math.isnan(amount) or math.isinf(amount) or round(amount, 2) == 0.00:
+                print("error: donation amount is invalid\n")
+                continue
+            else:
+                break
 
+        except ValueError:
+            clear_screen()
+            print("\nYou must enter a numeric value (ex. 10.99)\n")
+            return
+        
     donor = donor_name(name)
     if donor is None :
         donor = add_donor(name)
     
     donor.append(amount)
-    print(send_email(name, amount))
+    print(send_email(name.title(), amount))
 
 
 def create_report():
@@ -151,7 +162,7 @@ def return_to_menu():
     return True
 
 def quit():
-    print("You are leaving the Mailroom!")
+    print("Exiting the Mailroom!")
     sys.exit()
 
 
@@ -162,7 +173,7 @@ def send_thank_you():
     """
     # Read a valid donor to send a thank you from, handling special commands to
     # let the user navigate as defined.
-    prompt = ("'Send a Thank You' options:\n\n"
+    prompt = ("'Send a Thank You' Menu Options:\n\n"
               "1: Update donor and send 'Thank-You'\n"
               "2: List all existing DONORS\n"
               "3: Return to Main Menu\n > ")
@@ -209,12 +220,7 @@ def run_menu(prompt, selection_dict):
             if action():
                 # break out of the loop if action returns True
                 break
-    
-
-
-# def main():
-#     mailroom_main()
-
+  
 if __name__ == "__main__": 
 
     donors_db = main_donors_db()

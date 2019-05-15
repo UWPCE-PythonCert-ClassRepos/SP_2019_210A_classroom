@@ -16,10 +16,22 @@ May 14, 2019
 
 A collection of notes to go over in class, to keep things organized.
 
+So I don't forget!!!
+====================
+
+I (Chris) will be out of town this weekend, next week, and the following weekend: Bryan will be covering class next week, and hopefully office hours over the weekends. Look for info from him about that.
+
+I'll be back the following week, then off again, so we're starting to transition to Bryan for the rest of the class.
+
+
 Lightning Talks
 ===============
 
+Sarah Rickli
 
+Fred Ballyns
+
+As usual -- we'll do these mid-class
 
 mailroom 4!!!!
 ==============
@@ -28,41 +40,27 @@ mailroom 4!!!!
 
 What if I haven't gotten version 2 done yet???
 
+It all builds on itself -- so no need to do each intermediate step if you haven't already. If you submit a well tested mailroom with some use of dictionaries and exception handling, we'll give you credit for all of them.
+
 
 Issues that came up during the week.
 ====================================
-
-looping through a dict
-----------------------
-
-If you need just the keys::
-
-    for k in a_dict:
-       ...
-
-If you need just the values::
-
-    for v in a_dict.values():
-       ...
-
-If you need both::
-
-    for k, v in a_dict.items():
-       ...
 
 
 dict as switch -- how do you leave the loop?
 --------------------------------------------
 
-Let's look at a particularly nifty solution:
+Let's look at my solution:
 
-``solutions/Lesson05/mailroom_dict_as_switch``
+``solutions/Lesson04/mailroom2.py``
 
 
 quit()
 ------
 
-In my solution to mailroom, I created a function called ``quit`` to quit the program. THat is not a great idea, as there is a built-in called ``quit``.  In my defense, the ``quit()`` built-in didn't exist when I learned Python :-).
+In my solution to mailroom, I created a function called ``quit`` to quit the program. That is not a great idea, as there is a built-in called ``quit``.  In my defense, the ``quit()`` built-in didn't exist when I learned Python :-).
+
+but you can simply put the built-in ``quit`` in your switch dict.
 
 ``readlines()`` ?
 -----------------

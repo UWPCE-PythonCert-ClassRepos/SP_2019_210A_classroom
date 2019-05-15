@@ -72,8 +72,13 @@ May 7, 2019
 Miguel Antonio Rovira-Gonzalez
 ..............................
 
+Using Python to drive Selenium -- automate interacting with web sites.
+
 Lincoln Zhang
 .............
+
+Automating tasks: The os module
+
 
 Week 6
 ------

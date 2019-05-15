@@ -47,7 +47,7 @@ def generate_all_thankyou_emails(donors):
 
     for donor in donors:
         total_donated = round(sum(donors[donor]), 2)
-        most_recent_donation = donors[donor][0]
+        most_recent_donation = donors[donor][-1]
         email_message = f"Dear {donor},\nThank you for your recent donation of ${most_recent_donation}! In total, " \
                         f"you've donated {total_donated}!\n\n"
 

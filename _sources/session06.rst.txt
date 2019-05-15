@@ -173,7 +173,8 @@ AND -- we'll use TDD to do it.
 
 Exercise here:
 
-https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/args_kwargs_lab.html
+`args_kwargs_lab <https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/args_kwargs_lab.html>`_
+
 
 
 

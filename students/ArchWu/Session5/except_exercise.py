@@ -56,3 +56,7 @@ try:
     more_jokez = more_fun(langs[1])
 except:
     pass
+try:
+    last_fun()
+except:
+    pass

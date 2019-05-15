@@ -149,9 +149,9 @@ def main_menu():
     >>> """)
         print(f"You selected {answer}")
 
-        try:
-            answer = answer.strip()
+        answer = answer.strip()
 
+        try:
             answer_dict = {
                 "1": send_thank_you_letter,
                 "2": report,

@@ -19,6 +19,11 @@ A collection of notes to go over in class, to keep things organized.
 Lightning Talks
 ===============
 
+Rimlee Talukdar
+
+Joseph Charles Nunnelley
+
+
 Issues that came up during the week.
 ====================================
 

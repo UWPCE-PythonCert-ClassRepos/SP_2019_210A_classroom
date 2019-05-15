@@ -4,9 +4,5 @@ import pytest
 
 from mailroom import *
 
-print('begin testing...')
-
-
-
-
-print('end testing...')
+def test_add_donation():
+    assert(add_donations())

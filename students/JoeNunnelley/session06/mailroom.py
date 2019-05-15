@@ -251,8 +251,7 @@ def main():
         print("You chose: {}".format(response))
 
         try:
-            operation = operations[response]
-            operation()
+            operations[response]()
         except KeyError:
             print('Invalid input. Please input a valid number.')
 

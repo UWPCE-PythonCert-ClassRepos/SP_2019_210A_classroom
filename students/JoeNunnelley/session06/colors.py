@@ -1,0 +1,8 @@
+#! /usr/bin/env python3
+
+def colors(fore_color='black',
+           back_color='white',
+           link_color='yellow',
+           visited_color='blue'):
+
+    return (fore_color, back_color, link_color, visited_color)

@@ -45,7 +45,7 @@ def thank_you():
                 print(donor)
         elif answer == 'quit':
             return
-        elif answer in [donor[0] for donor in donors]:
+        elif answer in donor:
             name = answer
             new_user = False
             break

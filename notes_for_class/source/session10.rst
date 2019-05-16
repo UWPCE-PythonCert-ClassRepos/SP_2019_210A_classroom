@@ -17,6 +17,11 @@ A collection of notes to go over in class, to keep things organized.
 Lightning Talks
 ===============
 
+Arch Wu
+
+Tyler Ray
+
+
 Issues that came up during the week.
 ====================================
 

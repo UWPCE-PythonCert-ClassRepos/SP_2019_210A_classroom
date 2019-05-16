@@ -61,13 +61,14 @@ s4 = set()
 def loop_over_numbers():
     for number in range(1, 21):
         if number % 2 == 0:
-            s2.update([number])
+            # s2.update([number])
+            s2.add(number)
             print(s2)
         elif number % 3 == 0:
-            s3.update([number])
+            s3.add(number)
             print(f"s3: {s3}")
         elif number % 4 == 0:
-            s4.update([number])
+            s4.add(number)
             print(f"S4: {s4}")
 
     print(s2)

@@ -105,7 +105,7 @@ def send_letters():
     for dict_donors in donors:
         with open(dict_donors["Name"] + ".txt", "w") as file_output:
             file_output.write("Dear {},\n\n"
-                  "\t\tThank you for your most recent generous donation of {}.".format(dict_donors["Name"], dict_donors["Donation Amount"][-1]))
+                  "\t\tThank you for your most recent generous donation of ${}.".format(dict_donors["Name"], dict_donors["Donation Amount"][-1]))
     print("We have sent letters to all the donors! ")
 
 def main_menu():

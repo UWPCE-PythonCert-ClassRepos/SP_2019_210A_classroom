@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import sys
 import time
+from textwrap import dedent # I took this from the solutions code because I thought it was great
+
+# "{:.>20}".format("${:,.2f}".format(123.3214))
 
 donors_list = [("Rufio", [897, 200, 200]),
                ("Maggie", [543, 2, 3000]),
@@ -8,10 +11,6 @@ donors_list = [("Rufio", [897, 200, 200]),
                ("Kramer", [10, 87, 886]),
                ("Polly", [432, 32, 7896])
                ]
-
-
-def thank_you():
-    find_donor()
 
 
 def gen_stats(donor):
@@ -24,43 +23,92 @@ def gen_stats(donor):
 
 
 def report():
-    print("Generating report...")
+    print("📊 Generating report...")
     time.sleep(1)  # dramatic effect of creating the report
-    generate_report_template()
-    # gen_stats(donor)
+    print_donor_report()
 
 
-def generate_report_template():
-    donor_name = "Donor Name"
-    total_given = "Total Given"
-    num_gifts = "Num Gifts"
-    average_gift = "Average Gift"
+def print_donor_report():
+    report_rows = []
+    for (donor_name, gifts) in donors_list:
+        total_gifts = sum(gifts)
+        num_gifts = len(gifts)
+        avg_gift = total_gifts / num_gifts
+        report_rows.append((donor_name, total_gifts, num_gifts, avg_gift))
 
-    print(f"{donor_name}           |  {total_given}   |  {num_gifts}   |  {average_gift}")
-    print("-" * 68)
+    report_rows.sort(key=sort_key, reverse=True)
+
+    print("{:25s} | {:11s} | {:9s} | {:12s}".format(
+          "Donor Name", "Total Given", "Num Gifts", "Average Gift"))
+    print("-" * 66)
+
+    for row in report_rows:
+        print("{:25s}   {:11.2f}   {:9d}   {:12.2f}".format(*row))
 
 
-def find_donor():
-    print("Type 'list' to get a list of donors")
-    donor_name = input("Type in the name of a donor: ")
+def print_donors():
+    print("\nHere is your list of donors:\n")
+    print(f"Donor Names      ")
+    print("-" * 12)
+    for donor in donors_list:
+        print(donor[0])
 
-    if donor_name == "list":
-        print("\nHere is your list of donors:\n")
-        for donor in donors_list:
-            print(f"Donors are: {donor}")
-    else:
-        for donor in donors_list:
-            if donor_name == donor[0]:
-                print(f"Found donor: {donor_name}")
+
+def get_donor(donor_name):
+    for donor in donors_list:
+        if donor_name.strip().lower() == donor[0].lower():
+            return donor
+    return None
+
+
+def send_thank_you_letter():
+    while True:
+        print("type 'list' to get a list of donors")
+        donor_name = input("Type in the name of a donor: ")
+
+        if donor_name == "list":
+            print_donors()
         else:
-            donors_list.append(donor_name)
-            print(f"Adding {donor_name} to the list of donors.")
+            break
+
+    while True:
+        add_amount = input("Enter an amount to donate: ")
+        donated_amount = float(add_amount)
+        break
+
+    donor = get_donor(donor_name)
+
+    if donor is None:
+        donor = (donor_name, [])
+        donors_list.append(donor)
+
+    donor[1].append(donated_amount)
+    print(thank_you_letter(donor))
+
+
+# Just the thank you letter
+def thank_you_letter(donor):
+    thank_you_letter = f"""
+        Hi {donor[0]},
+
+        Your donation of ${donor[1][-1]} has been saved and is greatly appreciated.
+
+        Thank you,
+            - Some team that build Mailroom
+    """
+
+    return dedent(thank_you_letter)
+
+
+def sort_key(item):
+    donor = get_donor(item[0])
+    return sum(donor[1])
 
 
 def quit():
     print("Quitting Mailroom...")
     time.sleep(.5)
-    print("Goodbye")
+    print("Goodbye 👋")
     sys.exit(0)
 
 
@@ -76,7 +124,7 @@ def main_menu():
 
         answer = answer.strip()
         if answer == "1":
-            thank_you()
+            send_thank_you_letter()
         elif answer == "2":
             report()
         elif answer == "3":
@@ -87,8 +135,4 @@ def main_menu():
 
 if __name__ == "__main__":
     print("Welcome to the Mailroom")
-
-    donor = ("fred flinstone"), [100, 50, 600]
-    # assert gen_stats(donor) == ("fred flinstone"), [750, 3, 250.0]
-
     main_menu()

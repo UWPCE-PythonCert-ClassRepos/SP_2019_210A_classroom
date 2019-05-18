@@ -64,9 +64,7 @@ def text_gen():
     k_list = []
     for k,v in trigrams.items():
         k_list.append(k)
-
-    a1,b1 = k_list[0]
-    print(a,b,trigrams[k_list[0]])
+    
     s = random.choice(k_list)
     a,b = s
     print(a,b,trigrams[s])
@@ -83,4 +81,4 @@ def text_gen():
 
 
 if __name__ == "__main__":
-    print(text_gen())
+    text_gen()

@@ -48,5 +48,8 @@ def test_find_donor():
 
 def test_gen_stats():
     result = mailroom_part4.gen_stats([1,2,3])
-    result
     assert result[:2] == (6,3)
+
+def test_gen_report():
+    mailroom_part4.gen_report({"Bob":[11.2]})
+    assert row == "Donor Name            | Total Given |  Num Gifts  | Average Gift"

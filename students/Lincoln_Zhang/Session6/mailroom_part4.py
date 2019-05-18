@@ -83,8 +83,7 @@ def Mail_to_donors(a_dict):
     and store the letters in letters.txt file
     """
     with open ("letters.txt","w+") as f:
-        for item in a_dict.items():
-            name,amount = item
+        for name,amount in a_dict.items():
             amount = sum(amount)
             letter = gen_letter(name, amount)
             print(letter)
@@ -154,17 +153,14 @@ def gen_report(a_dict):
     this func is to print a table of donors_db to screen
     """
 
-    header = "{:<20}  |{:^10}|{:^10}|{:>10}".format("Donor Name","Total Given","Num Gifts","Average Gift")
+    # header = "{:<20}  |{:^10}|{:^10}|{:>10}".format("Donor Name","Total Given","Num Gifts","Average Gift")
 
     header = "{:<20}  |{:^13}|{:^13}|{:>13}".format("Donor Name","Total Given","Num Gifts","Average Gift")
 
     print(header)
-    for item in a_dict.items():
-        k,v = item
+    for k,v in a_dict.items():
         total, num, avg = gen_stats(v)
-
         row = "{:<20}  ${:^13} {:^13}${:>13}".format(k,total,num,avg)
-
         print(row)
 
 def Sys_Quit(*arg):

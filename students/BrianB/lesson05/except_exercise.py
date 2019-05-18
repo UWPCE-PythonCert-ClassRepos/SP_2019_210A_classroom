@@ -20,7 +20,6 @@ except NameError:
     pass
 
 
-
 # Here is a try/except block. Add an else that prints not_joke
 try:
     fun(first_try[1])

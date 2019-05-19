@@ -13,9 +13,9 @@ def colors(fore_color='black',
 
 
 
-def colors2(*foo, **kwargs):
+def colors2(foo, *args, **kwargs):
 
     # print("back_color:", back_color)
-    print("args:", foo)
+    print("args:", args)
     print("kwargs:", kwargs)
-    return foo, kwargs
+    return args, kwargs

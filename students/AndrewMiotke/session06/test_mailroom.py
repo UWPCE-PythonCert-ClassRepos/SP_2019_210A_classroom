@@ -1,10 +1,33 @@
 """Test for mailroom"""
 import pytest
-import mailroom as mr
+import mailroom
 
-def test_thank_you_letter():
-    letter = mr.thank_you_letter(("Rufio", [897, 200, 200]))
 
-    # Break the letter down testing the name and value amount.
-    # The rest of the letter is trivial
-    assert letter.startswith == "Hi Rufio"
+def test_donor_list():
+    database = mailroom.donors_list
+
+    assert "Rufio" in database
+    assert "Gus" in database
+    assert "Spike" not in database
+
+
+def test_get_donor_not():
+    donor = mailroom.get_donor("Lemon")
+
+    assert donor is None
+
+
+def test_send_thank_you_letter():
+    donor = ("Rufio", [897, 200 , 200])
+    letter = mailroom.thank_you_letter(donor)
+
+    assert "Rufio" in letter
+    assert "$200" in letter
+
+
+def test_add_donor():
+    donor_name = "Lemon    "
+    donor_to_add = mailroom.add_donor(donor_name)
+    # database = mailroom.donors_list
+
+    assert donor_to_add == ("Lemon", [])

@@ -3,15 +3,15 @@ import os
 import sys
 import time
 import shutil
-from textwrap import dedent # I took this from the solutions code because I thought it was great
+from textwrap import dedent
 
-# The names come from dogs that are in my office
-donors_list = [("Rufio", [897, 200, 200]),
-               ("Maggie", [543, 2, 3000]),
-               ("Gus", [23, 32, 33222]),
-               ("Kramer", [10, 87, 886]),
-               ("Polly", [432, 32, 7896])
-               ]
+
+donors_list = {"Rufio": ("Rufio", [897, 200 , 200]),
+               "Maggie": ("Maggie", [543, 2, 3000]),
+               "Gus": ("Gus", [23, 32, 33222]),
+               "Kramer": ("Kramer", [10, 87, 886]),
+               "Polly": ("Polly", [432, 32, 7896]),
+              }
 
 
 def report():
@@ -22,7 +22,7 @@ def report():
 
 def print_donor_report():
     report_rows = []
-    for (donor_name, gifts) in donors_list:
+    for (donor_name, gifts) in donors_list.values():
         total_gifts = sum(gifts)
         num_gifts = len(gifts)
         avg_gift = total_gifts / num_gifts
@@ -30,8 +30,7 @@ def print_donor_report():
 
     report_rows.sort(key=sort_key, reverse=True)
 
-    print("{:25s} | {:11s} | {:9s} | {:12s}".format(
-          "Donor Name", "Total Given", "Num Gifts", "Average Gift"))
+    print("{:25s} | {:11s} | {:9s} | {:12s}".format("Donor Name", "Total Given", "Num Gifts", "Average Gift"))
     print("-" * 66)
 
     for row in report_rows:
@@ -43,15 +42,21 @@ def print_donors():
     print("{:6s}".format("Donor Name"))
     print("-" * 12)
     for donor in donors_list:
-        print(donor[0])
+        print(donor)
 
 
 def get_donor(donor_name):
-    for donor in donors_list:
-        if donor_name.strip().lower() == donor[0].lower():
-            return donor
+    key = donor_name.strip().lower()
 
-    return None
+    return donors_list.get(key)
+
+
+def add_donor(donor_name):
+    donor_name = donor_name.strip()
+    donor = (donor_name, [])
+    donors_list[donor_name.lower()] = donor
+
+    return donor
 
 
 def send_thank_you_letter():
@@ -77,14 +82,12 @@ def send_thank_you_letter():
     donor = get_donor(donor_name)
 
     if donor is None:
-        donor = (donor_name, [])
-        donors_list.append(donor)
+        donor = add_donor(donor_name)
 
     donor[1].append(donated_amount)
     print(thank_you_letter(donor))
 
 
-# Just the thank you letter
 def thank_you_letter(donor):
     thank_you_letter = f"""
         Hi {donor[0]},
@@ -99,8 +102,7 @@ def thank_you_letter(donor):
 
 
 def sort_key(item):
-    donor = get_donor(item[0])
-    return sum(donor[1])
+    return item[1]
 
 
 def send_letter_to_all_donors():
@@ -113,7 +115,7 @@ def send_letter_to_all_donors():
     name_destination_directory = input("Name the directory to save the letters: ")
     os.mkdir(f"./{name_destination_directory}")
 
-    for donor_name in donors_list:
+    for donor_name in donors_list.values():
         time.sleep(.5)
         source = f"{donor_name[0]}.txt"
         print(f"✅ Thank you letter created for: {source}")
@@ -170,3 +172,4 @@ if __name__ == "__main__":
     # send_letter_to_all_donors()
     # quit()
     # report()
+    # get_donor("Rufio")

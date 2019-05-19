@@ -34,14 +34,15 @@ fruit_list.remove(delete_fruit)
 print(fruit_list)
 
 # Series Three
-while True:
-    for favorite_fruit in fruit_list:
-        users_favorite_fruit = input(f"do you like {favorite_fruit.lower()}, yes or no? ")
-        if users_favorite_fruit == "no":
-            fruit_list.remove(favorite_fruit)
-            print(fruit_list)
-        elif users_favorite_fruit != "yes" or "no":
-            print(fruit_list)
+for favorite_fruit in fruit_list:
+    users_favorite_fruit = input(f"do you like {favorite_fruit.lower()}, yes or no? ")
+    if users_favorite_fruit == "no":
+        fruit_list.remove(favorite_fruit)
+        print()
+        print(fruit_list)
+        print()
+    elif users_favorite_fruit != "yes" or "no":
+        print(fruit_list)
 
 # Series Four
 reversed_list = fruit_list

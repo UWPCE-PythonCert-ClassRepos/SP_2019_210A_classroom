@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
-"""Lesson 4: Trigrams Lab"""
+"""Lesson 4: Trigrams Lab
+
+Note: Have refrenced another classmates solution
+
+"""
 
 import random
 

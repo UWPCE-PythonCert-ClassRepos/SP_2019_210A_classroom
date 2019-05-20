@@ -31,6 +31,7 @@ UI_MENU = {'Main':  """
            'Directory Select': "Directory? ",}
 
 
+# no tests
 def send_thankyou():
     """
     Send a Thank You
@@ -50,7 +51,7 @@ def send_thankyou():
     donors that had been added, in other words, to forget new donors once
     the script quits running.
     """
-    donor = select_donor()
+    donor = prompt_for_donor()
 
     if donor:
         added_donations = add_donations()
@@ -65,6 +66,7 @@ def send_thankyou():
     print()
 
 
+# tested elsewhere
 def sort_by_donation_total(item):
     """
     This function is used to sort a list based on a specific key
@@ -72,6 +74,50 @@ def sort_by_donation_total(item):
     return item[1]
 
 
+def generate_report_rows_raw(donor_set):
+    """Given a set of donors, create a sorted list of report rows"""
+    rows_list = []
+
+    for donor, donations in donor_set.items():
+        donation_count = len(donations)
+        summed_donations = sum([donation for donation in donations if donation_count])
+
+        try:
+            average_donations = summed_donations / donation_count
+        except ZeroDivisionError:
+            print('Error: Divide by Zero')
+            average_donations = 0
+
+        row = [donor,
+               summed_donations,
+               donation_count,
+               average_donations]
+        rows_list.append(row)
+
+    rows_list.sort(key=sort_by_donation_total, reverse=True)
+    return rows_list
+
+
+def generate_report_rows_formatted(report_rows_raw):
+    """Given the raw row data, create a collection of formatted rows"""
+    header_format = '{:<24}|{:^14}|{:^12}|{:>13}'
+    row_format = '{:<24} ${:>13.2f} {:>12} ${:>13.2f}'
+    report_rows_formatted = []
+    report_rows_formatted.append(header_format.format('Donor Name',
+                                                      'Total Given',
+                                                      'Num Gifts',
+                                                      'Average Gift'))
+    report_rows_formatted.append('-' * 68)
+
+    for row in report_rows_raw:
+        report_rows_formatted.append(row_format.format(*row))
+
+    report_rows_formatted.append('-' * 68)
+
+    return report_rows_formatted
+
+
+# tests
 def print_report():
     """
     Create a Report
@@ -89,50 +135,23 @@ def print_report():
         Paul Allen                 $     708.42           3  $      236.14
     """
     print('\nPrinting Report...\n')
-    header_format = '{:<24}|{:^14}|{:^12}|{:>13}'
-    row_format = '{:<24} ${:>13.2f} {:>12} ${:>13.2f}'
-    print(header_format.format('Donor Name',
-                               'Total Given',
-                               'Num Gifts',
-                               'Average Gift'))
-    print('-' * 68)
-    row_list = []
-    for donor, donations in DONOR_SET.items():
-        donation_count = len(donations)
-        summed_donations = sum([donation for donation in donations if donation_count])
+    report_rows_raw = generate_report_rows_raw(DONOR_SET)
+    report_rows_formatted = generate_report_rows_formatted(report_rows_raw)
 
-        try:
-            average_donations = summed_donations / donation_count
-        except ZeroDivisionError:
-            print('Error: Divide by Zero')
-            average_donations = 0
+    for row in report_rows_formatted:
+        print(row)
 
-        row = [donor,
-               summed_donations,
-               donation_count,
-               average_donations]
-        row_list.append(row)
-
-    row_list.sort(key=sort_by_donation_total, reverse=True)
-
-    for row in row_list:
-        print(row_format.format(row[0],
-                                row[1],
-                                row[2],
-                                row[3]))
-
-    print('-' * 68)
-    print()
-    print()
+    return (report_rows_raw, report_rows_formatted)
 
 
+# no tests
 def quit_program():
     """Quit the program and return success"""
     print('Mailroom Closing...')
     print()
     sys.exit(0)
 
-
+# tests
 def formulate_mail(donor_in, echo_terminal=True):
     """Send our donor a thank you mail"""
     message = {}
@@ -163,7 +182,7 @@ def formulate_mail(donor_in, echo_terminal=True):
 
     return final_message
 
-
+# tests
 def add_donations():
     """Add donations to a user's record"""
     done = False
@@ -185,17 +204,23 @@ def add_donations():
     return donations
 
 
-def select_donor():
+# no tests
+def prompt_for_donor():
     """Select a donor to update or use"""
     print('Type "list" to see donor list')
     donor_name = input("Which donor? ")
+    return select_donor(donor_name)
 
+
+# tests
+def select_donor(donor_name):
     if donor_name == 'list':
         donor_id = 1
         for donor, donations in DONOR_SET.items():
             print('{:<4}: {:>20} | {:>50}'.format(donor_id, donor, str(donations)))
             donor_id += 1
         print()
+        return ''
     else:
         for donor, donations in DONOR_SET.items():
             if donor_name.upper() == donor.upper():
@@ -206,17 +231,24 @@ def select_donor():
         print('{} not found in donor list. Adding...'.format(donor_name))
         return (donor_name, DONOR_SET[donor_name])
 
-    return ''
+
+# no tests
+def select_output_directory():
+    """
+    Present the user with a UI to select the output folder
+    """
+    menu_ui = UI_MENU['Directory Select']
+    output_directory = input(menu_ui)
+    generate_thankyou_files(output_directory)
 
 
-def generate_thankyou_files():
+# tests
+def generate_thankyou_files(output_directory):
     """
     This function will output a set of thankyou files
     one for each donor which you can then send via email or
-    snailmail"""
-    menu_ui = UI_MENU['Directory Select']
-    output_directory = input(menu_ui)
-
+    snailmail
+    """
     if not output_directory or not os.path.isdir(output_directory):
         print('Output directory invalid.')
         output_directory = tempfile.gettempdir()
@@ -238,7 +270,7 @@ def main():
     """The main the program UI"""
     operations = {"1": send_thankyou,
                   "2": print_report,
-                  "3": generate_thankyou_files,
+                  "3": select_output_directory,
                   "4": quit_program}
 
     print('Starting Mailroom...')

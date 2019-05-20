@@ -49,7 +49,7 @@ def thank_you(name_input=None,donation_amt = None, new_name_decision = None):
     if name_input == None and donation_amt == None:
         while True:
             name_input = input("Please enter a full name, 'list' for a list of names, or 'back' to go back to previous menu \n>>>").strip()
-            if name_input in donors:
+            if name_input in donors: #if the name is already in donors, grab a donation amount from user and break the loop
                 while True:
                     try:
                         donation_amt = float(input("Please enter a donation amount: >>> "))
@@ -57,33 +57,33 @@ def thank_you(name_input=None,donation_amt = None, new_name_decision = None):
                     except ValueError:
                         print("Incorrect input, please input a number")
                 break
-            elif name_input == "list":
+            elif name_input == "list": #if user input is list, print a list of donor names and set name_input to None to continue loop
                 for name in donors:
                     print(name)
                 name_input = None
-            elif name_input == "back":
+            elif name_input == "back": #if name_input is back then return a string (breaks out of function)
                 return "returning to main menu"
-            else:
+            else: #if the name was not in donors, name_input does not equal "list" and name_input does not equal "back"
                 while True:
-                    try:
+                    try: #y or n are only valid inputs, check to see if user wants to input the new name. If valid input, break out of loop
                         new_name_decision = input(name_input + " not found, would you like to add a new donator? y/n \n>>>").strip()
-                        assert new_name_decision == "y" or "n"
+                        assert new_name_decision == "y" or new_name_decision == "n"
                         break
                     except AssertionError:
                         print("invalid input")
-                if new_name_decision == "n":
+                if new_name_decision == "n": #if user does not want to add a new name, set name_input to None to continue loop
                     name_input = None
                 else:
-                    while True:
+                    while True: #grab a donation amount with testing to make sure it is a float number
                         try:
                             donation_amt = float(input("Please enter a donation amount: >>> "))
                             break
                         except ValueError:
                             print("Incorrect input, please input a number")
-                break
-    if new_name_decision == "y":
+                    break
+    if new_name_decision == "y": #if this is a new name, add an item to the dictionary list with Name_input as key and donation as the first value
         donors.update({name_input:[[donation_amt],[]]})
-    else:
+    else: #if name already in donors, append a new value to the donations
         donors[name_input][0].append(donation_amt)
     return compose_thank_you(name_input)
 
@@ -98,7 +98,7 @@ def compose_thank_you(name_input):
         Local Charity """.format(name_input, int(donors[name_input][0][-1])))
 
 
-def report():
+def report(test = None):
     """
     return a report by adding a line for every name in the donor dictionary
     """
@@ -112,7 +112,11 @@ def report():
         # used variables even though it can be fit into 1 line for readability
         report_list.append(
             f"{donor:<20} $  {donors[donor][1][0]:>16,.2f} {donors[donor][1][1]:^12} $ {donors[donor][1][2]:>10,.2f}")
-    return "\n".join(report_list)
+    #for test, return the report_list so individual lines can be tested, if not then join the list with a new line and return that to print to console
+    if test == "y":
+        return report_list
+    else:
+        return "\n".join(report_list)
 
 
 def make_letters():

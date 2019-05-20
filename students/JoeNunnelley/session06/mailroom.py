@@ -31,7 +31,6 @@ UI_MENU = {'Main':  """
            'Directory Select': "Directory? ",}
 
 
-# no tests
 def send_thankyou():
     """
     Send a Thank You
@@ -66,7 +65,6 @@ def send_thankyou():
     print()
 
 
-# tested elsewhere
 def sort_by_donation_total(item):
     """
     This function is used to sort a list based on a specific key
@@ -102,22 +100,22 @@ def generate_report_rows_formatted(report_rows_raw):
     """Given the raw row data, create a collection of formatted rows"""
     header_format = '{:<24}|{:^14}|{:^12}|{:>13}'
     row_format = '{:<24} ${:>13.2f} {:>12} ${:>13.2f}'
+    report_width = 68
     report_rows_formatted = []
     report_rows_formatted.append(header_format.format('Donor Name',
                                                       'Total Given',
                                                       'Num Gifts',
                                                       'Average Gift'))
-    report_rows_formatted.append('-' * 68)
+    report_rows_formatted.append('-' * report_width)
 
     for row in report_rows_raw:
         report_rows_formatted.append(row_format.format(*row))
 
-    report_rows_formatted.append('-' * 68)
+    report_rows_formatted.append('-' * report_width)
 
     return report_rows_formatted
 
 
-# tests
 def print_report():
     """
     Create a Report
@@ -144,14 +142,13 @@ def print_report():
     return (report_rows_raw, report_rows_formatted)
 
 
-# no tests
 def quit_program():
     """Quit the program and return success"""
     print('Mailroom Closing...')
     print()
     sys.exit(0)
 
-# tests
+
 def formulate_mail(donor_in, echo_terminal=True):
     """Send our donor a thank you mail"""
     message = {}
@@ -182,7 +179,7 @@ def formulate_mail(donor_in, echo_terminal=True):
 
     return final_message
 
-# tests
+
 def add_donations():
     """Add donations to a user's record"""
     done = False
@@ -204,7 +201,6 @@ def add_donations():
     return donations
 
 
-# no tests
 def prompt_for_donor():
     """Select a donor to update or use"""
     print('Type "list" to see donor list')
@@ -212,8 +208,8 @@ def prompt_for_donor():
     return select_donor(donor_name)
 
 
-# tests
 def select_donor(donor_name):
+    """Find or create a donor in the donor set"""
     if donor_name == 'list':
         donor_id = 1
         for donor, donations in DONOR_SET.items():
@@ -221,18 +217,17 @@ def select_donor(donor_name):
             donor_id += 1
         print()
         return ''
-    else:
-        for donor, donations in DONOR_SET.items():
-            if donor_name.upper() == donor.upper():
-                print('Found {}'.format(donor_name))
-                return (donor, donations)
 
-        DONOR_SET[donor_name] = []
-        print('{} not found in donor list. Adding...'.format(donor_name))
-        return (donor_name, DONOR_SET[donor_name])
+    for donor, donations in DONOR_SET.items():
+        if donor_name.upper() == donor.upper():
+            print('Found {}'.format(donor_name))
+            return (donor, donations)
+
+    DONOR_SET[donor_name] = []
+    print('{} not found in donor list. Adding...'.format(donor_name))
+    return (donor_name, DONOR_SET[donor_name])
 
 
-# no tests
 def select_output_directory():
     """
     Present the user with a UI to select the output folder
@@ -242,7 +237,6 @@ def select_output_directory():
     generate_thankyou_files(output_directory)
 
 
-# tests
 def generate_thankyou_files(output_directory):
     """
     This function will output a set of thankyou files
@@ -289,4 +283,4 @@ def main():
 
 
 if __name__ == "__main__":
-  main()
+    main()

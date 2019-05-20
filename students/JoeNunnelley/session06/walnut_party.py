@@ -12,8 +12,8 @@ or False otherwise.
 
 
 def walnut_party(walnuts, is_weekend):
-    if is_weekend and walnuts >= 40:
-        return True
-    elif not is_weekend and (walnuts >= 40 and walnuts <= 60):
-        return True
-    return False
+    """Check for successful party"""
+    success = True
+    if (is_weekend and walnuts < 40) or (not is_weekend and walnuts not in range(40, 61)):
+        return False
+    return success

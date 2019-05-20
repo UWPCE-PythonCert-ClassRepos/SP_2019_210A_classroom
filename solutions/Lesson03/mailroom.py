@@ -7,6 +7,8 @@ Mailroom Exercise -- as of Session 3 -- no dictionaries or Exceptions
 from textwrap import dedent  # nifty utility!
 import math
 
+from operator import itemgetter
+
 # In memory representation of the donor database
 # using a tuple for each donor
 # -- kind of like a record in a database table
@@ -19,7 +21,8 @@ donor_db = [("William Gates, III", [653772.32, 12.17]),
             ("Mark Zuckerberg", [1663.23, 4300.87, 10432.0]),
             ]
 
-#loop through the donor list and print the 0th element of the list
+
+# loop through the donor list and print the 0th element of the list
 def print_donors():
     print("Donor list:\n")
     for donor in donor_db:
@@ -121,7 +124,8 @@ def send_thank_you():
 
 
 def sort_key(item):
-    return item[1]
+    donor = find_donor(item[0])
+    return sum(donor[1])
 
 
 def print_donor_report():
@@ -137,7 +141,8 @@ def print_donor_report():
         report_rows.append((name, total_gifts, num_gifts, avg_gift))
 
     # sort the report data
-    report_rows.sort(key=sort_key)
+    report_rows.sort(key=sort_key, reverse=True)
+    # report_rows.sort(key=itemgetter(1), reverse=True)
     # print it out in with a nice format.
     print("{:25s} | {:11s} | {:9s} | {:12s}".format(
           "Donor Name", "Total Given", "Num Gifts", "Average Gift"))

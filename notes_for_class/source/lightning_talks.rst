@@ -1,4 +1,3 @@
-:orphan:
 
 .. _lightning_talks:
 
@@ -34,6 +33,7 @@ Week 3
 April 23, 2019
 
 Charlie England
+Main Topic: Neural Networks
 ...............
 
 Neural networks!
@@ -71,8 +71,13 @@ May 7, 2019
 Miguel Antonio Rovira-Gonzalez
 ..............................
 
+Using Python to drive Selenium -- automate interacting with web sites.
+
 Lincoln Zhang
 .............
+
+Automating tasks: The os module
+
 
 Week 6
 ------

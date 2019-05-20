@@ -17,11 +17,10 @@ donors = [
         ("Emma DaFoe", [200, 40520, 5000, 100, 400]),
         ("Pepper", [5, 20, 100]),
         ("Vicky Gonzalez", [600, 9000, 10]),
-        ("Cristin Rovira", [25, 50, 75]),
+        ("Cristina Rovira", [25, 50, 75]),
     ]
 
-report_list = []
-new_donor = []
+#donation_amount = []
 
 # Processing
 def gen_stats(donors):
@@ -44,8 +43,7 @@ def create_report(report_donors):
     print("{:<20} | {:^15} | {:>15} | {:>15}".format("Name of Donor", "Total Donation Amount", "Number of Donations", "Average Gift Amount"))
     print("-"*89)
     for index, donor in enumerate(stats_list):
-        print(str(index + 1) + ".", "{:<20}${:^15}{:>15}\t\t\t\t{}{:>15}".format(donor[0], donor[1], donor[2],"$",donor[3]))
-    return report_list
+        print(str(index + 1) + ".", "{:<20}${:^15}{:>15}\t\t\t\t{}{:>15}".format(donor[0], donor[1], donor[2], "$", donor[3]))
 
 #create_report(donors)
 def intro():
@@ -58,32 +56,39 @@ def thank_you():
 
     while True:
         list_answer = input("\nThank you notes are always appreciated!\n"
-                            "Want to see the list of donors to send a 'Thank You' too? (type 'Yes' or 'No')")
+                            "Want to see the list of donors to send a 'Thank You' too? (type 'Yes' or 'No ') ")
         # Cleaning up the Users Answer
         if list_answer.upper().strip() == 'YES':
-            print(donors)
+            for donor in donors:
+                print(donor)
 
         # Prompt Donor Name
-        donor_name = input("Please enter the donor name: ")
+        donor_name = input("\nPlease enter the donor name: ")
 
         print("You typed:", donor_name)
         match = False
         for donor in donors:
             if donor_name.lower() == donor[0].lower():
-                print("Cool, I found that donor")
+                print("\nCool, I found that donor")
                 match = True
-
-        if not match:
+        #Checking if match is true
+        if match:
+            pass
+        else:
             print("I didn't find that donor, I am adding them to our database now")
-            donation_amount = int(input("How much did they donate?:"))
-            donors.append((donor_name, [donation_amount]))
+            donors.append((donor_name, []))
+
+        donation_amount = float(input("\nHow much did they donate?: "))
+        for donor in donors:
+            if donor[0] == donor_name:
+                donor[1].append(donation_amount)
 
         print()
         print("Time to send a thank you email!")
         print("Dear", donor_name + ",\n\n"
         "Thank you for your generous donation of", str(donation_amount) + ".", "\n\nEmail has been sent!")
 
-        menu_answer = input("Are you done? ('Yes' or 'No')")
+        menu_answer = input("Are you done? ('Yes' or 'No' ) ")
         if menu_answer.upper().strip() == 'YES':
             break
 

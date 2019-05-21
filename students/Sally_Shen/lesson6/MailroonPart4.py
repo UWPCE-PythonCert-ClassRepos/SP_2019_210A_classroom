@@ -88,6 +88,7 @@ def report():
         lineItem(name, amount, len(donors[name]), amount / len(donors[name])) for amount in sortedAmount for name in amountToNames[amount])
 
     print(output)
+    return output
 
 
 
@@ -102,7 +103,7 @@ def gen_thank_you_letters(a_dict):
         os.mkdir(dir)
     except FileExistsError:
         pass
-    os.chdir(dir)
+    os.cir(dir)
     for name, amount in donors.items():
         firstLastName = name.split()
         fileName = firstLastName[0] + "_" + firstLastName[1] + ".txt"
@@ -115,7 +116,6 @@ def gen_thank_you_letters(a_dict):
 
                                         Sincerely,
                                             - The Team'''.format(name, sum(amount)))
-
 
 def quit():
     print("quitting")

@@ -1,4 +1,5 @@
 import sys
+import os
 import tempfile
 donor_db = {"William Gates, III": [653772.32, 12.17],   
             "Jeff Bezos": [877.33],
@@ -84,12 +85,13 @@ def do_createreport():
 
 
 def do_sendlettertoalldonors():
-    dir_name = tempfile.mkdtemp(prefix = 'Letters-', dir = "C:/Users/rimle/SP_2019_210A_classroom/students/RimleeT/lesson04/")
+    dir_name = tempfile.mkdtemp(prefix = 'Letters-', dir = os.getcwd())
     for key, value in donor_db.items():
         total_donation = float(format(sum(value),'.2f'))
         x = f"Dear {key}\n\n\tThank you for your very kind donation of ${total_donation} It will be put to very good use. \n\nSincerely,  \nThe Team"
         f1 = tempfile.NamedTemporaryFile(prefix = key + '-', dir = dir_name, delete = False)
         f1.write(x.encode())
+        
 
 def do_quit():
 	print("--------Exit----------")

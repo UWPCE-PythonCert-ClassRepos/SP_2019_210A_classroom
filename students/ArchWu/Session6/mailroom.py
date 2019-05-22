@@ -50,7 +50,7 @@ def add_donation(name, donation):
 def generate_donor_report():
     """ Make a report on donations received by a style as specified """
     sorted_donors = sorted(donors.items(), reverse = True, key = lambda item: (sum(item[1][1])))
-    report_rows = [print("{0:25s}   {1:10.2f}   {2:9d}   {3:11.2f}".format(*gen_stats(donor))) for donor in sorted_donors]
+    report_rows = ["{0:25s}   {1:10.2f}   {2:9d}   {3:11.2f}".format(*gen_stats(donor)) for donor in sorted_donors]
     report = []
 
     report.append("{:25s} | {:11s} | {:9s} | {:12s}".format("Donor Name",
@@ -62,31 +62,6 @@ def generate_donor_report():
     for row in report_rows:
         report.append(row)
     return "\n".join(report)
-# def generate_donor_report():
-#     """
-#     Generate the report of the donors and amounts donated.
-#
-#     :returns: the donor report as a string.
-#     """
-#     # First, reduce the raw data into a summary list view
-#     report_rows = []
-#     for (name, gifts) in donors.values():
-#         total_gifts = sum(gifts)
-#         num_gifts = len(gifts)
-#         avg_gift = total_gifts / num_gifts
-#         report_rows.append((name, total_gifts, num_gifts, avg_gift))
-#
-#     # sort the report data
-#     report_rows.sort(key=itemgetter(1), reverse=True)
-#     report = []
-#     report.append("{:25s} | {:11s} | {:9s} | {:12s}".format("Donor Name",
-#                                                             "Total Given",
-#                                                             "Num Gifts",
-#                                                             "Average Gift"))
-#     report.append("-" * 66)
-#     for row in report_rows:
-#         report.append("{:25s}   ${:10.2f}   {:9d}   ${:11.2f}".format(*row))
-#     return "\n".join(report)
 
 
 def gen_stats(donor):

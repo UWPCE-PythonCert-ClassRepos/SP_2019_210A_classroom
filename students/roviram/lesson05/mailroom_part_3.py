@@ -91,7 +91,7 @@ def thank_you():
         donors[donor_name].append(donation_amount)
         print("\nTime to send a thank you email!")
         print(f"""Dear {donor_name},
-        
+
 Thank you for your generous donation of ${donation_amount}.
 Sincerely,
 
@@ -107,6 +107,7 @@ def send_letters(donors_dict):
     :param donor_name: name of the donor in our database
     :param donation_amount: the amount the donor donated
     """
+
     for donor in donors_dict:
         with open(donor + ".txt", "w") as file_output:
             file_output.write(f"""Dear {donor},
@@ -130,19 +131,20 @@ def main_menu():
                 "2) Create a Report \n"
                 "3) Send letters to all donors \n"
                 "4) Quit "))
-
-    # Thank You Note
-            if menu_answer == 1:
-                thank_you()
-                # Create a Report
-            elif menu_answer == 2:
-                create_report(donors)
-            elif menu_answer == 3:
-                send_letters(donors)
-            elif menu_answer == 4:
-                break
         except ValueError:
             print("\nThat's an incorrect input (it must be an integer), Please type 1, 2, 3, or 4)")
+            continue
+
+    # Thank You Note
+        if menu_answer == 1:
+            thank_you()
+            # Create a Report
+        elif menu_answer == 2:
+            create_report(donors)
+        elif menu_answer == 3:
+            send_letters(donors)
+        elif menu_answer == 4:
+            break
 
 
 # Input / Output

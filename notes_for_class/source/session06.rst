@@ -52,7 +52,7 @@ dict as switch -- how do you leave the loop?
 
 Let's look at my solution:
 
-``solutions/Lesson04/mailroom2.py``
+``solutions/Lesson05/mailroom3.py``
 
 
 quit()
@@ -102,9 +102,46 @@ For more on what "decode" means:
 
 `Unicode in Python <https://uwpce-pythoncert.github.io/PythonCertDevel/modules/Unicode.html?highlight=unicode>`_
 
+multiple values from a comprehension?
+-------------------------------------
+
+A few folks solved one the comp excercises this way:
+
+`dict(zip([number for number in range(start, stop + 1)], [hex(number) for number in range(start, stop + 1)]))`
+
+But .... I see two `range()` calls in there, that seems wasteful.
+
+Do you need that?
+
+You DO want a list (iterable) of tuples with the keys and values of the dict.
+
+What does zip() actually do?
+
+Can you do that "on the fly" in the comprehension?
+
+Hint: yes.
+
+And do we need a list here at all? maybe a generator comprehension instead?
+
+Exception Handling
+------------------
+
+Key point: Always catch your exceptions as close as you can to the source.
+
+Example: Miguel's code::
+
+  students/roviram/Lesson05/mailroom_part3.py
+
+
+
+
 
 Any Questions about the homework -- or anything?
 ------------------------------------------------
+
+Let's take a look at a comprehensions FizzBuzz::
+
+    solutions/Lesson05/fizz_buzz_comprehension.py
 
 review trigrams?
 
@@ -136,7 +173,8 @@ AND -- we'll use TDD to do it.
 
 Exercise here:
 
-https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/args_kwargs_lab.html
+`args_kwargs_lab <https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/args_kwargs_lab.html>`_
+
 
 
 

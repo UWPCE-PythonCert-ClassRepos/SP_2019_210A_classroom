@@ -15,11 +15,7 @@ from except_test import fun, more_fun, last_fun
 first_try = ['spam', 'cheese', 'mr death']
 
 try:
-    # joke = fun(first_try[0])
-    for i in first_try:
-        if i == "cheese":
-            joke = fun(first_try[1])
-
+    joke = fun(first_try[0])
 except NameError:
     print("Could not find S")
 
@@ -28,7 +24,6 @@ try:
     not_joke = fun(first_try[2])
 except SyntaxError:
     print('Run Away!')
-    more_fun()
 else:
     print(not_joke)
 
@@ -49,5 +44,11 @@ else:
 # parameters. (pun intended)
 
 langs = ['java', 'c', 'python']
-
-more_joke = more_fun(langs[0])
+try:
+    more_joke = more_fun(langs[0])
+except IndexError:
+    more_joke = more_fun(langs[1])
+else:
+    more_joke = more_fun(langs[-1])
+finally:
+    last_fun

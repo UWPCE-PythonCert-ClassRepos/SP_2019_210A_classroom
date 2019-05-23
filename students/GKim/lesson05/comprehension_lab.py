@@ -34,6 +34,7 @@ def print_dict(kwargs):
 
 def list_comp(start = None, stop = None):
     lst_comp = dict([(x, hex(x)) for x in range(start, stop +1)])
+    # lst_comp = dict(((x, hex(x)) for x in range(start, stop +1))) # use generator expression to iterate with out having to create another list to throw away
     # lst_comp = dict(zip([x for x in range(start, stop +1)], [hex(x) for x in range(start, stop +1)]))
     return lst_comp
 

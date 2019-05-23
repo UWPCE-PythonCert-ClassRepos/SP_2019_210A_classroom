@@ -19,6 +19,11 @@ A collection of notes to go over in class, to keep things organized.
 Lightning Talks (last)
 ======================
 
+Peter Berhe
+
+Jasneet Chandok
+
+
 Issues that came up during the week.
 ====================================
 

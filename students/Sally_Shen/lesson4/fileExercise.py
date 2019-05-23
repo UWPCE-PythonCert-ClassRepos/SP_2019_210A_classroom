@@ -62,28 +62,28 @@ def FormatStudents():
 
     original = []
     with open("students.txt", "r") as f:
-        original = f.readlines()
+        #original = f.readlines()
 
-    for line in original:
-        #print("originalLine: " + line.strip())
-        values = line.strip().split(":")
-        #print(values)
-        modifiedLine = values[0] + ": "
-        if not values[1]:
-            # nothing after colon, so append Nones
-            modifiedLine += " None, None"
-        else:
-            allItems = values[1].strip().split(", ")
-            # check if first item is nickname
-            firstItem = allItems[0]
-            if firstItem in languages:
-                # not a nick name, so add None
-                allItems.insert(0, "None")
+        for line in f:
+            #print("originalLine: " + line.strip())
+            values = line.strip().split(":")
+            #print(values)
+            modifiedLine = values[0] + ": "
+            if not values[1]:
+                # nothing after colon, so append Nones
+                modifiedLine += " None, None"
             else:
-                if len(allItems) == 1:
-                    allItems.append("None")
-            modifiedLine += ", ".join(allItems)
-        print(modifiedLine)
+                allItems = values[1].strip().split(", ")
+                # check if first item is nickname
+                firstItem = allItems[0]
+                if firstItem in languages:
+                    # not a nick name, so add None
+                    allItems.insert(0, "None")
+                else:
+                    if len(allItems) == 1:
+                        allItems.append("None")
+                modifiedLine += ", ".join(allItems)
+            print(modifiedLine)
 
 FormatStudents()
 

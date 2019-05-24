@@ -47,3 +47,36 @@ class Porsche(Car):
 p = Porsche("white", "manual", "911", True, "air cooled")
 p.motor_sound()
 p.define_porsche()
+
+
+class DoMath():
+    def multiply(self, x, y):
+        return x * y
+
+
+    def add_numbers(self, x, y):
+        return x + y
+
+
+    def subtract_stuff(self, x, y):
+        return x - y
+
+    def more_math(self, x, y):
+        return (x + y) * 30
+
+
+    def math_strings(self, x, y):
+        i = x + y
+        return f"The sum of {x} and {y} is equal to {i}"
+
+
+    def print_results(self):
+        print(self.multiply(10, 2))
+        print(self.add_numbers(100, 100))
+        print(self.subtract_stuff(2000, 13))
+        print(self.more_math(100, 100))
+        print(self.math_strings(10, 32))
+
+
+do_math = DoMath()
+do_math.print_results()

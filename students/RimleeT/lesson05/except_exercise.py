@@ -13,11 +13,10 @@ from except_test import fun, more_fun, last_fun
 # Figure out what the exception is, catch it and while still
 # in that catch block, try again with the second item in the list
 first_try = ['spam', 'cheese', 'mr death']
-
 try:
     joke = fun(first_try[0])
 except NameError:
-    print("Could not find S")
+    joke = fun(first_try[1])
 
 # Here is a try/except block. Add an else that prints not_joke
 try:
@@ -47,8 +46,10 @@ langs = ['java', 'c', 'python']
 try:
     more_joke = more_fun(langs[0])
 except IndexError:
-    more_joke = more_fun(langs[1])
-else:
-    more_joke = more_fun(langs[-1])
+    try:
+        more_joke = more_fun(langs[1])
+        more_joke = more_fun(langs[2])
+    except:
+        pass
 finally:
-    last_fun
+    last_fun()

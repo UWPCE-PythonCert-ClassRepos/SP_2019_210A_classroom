@@ -1,4 +1,8 @@
+# <<<<<<< master
 #!/usr/bin/env python3
+# =======
+#! usr/env/bin python3
+# >>>>>>> master
 # source of info on set and frozen sets:
 #   https://www.python-course.eu/sets_frozensets.php
 

@@ -4,11 +4,13 @@
 A class-based system for rendering html.
 """
 
+
 class TextWrapper:
     """
     A simple wrapper that creates a class with a render method
     for simple text
     """
+
     def __init__(self, text):
         self.text = text
 
@@ -55,17 +57,17 @@ class Element(object):
             indent = self.indent
 
         if self.attributes:
-            out_file.write(f'{" "* indent}<{self.tag} {self._build_attributes()}>\n')
+            out_file.write(f'{" " * indent}<{self.tag} {self._build_attributes()}>\n')
         else:
-            out_file.write(f'{" "* indent}<{self.tag}>\n')
+            out_file.write(f'{" " * indent}<{self.tag}>\n')
 
         for content in self.content:
             if content:
                 try:
-                    content.render(out_file, indent=indent+4)
+                    content.render(out_file, indent=indent + 4)
                 except AttributeError:
-                    out_file.write(f'{" "* indent}{" " * indent}{content}')
-        out_file.write(f"{' '*indent}</{self.tag}>\n")
+                    out_file.write(f'{" " * indent}{" " * indent}{content}')
+        out_file.write(f"{' ' * indent}</{self.tag}>\n")
 
 
 class Html(Element):
@@ -80,10 +82,6 @@ class Html(Element):
         :param kwargs: indentation arguments
         :return: None
         """
-        if 'indent' in kwargs:
-            indent = kwargs['indent']
-        else:
-            indent = self.indent
 
         out_file.write(f'<!DOCTYPE html>\n')
         Element.render(self, out_file, **kwargs)
@@ -122,9 +120,9 @@ class OneLineTag(Element):
             indent = self.indent
 
         if self.attributes:
-            out_file.write(f'{" "*indent}<{self.tag} {self._build_attributes()}>')
+            out_file.write(f'{" " * indent}<{self.tag} {self._build_attributes()}>')
         else:
-            out_file.write(f"{' '*indent}<{self.tag}>")
+            out_file.write(f"{' ' * indent}<{self.tag}>")
 
         for content in self.content:
             if content:
@@ -141,6 +139,7 @@ class OneLineTag(Element):
 
 class A(OneLineTag):
     """ HTML anchor class """
+
     tag = 'a'
 
     def __init__(self, link, content, **kwargs):
@@ -177,6 +176,7 @@ class Li(OneLineTag):
         else:
             self.content.append(content)
 
+
 class Title(OneLineTag):
     """ HTML title class """
     tag = 'title'
@@ -200,9 +200,9 @@ class SelfClosingTag(Element):
             indent = self.indent
 
         if self.attributes:
-            out_file.write(f'{" "* indent}<{self.tag} {self._build_attributes()} />\n')
+            out_file.write(f'{" " * indent}<{self.tag} {self._build_attributes()} />\n')
         else:
-            out_file.write(f'{" "* indent}<{self.tag} />\n')
+            out_file.write(f'{" " * indent}<{self.tag} />\n')
 
 
 class Meta(SelfClosingTag):
@@ -213,6 +213,7 @@ class Meta(SelfClosingTag):
 class Hr(SelfClosingTag):
     """ HTML horizontal rule class """
     tag = "hr"
+
 
 class Br(SelfClosingTag):
     """ HTML break class """

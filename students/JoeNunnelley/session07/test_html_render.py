@@ -299,6 +299,18 @@ def test_multiple_indent():
     assert lines[4].startswith(3 * Element.indent + "some")
 
 
+def test_href_insertion():
+    """
+    Test the special case of inline A object insertion
+    """
+    item = Li()
+    item.append("And this is a ")
+    item.append(A("http://google.com", "link"))
+    item.append("to google")
+    file_contents = render_result(item)
+    print(file_contents)
+
+
 def test_element_indent1():
     """
     Tests whether the Element indents at least simple content

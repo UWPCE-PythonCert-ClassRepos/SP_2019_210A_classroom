@@ -4,7 +4,7 @@
 A class-based system for rendering html.
 """
 # This is the framework for the base class
-class Element(object):
+class Element():
     """
     An element has the format
         <tag [attribute=value, attribute=value /]>[text</tag>]
@@ -28,6 +28,11 @@ class Element(object):
         self.children = []
         self.append(content)
 
+    def get(self):
+        """
+        Base function to get block as a string
+        """
+        pass
 
     def append(self, new_content):
         """
@@ -40,8 +45,11 @@ class Element(object):
         """
         if new_content is not None and self.tag is not None:
             if isinstance(new_content, Element):
-                new_content.depth = self.depth + 1
-                self.children.append(new_content)
+                if isinstance(new_content, A):
+                    self.text.append(new_content.get())
+                else:
+                    new_content.depth = self.depth + 1
+                    self.children.append(new_content)
             elif isinstance(new_content, dict):
                 self.attributes.append(new_content['attributes'])
                 self.text.append(new_content['text'])
@@ -59,7 +67,7 @@ class Element(object):
         children_text = ''
         attribs = ''
         for child in children:
-            if len(child.attributes) > 0 and len(child.attributes[0]) > 0:
+            if child.attributes and child.attributes[0]:
                 attribs = ' ' + ''.join(child.attributes)
 
             start_tag = "\n{}<{}{}>".format((child.depth * child.indent), child.tag, attribs)
@@ -83,8 +91,10 @@ class Element(object):
         TODO : See about generalizing the render logic more so
         that it can handle all possible nodes.
         """
+        self.indent = ind if self.indent != ind else self.indent
+
         attribs = ''
-        if len(self.attributes) > 0 and len(self.attributes[0]) > 0:
+        if self.attributes and self.attributes[0]:
             attribs = ' ' + ''.join(self.attributes)
 
         start_tag = "{}<{}{}>".format((self.depth * self.indent), self.tag, attribs)
@@ -154,7 +164,7 @@ class Meta(Head):
     tag = 'meta'
     depth = Head.depth + 1
     def __init__(self, text='', charset='', children=[]):
-        content = {"text":text, "attributes":'charset="{}"'.format(charset),"children":children}
+        content = {"text":text, "attributes":'charset="{}"'.format(charset), "children":children}
         super().__init__(content)
 
 
@@ -191,6 +201,12 @@ class A(Body):
         content = {"attributes":"href={}".format(url), "text":link, "children":[]}
         super().__init__(content)
 
+    def get(self):
+        return "<{} {}>{}</{}> ".format(self.tag,
+                                        ''.join(self.attributes),
+                                        ' '.join(self.text),
+                                        self.tag)
+
 class Li(Body):
     """
     The Li class which derives from Body because it only occurs there
@@ -210,7 +226,8 @@ class Ul(Body):
     tag = 'ul'
     depth = Body.depth + 1
     def __init__(self, id, style, children=[]):
-        content = {"attributes":"id={} style={}".format(id, style), "text":"", "children":children}
+        content = {"attributes":"id={} style={}".format(id, style),
+                   "text":"", "children":children}
         super().__init__(content)
 
 class H(Body):

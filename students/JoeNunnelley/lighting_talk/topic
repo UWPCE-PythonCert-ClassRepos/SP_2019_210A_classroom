@@ -1,7 +1,0 @@
-A talk on the use of docker-compose in development of full stack programs
-
-1.) Data Layer : Postgres
-2.) Web Layer : Python, HTML, Javascript
-
-
-Demonstrate configuring and running a group project.

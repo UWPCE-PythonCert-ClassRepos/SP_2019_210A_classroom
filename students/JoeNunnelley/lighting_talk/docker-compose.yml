@@ -12,5 +12,5 @@ services:
       - "8000:8000"
     depends_on:
       - db
-  redis:
-    image: "redis:alpine"
+  #redis:
+  #  image: "redis:alpine"

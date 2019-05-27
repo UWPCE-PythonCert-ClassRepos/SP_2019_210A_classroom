@@ -12,14 +12,14 @@ class Element: # Did we need the () in Python3+ ?
 
     def __init__(self, content=None):
         self.contents = [content]
-
+        print("contents is:", self.contents)
 
     def append(self, new_content):
         self.contents.append(new_content)
 
 
     def render(self, out_file):
-        if self.contents is not None:
+        if self.contents:
             out_file.write(f'<{self.tag}>\n')
 
             for content in self.contents:
@@ -27,27 +27,37 @@ class Element: # Did we need the () in Python3+ ?
                 out_file.write('\n')
 
             out_file.write(f'</{self.tag}>\n')
-        else:
-            return
-
-    # def render(self, out_file):
-    #     out_file.write(f"<{self.tag}>\n")
-    #     for content in self.contents:
-    #         try:
-    #             content.render(out_file)
-    #         except AttributeError:
-    #             out_file.write(content)
-    #     out_file.write("\n")
-    #     out_file.write(f"</{self.tag}>\n")
 
 
-# class Html(Element):
-#     tag = 'html'
+    def create_page(self):
+        page = Element("Some content")
+        page.append("some more conntent")
+
+        with open("test.html", "w") as out_file:
+            page.render(out_file)
 
 
-# class Body(Element):
-#     tag = 'body'
+
+class Html(Element):
+    tag = 'html'
 
 
-# class P(Element):
-#     tag = 'p'
+class Body(Element):
+    tag = 'body'
+
+
+    def render(self, out_file):
+        if self.contents:
+            out_file.write(f'<{self.tag}>\n')
+
+            for content in self.contents:
+                out_file.write(content)
+                out_file.write('\n')
+
+            out_file.write(f'</{self.tag}>\n')
+
+b = Body()
+b.create_page()
+
+class P(Element):
+    tag = 'p'

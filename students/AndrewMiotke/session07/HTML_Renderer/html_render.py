@@ -14,8 +14,13 @@ class Element: # Did we need the () in Python3+ ?
         self.contents = [content]
         print("contents is:", self.contents)
 
+
     def append(self, new_content):
-        self.contents.append(new_content)
+        if self.contents is None:
+            self.contents = []
+            self.contents.append(new_content)
+        else:
+            self.contents.append(new_content)
 
 
     def render(self, out_file):
@@ -45,19 +50,6 @@ class Html(Element):
 class Body(Element):
     tag = 'body'
 
-
-    def render(self, out_file):
-        if self.contents:
-            out_file.write(f'<{self.tag}>\n')
-
-            for content in self.contents:
-                out_file.write(content)
-                out_file.write('\n')
-
-            out_file.write(f'</{self.tag}>\n')
-
-b = Body()
-b.create_page()
 
 class P(Element):
     tag = 'p'

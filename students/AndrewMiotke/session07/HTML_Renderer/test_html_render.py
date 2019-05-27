@@ -110,8 +110,6 @@ def test_render_element2():
     assert file_contents.startswith("<html>")
     assert file_contents.endswith("</html>")
 
-    # assert e.contents is not None
-
 
 # # ########
 # # # Step 2

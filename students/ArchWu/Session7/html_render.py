@@ -6,7 +6,7 @@ A class-based system for rendering html.
 
 
 # This is the framework for the base class
-class Element():
+class Element(object):
     tag = 'html'
 
     def __init__(self, content=None):
@@ -47,7 +47,6 @@ class Body(Element):
 
     def append(self, new_content):
         return super().append(new_content)
-        
     def render(self, out_file):
         return super().render(out_file)
 

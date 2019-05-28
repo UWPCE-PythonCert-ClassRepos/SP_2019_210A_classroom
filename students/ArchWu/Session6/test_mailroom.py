@@ -87,13 +87,12 @@ def test_save_letters_to_disk():
     Note that the contents of the letter was already
     tested with test_gen_letter
     """
-    #pytest.skip("skipping this test because doing it on my pc's Anaconda")
     mailroom.save_letters_to_disk()
 
-    assert os.path.isfile('Jeff_Bezos.txt')
-    assert os.path.isfile('William_Gates_III.txt')
+    assert os.path.isfile('jeff bezos.txt')
+    assert os.path.isfile('william gates iii.txt')
     # check that it'snot empty:
-    with open('William_Gates_III.txt') as f:
+    with open('william gates iii.txt') as f:
         size = len(f.read())
     assert size > 0
 

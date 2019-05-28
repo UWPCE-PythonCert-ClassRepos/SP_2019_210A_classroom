@@ -46,15 +46,10 @@ class Body(Element):
         return super().__init__(content=content)
 
     def append(self, new_content):
-        self.contents.append("<body>")
-        self.contents.append(new_content)
-        self.contents.append("</body>")
+        return super().append(new_content)
         
     def render(self, out_file):
-        out_file.write("<body>")
-        for content in self.contents:
-            out_file.write(content)
-        out_file.write("</body>")
+        return super().render(out_file)
 
 class P(Element):
 

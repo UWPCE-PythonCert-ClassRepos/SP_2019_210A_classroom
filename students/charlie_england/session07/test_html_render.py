@@ -216,10 +216,56 @@ def test_title():
     file_contents = render_result(e)
 
     assert "Here is some title text" in file_contents
-    assert "\n" not in file_contents
     print(file_contents)
     assert file_contents.startswith("<title>")
-    assert file_contents.endswith("</title>")
+
+def test_ele_attributes():
+    attributes = {"id":"TheList","style":"line-height:200%"}
+    e = Body("here is some body text",**attributes)
+
+    file_contents = render_result(e)
+    assert "here is some body text" in file_contents
+    assert 'id="TheList"' in file_contents
+
+#I had a lot of trouble with this part and did not understand the tutorial:
+#If you put the code to render the opening (and closing) tags in it’s own method, then we can call that method from multiple render methods, something like
+def test_hr():
+    hr = Hr()
+    file_contents = render_result(hr)
+    print(file_contents)
+    assert file_contents == "<hr />\n"
+
+def test_hr_attr():
+    hr = Hr(width=400)
+    file_contents = render_result(hr)
+    print(file_contents)
+    assert file_contents == '<hr width="400" />\n'
+
+def test_br():
+    br = Br()
+    file_contents = render_result(br)
+    print(file_contents)
+    assert file_contents == "<br />\n"
+
+def test_content_in_br():
+    with pytest.raises(TypeError):
+        br = Br("some content")
+
+def test_append_content_in_br():
+    with pytest.raises(TypeError):
+        br = Br()
+        br.append("Some content")
+
+def test_a():
+    a = A("http://google.com","a link to google")
+    file_contents = render_result(a)
+
+    assert "a link to google" in file_contents
+    print(file_contents)
+    assert "http://google.com" in file_contents
+    assert '<a href=' in file_contents
+    assert 'a link to google</a>' in file_contents
+    assert '/n' not in file_contents
 
 # #####################
 # # indentation testing

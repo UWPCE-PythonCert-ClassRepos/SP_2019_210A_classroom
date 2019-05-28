@@ -60,7 +60,7 @@ def build_trigrams(words):
     return trigrams
 
 """
-After this line, using someone's elses code to finish the assignment since I got stuck here
+After this line, using Chris's code to finish the assignment since I got stuck here
 """
 def make_text(trigrams):
     new_text = []

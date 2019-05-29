@@ -96,12 +96,18 @@ def test_sphere_area():
 def test_sphere_from_diameter_type():
     s = Sphere.from_diameter(10)
     s.radius == 5
+    # is this an instance of a Sphere?
     assert isinstance(s, Sphere)
-    assert type(s) is Sphere
-    assert isinstance(s, Circle) # it is also a Circle because it's a subclass of Circle
-    assert type(s) is Sphere  # checks if it is exacly this type
-    assert not type(s) is Circle  # but not exactly a Circle
+    # it is also a Circle because it's a subclass of Circle
+    # with subclassing, it is *both* a Circle and a Sphere
+    #  (and an object)
+    assert isinstance(s, Circle)
+    assert isinstance(s, object)
 
+    # checks if it is exactly this type
+    assert type(s) is Sphere
+    # but not exactly a Circle
+    assert not type(s) is Circle
 
 
 

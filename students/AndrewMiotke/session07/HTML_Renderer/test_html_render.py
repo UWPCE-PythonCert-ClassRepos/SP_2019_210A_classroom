@@ -30,6 +30,13 @@ def render_result(element, ind=""):
         element.render(outfile)
     return outfile.getvalue()
 
+
+def test_class_variables():
+    e = Element()
+
+    assert e.tag == "html"
+    assert e.indent == "    "
+
 ########
 # Step 1
 ########

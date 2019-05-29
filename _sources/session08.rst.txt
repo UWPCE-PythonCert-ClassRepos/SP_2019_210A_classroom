@@ -85,26 +85,19 @@ Let's experiment with that.
 html_render
 -----------
 
-I'm not sure many of you got the whole thing done -- that's OK -- it's a LOT.
+Let's look at up to step 3....
 
-If you are really tangled up, you can look at my solution:
-
-``SP_2019_210A_classroom/solutions/Lesson07``
-
-Or better yet -- Anyone want a code review?
-
+And move along...
 
 Lightning Talks
 ---------------
 
-New Material
-------------
+Circle class...
 
-Would you like a little review of the reading?
 
-https://uwpce-pythoncert.github.io/PythonCertDevel/modules/index.html#lesson-8-properties-and-magic-methods
+.. Python static vs. class methods
+.. -------------------------------
 
-Or just dive into the Exercise:
+.. Coming from Java/C++, this was always confusing to me. Now I think I understand this better, and I may share my understanding and realization with class. Let's go over the static/class methods materials:
 
-https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/circle_class.html
-
+https://uwpce-pythoncert.github.io/PythonCertDevel/modules/StaticAndClassMethods.html

@@ -75,6 +75,7 @@ def test_circle_multiply():
     a_circle = Circle(5)
     b_circle = a_circle * 2
     assert b_circle.radius == 10
+    assert a_circle * b_circle == Circle(50)
 
 
 def test_circle_rmul():

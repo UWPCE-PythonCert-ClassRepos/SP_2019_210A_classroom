@@ -78,7 +78,7 @@ def send_letter(name, amount):
     """
     return dedent(''' 
           Dear {},
-            Thank you for your very kind donations totaling ${:,.2f}.
+            Thank you for your very kind donation of ${:,.2f}.
           It will be put to very good use.
 
                          Sincerely,

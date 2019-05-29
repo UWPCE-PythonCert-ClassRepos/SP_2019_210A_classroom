@@ -8,7 +8,14 @@ d = {
 
 
 def dict_1():
-    """Working with a dictionary"""
+    """
+    reads a dictionary
+
+    Returns: dictionary, deletes one key, adds a new key: value, displays the
+    new key: value, displays dictionary keys and values and test if 'cake' is
+    a key and test if 'Mango' is a value
+
+    """
     d1 = d
 
     # display dictionary
@@ -35,19 +42,27 @@ def dict_1():
     print('\n', d1.values())
 
     # test if 'cake' is no longer a key
-    for key, value in d1.items():
-        if key == 'fruit':
-            print('\nIs cake a key? ', False)
+    #for key, value in d1.items():
+    if 'cake' in d1.keys():
+        print(True)
+    else:
+        print(False)
 
     # test if 'mango' is a value
-    for key, value in d1.items():
-        if value == 'Mango':
-            print('\nIs mango a value?', True, '\n')
+    if 'Mango'in d1.values():
+        print(True)
+    else:
+        print(False)
     return d1
 
 
 def dict_2():
-    """Working with a dictionary"""
+    """
+    reads a dictionary
+
+    Returns: the count of 't' in dictionary values
+
+    """
     d2 = d
     print("The count of 't's in each value are: ")
     while True:
@@ -57,8 +72,8 @@ def dict_2():
     return d2
 
 
-# display dictionary keys:
-dict_1()
-
-# dictionary 2 function call
-dict_2()
+if __name__ == "__main__":
+    # display dictionary keys:
+    dict_1()
+    # dictionary 2 function call
+    dict_2()

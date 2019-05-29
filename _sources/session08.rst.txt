@@ -19,6 +19,11 @@ A collection of notes to go over in class, to keep things organized.
 Lightning Talks (last)
 ======================
 
+Peter Berhe
+
+Jasneet Chandok
+
+
 Issues that came up during the week.
 ====================================
 
@@ -80,19 +85,26 @@ Let's experiment with that.
 html_render
 -----------
 
-Let's look at up to step 3....
+I'm not sure many of you got the whole thing done -- that's OK -- it's a LOT.
 
-And move along...
+If you are really tangled up, you can look at my solution:
+
+``SP_2019_210A_classroom/solutions/Lesson07``
+
+Or better yet -- Anyone want a code review?
+
 
 Lightning Talks
 ---------------
 
-Circle class...
+New Material
+------------
 
+Would you like a little review of the reading?
 
-.. Python static vs. class methods
-.. -------------------------------
+https://uwpce-pythoncert.github.io/PythonCertDevel/modules/index.html#lesson-8-properties-and-magic-methods
 
-.. Coming from Java/C++, this was always confusing to me. Now I think I understand this better, and I may share my understanding and realization with class. Let's go over the static/class methods materials:
+Or just dive into the Exercise:
 
-https://uwpce-pythoncert.github.io/PythonCertDevel/modules/StaticAndClassMethods.html
+https://uwpce-pythoncert.github.io/PythonCertDevel/exercises/circle_class.html
+

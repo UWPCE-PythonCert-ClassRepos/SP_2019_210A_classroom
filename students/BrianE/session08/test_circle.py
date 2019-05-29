@@ -2,6 +2,7 @@ from circle import Circle, Sphere
 import pytest
 import math
 
+
 def test_circle_init():
     """ Verify circle init functions properly """
     a_circle = Circle(5)
@@ -89,6 +90,7 @@ def test_circle_compare_greater_than():
     assert b_circle > a_circle
     with pytest.raises(AssertionError):
         assert a_circle >= b_circle
+
 
 def test_circle_compare_less_than():
     """ Verify less than comparison of two circles """

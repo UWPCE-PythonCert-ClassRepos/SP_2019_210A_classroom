@@ -1,6 +1,7 @@
 import math
 
-class Circle():
+
+class Circle:
     """
     Class to store and calculate circle statistics
     """
@@ -55,6 +56,7 @@ class Circle():
     def diameter(self):
         self._diameter = self.radius * 2
         return self._diameter
+
     @diameter.setter
     def diameter(self, val):
         self._diameter = val

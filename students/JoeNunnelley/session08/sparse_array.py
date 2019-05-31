@@ -72,6 +72,12 @@ class SparseArray:
             raise IndexError("Index not found")
 
 
+    def __sliceitem__(self, start, stop, step):
+        """
+        Enable slicing for the sparse array
+        """
+        pass
+
     @property
     def print_non_zero(self):
         """

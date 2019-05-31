@@ -116,6 +116,15 @@ class Circle:
         (new_self, new_other) = self.harmonize_types(other)
         return Circle(new_self ** new_other)
 
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __rpow__(self, other):
+        return self.__pow__(other)
+
     # Comparison Operations
     def __lt__(self, other):
         (new_self, new_other) = self.harmonize_types(other)
@@ -140,7 +149,6 @@ class Circle:
     def __ne__(self, other):
         (new_self, new_other) = self.harmonize_types(other)
         return new_self != new_other
-
 
     # Assignment Operations
     def __iadd__(self, other):

@@ -186,8 +186,16 @@ def test_adding_circles():
     c4 = c2 * 3
     assert c4.radius == 12
 
-  #  c5 = 3 * c2
-  #  assert c5.radius == 12
+def test_rightward_additive_operations_on_circles():
+    c2 = Circle(4)
+    c5 = 3 * c2
+    assert c5.radius == 12
+
+    c5 = 40 + c2
+    assert c5.radius == 44
+
+    c5 = 2 ** c2
+    assert c5.radius == 16
 
 """
 Step 8:
@@ -285,6 +293,13 @@ def test_circle_sorting():
     circles.sort()
     assert circles[0].radius == 0
 
+
+def test_reflected_numeric_operations():
+    c2 = Circle(2)
+    assert c2 * 4 == 4 * c2
+    assert c2 + 5 == 5 + c2
+    # this power operation seems questionable mathematically but it works.
+    assert c2 ** 3 == 3 ** c2
 
 """
 Step 9: Subclassing!

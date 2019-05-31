@@ -42,9 +42,15 @@ class SparseArray:
         """
         Get an item from the array when requested using the [] notation
         """
-        try:
-            return self.storage[key]
-        except KeyError:
+        if isinstance(key, slice):
+            slicedkeys = list(self.storage.keys())[key]
+            return {k: self.storage[k] for k in slicedkeys}
+        elif isinstance(key, int):
+            try:
+                return self.storage[key]
+            except KeyError:
+                return 0
+        else:
             return 0
 
 
@@ -71,12 +77,6 @@ class SparseArray:
         else:
             raise IndexError("Index not found")
 
-
-    def __sliceitem__(self, start, stop, step):
-        """
-        Enable slicing for the sparse array
-        """
-        pass
 
     @property
     def print_non_zero(self):

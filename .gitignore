@@ -109,3 +109,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+students/ArchWu/Session7/test_html_output3.html
+students/ArchWu/Session7/test_html_output1.html
+students/ArchWu/Session7/test_html_output2.html

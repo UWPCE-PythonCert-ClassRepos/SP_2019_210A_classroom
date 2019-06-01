@@ -14,33 +14,25 @@ from except_test import fun, more_fun, last_fun
 # in that catch block, try again with the second item in the list
 first_try = ['spam', 'cheese', 'mr death']
 
-# <<<<<<< master
-try:
-    fun(first_try[0])
-except NameError:
-    pass
-
-# =======
-# >>>>>>> master
+joke = fun(first_try[0])
 
 # Here is a try/except block. Add an else that prints not_joke
 try:
-    fun(first_try[1])
     not_joke = fun(first_try[2])
 except SyntaxError:
     print('Run Away!')
 else:
     print(not_joke)
 
-# What did that do? """BCB displayed from except_test.py {cust, conclude,
-# clerk, clean}""" You can think of else in this context, as well as in
+# What did that do? You can think of else in this context, as well as in
 # loops as meaning: "else if nothing went wrong"
 # (no breaks in  loops, no exceptions in try blocks)
 
-# Figure out what the exception is """range error""", catch it and in
-# that same block try calling the more_fun function with the 2nd language
-# in the list, again assigning it to more_joke.
-
+# Figure out what the exception is, catch it and in that same block
+#
+# try calling the more_fun function with the 2nd language in the list,
+# again assigning it to more_joke.
+#
 # If there are no exceptions, call the more_fun function with the last
 # language in the list
 
@@ -50,24 +42,4 @@ else:
 
 langs = ['java', 'c', 'python']
 
-# <<<<<<< master
-try:
-    more_joke = more_fun(langs[0])
-except IndexError:
-    pass
-
-# =======
-more_joke = more_fun(langs[0])
-# >>>>>>> master
-
-try:
-    not_more_joke = more_fun(langs[1])
-except SyntaxError:
-    print('Run Away!')
-else:
-# <<<<<<< master
-# =======
-    more_fun(langs[0])
-# >>>>>>> master
-    last_fun()
-
+more_joke = more_fun(langs[1])

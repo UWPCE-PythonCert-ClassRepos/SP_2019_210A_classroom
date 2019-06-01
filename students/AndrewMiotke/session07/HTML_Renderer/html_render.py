@@ -9,6 +9,7 @@ A class-based system for rendering html.
 class Element: # Did we need the () in Python3+ ?
 
     tag = 'html'
+    indent = "    "
 
 
     def __init__(self, content=None, **kwargs):
@@ -20,11 +21,8 @@ class Element: # Did we need the () in Python3+ ?
 
 
     def append(self, new_content):
-        if self.contents is None:
-            self.contents = []
-            self.contents.append(new_content)
-        else:
-            self.contents.append(new_content)
+        self.contents.append(new_content)
+
 
     # Chris's initial render method
     def render(self, out_file):
@@ -60,9 +58,9 @@ class Element: # Did we need the () in Python3+ ?
         with open("test.html", "w") as out_file:
             page.render(out_file)
 
-
-e = Element()
-e.create_page()
+# Uncomment to generate the html file
+# e = Element()
+# e.create_page()
 
 
 class OneLineTag(Element):

@@ -4,7 +4,6 @@
 A class-based system for rendering html.
 """
 
-
 # This is the framework for the base class
 class Element: # Did we need the () in Python3+ ?
 
@@ -13,7 +12,7 @@ class Element: # Did we need the () in Python3+ ?
 
 
     def __init__(self, content=None, **kwargs):
-        self.__dict__.update(kwargs) # might not need this right now
+        self.attributes = kwargs
         if content:
             self.contents = [content]
         else:
@@ -24,81 +23,107 @@ class Element: # Did we need the () in Python3+ ?
         self.contents.append(new_content)
 
 
-    # Chris's initial render method
-    def render(self, out_file):
-        # loop through the list of contents:
-        for content in self.contents:
-            out_file.write("<{}>\n".format(self.tag))
-            try:
-                content.render(out_file)
-            except AttributeError:
-                out_file.write(content)
-            out_file.write("\n")
-            out_file.write("</{}>\n".format(self.tag))
+    def make_tags(self):
+        attributes = " ".join([f'{key}="{val}' for key, val in self.attributes.items()])
+
+        if attributes.strip():
+            open_tag = f"<{self.tag} {attributes.strip()}>"
+        else:
+            open_tag = f"<{self.tag}>"
+
+        close_tag = f"</{self.tag}>"
+
+        return open_tag, close_tag
 
 
-    # my render method
-    # def render(self, out_file):
-    #     out_file.write(f'<{self.tag}>\n')
-
-    #     for content in self.contents:
-    #         try:
-    #             content.render(out_file)
-    #         except AttributeError:
-    #             out_file.write(content)
-    #         out_file.write('\n')
-
-    #     out_file.write(f'</{self.tag}>\n')
-
-
-    def create_page(self):
-        page = Element("Some content")
-        page.append("some more conntent")
-
-        with open("test.html", "w") as out_file:
-            page.render(out_file)
-
-# Uncomment to generate the html file
-# e = Element()
-# e.create_page()
+    def render(self, out_file, current_indent = ""):
+        open_tag, close_tag = self.make_tags()
+        out_file.write(current_indent + open_tag + "\n")
+        for stuff in self.contents:
+            stuff.render(out_file, current_indent + self.indent)
+            out_file.writ("\n")
+        out_file.write(current_indent + close_tag)
 
 
 class OneLineTag(Element):
-    def render(self, out_file):
-        open_tag = [f"<{self.tag}"]
-        open_tag.append(">\n")
-        out_file.write("".join(open_tag))
-        # out_file.write(f"<{self.tag}>")
-        out_file.write(self.contents[0])
-        out_file.write(f"</{self.tag}>\n")
+
+    def render(self, out_file, current_indent = ""):
+        open_tag, close_tag = self.make_tags()
+        out_file.write(current_indent + open_tag)
+        for stuff in self.contents:
+            stuff.render(out_file)
+        out_file.write(close_tag)
 
 
     def append(self, content):
         raise NotImplementedError
 
 
-
-class Title(OneLineTag):
-    tag = 'title'
-
-
-
 class Html(Element):
     tag = 'html'
 
+    def render(self, file_out, current_indent = ""):
+        file_out.write(current_indent + "!DOCTYPE html\n")
+        super().render(file_out, current_indent=current_indent)
 
 
 class Head(Element):
     tag = "head"
 
 
+class Title(OneLineTag):
+    tag = 'title'
+
 
 class Body(Element):
     tag = 'body'
-
 
 
 class P(Element):
     tag = 'p'
 
 
+class SelfClosingTag(Element):
+
+    def append(self, *args, **kwargs):
+        raise TypeError("Content can't be added to a self closing tag")
+
+
+    def render(self, out_file, indentation = ""):
+        open_tag, _ = self.make_tags()
+        out_file.write(indentation + open_tag.replace(">", "/>"))
+
+
+class Hr(SelfClosingTag):
+    tag = "hr"
+
+
+class Br(SelfClosingTag):
+    tag = "br"
+
+
+class A(OneLineTag):
+    tag = "a"
+
+    def __init__(self, link, *args, **kwargs):
+        kwargs["href"] = link
+        super().__init__(*args, **kwargs)
+
+
+class Ul(Element):
+    tag = "ul"
+
+
+class Li(Element):
+    tag = "li"
+
+
+class H(OneLineTag):
+
+    def __init__(self, level, *args, **kwargs):
+        self.tag = "h" + str(int(level))
+        super().__init__(*args, **kwargs)
+
+
+class Meta(SelfClosingTag):
+    tag = "meta"

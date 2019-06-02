@@ -3,7 +3,7 @@
 from textwrap import dedent 
 import sys, os, math
 
-def main_donors_db():
+def main_donors_db(**x): #added **x to run test 
     x = {
             "Luke Skywalker": [100.25, 200.55, 50],
             "Han Solo": [100.80, 50.99, 600],
@@ -11,12 +11,7 @@ def main_donors_db():
             "Ben Kenobe": [101.32, 500, 60.34],
             }
     return x
-# donors_db = [
-#             {"name": "Luke Skywalker", "donations": [100.25, 200.55, 50]},
-#             {"name": "Han Solo", "donations": [100.80, 50.99, 600]},
-#             {"name": "Yoda", "donations": [1000.01, 50, 600.55, 200.47]},
-#             {"name": "Ben Kenobe", "donations": [101.32, 500, 60.34]},
-#             ]
+
 
 def clear_screen():
     """
@@ -161,7 +156,7 @@ def return_to_menu():
     ''' Return True to trigger exit out of sub-loop'''
     return True
 
-def quit():
+def exit():
     print("Exiting the Mailroom!")
     sys.exit()
 
@@ -183,6 +178,23 @@ def send_thank_you():
                       }
     run_menu(prompt, selection_dict)
 
+
+def run_menu(prompt, selection_dict):
+    """
+    Main mailroom script using a switch menu to use a dictionary instead of elif statments
+    """
+    while True:
+        selection = input(prompt).strip().lower()
+        clear_screen()
+        action = selection_dict.get(selection, None)
+        if action is None:
+            clear_screen()
+            print("error: menu selection is invalid!")
+        else:
+            if action():
+                # break out of the loop if action returns True
+                break
+  
 def mailroom_main():
     
     """
@@ -201,26 +213,12 @@ def mailroom_main():
     selection_dict = {"1": send_thank_you,
                       "2": print_report,
                       "3": save_letters,
-                      "4": quit}
+                      "4": exit}
     
     run_menu(prompt, selection_dict)
 
-def run_menu(prompt, selection_dict):
-    """
-    Main mailroom script using a switch menu to use a dictionary instead of elif statments
-    """
-    while True:
-        selection = input(prompt).strip().lower()
-        clear_screen()
-        action = selection_dict.get(selection, None)
-        if action is None:
-            clear_screen()
-            print("error: menu selection is invalid!")
-        else:
-            if action():
-                # break out of the loop if action returns True
-                break
-  
+
+    
 if __name__ == "__main__": 
 
     donors_db = main_donors_db()

@@ -295,7 +295,7 @@ def test_element_indent1():
 
     <html>
         this is some text
-    <\html>
+    <\\html>
 
     More complex indentation should be tested later.
     """

@@ -75,7 +75,7 @@ def test_generate_donor_report():
     # report are changed.
     # but at least you know that codes working now.
     assert report.startswith("Donor Name                | Total Given | Num Gifts | Average Gift")
-    assert "jeff bezos" in report
+    assert("jeff bezos" in report, f"expected = jeff bezos, actual = {report}")
     assert "877.33" in report
     #assert "Jeff Bezos                  $    877.33           1   $     877.33" in report
 

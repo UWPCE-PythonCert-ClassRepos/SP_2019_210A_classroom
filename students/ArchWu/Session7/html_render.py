@@ -9,7 +9,8 @@ A class-based system for rendering html.
 class Element():
     tag = 'html'
 
-    def __init__(self, content=None):
+    def __init__(self, content=None, **kwargs):
+        self.attributes = kwargs
         self.contents = []
         if content: self.contents.append(content)
 
@@ -29,7 +30,7 @@ class Html(Element):
     tag = 'html'
 
     def __init__(self, content=None):
-        return super().__init__(content=content)
+        super().__init__(content=content)
 
     def append(self, new_content):
         return super().append(new_content)
@@ -43,7 +44,7 @@ class Body(Element):
     tag = 'body'
 
     def __init__(self, content=None):
-        return super().__init__(content=content)
+        super().__init__(content=content)
 
     def append(self, new_content):
         return super().append(new_content)
@@ -56,7 +57,7 @@ class P(Element):
     tag = 'p'
 
     def __init__(self, content=None):
-        return super().__init__(content=content)
+        super().__init__(content=content)
     
     def append(self, new_content):
         self.contents.append("<p>")
@@ -71,7 +72,7 @@ class Head(Element):
     tag = "head"
 
     def __init__(self, content=None):
-        return super().__init__(content=content)
+        super().__init__(content=content)
     
     def append(self, new_content):
         return super().append(new_content)
@@ -94,7 +95,7 @@ class OneLineTag(Element):
 class Title(OneLineTag):
     tag = 'title'
     def __init__(self, content=None):
-        return super().__init__(content=content)
+        super().__init__(content=content)
     
     def render(self, out_file):
         return super().render(out_file)

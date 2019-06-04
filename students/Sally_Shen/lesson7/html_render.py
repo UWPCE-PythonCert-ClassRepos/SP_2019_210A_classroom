@@ -7,9 +7,10 @@ A class-based system for rendering html.
 
 # This is the framework for the base class
 class Element(object):
+    indent = "    "
     def __init__(self, content=None, **attrs):
         self.content = []
-        self.tag = ""
+        self.tag = "html"
         if content:
             self.content.append(content)
         self.attrs = {}
@@ -25,14 +26,16 @@ class Element(object):
         elif isinstance(new_content, Element):
             self.objectContents.append(new_content)
         '''
-    def render(self, out_file):
-        out_file.write("\n" + self.genHeaderWithAttrs())
+    def render(self, out_file, indent=""):
+        out_file.write(indent + self.genHeaderWithAttrs() + "\n")
+        newLine = ""
         for c in self.content:
             if isinstance(c, str):
-                out_file.write("\n" + c)
+                out_file.write(indent + self.indent + c)
             else:
-                c.render(out_file)
-        out_file.write("\n</" + self.tag + ">")
+                c.render(out_file, indent + self.indent)
+            out_file.write("\n")
+        out_file.write(indent + "</" + self.tag + ">")
 
     def genHeaderWithAttrs(self):
         output = "<" + self.tag
@@ -46,15 +49,16 @@ class Html(Element):
     def __init__(self, content=None, **attrs):
         Element.__init__(self, content, **attrs)
         self.tag = "html"
-    def render(self, out_file):
-        out_file.write("<!DOCTYPE html>")
-        Element.render(self, out_file)
+
+    def render(self, out_file, indent=""):
+        out_file.write(indent + "<!DOCTYPE html>\n")
+        Element.render(self, out_file, indent)
+
 
 class Body(Element):
     def __init__(self, content=None, **attrs):
         Element.__init__(self, content, **attrs)
         self.tag = "body"
-
 
 
 class P(Element):
@@ -63,18 +67,15 @@ class P(Element):
         self.tag = 'p'
 
 
-
 class Head(Element):
     def __init__(self, content=None, **attrs):
         Element.__init__(self, content, **attrs)
         self.tag = 'head'
 
 
-
-
 class OneLineTag(Element):
-    def render(self, out_file):
-        out_file.write("\n" + self.genHeaderWithAttrs())
+    def render(self, out_file, indent=""):
+        out_file.write(indent + self.genHeaderWithAttrs())
         for c in self.content:
             if isinstance(c, str):
                 out_file.write(c)
@@ -88,11 +89,11 @@ class Title(OneLineTag):
 
 
 class SelfClosingTag(Element):
-    def render(self, out_file):
+    def render(self, out_file, indent=""):
         headerWithAttr = self.genHeaderWithAttrs()
         headerWithAttr = headerWithAttr[:-1]
         headerWithAttr += "/>"
-        out_file.write("\n" + headerWithAttr)
+        out_file.write(indent + headerWithAttr)
 
 
 class Hr(SelfClosingTag):
@@ -108,9 +109,9 @@ class Br(SelfClosingTag):
         self.tag = 'br'
 
 
-class A(Element):
+class A(SelfClosingTag):
     def __init__(self, link, content=None, **attrs):
-        Element.__init__(self, content, href="\"{}\"".format(link))
+        Element.__init__(self, content, href="{}".format(link))
         self.tag = "a"
 
 

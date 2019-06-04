@@ -211,6 +211,7 @@ def test_indent_contents():
     print(file_contents)
     lines = file_contents.split("\n")
     assert lines[1].startswith(Element.indent)
+    assert lines[1][len(Element.indent)+1] != ' '
 
 
 def test_multiple_indent():

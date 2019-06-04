@@ -167,7 +167,7 @@ class H(OneLineTag):
     """
     section head
     """
-    tag = "H"
+    # tag = "H"
 
     def __init__(self, level, *args, **kwargs):
         self.tag = "h" + str(int(level))

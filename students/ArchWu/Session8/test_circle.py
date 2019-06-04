@@ -39,3 +39,16 @@ def test_sphere():
     s.radius = 5
     assert isinstance(s, Sphere)
 
+def test_print():
+    c = Circle(10)
+    assert print(c) == None
+
+def test_add():
+    c = Circle(10)
+    c2 = Circle(20)
+    assert c + c2 == 30
+
+def test_repr():
+    c = Circle(10)
+    d = eval(repr(c))
+    assert d.radius == 10

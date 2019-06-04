@@ -8,10 +8,11 @@ A class-based system for rendering html.
 # This is the framework for the base class
 class Element(object):
     tag = 'html'
-
-    def __init__(self, content=None):
+    kwarg = {}
+    def __init__(self, content=None, **kwargs):
         self.contents = []
         if content: self.contents.append(content)
+        kwarg = kwargs
 
     def append(self, new_content):
         self.contents.append(new_content)
@@ -54,16 +55,22 @@ class P(Element):
 
     tag = 'p'
 
-    def __init__(self, content=None):
-        return super().__init__(content=content)
+    def __init__(self, content=None, **kwargs):
+        return super().__init__(content=content, **kwargs)
     
     def append(self, new_content):
-        self.contents.append("<p>")
-        self.contents.append(new_content)
-        self.contents.append("</p>")
+        return super().append(new_content)
     
     def render(self, out_file):
-        return super().render(out_file)
+        for content in self.contents:
+            out_file.write("<{}".format(self.tag))
+            for k,v in self.kwarg:
+                out_file.write("{}={}".format(k, v))
+            try:
+                content.render(out_file)
+            except AttributeError:
+                out_file.write(content)
+            out_file.write("/{}>".format(self.tag))
 
 
 class Head(Element):

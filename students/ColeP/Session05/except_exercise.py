@@ -17,7 +17,7 @@ first_try = ['spam', 'cheese', 'mr death']
 try:
     joke = fun(first_try[0])
 except NameError:
-    print("Could not find S")
+    fun(first_try[1])
 
 # Here is a try/except block. Add an else that prints not_joke
 try:
@@ -35,7 +35,8 @@ else:
 #
 # try calling the more_fun function with the 2nd language in the list,
 # again assigning it to more_joke.
-#
+
+
 # If there are no exceptions, call the more_fun function with the last
 # language in the list
 
@@ -44,11 +45,12 @@ else:
 # parameters. (pun intended)
 
 langs = ['java', 'c', 'python']
+
 try:
     more_joke = more_fun(langs[0])
 except IndexError:
     more_joke = more_fun(langs[1])
-else:
-    more_joke = more_fun(langs[-1])
-finally:
-    last_fun
+    more_fun(langs[2])
+    last_fun()
+
+

@@ -1,10 +1,12 @@
 #!/usr/bin/python
 
+'''Lesson 5 - Exceptions Excercise'''
+
 """
 An exercise in playing with Exceptions.
 Make lots of try/except blocks for fun and profit.
-
-Make sure to catch specifically the error you find, rather than all errors.
+Please remember to catch specifically the error you find,
+and not all errors.
 """
 
 from except_test import fun, more_fun, last_fun
@@ -17,7 +19,8 @@ first_try = ['spam', 'cheese', 'mr death']
 try:
     joke = fun(first_try[0])
 except NameError:
-    print("Could not find S")
+    print(f'No joke for {first_try[0]}, lets try {first_try[1]}')
+    joke = fun(first_try[1])
 
 # Here is a try/except block. Add an else that prints not_joke
 try:
@@ -27,21 +30,21 @@ except SyntaxError:
 else:
     print(not_joke)
 
-# What did that do? You can think of else in this context, as well as in
-# loops as meaning: "else if nothing went wrong"
+# What did that do? You can think of else in this context, as well
+# as in loops as meaning: else if nothing went wrong.
 # (no breaks in  loops, no exceptions in try blocks)
 
 # Figure out what the exception is, catch it and in that same block
-#
-# try calling the more_fun function with the 2nd language in the list,
-# again assigning it to more_joke.
-#
-# If there are no exceptions, call the more_fun function with the last
-# language in the list
+# try calling the more_fun function with the 2nd language
+# in the list, again assigning it to next_joke.
 
-# Finally, while still in the try/except block and regardless of whether
-# there were any exceptions, call the function last_fun with no
-# parameters. (pun intended)
+# If there are no exceptions, call the more_fun
+# function with the last language in the list
+# Regardless of whether there was an exception
+
+# Finally, while still in the try/except block
+# and regardless of whether there were any exceptions,
+# call the function last_fun with no parameters. (pun intended)
 
 langs = ['java', 'c', 'python']
 try:
@@ -49,6 +52,6 @@ try:
 except IndexError:
     more_joke = more_fun(langs[1])
 else:
-    more_joke = more_fun(langs[-1])
+    more_joke = more_fun(langs[2])
 finally:
-    last_fun
+    last_fun()

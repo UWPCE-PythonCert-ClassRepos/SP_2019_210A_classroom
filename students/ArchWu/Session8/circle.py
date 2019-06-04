@@ -31,8 +31,45 @@ class Circle():
 
     def __add__(self, obj):
         return self.radius + obj.radius
+    
+    def __mul__(self, num):
+        return Circle(self.radius * num)
+    
+    def __gt__(self, obj):
+        try:
+            value = obj.radius
+            return self.radius > value
+        except AttributeError:
+            return self.radius > obj
+    
+    def __lt__(self, obj):
+        try:
+            value = obj.radius
+            return self.radius < value
+        except AttributeError:
+            return self.radius < obj
+    
+    def __eq__(self, obj):
+        try:
+            value = obj.radius
+            return self.radius == value
+        except AttributeError:
+            return self.radius == obj        
+
 
 class Sphere(Circle):
     @property
     def area(self):
-        pass
+        return self.radius ** 2 * 4 * math.pi
+    
+    @property
+    def volume(self):
+        return self.radius ** 3 * 4 / 3 * math.pi
+
+    def __str__(self):
+        return "Sphere with radius: {}".format(self.radius)
+
+    def __repr__(self):
+        return "Sphere({})".format(self.radius)
+
+    

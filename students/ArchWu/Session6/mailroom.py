@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+import os
 import tempfile
 from textwrap import dedent
 
@@ -121,7 +122,7 @@ def thank_you():
     return
 
 def save_letters_to_disk():
-    temp_path = tempfile.gettempdir()
+    temp_path = os.getcwd()
 
     for name, donations in donors.items():
         with open('{}/{}.txt'.format(temp_path, name), 'w') as f:

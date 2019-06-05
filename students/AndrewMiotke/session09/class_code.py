@@ -105,3 +105,70 @@ class TextDescriber(WordCounter, Vocabulary):
 
     def describe(self):
         return self.tokens, self.word_count, self.vocab
+
+
+# ---------------------------------------------------------------------
+# Example 3
+# Peagesus
+
+class Horse():
+    def __init__(self, color):
+        self.color = color
+
+
+    def get_color(self, color):
+        color = input("What color is it? ")
+        return color
+
+
+class Bird():
+    def __init__(self, beak):
+        self.beak = beak
+
+
+    def has_beak(self):
+        self.beak = False
+
+
+
+class Peagesus(Horse, Bird):
+    def __init__(self, name, color):
+        super().__init__(color)
+
+
+    def get_name(self, name):
+        ask_for_name = input("What's the name of this thing? ")
+        return ask_for_name
+
+
+    def print_peagesus(self):
+        return self.get_name, self.color, self.has_beak
+
+
+# ---------------------------------------------------------------------
+# Example 4
+# Audi RS2
+
+class Audi():
+
+    def body(self):
+        audi = "Audi"
+
+        print(f"The body was designed by {audi}")
+
+
+class Porsche():
+
+    def motor(self):
+        porsche = "Porsche"
+
+        print(f"The motor was designed by {porsche}")
+
+
+class RS2(Audi, Porsche):
+    def __init__(self):
+        super().__init__()
+
+
+    def print_car(self):
+        print(f"{self.motor()} {self.body()}")

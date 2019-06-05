@@ -37,7 +37,6 @@ class Person:
     """class method decorator"""
 
 class Woman(Person):
-
     def __init__(self, perdict):
         super().__init__(perdict)
         self.gender = 'F'
@@ -49,8 +48,3 @@ class Woman(Person):
         print("AG: {}".format(self.age))
         print("CT: {}".format(self.count))
         print("GE: {}".format(self.gender))
-
-
-
-
-

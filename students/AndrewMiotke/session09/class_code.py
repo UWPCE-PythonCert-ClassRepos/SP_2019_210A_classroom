@@ -172,3 +172,11 @@ class RS2(Audi, Porsche):
 
     def print_car(self):
         print(f"{self.motor()} {self.body()}")
+
+# ---------------------------------------------------------------------
+
+# add all numbers in the list
+sum([1, 3, 5])
+
+# Combine list of strings
+len("".join(["ksljlkdjf", "asdkjl", "llkj"]))

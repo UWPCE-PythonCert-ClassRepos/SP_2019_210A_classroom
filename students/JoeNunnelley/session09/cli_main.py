@@ -78,7 +78,7 @@ def generate_report_rows_raw(donor_set):
 
     for donor in donor_set:
         donation_count = len(donor.donations)
-        summed_donations = sum([donation.get_amount for donation in donor.get_donations if donation_count])
+        summed_donations = sum([donation for donation in donor.donations if donation_count])
 
         try:
             average_donations = summed_donations / donation_count
@@ -160,7 +160,7 @@ def formulate_mail(donor_in, echo_terminal=True):
     _donations = ''
 
     for donation in donor_in.donations:
-        _donations += ('- {:>10,.2f} USD\n'.format(donation.get_amount))
+        _donations += ('- {:>10,.2f} USD\n'.format(donation))
 
     message['Donations'] = _donations
 

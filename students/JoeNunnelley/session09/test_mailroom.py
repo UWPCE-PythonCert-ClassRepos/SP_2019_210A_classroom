@@ -29,13 +29,20 @@ Select Donor Tests:
      correct information
 - 3. test_select_donor_new_name : test that providing a non-existent name adds it to the
      list and returns correct information
+
+Verify Basic Class Functions:
+- 1. verify the donation class
+- 2. verify the donor class
+- 3. verify the donorcollection class
 """
+import datetime
 import glob
 from unittest import mock
 import os
 import tempfile
 
-import mailroom
+import cli_main
+import donor_models as dm
 
 
 # Formulate Mail Tests
@@ -44,8 +51,8 @@ def test_formulate_mail():
     Verify that given a donor, the letter generated contains that
     user's information
     """
-    donor_in = ("Bob Smith", [100.00, 50.00])
-    letter = mailroom.formulate_mail(donor_in, echo_terminal=False)
+    donor_in = dm.Donor("Bob Smith", [100.00, 50.00])
+    letter = cli_main.formulate_mail(donor_in, echo_terminal=False)
     print(letter)
     assert letter.startswith('Attn: Bob Smith')
     assert "100.00 USD" in letter
@@ -58,8 +65,8 @@ def test_generate_thankyou_files():
     and saved to the correct location
     """
     destination_dir = tempfile.gettempdir()
-    donor_files = ["{}.txt".format(donor_name) for donor_name in mailroom.DONOR_SET]
-    mailroom.generate_thankyou_files(destination_dir)
+    donor_files = ["{}.txt".format(donor.name) for donor in cli_main.DONOR_SET]
+    cli_main.generate_thankyou_files(destination_dir)
     output_files = glob.glob('{}/*.txt'.format(destination_dir))
     assert output_files is not None
     for donor_file in donor_files:
@@ -75,22 +82,22 @@ def test_generate_thankyou_files_contents():
     contents for all donors in the list
     """
     destination_dir = tempfile.gettempdir()
-    mailroom.generate_thankyou_files(destination_dir)
+    cli_main.generate_thankyou_files(destination_dir)
     output_files = glob.glob('{}/*.txt'.format(destination_dir))
 
-    for donor_name, donations in mailroom.DONOR_SET.items():
+    for donor in cli_main.DONOR_SET:
         try:
-            with open("{}/{}.txt".format(destination_dir, donor_name), 'r') as readfile:
+            with open("{}/{}.txt".format(destination_dir, donor.name), 'r') as readfile:
                 contents = readfile.read()
                 # check that each recipient is mentioned in a file
-                assert donor_name in contents
+                assert donor.name in contents
 
                 # check that each recipient's donation are in that same file
-                for donation in donations:
-                    assert str(donation) in contents
+                for donation in donor.donations:
+                    assert "{:,.2f} USD".format(donation) in contents
 
         except IOError:
-            print("File {}/{} not found".format(destination_dir, donor_name))
+            print("File {}/{} not found".format(destination_dir, donor.name))
             assert False
 
     for output_file in output_files:
@@ -105,8 +112,8 @@ def test_add_donations_done(mocked_input):
     the set of donations is unchanged
     """
     mocked_input.return_value = "done"
-    assert mailroom.add_donations() is not None
-    assert mailroom.add_donations() == []
+    assert cli_main.add_donations() is not None
+    assert cli_main.add_donations() == []
 
 
 @mock.patch('builtins.input')
@@ -116,7 +123,7 @@ def test_add_donations_appends(mocked_input):
     adds that donation to the donations list
     """
     mocked_input.side_effect = ['20', 'done']
-    result = mailroom.add_donations()
+    result = cli_main.add_donations()
     assert len(result) == 1
     assert result[0] == 20.0
 
@@ -128,7 +135,7 @@ def test_add_donations_invalid_input(mocked_input, capsys):
     input results in the proper error message to the user
     """
     mocked_input.side_effect = ['a', 'done']
-    result = mailroom.add_donations()
+    result = cli_main.add_donations()
     assert result is not None
     out, err = capsys.readouterr()
     assert 'Not a number. Please input positive numbers or "done"' in out
@@ -145,7 +152,7 @@ def test_print_report_formatting():
     expected_header = 'Donor Name              | Total Given  | Num Gifts  | Average Gift'
     row_format = '{:<24} ${:>13.2f} {:>12} ${:>13.2f}'
     report_width = 68
-    raw_result, formatted_result = mailroom.print_report()
+    raw_result, formatted_result = cli_main.print_report()
 
     assert formatted_result[0] == expected_header
     assert len(formatted_result[1]) == report_width
@@ -162,7 +169,7 @@ def test_print_report_check_sorting():
     top element thereby proving that the sorting function is being called
     and operating correctly
     """
-    report_result = mailroom.print_report()[0]
+    report_result = cli_main.print_report()[0]
     first_row = report_result[0]
     assert first_row[0] == 'Elmer Fudd'
     assert first_row[1] == 80730.00
@@ -176,7 +183,7 @@ def test_select_donor_list():
     Verify that when selecting a donor, inputing 'list'
     returns no donor
     """
-    result = mailroom.select_donor('list')
+    result = cli_main.select_donor('list')
     assert not result
 
 
@@ -186,19 +193,47 @@ def test_select_donor_existing_name():
     an existing donor, that donor's details are returned
     """
     user = "George Jetson"
-    existing_donor = mailroom.select_donor(user)
+    existing_donor = cli_main.select_donor(user)
     assert existing_donor[0] == user
     assert existing_donor[1] is not None
 
-
-def test_select_donor_new_name():
+@mock.patch('builtins.input')
+def test_select_donor_new_name(mocked_input, capsys):
     """
     Verify that when selecting a donor and asking for
     a non-existent donor, that donor is added and its
     details are returned. User name is correct and
     donation history is empty.
     """
+    mocked_input.side_effect = ['y' '20', 'done']
     user = 'Dave Barris'
-    new_donor = mailroom.select_donor(user)
-    assert new_donor[0] == user
-    assert new_donor[1] == []
+    new_donor = cli_main.select_donor(user)
+    assert new_donor == user
+
+
+def test_donation_class():
+    """Verify basic operations of the donation class"""
+    donation_amount = 20
+    donation = dm.Donation(donation_amount)
+    assert donation.amount == float(donation_amount)
+    assert donation.date.year == datetime.datetime.now().year
+
+
+def test_donor_class():
+    """Verify basic operations of the donation class"""
+    donor = dm.Donor('Joe Nunnelley', [20, 40])
+    assert donor.key == 'joenunnelley'
+    assert donor.name == 'Joe Nunnelley'
+    assert len(donor.donations) == 2
+
+def test_donorcollection_class():
+    """Verify basic operations of the donation class"""
+    donors = dm.DonorCollection()
+    donors.add(dm.Donor('Joe Nunnelley', [20, 40]))
+    donors.add(dm.Donor('Mary Margaret', [30, 50]))
+    assert donors.get_donor('Joe Nunnelley').name == 'Joe Nunnelley'
+    assert len(donors.get_donor('Mary Margaret').donations) == 2
+    donors.delete('Joe Nunnelley')
+    assert len(donors.donors) == 1
+    assert donors.get_donor('Mary Margaret').name == 'Mary Margaret'
+

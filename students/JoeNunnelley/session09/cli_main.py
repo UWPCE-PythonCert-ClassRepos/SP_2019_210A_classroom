@@ -228,8 +228,8 @@ def select_donor(donor_name):
     print('{} not found in donor list.'.format(donor_name))
     if input('Add as a donor (y | n)?').lower() == 'y':
         _donations = add_donations()
+        DONOR_SET.append(d.Donor(donor_name, _donations))
 
-    DONOR_SET.append(d.Donor(donor_name, _donations))
     return donor_name
 
 

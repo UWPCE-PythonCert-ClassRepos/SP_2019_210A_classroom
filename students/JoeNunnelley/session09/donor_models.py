@@ -1,19 +1,15 @@
 import datetime
 
+"""The Mailroom Class Definitions"""
 class Donor:
+    """The Donor Class that contains donation information"""
     def __init__(self, name, _donations=None):
         self.donations = _donations
         self.key = self.standardize_name(name).strip()
-      #  self.initialize_donations(_donations)
         self.name =  name
 
     def standardize_name(self, name):
         return name.lower().strip().replace(' ', '')
-
-    def initialize_donations(self, donations):
-        if donations:
-            for date, donation in enumerate(donations):
-                self.__donations.append(Donation(donation, date))
 
     def to_str(self):
         return "{}\n------\n".format(self.__name)
@@ -42,6 +38,7 @@ class Donor:
 
 
 class DonorCollection:
+    """The DonorCollection class which contains a set of donors"""
     def __init__(self, donors=None):
         self.donors = []
         if donors is not None:
@@ -59,7 +56,7 @@ class DonorCollection:
     def delete(self, donor_name=None):
         """Delete a user from the donors list"""
         for index, donor in enumerate(self.donors):
-            if donor_name.lower() == donor.donor_name().lower():
+            if donor_name.lower() == donor.name.lower():
                 del(self.donors[index])
 
         return len(self.donors)
@@ -68,15 +65,16 @@ class DonorCollection:
     def get_donor(self, donor_name=None):
         """Return the queried user or a None"""
         for donor in self.donors:
-            if donor_name.lower() == donor.donor_name().lower():
+            if donor_name.lower() == donor.name.lower():
                 return donor
 
         return None
 
 
 class Donation:
-    def __init__(self, amount=0, date=None):
-        self.amount(amount)
+    """The Donation class which holds donation details"""
+    def __init__(self, _amount=0, date=None):
+        self.amount = _amount
         self.date = date or datetime.datetime.now()
 
     @property

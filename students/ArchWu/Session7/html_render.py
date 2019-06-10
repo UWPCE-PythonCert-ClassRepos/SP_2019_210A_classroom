@@ -25,8 +25,9 @@ class Element:
     tag = "html"
     indent = "    "
 
-    def __init__(self, content=None):
+    def __init__(self, content=None, **kwargs):
         self.content = []
+        self.attributes = kwargs
         if content:
             # call the classes append method
             # so that it can do anything special it needs to do
@@ -46,12 +47,21 @@ class Element:
             self.content.append(TextWrapper(str(content)))
 
     def render(self, out_file, ind=""):
-        out_file.write("{}<{}>\n".format(ind, self.tag)) 
+        opentag, closetag = self.make_tags()
+        out_file.write("{}{}\n".format(ind, opentag)) 
         for stuff in self.content:
             stuff.render(out_file, ind + self.indent)
             out_file.write("\n")
-        out_file.write("{}</{}>".format(ind, self.tag))
+        out_file.write("{}{}".format(ind, closetag))
 
+    def make_tags(self):
+        attrs = " ".join(['{}="{}"'.format(key, val) for key, val in self.attributes.items()])
+        if attrs.strip():
+            open_tag = "<{} {}>".format(self.tag, attrs.strip())
+        else:
+            open_tag = "<{}>".format(self.tag)
+        close_tag = "</{}>".format(self.tag)
+        return open_tag, close_tag
 
 class OneLineTag(Element):
     def render(self, out_file, ind=""):
@@ -61,6 +71,10 @@ class OneLineTag(Element):
             stuff.render(out_file)
         out_file.write("</{}>".format(self.tag))
     
+    # def append(self, content):
+    #     raise NotImplementedError
+    # this always breaks other tests when a non-oneliner object appends a one-liner object
+
 
 
 class Html(Element):
@@ -74,12 +88,24 @@ class Body(Element):
 class P(Element):
     tag = "p"
 
-    def __init__(self, content=None, ):
-        return super().__init__(content=content)
-
 
 class Head(Element):
     tag = "head"
 
 class Title(OneLineTag):
     tag = 'title'
+
+class SelfClosingTag(Element):
+    def append(self, *args, **kwargs):
+        raise TypeError
+    
+    def render(self, out_file, ind=''):
+        opentag, _ = self.make_tags()
+        out_file.write("{}{}".format(ind, opentag.replace(">", " />")))
+
+class Hr(SelfClosingTag):
+    tag = 'hr'
+
+class Br(SelfClosingTag):
+    tag = 'br'
+

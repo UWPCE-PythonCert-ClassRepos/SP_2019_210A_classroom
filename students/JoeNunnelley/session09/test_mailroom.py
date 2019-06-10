@@ -65,7 +65,7 @@ def test_generate_thankyou_files():
     and saved to the correct location
     """
     destination_dir = tempfile.gettempdir()
-    donor_files = ["{}.txt".format(donor.name) for donor in cli_main.DONOR_SET]
+    donor_files = ["{}.txt".format(donor.name) for donor in cli_main.DONOR_SET.donors]
     cli_main.generate_thankyou_files(destination_dir)
     output_files = glob.glob('{}/*.txt'.format(destination_dir))
     assert output_files is not None
@@ -85,7 +85,7 @@ def test_generate_thankyou_files_contents():
     cli_main.generate_thankyou_files(destination_dir)
     output_files = glob.glob('{}/*.txt'.format(destination_dir))
 
-    for donor in cli_main.DONOR_SET:
+    for donor in cli_main.DONOR_SET.donors:
         try:
             with open("{}/{}.txt".format(destination_dir, donor.name), 'r') as readfile:
                 contents = readfile.read()
@@ -198,14 +198,14 @@ def test_select_donor_existing_name():
     assert existing_donor[1] is not None
 
 @mock.patch('builtins.input')
-def test_select_donor_new_name(mocked_input, capsys):
+def test_select_donor_new_name(mocked_input):
     """
     Verify that when selecting a donor and asking for
     a non-existent donor, that donor is added and its
     details are returned. User name is correct and
     donation history is empty.
     """
-    mocked_input.side_effect = ['y' '20', 'done']
+    mocked_input.side_effect = ['y', '20', 'done']
     user = 'Dave Barris'
     new_donor = cli_main.select_donor(user)
     assert new_donor == user
@@ -236,4 +236,3 @@ def test_donorcollection_class():
     donors.delete('Joe Nunnelley')
     assert len(donors.donors) == 1
     assert donors.get_donor('Mary Margaret').name == 'Mary Margaret'
-

@@ -11,11 +11,12 @@ import sys
 import tempfile
 import donor_models as d
 
-DONOR_SET = [d.Donor("George Jetson", [100.00, 50.00, 200.00]),
-             d.Donor("Bugs Bunny", [400.00, 55.00, 5000.00]),
-             d.Donor("Daffy Duck", [0.00, 3.00, 5.00, 6.00, 76.00, 8.00]),
-             d.Donor("Elmer Fudd", [66.00, 666.00, 6666.00, 6666.00, 66666.00]),
-             d.Donor("Porky Pig", [0.50, 56.45, 67.89])]
+DONOR_SET = d.DonorCollection()
+DONOR_SET.add(d.Donor("George Jetson", [100.00, 50.00, 200.00]))
+DONOR_SET.add(d.Donor("Bugs Bunny", [400.00, 55.00, 5000.00]))
+DONOR_SET.add(d.Donor("Daffy Duck", [0.00, 3.00, 5.00, 6.00, 76.00, 8.00]))
+DONOR_SET.add(d.Donor("Elmer Fudd", [66.00, 666.00, 6666.00, 6666.00, 66666.00]))
+DONOR_SET.add(d.Donor("Porky Pig", [0.50, 56.45, 67.89]))
 
 BOUNDARY = '#####'
 
@@ -55,13 +56,16 @@ def send_thankyou():
     if donor_name:
         added_donations = add_donations()
 
-        for donor in DONOR_SET:
+        for donor in DONOR_SET.donors:
             if donor_name == donor.name:
                 donor.donations.extend(added_donations)
 
         print(f'\nSending a Thank You to {donor.name}...\n')
         formulate_mail(donor)
         print()
+    else:
+        print('Donor not found')
+
     print()
 
 
@@ -133,7 +137,7 @@ def print_report():
         Paul Allen                 $     708.42           3  $      236.14
     """
     print('\nPrinting Report...\n')
-    report_rows_raw = generate_report_rows_raw(DONOR_SET)
+    report_rows_raw = generate_report_rows_raw(DONOR_SET.donors)
     report_rows_formatted = generate_report_rows_formatted(report_rows_raw)
 
     for row in report_rows_formatted:
@@ -188,7 +192,7 @@ def add_donations():
         print('Type "done" to finish')
         response = input('Donation Amount (USD): ')
 
-        if response == 'done':
+        if response.lower() == 'done':
             done = True
         else:
             if response.isdigit() and float(response) > 0:
@@ -212,7 +216,7 @@ def select_donor(donor_name):
     """Find or create a donor in the donor set"""
     if donor_name == 'list':
         donor_id = 1
-        for donor in DONOR_SET:
+        for donor in DONOR_SET.donors:
             print('{:<4}: {:>20} | {:>50}'.format(donor_id,
                                                   donor.name,
                                                   str(donor.donations_to_str())))
@@ -220,15 +224,18 @@ def select_donor(donor_name):
         print()
         return ''
 
-    for donor in DONOR_SET:
+    for donor in DONOR_SET.donors:
         if donor_name.upper() == donor.name.upper():
             print('Found {}'.format(donor_name))
             return (donor.name, donor.donations)
 
     print('{} not found in donor list.'.format(donor_name))
-    if input('Add as a donor (y | n)?').lower() == 'y':
+    response = input('Add as a donor (y | n)? ')
+    if response.lower() == 'y':
         _donations = add_donations()
-        DONOR_SET.append(d.Donor(donor_name, _donations))
+        DONOR_SET.add(d.Donor(donor_name, _donations))
+    else:
+        return None
 
     return donor_name
 
@@ -254,7 +261,7 @@ def generate_thankyou_files(output_directory):
 
     print('Generating donor mails here {}'.format(output_directory))
 
-    for donor in DONOR_SET:
+    for donor in DONOR_SET.donors:
         mail_contents = formulate_mail((donor), False)
         file_name = "{}/{}.txt".format(output_directory, donor.name)
 
@@ -289,5 +296,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

@@ -48,6 +48,7 @@ def thank_you():
         print('\n','Donor List','\n', "------")
         for i in donors.keys():
             print(i)
+        return
     elif not repeat_donor(donor):
         new_donor = input("Donor not found. Is this a new donor? (y/n): ")
         if new_donor[0].lower() == "y":
@@ -86,6 +87,9 @@ def gen_report():
         report_file += ('{:15}   ${:10.2f}{:8}         ${:10.2f} \n'.format(*j))
     return report_file
 
+def print_report():
+    print(gen_report())
+
 def send_letters():
     print(os.getcwd())
     letter_template = "Dear {},\n \n Thank you for your very kind donation of ${:.2f}. It will be put to very good use.\n \n Sincerely,\n  -The Team"
@@ -103,22 +107,23 @@ def hello():
 
 def main_menu():
     while True:
-        answer = input("""What would you like to do?
+        choice = input("""What would you like to do?
 Please enter a number 1-4:
 1: Send a Thank You
 2: Create a Report
 3: Send letters to all donors
 4: Quit
 >>>""")
-        """
         switcher={
-                1:hello,
-                2:'Tuesday',
-                3:'Wednesday',
-                4:quit_program,
+                "1":thank_you,
+                "2":print_report,
+                "3":send_letters,
+                "4":quit_program,
              }
-        switcher[choice]()"""
+        switcher[choice]()
 
+
+"""
         #print(answer)
         clear_screen()
         if answer == "1" or answer.lower() == "send a thank you":
@@ -131,6 +136,7 @@ Please enter a number 1-4:
             quit_program()
         else:
             print("Please follow instructions dummy :)","\n")
+"""
 
 if __name__ == "__main__":
     print("Welcome to the mailroom")

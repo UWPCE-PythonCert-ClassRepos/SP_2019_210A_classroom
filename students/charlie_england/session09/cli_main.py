@@ -4,7 +4,10 @@ import sys
 
 def thank_you(donor_collection,new_don=None):
     """
-    Send a Thank you to a single donor
+    Tries to gather name input and donation info before reaching out to Donor and and Dono_Collection functions to add a new donation amount
+    will also print a list of the current donor names if requested, allows the user to quit back to main menu
+    new don will be a Donor class from another function so that this code can be used later
+    will check to see if the name is currently in the donors by using the search donor function
     """
     while True:
         if not new_don:
@@ -12,13 +15,11 @@ def thank_you(donor_collection,new_don=None):
             norm_name_choice = name_choice.lower().strip().replace(" ","")
         else:
             norm_name_choice = new_don.lower().strip().replace(" ","")
-        if norm_name_choice in donor_collection.donor_data.keys() or new_don:
+        if donor_collection.search_donor(norm_name_choice) or new_don:
             while True:
                 try:
                     donation_amt = float(input(f"Please enter a donation amount for {donor_collection.donor_data[norm_name_choice].name}\n>>> "))
                     break
-                    if donation_amt == "q":
-                        break
                 except ValueError:
                     print("That was an invalid, please try again, 'q' to head back to main menu")
             donor_collection.donor_data[norm_name_choice].add_donation(donation_amt)
@@ -34,12 +35,12 @@ def thank_you(donor_collection,new_don=None):
 
 def thank_you_new(donor_collection):
     """
-    Create a donor, and then send a thank you (use logic from the one function, send new_don ="yes")
+    Create a donor, and then send a thank you (use logic from the thank_you function, send new_don =instance of Donor class with the user inputted name)
     """
     while True:
         usr_name_input = input("Input a name of a new donor, 'q' to head back to main menu\n>>> ")
         norm_usr_name = usr_name_input.lower().strip().replace(" ","")
-        if norm_usr_name in donor_collection.donor_data.keys():
+        if donor_collection.search_donor(norm_usr_name):
             print(f"{usr_name_input} already in donors, please select a new name")
         elif usr_name_input == "q":
             return donor_collection
@@ -51,28 +52,21 @@ def thank_you_new(donor_collection):
 
 def create_report(donor_collection):
     """
-    create a report
+    reached out to the Donor_Collection instance of the donor_data and uses the gen_reports function to get a list and prints this out.
     """
-    print("Donor Name" + " "*11 + "|" + " "*3 + " Total Given " + " "*3 +
-                   "| Num Gifts " + "| Average Gift\n" + "-"*60)
-    for donor in donor_collection.donor_data.values():
-        print(f"{donor.name:<20} $  {donor.total:>16,.2f} {donor.num_donations:^12} $ {donor.average:>10,.2f}")
+    report_list = donor_collection.gen_report()
+    for line in report_list:
+        print(line)
 
 def send_letters(donor_collection):
     """
-    Send letters to all donors
+    uses the Donor_Collection class to get a list back and will create a file named donor_name.txt and writes the letter to this list
     """
-    for donor in donor_collection.donor_data.values():
-        file_name = f"{donor.name}.txt"
+    for letter in donor_collection.send_letters():
+        file_name = f"{letter[1]}.txt"
         with open(file_name, "w") as fh:
-            fh.writelines("""Dear {},\n\n 
-        On behalf of Local Charity we would like to extend our sincerest thanks for your most recent ${} donation.\n
-        Without people like you we could not continue blah blah blah\n
-        Over time you have given us a total of ${:,.2f} over {} donation(s) which averages out to ${:,.2f} per donation! \n
-        Again thank you\n
-    Sincerely,\n
-        Local Charity """.format(donor.name, donor.donations[-1], donor.total, donor.num_donations, donor.average))
-        print(f'Created letter for {donor.name}')
+            fh.writelines(letter[0])
+        print(f'Created letter for {letter[1]}')
         fh.close()
     print("Finished!")
 
@@ -84,9 +78,13 @@ def halt(pos_arg):
     sys.exit()
 
 def main():
-    d1 = Donor("Jeff Bezos",[1000,500,20])
-    d2 = Donor('blue berry',[1233,513])
-    donor_collection = Donor_Collection([d1,d2])
+    """
+    main function which contains the switch_case dictionary
+    tests to make sure the user input a correct entry
+    """
+    # d1 = Donor("Jeff Bezos",[1000,500,20])
+    # d2 = Donor('blue berry',[1233,513])
+    donor_collection = Donor_Collection()
     switch = {
         "1":thank_you,
         "2":thank_you_new,
@@ -104,7 +102,7 @@ def main():
             5: Quit
             >>> """).strip()
         if choice not in switch.keys():
-            print(f'You input {choice}, please input 1 through 4')
+            print(f'You input {choice}, please input 1 through 5')
         else:
             switch[choice](donor_collection)
 

@@ -111,7 +111,24 @@ class Br(SelfClosingTag):
     tag = 'br'
 
 class A(OneLineTag):
+    """Link"""
     tag = 'a'
     def __init__(self, link, content=None, **kwargs):
         kwargs["href"] = link
         super().__init__(content, **kwargs)
+
+class Ul(Element):
+    """Unordered List"""
+    tag = "ul"
+
+class Li(Element):
+    """List"""
+    tag = "li"
+
+class H(OneLineTag):
+    """Head"""
+    tag = 'h'
+
+    def __init__(self, header, *args, **kwargs):
+        self.tag = 'h' + str(int(header))
+        super().__init__(*args, **kwargs)

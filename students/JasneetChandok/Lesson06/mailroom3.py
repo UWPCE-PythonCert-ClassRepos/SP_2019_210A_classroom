@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.6
 
 '''
-Lesson 5: Mailroom Part 3
+Lesson 6: Mailroom Part 3 Unit Test
 
 Problem Statement: You work in the mail room at a local charity.\
 Part of your job is to write incredibly boring, repetitive emails \
@@ -21,18 +21,25 @@ except ImportError:
     print("The sys module could nout be imported!")
 
 
-# List of existing donors
-donors = {'jasneet paramjit': [50, 200, 500],
-          'simran kaur': [100, 200, 500],
-          'manikaran chandok': [100, 200, 500, 680],
-          'manveen chandok': [10, 200, 65],
-          'sanjam patwalia': [200, 50]}
+def get_donors_db():
+    # List of existing donors
+    return {'jasneet paramjit': [50, 200, 500],
+            'simran kaur': [100, 200, 500],
+            'manikaran chandok': [100, 200, 500, 680],
+            'manveen chandok': [10, 200, 65],
+            'harjeev anand': [200, 50]}
 
 
 # List of existing donor
 def existingdonors_list():
-    donor_list = "\n ".join(donor.title()for donor in donors)
-    print("\nList of Existing Donors:", "\n", donor_list, "\n")
+    donor_list = ["\nList of Existing Donors:"]
+    for donor in donors_db.keys():
+        donor_list.append(donor.title())
+    return "\n".join(donor_list)
+
+
+def print_donor_list():
+    print(existingdonors_list())
 
 
 # Add donation to an existing donor
@@ -42,9 +49,9 @@ def add_donation():
         donor_donation = input("\nEnter the 'Amount' donated >")
         donor = donor_selection.strip().lower()
         try:
-            if donor in donors:
-                donor_amount = donors.get(donor)
-                donor_amount.append(int(donor_donation))
+            if donor in donors_db:
+                donor_amount = donors_db.get(donor)
+                donor_amount.append(float(donor_donation))
                 print(f'\nDonation amount of "{donor_donation}" has been recorded for {donor.title()}!!\n')
                 print('''Thank you note to share out with the donor below:\n
                   Dear {}
@@ -54,7 +61,7 @@ def add_donation():
 
                                  Sincerely,
                                     -The Team
-                    '''.format(donor.title(), int(donor_donation)))
+                    '''.format(donor.title(), float(donor_donation)))
             else:
                 print('\nDonor name entered does not exist in the list!!')
         except ValueError:
@@ -62,15 +69,16 @@ def add_donation():
     except (EOFError, KeyboardInterrupt):
         print("""\nA user induced error occured. Please check keys pressed!""")
 
+
 # Create a record for a new donor
 def new_donor():
     try:
         donor_name = input("\nEnter 'Full Name' of the donor >")
-        new_donation = int(input("\nEnter the 'Amount' donated >"))
+        new_donation = float(input("\nEnter the 'Amount' donated >"))
         donor_name = donor_name.strip().lower()
         try:
-            if donor_name not in donors:
-                donors[donor_name] = [new_donation]
+            if donor_name not in donors_db:
+                donors_db[donor_name] = [new_donation]
                 print(f'\nDonation amount of "{new_donation}" has been recorded for {donor_name.title()}!!\n')
                 print('''Thank you note to share out with the donor below:\n
                   Dear {}
@@ -102,7 +110,7 @@ def thankyou_email():
 
                   > ''')
 
-        selection_dict = {"1": existingdonors_list,
+        selection_dict = {"1": print_donor_list,  # existingdonors_list
                           "2": add_donation,
                           "3": new_donor,
                           "4": main_menu,
@@ -119,34 +127,32 @@ def sort_key(item):
 # Function for generating reporting
 def generate_report():
     report_rows = []
-    try:
-        for donor, donation in donors.items():
-            total_donation = sum(donation)
-            num_donation = len(donation)
-            avg_donation = total_donation / num_donation
-            report_rows.append((donor.title(), total_donation, num_donation, avg_donation))
+    for donor, donation in donors_db.items():
+        total_donation = sum(donation)
+        num_donation = len(donation)
+        avg_donation = total_donation / num_donation
+        report_rows.append((donor.title(), total_donation, num_donation, avg_donation))
 
-        # sort the report data
-        report_rows.sort(key=sort_key, reverse=True)
-        report = []
-        report.append("{:20s} | {:11s} | {:9s} | {:12s}".format("\nDonor Name",
-                                                                "Total Donation",
-                                                                "Num Donation",
-                                                                "Avg Donation"))
-        report.append("-" * 70)
-    except AttributeError:
-        print('There was an error in creating the report format')
+    # sort the report data
+    report_rows.sort(key=sort_key, reverse=True)
+    report = []
+    report.append("{:20s} | {:11s} | {:9s} | {:12s}".format("\nDonor Name",
+                                                            "Total Donation",
+                                                            "Num Donation",
+                                                            "Avg Donation"))
+    report.append("-" * 70)
 
 # print the report
-    try:
-        for row in report_rows:
-            report.append("{:20s}   {:10.2f}$   {:9d}   {:13.2f}$".format(*row))
-        print("\n".join(report))
-    except AttributeError:
-        print('There was an error in creating the report format')
+    for row in report_rows:
+        report.append("{:20s}   {:10.2f}$   {:9d}   {:13.2f}$".format(*row))
+    return"\n".join(report)
 
 
-def gen_letter(donor):
+def display_report():
+    print(generate_report())
+
+
+def gen_letter(donor):  # letter needs to be fixed
     return ('''Dear {:s},
 
           Thank you for your very kind donation of ${:.2f}.
@@ -154,11 +160,11 @@ def gen_letter(donor):
 
                          Sincerely,
                             -The Team
-          '''.format(donor.title(), donors[donor][-1]))
+          '''.format(donor.title(), donors_db[donor][-1]))
 
 
 def save_letters_to_disk():
-    for donor in donors:
+    for donor in donors_db:
         letter = gen_letter(donor)
         filename = donor.replace(" ", "_") + ".txt"
         print("Generated letter for:", donor.title())
@@ -184,7 +190,7 @@ def main_menu():
                         > ''')
 
     selection_dict = {"1": thankyou_email,
-                      "2": generate_report,
+                      "2": display_report,  # generate_report,
                       "3": save_letters_to_disk,
                       "4": quit_program}
 
@@ -206,5 +212,5 @@ def run_menu(prompt, selection_dict):
 # Runs the file as a main module
 if __name__ == "__main__":
     print("\n*****Welcome to the Mailroom Program!!*****\n")
-
+donors_db = get_donors_db()
 main_menu()

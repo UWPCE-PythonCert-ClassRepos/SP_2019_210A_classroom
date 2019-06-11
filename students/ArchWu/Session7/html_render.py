@@ -66,10 +66,11 @@ class Element:
 class OneLineTag(Element):
     def render(self, out_file, ind=""):
         # there is some repition here -- maybe factor that out?
-        out_file.write("{}<{}>".format(ind, self.tag))
+        opentag, closetag = self.make_tags()
+        out_file.write("{}{}".format(ind, opentag))
         for stuff in self.content:
             stuff.render(out_file)
-        out_file.write("</{}>".format(self.tag))
+        out_file.write("{}{}".format(ind, closetag))
     
     # def append(self, content):
     #     raise NotImplementedError
@@ -109,3 +110,8 @@ class Hr(SelfClosingTag):
 class Br(SelfClosingTag):
     tag = 'br'
 
+class A(OneLineTag):
+    tag = 'a'
+    def __init__(self, link, content=None, **kwargs):
+        kwargs["href"] = link
+        super().__init__(content, **kwargs)

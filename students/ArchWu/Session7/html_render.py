@@ -80,6 +80,9 @@ class OneLineTag(Element):
 
 class Html(Element):
     tag = 'html'
+    def render(self, out_file, ind=''):
+        out_file.write(ind + "<!DOCTYPE html>\n")
+        super().render(out_file, ind = ind)
 
 
 class Body(Element):
@@ -132,3 +135,6 @@ class H(OneLineTag):
     def __init__(self, header, *args, **kwargs):
         self.tag = 'h' + str(int(header))
         super().__init__(*args, **kwargs)
+
+class Meta(SelfClosingTag):
+    tag = 'meta'

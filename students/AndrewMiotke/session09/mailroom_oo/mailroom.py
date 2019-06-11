@@ -11,13 +11,13 @@ get_donor_list = DonorList()
 
 def report():
     print("📊 Generating report...")
-    time.sleep(1)  # dramatic effect of creating the report
+    time.sleep(1)
     print_donor_report()
 
 
 def print_donor_report():
     report_rows = []
-    # for (donor_name, gifts) in donors_list.values():
+
     for (donor_name, gifts) in get_donor_list.donor_data.values():
         total_gifts = sum(gifts)
         num_gifts = len(gifts)
@@ -37,23 +37,9 @@ def print_donors():
     print("\nHere is your list of donors:\n")
     print("{:6s}".format("Donor Name"))
     print("-" * 12)
-    # for donor in donors_list:
+
     for donor in get_donor_list.donor_data:
         print(donor)
-
-
-# def get_donor(donor_name):
-#     key = donor_name.strip().lower()
-
-#     return donors_list.get(key)
-
-
-# def add_donor(donor_name):
-#     donor_name = donor_name.strip()
-#     donor = (donor_name, [])
-#     donors_list[donor_name.lower()] = donor
-
-#     return donor
 
 
 def send_thank_you_letter():
@@ -76,11 +62,9 @@ def send_thank_you_letter():
         except ValueError:
             print(f"\n‼️  '{add_amount}' is not a valid number. Please enter a valid number\n")
 
-    # donor = get_donor(donor_name)
     donor = get_donor_list.get_donor(donor_name)
 
     if donor is None:
-        # donor = add_donor(donor_name)
         donor = get_donor_list.add_donor(donor_name)
 
     donor[1].append(donated_amount)
@@ -114,7 +98,6 @@ def send_letter_to_all_donors():
     name_destination_directory = input("Name the directory to save the letters: ")
     os.mkdir(f"./{name_destination_directory}")
 
-    # for donor_name in donors_list.values():
     for donor_name in get_donor_list.donor_data.values():
         time.sleep(.5)
         source = f"{donor_name[0]}.txt"

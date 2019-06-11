@@ -77,7 +77,7 @@ def send_thank_you_letter():
             print(f"\n‼️  '{add_amount}' is not a valid number. Please enter a valid number\n")
 
     # donor = get_donor(donor_name)
-
+    donor = get_donor_list.get_donor(donor_name)
 
     if donor is None:
         # donor = add_donor(donor_name)
@@ -114,7 +114,8 @@ def send_letter_to_all_donors():
     name_destination_directory = input("Name the directory to save the letters: ")
     os.mkdir(f"./{name_destination_directory}")
 
-    for donor_name in donors_list.values():
+    # for donor_name in donors_list.values():
+    for donor_name in get_donor_list.donor_data.values():
         time.sleep(.5)
         source = f"{donor_name[0]}.txt"
         print(f"✅ Thank you letter created for: {source}")

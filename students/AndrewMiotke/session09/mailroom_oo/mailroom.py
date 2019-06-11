@@ -4,14 +4,9 @@ import sys
 import time
 import shutil
 from textwrap import dedent
+from donors_model import Donor, DonorList
 
-
-donors_list = {"Rufio": ("Rufio", [897, 200 , 200]),
-               "Maggie": ("Maggie", [543, 2, 3000]),
-               "Gus": ("Gus", [23, 32, 33222]),
-               "Kramer": ("Kramer", [10, 87, 886]),
-               "Polly": ("Polly", [432, 32, 7896]),
-              }
+get_donor_list = DonorList()
 
 
 def report():
@@ -22,7 +17,8 @@ def report():
 
 def print_donor_report():
     report_rows = []
-    for (donor_name, gifts) in donors_list.values():
+    # for (donor_name, gifts) in donors_list.values():
+    for (donor_name, gifts) in get_donor_list.donor_data.values():
         total_gifts = sum(gifts)
         num_gifts = len(gifts)
         avg_gift = total_gifts / num_gifts
@@ -41,27 +37,28 @@ def print_donors():
     print("\nHere is your list of donors:\n")
     print("{:6s}".format("Donor Name"))
     print("-" * 12)
-    for donor in donors_list:
+    # for donor in donors_list:
+    for donor in get_donor_list.donor_data:
         print(donor)
 
 
-def get_donor(donor_name):
-    key = donor_name.strip().lower()
+# def get_donor(donor_name):
+#     key = donor_name.strip().lower()
 
-    return donors_list.get(key)
+#     return donors_list.get(key)
 
 
-def add_donor(donor_name):
-    donor_name = donor_name.strip()
-    donor = (donor_name, [])
-    donors_list[donor_name.lower()] = donor
+# def add_donor(donor_name):
+#     donor_name = donor_name.strip()
+#     donor = (donor_name, [])
+#     donors_list[donor_name.lower()] = donor
 
-    return donor
+#     return donor
 
 
 def send_thank_you_letter():
     while True:
-        print("type 'list' to get a list of donors or 'exit' to go back to the main menu")
+        print("Type 'list' to get a list of donors or 'exit' to go back to the main menu")
         donor_name = input("Type in the name of a donor: ")
 
         if donor_name == "list":
@@ -79,10 +76,12 @@ def send_thank_you_letter():
         except ValueError:
             print(f"\n‼️  '{add_amount}' is not a valid number. Please enter a valid number\n")
 
-    donor = get_donor(donor_name)
+    # donor = get_donor(donor_name)
+
 
     if donor is None:
-        donor = add_donor(donor_name)
+        # donor = add_donor(donor_name)
+        donor = get_donor_list.add_donor(donor_name)
 
     donor[1].append(donated_amount)
     print(thank_you_letter(donor))
@@ -133,6 +132,32 @@ def send_letter_to_all_donors():
             break
 
 
+def main_menu():
+    while True:
+        answer = input(""" -> What you would you like to do?
+    Pick One:
+    1: Send a thank you
+    2: Create a report
+    3: Send letters to ALL donors
+    4: Quit
+    >>> """)
+        print(f"You selected {answer}")
+
+        answer = answer.strip()
+
+        try:
+            answer_dict = {
+                "1": send_thank_you_letter,
+                "2": report,
+                "3": send_letter_to_all_donors,
+                "4": quit_mailroom,
+            }
+
+            answer_dict.get(answer)()
+        except TypeError:
+            print(f"\n‼️  ️{answer} is not a valid option, please select from 1, 2, 3 or 4\n")
+
+
 def quit_mailroom():
     print("Quitting Mailroom...")
     time.sleep(.5)
@@ -140,36 +165,5 @@ def quit_mailroom():
     sys.exit(0)
 
 
-# def main_menu():
-#     while True:
-#         answer = input(""" -> What you would you like to do?
-#     Pick One:
-#     1: Send a thank you
-#     2: Create a report
-#     3: Send letters to ALL donors
-#     4: Quit
-#     >>> """)
-#         print(f"You selected {answer}")
-
-#         answer = answer.strip()
-
-#         try:
-#             answer_dict = {
-#                 "1": send_thank_you_letter,
-#                 "2": report,
-#                 "3": send_letter_to_all_donors,
-#                 "4": quit_mailroom,
-#             }
-
-#             answer_dict.get(answer)()
-#         except TypeError:
-#             print(f"\n‼️  ️{answer} is not a valid option, please select from 1, 2, 3 or 4\n")
-
-
 if __name__ == "__main__":
-    print("Welcome to the Mailroom.")
     main_menu()
-    # send_letter_to_all_donors()
-    # quit()
-    # report()
-    # get_donor("Rufio")

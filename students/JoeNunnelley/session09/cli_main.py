@@ -51,21 +51,16 @@ def send_thankyou():
     donors that had been added, in other words, to forget new donors once
     the script quits running.
     """
-    donor_name = prompt_for_donor()
+    selected_donor = prompt_for_donor()
 
-    if donor_name:
-        added_donations = add_donations()
-
+    if selected_donor:
         for donor in DONOR_SET.donors:
-            if donor_name == donor.name:
-                donor.donations.extend(added_donations)
+            if selected_donor.name == donor.name:
+                donor.donations.extend(add_donations())
 
         print(f'\nSending a Thank You to {donor.name}...\n')
         formulate_mail(donor)
         print()
-    else:
-        print('Donor not found')
-
     print()
 
 
@@ -212,32 +207,39 @@ def prompt_for_donor():
     return select_donor(donor_name)
 
 
+def list_donors():
+    """Output the list of donors and return"""
+    donor_id = 1
+    for donor in DONOR_SET.donors:
+        print('{:<4}: {:>20} | {:>50}'.format(donor_id,
+                                              donor.name,
+                                              str(donor.donations_to_str())))
+        donor_id += 1
+    print()
+    return None
+
+
 def select_donor(donor_name):
     """Find or create a donor in the donor set"""
     if donor_name == 'list':
-        donor_id = 1
-        for donor in DONOR_SET.donors:
-            print('{:<4}: {:>20} | {:>50}'.format(donor_id,
-                                                  donor.name,
-                                                  str(donor.donations_to_str())))
-            donor_id += 1
-        print()
-        return ''
+        return list_donors()
+    elif DONOR_SET.get_donor(donor_name):
+        print('Found {}'.format(donor_name))
+        return DONOR_SET.get_donor(donor_name)
+    else:
+        new_donor = add_donor(donor_name)
+        DONOR_SET.add(new_donor)
+        return new_donor
 
-    for donor in DONOR_SET.donors:
-        if donor_name.upper() == donor.name.upper():
-            print('Found {}'.format(donor_name))
-            return (donor.name, donor.donations)
 
+def add_donor(donor_name):
+    """Add a donor to the donor collection"""
     print('{} not found in donor list.'.format(donor_name))
     response = input('Add as a donor (y | n)? ')
     if response.lower() == 'y':
-        _donations = add_donations()
-        DONOR_SET.add(d.Donor(donor_name, _donations))
+        return d.Donor(donor_name, add_donations())
     else:
         return None
-
-    return donor_name
 
 
 def select_output_directory():

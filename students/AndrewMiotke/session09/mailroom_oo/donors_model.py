@@ -28,14 +28,12 @@ class DonorList:
     def get_donor(self, donor_name):
         key = donor_name.strip().lower()
 
-        # return donors_list.get(key)
         return self.donor_data.get(key)
 
 
     def add_donor(self, donor_name):
         donor_name = donor_name.strip()
         donor = (donor_name, [])
-        # donors_list[donor_name.lower()] = donor
         self.donor_data[donor_name.lower()] = donor
 
         return donor

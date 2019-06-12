@@ -76,11 +76,13 @@ def test_render_element():
     assert file_contents.index("this is") < file_contents.index("and this")
 
     # making sure the opening and closing tags are right.
-    assert file_contents.startswith("<html>")
-    assert file_contents.endswith("</html>")
+    assert file_contents.count("<html>") == 1
+    assert file_contents.count("</html>") == 1
+
 
 # Uncomment this one after you get the one above to pass
 # Does it pass right away?
+
 def test_render_element2():
     """
     Tests whether the Element can render two pieces of text
@@ -95,6 +97,7 @@ def test_render_element2():
     # This uses the render_results utility above
     file_contents = render_result(e).strip()
 
+
     # making sure the content got in there.
     assert("this is some text") in file_contents
     assert("and this is some more text") in file_contents
@@ -105,8 +108,6 @@ def test_render_element2():
     # making sure the opening and closing tags are right.
     assert file_contents.startswith("<html>")
     assert file_contents.endswith("</html>")
-
-
 
 # # ########
 # # # Step 2
@@ -161,10 +162,10 @@ def test_sub_element():
     page.append("Some more plain text.")
 
     file_contents = render_result(page)
-    print(file_contents) # so we can see it if the test fails
+    print(file_contents)  # so we can see it if the test fails
 
-#     # note: The previous tests should make sure that the tags are getting
-#     #       properly rendered, so we don't need to test that here.
+    # note: The previous tests should make sure that the tags are getting
+    #       properly rendered, so we don't need to test that here.
     assert "some plain text" in file_contents
     assert "A simple paragraph of text" in file_contents
     assert "Some more plain text." in file_contents
@@ -174,29 +175,66 @@ def test_sub_element():
     assert "</p>" in file_contents
 
 
-def test_title():
-    e = Title("This is a Title")
-
-    file_contents = render_result(e).strip()
-
-    assert("This is a Title") in file_contents
-    print(file_contents)
-    assert file_contents.startswith("<title>")
-    assert file_contents.endswith("</title>")
-
-def test_one_line_tag_append():
-    """
-    You should not be able to append content to a OneLineTag
-    """
-    e = OneLineTag("the initial content")
-    with pytest.raises(NotImplementedError):
-        e.append("some more content")
-
 ########
 # Step 3
 ########
 
 # Add your tests here!
+
+def test_head():
+    e = Head("this is some text")
+    e.append("and this is some more text")
+
+    file_contents = render_result(e).strip()
+
+    assert("this is some text") in file_contents
+    assert("and this is some more text") in file_contents
+
+    assert file_contents.startswith("<head>")
+    assert file_contents.endswith("</head>")
+
+
+def test_title():
+    e = Title("this is some text")
+    e.append("and this is some more text")
+
+    file_contents = render_result(e).strip()
+
+    assert("this is some text") in file_contents
+    assert("and this is some more text") in file_contents
+
+    assert file_contents.startswith("<title>")
+    assert file_contents.endswith("</title>")
+
+    assert file_contents.count("\n") == 0  # made sure there title contents are all on one line
+    # assert file_contents.count("\n") == 1
+
+
+# step 4
+
+# def test_attributes():
+#     e = P("A paragraph of text", style="text-align: center", id="intro")
+#
+#     file_contents = render_result(e).strip()
+#     print(file_contents)  # so we can see it if the test fails
+#
+#     # note: The previous tests should make sure that the tags are getting
+#     #       properly rendered, so we don't need to test that here.
+#     #       so using only a "P" tag is fine
+#     assert "A paragraph of text" in file_contents
+#     # but make sure the embedded element's tags get rendered!
+#     # first test the end tag is there -- same as always:
+#     assert file_contents.endswith("</p>")
+#
+#     # but now the opening tag is far more complex
+#     # but it starts the same:
+#     assert file_contents.startswith("<p")
+#
+#     assert 'style="text-align: center"' in file_contents
+#     assert 'id="intro"' in file_contents
+#     assert False
+
+
 def test_attributes():
     e = P("A paragraph of text", style="text-align: center", id="intro")
 
@@ -224,7 +262,28 @@ def test_attributes():
     # # just to be sure -- there should be a closing bracket to the opening tag
     assert file_contents[:-1].index(">") > file_contents.index('id="intro"')
     assert file_contents[:file_contents.index(">")].count(" ") == 3
-# #####################
+
+
+# step 5
+
+def test_hr():
+    """a simple horizontal rule with no attributes"""
+    hr = Hr()
+    file_contents = render_result(hr)
+    print(file_contents)
+    assert file_contents == '<hr />\n'
+
+
+def test_hr_attr():
+    """a horizontal rule with an attribute"""
+    hr = Hr(width=400)
+    file_contents = render_result(hr)
+    print(file_contents)
+    assert file_contents == '<hr width="400" />\n'
+
+
+# #
+# ####################
 # # indentation testing
 # #  Uncomment for Step 9 -- adding indentation
 # #####################

@@ -194,8 +194,8 @@ def test_select_donor_existing_name():
     """
     user = "George Jetson"
     existing_donor = cli_main.select_donor(user)
-    assert existing_donor[0] == user
-    assert existing_donor[1] is not None
+    assert existing_donor.name == user
+    assert existing_donor.donations is not None
 
 @mock.patch('builtins.input')
 def test_select_donor_new_name(mocked_input):
@@ -208,7 +208,8 @@ def test_select_donor_new_name(mocked_input):
     mocked_input.side_effect = ['y', '20', 'done']
     user = 'Dave Barris'
     new_donor = cli_main.select_donor(user)
-    assert new_donor == user
+    assert new_donor.name == user
+    assert new_donor.donations[0] == 20
 
 
 def test_donation_class():

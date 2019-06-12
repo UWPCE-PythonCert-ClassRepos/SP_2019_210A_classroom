@@ -39,9 +39,11 @@ class Element: # Did we need the () in Python3+ ?
     def render(self, out_file, current_indent = ""):
         open_tag, close_tag = self.make_tags()
         out_file.write(current_indent + open_tag + "\n")
+
         for stuff in self.contents:
             stuff.render(out_file, current_indent + self.indent)
             out_file.writ("\n")
+
         out_file.write(current_indent + close_tag)
 
 
@@ -50,8 +52,10 @@ class OneLineTag(Element):
     def render(self, out_file, current_indent = ""):
         open_tag, close_tag = self.make_tags()
         out_file.write(current_indent + open_tag)
+
         for stuff in self.contents:
             stuff.render(out_file)
+
         out_file.write(close_tag)
 
 

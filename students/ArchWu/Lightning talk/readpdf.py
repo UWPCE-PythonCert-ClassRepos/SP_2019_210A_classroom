@@ -3,24 +3,28 @@ from PyPDF4 import PdfFileReader, PdfFileWriter, PdfFileMerger
 
 """
 Install of pypdf4: pip3 install pypdf4
-kindof previous version PyPDF2
+previous version PyPDF2
 No dependencies
 """
 
 
 
 def extract_information(pdf_path):
+    """Get the information from a given pdf file"""
     with open(pdf_path, 'rb') as f:
         pdf = PdfFileReader(f)
         information = pdf.getDocumentInfo()
         number_of_pages = pdf.getNumPages()
     
-    txt = f"Information about {pdf_path}: Author: {information.author} Creator: {information.creator} Producer: {information.producer} Subject: {information.subject} Title: {information.title} Number of pages: {number_of_pages}"
+    txt = f"Information about {pdf_path}: Author: {information.author} Creator: {information.creator}"
+    "Producer: {information.producer} Subject: {information.subject} Title: {information.title}"
+    "Number of pages: {number_of_pages}"
 
     print(txt)
     return information
 
 def rotate(pdf_path):
+    """Rotate pages of input pdf file as user wish"""
     pdf_writer = PdfFileWriter()
     pdf_reader = PdfFileReader(pdf_path)
     # rotate the first page clockwise for 90 degrees 
@@ -37,22 +41,27 @@ def rotate(pdf_path):
 
 
 def split(path, name_of_split):
+    """Split a pdf into multiple pdfs which containing each of the pages"""
     read = PdfFileReader(path)
     # For each page in pdf, create a single file of that page
     for page in range(read.getNumPages()):
         # Create reader each time in loop to prevent a crash
         pdf = PdfFileReader(path)
         pdf_writer = PdfFileWriter()
-        # 
+        # Write page to file
         pdf_writer.addPage(pdf.getPage(page))
-
+        # Setting output file name
         output = f'{name_of_split}{page}.pdf'
         with open(output, 'wb') as output_pdf:
             pdf_writer.write(output_pdf)
 
 def merge(files):
+    """Merge two or more pdfs into one"""
+    # Setting the file name of output
     output = "PyPDF-Merging-Output.pdf"
+    # Create the merger instance
     merger = PdfFileMerger(open(output, "wb"))
+    # Opening two input files
     input1 = open(files[0], "rb")
     input2 = open(files[1], "rb")
     # Add the first 3 pages of input1 to output
@@ -77,3 +86,10 @@ if __name__ == '__main__':
     rotate(path2)
     split(path2, 'splitted_pdf')
     merge(files)
+
+
+"""
+More features:
+Watermark
+Encryption
+"""

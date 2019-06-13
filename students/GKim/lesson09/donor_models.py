@@ -4,11 +4,13 @@ import sys
 import math
 from textwrap import dedent
 
-main_donors = [("Luke Skywalker", [100.25, 200.55, 50]),
-          ("Han Solo", [100.80, 50.99, 600]),
-          ("Yoda", [1000.01, 50, 600.55, 200.47]),
-          ("Ben Kenobe", [101.32, 500, 60.34]),
-          ]
+
+def example_donors():
+   return [Donor("Luke Skywalker", [100.25, 200.55, 50]),
+            Donor("Han Solo", [100.80, 50.99, 600]),
+            Donor("Yoda", [1000.01, 50, 600.55, 200.47]),
+            Donor("Ben Kenobe", [101.32, 500, 60.34]),
+            ]
 
 
 

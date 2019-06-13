@@ -71,7 +71,7 @@ def return_to_menu():
 
 def exit():
     print("Exiting the Mailroom!")
-    sys.exit()
+    sys.exit(0)
 
 
 def send_thank_you():
@@ -128,6 +128,9 @@ def print_donor_list():
     print(show_list())
     print()
 
+def print_report():
+    print(donor_db.create_report())
+
 def mailroom_main():
     
     """
@@ -144,8 +147,8 @@ def mailroom_main():
                     > """)
 
     selection_dict = {"1": send_thank_you,
-                    #   "2": print_report,
-                    #   "3": save_letters,
+                      "2": print_report,
+                      "3": donor_db.save_letters,
                       "4": exit}
     
     run_menu(prompt, selection_dict)
@@ -166,65 +169,6 @@ def clear_screen():
 
 
 
-
-
-def donor_name(name):
-    """
-    Function finds donor in donor db
-    """
-    key = name.title().strip()
-    return donors_db.get(key) 
-
-def add_donor(name):
-    """
-    Function adds a new donor to the donor
-    """
-    name = name.title().strip()
-    new_donor = donors_db[name] = []
-    return new_donor
-
-
-
-def create_report():
-    """
-    Generates the report of donors by donation amount from greatest to least
-    """
-    donor_stats = []
-    for key, val in donors_db.items():
-        total = sum(val)
-        num = len(val)
-        avg = round(total / num, 2)
-        stats = [key, total, num, avg]
-        donor_stats.append(stats)
-
-    stats_list = donor_stats
-    stats_list.sort(key=lambda stats_list: stats_list[1],reverse=True)
-    report = []
-    report.append("{:<20}|{:^15}|{:^15}|{:>15}".format("Donor Name", 
-                                               "Total Given",
-                                               "Num Gifts",
-                                               "Average Gifts"))
-    report.append("-" * 68)
-    for row in stats_list:
-        report.append("{:<20}${:>15.2f} {:>15} ${:>15.2f}".format(*row))
-    report.append("\nEnd of Report\n")
-    return "\n".join(report)  
-
-def print_report():
-    print(create_report())
-
-def save_letters():
-    """
-    Saves letters to disk of all donors in data base
-    """
-
-    for key, val in donors_db.items():   
-        file_name = key.replace(" ", "_") + ".txt"
-        letter =  send_email(key, val[-1])
-        with open(file_name, "w") as text_file:
-            text_file.write(letter)   
-            print("\nSaving {} file to disk".format(key))
-    print("\nSAVING COMPLETE\n")
 
 
 

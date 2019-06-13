@@ -44,7 +44,7 @@ def do_thankyou():
 def get_donation_amount():
     try:
         return float(input("Enter the donation amount: "))
-    except:
+    except ValueError:
         print("Invalid value. Type a number.")
         return get_donation_amount()
 
@@ -114,7 +114,7 @@ def main_menu():
             answer = input("What would you like to do?\nPick one:\n1: Send a Thank you\n2: Create a report\n3: Send letters\n4: Quit\n>>>")
             answer = answer.strip()
             option = switch_func_dict[answer]
-        except:
+        except KeyError:
             print("Incorrect option selected!")
             continue
         

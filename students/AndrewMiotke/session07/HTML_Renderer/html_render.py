@@ -25,14 +25,9 @@ class Element: # Did we need the () in Python3+ ?
         self.content = []
         if content:
             self.append(content)
-        # if content:
-        #     self.contents = [content]
-        # else:
-        #     self.contents = []
 
 
     def append(self, new_content):
-        # self.contents.append(new_content)
         if hasattr(new_content, 'render'):
             self.content.append(new_content)
         else:
@@ -73,10 +68,6 @@ class OneLineTag(Element):
             stuff.render(out_file)
 
         out_file.write(close_tag)
-
-
-    def append(self, content):
-        raise NotImplementedError
 
 
 class Html(Element):

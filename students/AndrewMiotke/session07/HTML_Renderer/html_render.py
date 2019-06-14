@@ -4,6 +4,15 @@
 A class-based system for rendering html.
 """
 
+class TextWrapper:
+    def __init__(self, text):
+        self.text = text
+
+
+    def render(self, file_out, current_indent = ""):
+        file_out.write(current_indent + self.text)
+
+
 # This is the framework for the base class
 class Element: # Did we need the () in Python3+ ?
 
@@ -13,14 +22,21 @@ class Element: # Did we need the () in Python3+ ?
 
     def __init__(self, content=None, **kwargs):
         self.attributes = kwargs
+        self.content = []
         if content:
-            self.contents = [content]
-        else:
-            self.contents = []
+            self.append(content)
+        # if content:
+        #     self.contents = [content]
+        # else:
+        #     self.contents = []
 
 
     def append(self, new_content):
-        self.contents.append(new_content)
+        # self.contents.append(new_content)
+        if hasattr(new_content, 'render'):
+            self.content.append(new_content)
+        else:
+            self.content.append(TextWrapper(str(new_content)))
 
 
     def make_tags(self):
@@ -40,9 +56,9 @@ class Element: # Did we need the () in Python3+ ?
         open_tag, close_tag = self.make_tags()
         out_file.write(current_indent + open_tag + "\n")
 
-        for stuff in self.contents:
+        for stuff in self.content:
             stuff.render(out_file, current_indent + self.indent)
-            out_file.writ("\n")
+            out_file.write("\n")
 
         out_file.write(current_indent + close_tag)
 
@@ -53,7 +69,7 @@ class OneLineTag(Element):
         open_tag, close_tag = self.make_tags()
         out_file.write(current_indent + open_tag)
 
-        for stuff in self.contents:
+        for stuff in self.content:
             stuff.render(out_file)
 
         out_file.write(close_tag)

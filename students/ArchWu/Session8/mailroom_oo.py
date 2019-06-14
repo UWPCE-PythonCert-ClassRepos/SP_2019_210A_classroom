@@ -69,10 +69,13 @@ class DonorCollection():
     def get_donor(self, name):
         return self.donors[Donor.normalize_name(name)]
     
+    def add_donation(self, name, amount):
+        self.get_donor(name).donations.append(amount)
+
     def list_donor(self):
         listing = ["Donor list:"]
         for donor in self.donors:
-            print(self.donors)
+            print(self.donors[1].name)
             listing.append(self.get_donor(donor.strip()).name)
         return "\n".join(listing)
 
@@ -100,7 +103,7 @@ class DonorCollection():
         pass
 
 def main():
-    print("Welcome")
+    
     prompt = dedent('''
                 Choose an action:
 
@@ -111,31 +114,59 @@ def main():
 
                 > ''')
     switch = {
-        "1": DonorCollection.thank,
-        "2": DonorCollection.report,
-        "3": DonorCollection.send_letter,
+        "1": submenu,
+        "2": db.report,
+        "3": db.send_letter,
         "4": goodbye
     }
     
-    submenu(switch)
+    menu(switch, prompt)
 
 
-def submenu(switch):
+def menu(switch, prompt):
     while True:
         try:
-            choice = input("Select 1-4 > ")
+            choice = str(input(prompt))
             if choice not in switch.keys():
                 print("choose again")
             else:
                 switch[choice]()
         except KeyError:
-            print("Error, choice invalid") 
+            print("Error, choice invalid")
 
+def submenu():
+    prompt = ("To send a thank you, select one:\n\n"
+                "(1) Update donor and send thank-you\n"
+                "(2) List all existing DONORS\n"
+                "(3) Return to main menu\n > ")
+    switch = {
+        "1": thank,
+        "2": db.list_donor,
+        "3": main,
+    }
+    menu(switch, prompt)
 
 def goodbye():
     sys.exit()
 
+def thank():
+    while True:
+        name = input("Enter a donor name (new or existing), type quit to quit: \n >")
+        if name == 'quit': return
+        while True:
+            amount = input("How much have you just donated? > ")
+            if amount == 'quit': return
+            try:
+                num_donation = float(amount)
+            except:
+                print("Please type a float number")
+            if Donor.normalize_name(name) in db.donors:
+                db.add_donation(name, num_donation)
+            else:
+                db.add_donor(name)
+                db.add_donation(name, num_donation)
 
 if __name__ == "__main__":
-    init_donor_db()
+    print("Welcome")
+    db = init_donor_db()
     main()

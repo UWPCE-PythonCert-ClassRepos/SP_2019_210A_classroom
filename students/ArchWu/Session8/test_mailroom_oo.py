@@ -3,7 +3,7 @@
 """
 unit tests for the mailroom program
 """
-
+import donor_model
 import mailroom_oo as mailroomoo
 import os
 import pytest

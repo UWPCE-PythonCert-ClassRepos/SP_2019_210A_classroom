@@ -23,7 +23,6 @@ class Donor:
             except:
                 self.donations = [donations]
     
-    
     @property
     def total(self):
         if self.donations:
@@ -85,7 +84,6 @@ class DonorCollection():
     def send_letter():
         pass
     
-
 def main():
     
     prompt = dedent('''
@@ -100,7 +98,7 @@ def main():
     switch = {
         "1": submenu,
         "2": db.report,
-        "3": db.send_letter,
+        "3": save_letters_to_disk,
         "4": goodbye
     }
     
@@ -138,22 +136,6 @@ def goodbye():
 def return_menu():
     return True
 
-# def thank():
-#     while True:
-#         name = input("Enter a donor name (new or existing), type quit to quit: \n >")
-#         if name == 'quit': return
-#         while True:
-#             amount = input("How much have you just donated? > ")
-#             if amount == 'quit': return
-#             try:
-#                 num_donation = float(amount)
-#             except:
-#                 print("Please type a float number")
-#             if Donor.normalize_name(name) in db.donors:
-#                 db.add_donation(name, num_donation)
-#             else:
-#                 db.add_donor(name)
-#                 db.add_donation(name, num_donation)
 
 def thank_you():
     """
@@ -180,31 +162,31 @@ def thank_you():
             continue
         else:
             break
-    # try:
-    #     db.get_donor(name)
-    # except KeyError:
-    #     # If the donor is not found, it's a new donor
-    #     db.add_donor(name)
-    # finally:
-    #     # Record the donation
-    #     db.donors[name].donations.append(amount)
+
     if normalize_name(name) not in db.donors.keys():
         new_donor = Donor(name)
         db.add_donor(new_donor)
     db.donors[normalize_name(name)].donations.append(amount)
+
+    """Generate Letter Here"""
     return
 
+def save_letters_to_disk():
+    temp_path = os.getcwd()
 
-    
-
-    # print the thank you letter
-    #print(gen_letter(donor))
+    for donor in db.donors.items():
+        with open('{}/{}.txt'.format(temp_path, donor[1].name), 'w') as f:
+            num_donation = donor[1].total
+            greetings = 'Dear {},\n'.format(donor[1].name)
+            body = '\nThank you for your generous gift ${} to us!\n'.format(num_donation)
+            ending = '\nSincerely,\n  ABC foundations'
+            f.write(greetings + body + ending)
+    return
 
 def normalize_name(name):
     return name.lower().strip().replace(" ", "")
 
 if __name__ == "__main__":
     print("Welcome")
-
     db = init_donor_db()
     main()

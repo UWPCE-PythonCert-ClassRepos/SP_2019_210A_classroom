@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import sys, os
+import sys, os, math
 from textwrap import dedent
 
 def init_donor_db():
@@ -12,7 +12,7 @@ def init_donor_db():
 
 class Donor:
     def __init__(self, name, donations = None):
-        self.norm_name = self.normalize_name(name)
+        self.norm_name = normalize_name(name)
         self.name = name.strip()
 
         if donations is None:
@@ -23,9 +23,6 @@ class Donor:
             except:
                 self.donations = [donations]
     
-    @staticmethod
-    def normalize_name(name):
-        return name.lower().strip().replace(" ", "")
     
     @property
     def total(self):
@@ -46,28 +43,15 @@ class Donor:
 
 class DonorCollection():
 
-    # Singleton setup
-    __instance = None
-
-    @staticmethod
-    def getDonorCollection():
-        if DonorCollection.__instance == None:
-            DonorCollection()
-        return DonorCollection.__instance
-    
     def __init__(self):
-        if DonorCollection.__instance != None:
-            raise Exception("This is a singleton")
-        else:
-            DonorCollection.__instance = self
-            self.donors = {}
+        self.donors = {}
             
     
     def add_donor(self, donor):
-        self.donors[Donor.normalize_name(donor.name)] = donor
+        self.donors[donor.norm_name] = donor
     
     def get_donor(self, name):
-        return self.donors[Donor.normalize_name(name)]
+        return self.donors[normalize_name(name)]
     
     def add_donation(self, name, amount):
         self.get_donor(name).donations.append(amount)
@@ -75,9 +59,10 @@ class DonorCollection():
     def list_donor(self):
         listing = ["Donor list:"]
         for donor in self.donors:
-            print(self.donors[1].name)
+            print(self.donors[donor].name)
             listing.append(self.get_donor(donor.strip()).name)
-        return "\n".join(listing)
+        result = "\n".join(listing)
+        return result
 
     def report(self):
         """ Make a report on donations received by a style as specified """
@@ -92,15 +77,14 @@ class DonorCollection():
 
         for row in report_rows:
             report.append(row)
-        return "\n".join(report)
+        result = "\n".join(report)
+        print(result)
+        return result
     
     @staticmethod
     def send_letter():
         pass
     
-    @staticmethod
-    def thank(parameter_list):
-        pass
 
 def main():
     
@@ -126,13 +110,15 @@ def main():
 def menu(switch, prompt):
     while True:
         try:
-            choice = str(input(prompt))
+            choice = str(input(prompt)).strip().lower()          
             if choice not in switch.keys():
                 print("choose again")
             else:
-                switch[choice]()
+                if switch[choice]():
+                    break
         except KeyError:
             print("Error, choice invalid")
+        
 
 def submenu():
     prompt = ("To send a thank you, select one:\n\n"
@@ -140,33 +126,85 @@ def submenu():
                 "(2) List all existing DONORS\n"
                 "(3) Return to main menu\n > ")
     switch = {
-        "1": thank,
+        "1": thank_you,
         "2": db.list_donor,
-        "3": main,
+        "3": return_menu,
     }
     menu(switch, prompt)
 
 def goodbye():
     sys.exit()
 
-def thank():
+def return_menu():
+    return True
+
+# def thank():
+#     while True:
+#         name = input("Enter a donor name (new or existing), type quit to quit: \n >")
+#         if name == 'quit': return
+#         while True:
+#             amount = input("How much have you just donated? > ")
+#             if amount == 'quit': return
+#             try:
+#                 num_donation = float(amount)
+#             except:
+#                 print("Please type a float number")
+#             if Donor.normalize_name(name) in db.donors:
+#                 db.add_donation(name, num_donation)
+#             else:
+#                 db.add_donor(name)
+#                 db.add_donation(name, num_donation)
+
+def thank_you():
+    """
+    Ask user for donation amount, and then add it  to the DB
+    """
+    # Now prompt the user for a donation amount to apply. Since this is
+    # also an exit point to the main menu, we want to make sure this is
+    # done before mutating the db.
+    print("in take_donation")
+    name = input("Enter a donor name (new or existing): \n >")
+    if name == 'quit': return
     while True:
-        name = input("Enter a donor name (new or existing), type quit to quit: \n >")
-        if name == 'quit': return
-        while True:
-            amount = input("How much have you just donated? > ")
-            if amount == 'quit': return
-            try:
-                num_donation = float(amount)
-            except:
-                print("Please type a float number")
-            if Donor.normalize_name(name) in db.donors:
-                db.add_donation(name, num_donation)
-            else:
-                db.add_donor(name)
-                db.add_donation(name, num_donation)
+        amount_str = input("Enter a donation amount (or <enter> to exit)> ").strip()
+        if not amount_str:
+            # if they provide no input, go back to previous menu
+            return
+        # Make sure amount is a valid amount before leaving the input loop
+        try:
+            amount = float(amount_str)
+            if math.isnan(amount) or math.isinf(amount) or round(amount, 2) == 0.00:
+                raise ValueError
+        except ValueError:
+            print("error: donation amount is invalid\n")
+            continue
+        else:
+            break
+    # try:
+    #     db.get_donor(name)
+    # except KeyError:
+    #     # If the donor is not found, it's a new donor
+    #     db.add_donor(name)
+    # finally:
+    #     # Record the donation
+    #     db.donors[name].donations.append(amount)
+    if normalize_name(name) not in db.donors.keys():
+        new_donor = Donor(name)
+        db.add_donor(new_donor)
+    db.donors[normalize_name(name)].donations.append(amount)
+    return
+
+
+    
+
+    # print the thank you letter
+    #print(gen_letter(donor))
+
+def normalize_name(name):
+    return name.lower().strip().replace(" ", "")
 
 if __name__ == "__main__":
     print("Welcome")
+
     db = init_donor_db()
     main()

@@ -21,14 +21,12 @@ Calling this function with no optional parameters will produce numbers from the 
 Calling it with the optional arguments 2 and 1 will produce values from the lucas numbers.
 """
 def sum_series(n, n0=0, n1=1):
-	if n0==2 and n1==1:
-		print("Calls lucas")
-		x=lucas(n)
-		return x
+	if n == 0:
+		return n0
+	elif n == 1:
+		return n1
 	else:
-		print("Calls fibonacci")
-		y=fibonacci(n)
-		return y
+		return sum_series(n - 1, n0, n1) + sum_series(n - 2, n0, n1)
 
 print(fibonacci(5))
 print(sum_series(5))

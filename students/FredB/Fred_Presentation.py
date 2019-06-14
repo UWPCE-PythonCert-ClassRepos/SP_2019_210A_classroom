@@ -1,13 +1,19 @@
+#!/usr/bin/env python
+
 #FredBallyns
 #Presentation
 
 import sys, os, time
 
+actually_clear = True
+sleep_type = .1
+sleep_erase = .05
+
 presenter = "Fred Ballyns"
 topic = "Python"
 sub_topics = {
-"Print statement settings": "If you don't want line to end with enter, use end=''. Also default object separator is 'sep=""'.",
-"String Slicing": "Deletion of final character was done using seq[:i] where 'i' is decreasing.",
+"Print statement settings": "If you don't want line to end with enter, use end=''. Also default object separator is sep=' '.",
+"String Slicing": "Growing a string was done with print(seq[i],end=''). Deletion of final character was done using seq[:i] where 'i' is decreasing.",
 "OS Module": f"There are {len(dir(os))} items in the os module. The two I'm using are 'os.name' and 'os.system'. Window name is 'nt' while Linux is 'posix'. Clear screen for windows system is 'cls' while linux is 'clear'.",
 "Time Module": f"There are {len(dir(time))} items in the time module. 'time.sleep(.1)' is a 1/10 second pause."
 }
@@ -15,33 +21,36 @@ sub_topics = {
 opening_statement = f"Hello, \n\nMy name is {presenter} and this is my {topic} presentation. \nI will be discussing: \n\n"
 
 
-def clear_screen():
-    #Windows 'nt'
-    if os.name == 'nt':
-        clearText="cls"
-    #Linux 'posix'   
-    else:
-        clearText="clear"
-    os.system(clearText)
+def clear_screen(x=actually_clear):
+    if x:
+        #Windows 'nt'
+        if os.name == 'nt':
+            clearText="cls"
+        #Linux 'posix'   
+        else:
+            clearText="clear"
+        os.system(clearText)
+        print("\n")
 
 
-def type_text(input_text):
+def type_text(input_text, x = sleep_type):
     for i in range(len(input_text)):
-        time.sleep(.1)
+        time.sleep(x)
         print(input_text[i], end="")
 
-def type_eraser(input_text, remain_text=0):
+def type_eraser(input_text, remain_text=0, x = sleep_erase):
     if type(remain_text) is str:
         remain_text = len(remain_text)
     remain_text = int(remain_text)
     len_str=len(input_text)
     for i in range(len_str):
         temp=input_text[:(len_str-i-1+remain_text)]
-        time.sleep(.05)
+        time.sleep(x)
         clear_screen()
         print(temp, end="")
 
 def hype_intro():
+    print("\n"*5)
     clear_screen()
     phrases = ("a great.....","an amazing.....", "a supercalifragilisticexpialidocious presentation \n")
     
@@ -72,7 +81,8 @@ def print_topics():
         type_text(str(i+1)+f". {j}\n"+sub_topics[j])
         print("\n")
         time.sleep(3)
-    time.sleep(4)    
+    time.sleep(4)
+    clear_screen()    
 
 
 def primes(n):
@@ -88,7 +98,7 @@ def primes(n):
 
 def end_presentation():
     clear_screen()
-    type_text("That was fun.\n\nHope you all enjoyed.\n\n ----The End----")
+    type_text("That was fun.\n\nHope you all enjoyed.\n\n ----The End----\n\n")
 
 
 if __name__ == "__main__":

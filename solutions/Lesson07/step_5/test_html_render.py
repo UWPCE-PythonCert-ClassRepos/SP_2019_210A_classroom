@@ -15,7 +15,8 @@ from html_render import (Element,
                          Head,
                          Title,
                          Hr,
-                         Br
+                         Br,
+                         OneLineTag
                          )
 
 # utility function for testing render methods
@@ -294,6 +295,43 @@ def test_attributes():
     # note -- dicts aren't ordered, so you can't enforce order!
     # assert '<html color="red" id="this">' in file_contents
 
+# Add your tests here!
+def test_attributes2():
+    e = P("A paragraph of text", style="text-align: center", id="intro")
+
+    file_contents = render_result(e).strip()
+    print(file_contents)  # so we can see it if the test fails
+
+    # note: The previous tests should make sure that the tags are getting
+    #       properly rendered, so we don't need to test that here.
+    #       so using only a "P" tag is fine
+    assert "A paragraph of text" in file_contents
+    # but make sure the embedded element's tags get rendered!
+    # first test the end tag is there -- same as always:
+    assert file_contents.endswith("</p>")
+
+    # but now the opening tag is far more complex
+    # but it starts the same:
+    assert file_contents.startswith("<p ") # make sure there's space after the p
+
+    # order of the tags is not important in html, so we need to
+    # make sure not to test for that
+    # but each attribute should be there:
+    assert 'style="text-align: center"' in file_contents
+    assert 'id="intro"' in file_contents
+
+    # # just to be sure -- there should be a closing bracket to the opening tag
+    assert file_contents[:-1].index(">") > file_contents.index('id="intro"')
+    assert file_contents[:file_contents.index(">")].count(" ") == 3
+    assert False
+
+def test_one_line_tag_append():
+    """
+    You should not be able to append content to a OneLineTag
+    """
+    e = OneLineTag("the initial content")
+    with pytest.raises(NotImplementedError):
+        e.append("some more content")
 
 def test_attributes_one_line_tag():
     """
@@ -332,3 +370,35 @@ def test_hr():
     file_contents = render_result(hr)
     print(file_contents)
     assert file_contents == '<hr width="400" />'
+
+def test_ul():
+    ul = Ul()
+    ul.append(Li("item one in a list"))
+    ul.append(Li("item two in a list"))
+    file_contents = render_result(ul)
+    print(file_contents)
+    assert file_contents.startswith('<ul>')
+    assert file_contents.endswith('</ul>')
+    assert "item one in a list" in file_contents
+    assert "item two in a list" in file_contents
+    assert file_contents.count("<li>") == 2
+    assert file_contents.count("</li>") == 2
+
+
+def test_header():
+    h = H(3, "A nice header line")
+    file_contents = render_result(h)
+    print(file_contents)
+    assert file_contents.startswith('<h3>')
+    assert file_contents.endswith('</h3>')
+    assert "A nice header line" in file_contents
+
+
+def test_header():
+    h = H(3, "A nice header line", align="center")
+    file_contents = render_result(h)
+    print(file_contents)
+    assert file_contents.startswith('<h3')
+    assert file_contents.endswith('</h3>')
+    assert "A nice header line" in file_contents
+    assert ' align="center"' in file_contents

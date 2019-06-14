@@ -19,8 +19,22 @@ class Donor:
     def normalize_name(name):
         return name.lower().strip().replace("", " ")
     
+    @property
+    def total(self):
+        if self.donations:
+            return sum(self.donations)
+        else:
+            return 0
     
+    @property
+    def average(self):
+        if self.donations:
+            return self.total / len(self.donations)
+        else:
+            return 0
     
+    def gen_stats(self):
+        return self.name, self.total, len(self.donations), self.average
 
 class DonorCollection():
     __instance = None
@@ -52,11 +66,23 @@ class DonorCollection():
             listing.append(donor.name)
         return "\n".join(listing)
 
+    def report(self):
+        """ Make a report on donations received by a style as specified """
+        sorted_donors = sorted(self.donors.items(), reverse = True, key = lambda item: item.total())
+        report_rows = ["{0:25s}   {1:10.2f}   {2:9d}   {3:11.2f}".format(*donor.gen_stats()) for donor in sorted_donors]
+        report = []
+        report.append("{:25s} | {:11s} | {:9s} | {:12s}".format("Donor Name",
+                                                                "Total Given",
+                                                                "Num Gifts",
+                                                                "Average Gift"))
+        report.append("-" * 66)
+
+        for row in report_rows:
+            report.append(row)
+        return "\n".join(report)
+    
     @staticmethod
-    def report():
-        
-    @staticmethod
-    def send_letter()
+    def send_letter():
         pass
     
     @staticmethod
@@ -87,7 +113,7 @@ def main():
 def submenu(switch):
     while True:
         try:
-            choice = input("Select 1-3 > ")
+            choice = input("Select 1-4 > ")
             if choice not in switch.keys():
                 print("choose again")
             else:
@@ -99,8 +125,7 @@ def submenu(switch):
 def goodbye():
     sys.exit()
 
-def gen_letter():
-    pass
 
 if __name__ == "__main__":
+    db = DonorCollection()
     main()

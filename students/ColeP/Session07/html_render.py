@@ -38,6 +38,25 @@ class Element(object):
             out_file.write("\n")
         out_file.write("</{}>".format(self.tag))
 
+    # def render(self, out_file):
+    #     # loop through the list of contents:
+    #     out_file.write(self._open_tag())
+    #     out_file.write("\n")
+    #     for content in self.contents:
+    #         try:
+    #             content.render(out_file)
+    #         except AttributeError:
+    #             out_file.write(content)
+    #             out_file.write("\n")
+    #     out_file.write(self._close_tag())
+    #     out_file.write("\n")
+
+    def _open_tag(self):  # Returns the opening tag for the current element # Not Mine, 'Borrowed' from classmate
+        return '<{}>'.format(self.tag)
+
+    def _close_tag(self):  # Returns the closing tag for the current element # Not Mine, 'Borrowed' from classmate
+        return '</{}>'.format(self.tag)
+
 
 class Body(Element):
     tag = 'body'
@@ -58,13 +77,13 @@ class Head(Element):
 class OneLineTag(Element):
 
     def render(self, out_file):
-        out_file.write("<{}>".format(self.tag))
+        out_file.write(self._open_tag())
         for content in self.contents:
             try:
                 content.render(out_file)
             except AttributeError:
                 out_file.write(content)
-        out_file.write("</{}>".format(self.tag))
+        out_file.write(self._close_tag())
 
 
 class Title(OneLineTag):
@@ -72,17 +91,28 @@ class Title(OneLineTag):
 
 
 class SelfClosingTab(Element):
-    pass
+
+    def __init__(self, content=None, **kwargs):
+        if content is not None:
+            raise TypeError("SelfClosingTag can not contain any content")
+        super().__init__(content=content, **kwargs)
+
+    def render(self, out_file):
+        tag = self._open_tag()[:-1] + " />\n"
+
+        out_file.write(tag)
 
 
 class Hr(SelfClosingTab):
     tag = 'hr'
 
-    def render(self, outfile):
-        tag = "<{}".format(self.tag) + " />\n"
-        outfile.write(tag)
+    # def render(self, outfile):
+    #     tag = "<{}".format(self.tag) + " />\n"
+    #     outfile.write(tag)
 
 
 class Br(SelfClosingTab):
-    tag = 'Br'
+    tag = 'br'
 
+    def append(self, *args):
+        raise TypeError("You can not add content to a SelfClosingTag")

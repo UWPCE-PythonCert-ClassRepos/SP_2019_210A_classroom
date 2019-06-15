@@ -2,8 +2,20 @@
 tests mailroom
 """
 
-from donors_models import Donor
+from donors_models import standardize_name, valid_donation, Donor, DonorCollection
+from cli_main import requested_list
 
+def test_standardize_name():
+    assert standardize_name("Jake    ") == "jake"
+    assert standardize_name("Jake Frost") == "jakefrost"
+    assert standardize_name("Jake Frost") != "villian"
+
+def test_valid_donation():
+    assert valid_donation(10)
+    assert valid_donation(1000)
+    assert not valid_donation(-1000)
+    assert not valid_donation(0)
+    assert not valid_donation("crazy")
 
 def test_make_donor():
     d1 = Donor("Fred")
@@ -13,14 +25,6 @@ def test_make_donor():
 def test_donor_name_whitespace():
     d1 = Donor("Jake    ")
     assert d1.name == "Jake"
-
-
-def test_standard_name():
-    d1 = Donor("Jake    ")
-    assert d1.standard_name == "jake"
-    d2 = Donor("Jake Frost")
-    assert d2.standard_name == "jakefrost"
-    assert d2.standard_name != "villian"
 
 def test_load_donations():
     d1 = Donor("Fred",[500])
@@ -64,3 +68,41 @@ def test_tot_donation():
     assert d2.tot_donation == 3
     d3 = Donor("nothing", [])
     assert d3.tot_donation == 0
+
+def test_create_empty_db():
+    db = DonorCollection()
+    assert db.donors == {}
+
+def test_empty_db():
+    db =  DonorCollection()
+
+def test_add_donor():
+    db =  DonorCollection()
+    db.add_donor(Donor("Rick", [9, 9, 9]))
+    assert db.donors["rick"].donations == [9,9,9]
+    db.add_donor(Donor("Bob", [1,2,3]))
+    assert db.donors["bob"].donations == [1,2,3]
+    assert db.donors["rick"].donations == [9,9,9]
+
+def test_load_db():
+    db =  DonorCollection([Donor("Rick", [9, 9, 9]),Donor("Bob", [1,2,3])])
+    assert db.donors["bob"].donations == [1,2,3]
+    assert db.donors["rick"].donations == [9,9,9]
+
+def test_requested_list():
+    """
+    Tests various forms of typing list are accepted as list
+    """
+    assert requested_list("LIST") == True
+    assert requested_list("list") == True
+    assert requested_list("List") == True
+    assert requested_list("L") == True
+    assert requested_list("l") == True
+    assert requested_list("like") == False
+    assert requested_list("James") == False
+
+def test_donor_present():
+    db =  DonorCollection([Donor("Rick", [9, 9, 9]),Donor("Bob", [1,2,3])])
+    assert db.donor_present("Rick")
+    assert db.donor_present("boB")
+    assert not db.donor_present("Carlos")

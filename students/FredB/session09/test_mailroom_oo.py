@@ -106,3 +106,20 @@ def test_donor_present():
     assert db.donor_present("Rick")
     assert db.donor_present("boB")
     assert not db.donor_present("Carlos")
+
+def test_name_list():
+    db =  DonorCollection([Donor("Rick", [9, 9, 9])])
+    assert db.name_list == ["Rick"]
+    db =  DonorCollection([Donor("Rick", [9, 9, 9]),Donor("Other", [1, 3])])
+    assert db.name_list == ["Rick","Other"]
+
+def test_stats():
+    db =  DonorCollection([Donor("Rick", [9, 9, 9])])
+    assert db.stats == [("Rick",27,3,9)]
+    db =  DonorCollection([Donor("Rick", [9, 9, 9]),Donor("Other", [1, 3])])
+    assert db.stats == [("Rick",27,3,9),("Other",4,2,2)]
+
+
+def test_stats_sort():
+    db =  DonorCollection([Donor("Other", [1, 3]),Donor("Rick", [9, 9, 9])])
+    assert db.stats_sorted == [("Rick",27,3,9),("Other",4,2,2)]

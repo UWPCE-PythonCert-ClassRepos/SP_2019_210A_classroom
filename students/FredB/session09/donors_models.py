@@ -1,6 +1,6 @@
 
 
-import statistics as stats
+import statistics
 
 
 
@@ -8,7 +8,7 @@ def standardize_name(donor_name):
     return donor_name.lower().replace(" ", "")
 
 def valid_donation(donation):
-    #donation must be a positive integer
+    #donation must be a positive int
     return (type(donation) == int) and (donation>0)
 
 
@@ -33,11 +33,15 @@ class Donor(object):
         return len(self.donations)
 
     @property
+    def tot_donation(self):
+        return sum(self.donations)
+
+    @property
     def ave_donation(self):
         if self.num_donations == 0:
             return 0
         else:
-            return stats.mean(self.donations)
+            return sum(self.donations)/self.num_donations
 
     @property
     def tot_donation(self):
@@ -56,3 +60,25 @@ class DonorCollection(object):
 
     def donor_present(self,donor_name):
         return standardize_name(donor_name) in self.donors
+
+    @property
+    def name_list(self):
+        n_list=[]
+        for donor_name in self.donors:
+            n_list.append(self.donors[donor_name].name)
+        return n_list
+
+    @property
+    def stats(self):
+        donor_stats=[]
+        for donor_name in self.donors:
+            name = self.donors[donor_name].name
+            total = self.donors[donor_name].tot_donation
+            num = self.donors[donor_name].num_donations
+            ave = self.donors[donor_name].ave_donation
+            donor_stats.append((name, total, num, ave))
+        return donor_stats
+
+    @property
+    def stats_sorted(self):
+        return sorted(self.stats, key=lambda x: x[1], reverse=True)

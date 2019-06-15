@@ -1,36 +1,41 @@
-# slicing
-# first and last
-seq = '3, 2, 1'
-def exchange_first_last(seq):
-    first = seq[-1]
-    mid = seq[1:-1]
-    last = seq[0]
-    return print([first] + mid + [last])
-
-# with every other item removed
-
-my_list = "1, 2, 3, 4, 5, 6"
-def remove_every_other(my_list):
-    return my_list[::2]
-
-# first four last four
-
-def first_last_four(sequence):
-    first_four = sequence[:4]
-    last_four = sequence[-4:]
-    new_sequence = first_four + last_four
-    return new_sequence
-
-# reversed
-
-def elements_reversed(sequence):
-    reverse_sequence = sequence[::-1]
-    return reverse_sequence
+a_string = "this is a string"
+a_tuple = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)
 
 
-# in thirds
+def first_last(string):
+    a = string[:1]
+    b = string[-1:]
 
-def thirds(seq):
-    result = seq[6:] + seq[:3] + seq[3:-3]
-    return result
+    return (b + a)
 
+
+def every_other(string):
+    return string[::2]
+
+
+def first4_last4(string):
+    return string[4:-4:2]
+
+
+def reverse(string):
+    return string[::-1]
+
+
+def third(string):
+    c = int(len(string) / 3)
+    beg = string[:c]
+    end = string[-c:]
+    mid = string[c:c + c]
+    return end + beg + mid
+
+
+print(first_last(a_string))
+print(first_last(a_tuple))
+print(every_other(a_string))
+print(every_other(a_tuple))
+print(first4_last4(a_string))
+print(first4_last4(a_tuple))
+print(reverse(a_string))
+print(reverse(a_tuple))
+print(third(a_string))
+print(third(a_tuple))

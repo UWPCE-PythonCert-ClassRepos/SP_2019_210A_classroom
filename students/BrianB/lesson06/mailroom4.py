@@ -5,7 +5,8 @@
 # Who: Brian Brumleve
 # Date: May 19, 2019
 # Change Description:
-#       jhtdhvgrfjygbhlk.
+#   Some functions refractored to accomodate
+#   testing in test_mailroom4.py
 #
 # -----------------------------------------------------------------
 
@@ -35,7 +36,7 @@ def print_donor_list():
     """
     for donor in donor_database:
         print(str(donor))
-        return donor
+    return donor_database.keys()
 
 
 def add_to_donations():
@@ -54,49 +55,76 @@ def add_to_donations():
                              ">>>"))
         print("You replied: ", sub_menu)
         sub_menu_dict = {1: print_donor_list,
-                         2: amend_donor_data,
-                         3: new_donor_data,
+                         2: prompt_for_donor,
+                         3: prompt_for_donor,
                          4: main_menu}
         sub_menu_dict.get(sub_menu, "Please answer 1, 2, 3 or 4")()
 
 
-def amend_donor_data():
-    """
-    adds donations to existing donors
-    :return: new donation amounts to donor_data{}
-    """
-    try:
-        donor = input("Which donor would like to add a donation?\n"
-                      ">>>")
-        if donor in donor_database:
-            print(donor, "is found in our database.")
-        amount = int(input("Please enter a new donation amount:\n"
-                           ">>>"))
-        donor_database[donor].append(amount)
-        # print updated donor data
-        print("a peak into the donor database...", donor_database, "\n")
-        print(gen_letter(donor, amount))
-    # throws an exception when the donor cannot be added to the donor list
-    except KeyError:
-        print("key error: please enter an existing donor")
-    return
+#def amend_donor_data():
+#    """
+#    adds donations to existing donors
+#    :return: new donation amounts to donor_data{}
+#    """
+#    try:
+#        donor = input("Which donor would like to add a donation?\n"
+#                      ">>>")
+#        if donor in donor_database:
+#            print(donor, "is found in our database.")
+#        amount = int(input("Please enter a new donation amount:\n"
+#                           ">>>"))
+#        donor_database[donor].append(amount)
+#        # print updated donor data
+#        print("a peak into the donor database...", donor_database, "\n")
+#        print(gen_letter(donor, amount))
+#    # throws an exception when the donor cannot be added to the donor list
+#    except KeyError:
+#        print("key error: please enter an existing donor")
+#    #return donor, amount
 
 
-def new_donor_data():
-    """
-    creates new donor account with donations
-    :return: adds new {donor: [donations]} to donor_data{}
-    """
-    new_donor = input("Give our new donor a name.\n"
-                      ">>>")
-    print(new_donor, "has been added to our database!")
-    new_amount = int(input("Please enter a donation amount:\n"
-                           ">>>"))
-    # add new donor and new donations to teh donor_data dictionary
-    donor_database[new_donor] = [new_amount]
-    # print updated donor data
-    print("a peak into the donor database...", donor_database, "\n")
-    print(gen_letter(new_donor, new_amount))
+def prompt_for_donor():
+    """Select a donor to update or use"""
+    print('Type "list" to see donor list')
+    donor_name = input("Which donor? ")
+    return select_donor(donor_name)
+
+
+def select_donor(donor_name):
+    """Find or create a donor in the donor set"""
+    if donor_name == 'list':
+        donor_id = 1
+        for donor, donations in donor_database.items():
+            print('{:<4}: {:>20} | {:>50}'.format(donor_id, donor, str(donations)))
+            donor_id += 1
+        print()
+        return ''
+
+    for donor, donations in donor_database.items():
+        if donor_name.lower() == donor.lower():
+            print('Found {}'.format(donor_name))
+            return donor, donations
+
+    donor_database[donor_name] = []
+    print('{} not found in donor list. Adding...'.format(donor_name))
+    return donor_name, donor_database[donor_name]
+
+
+#def new_donor_data():
+#    """
+#    creates new donor account with donations
+#    :return: adds new {donor: [donations]} to donor_data{}
+#    """
+#    new_donor = input("Give our new donor a name.\n"
+#                      ">>>")
+#    print(new_donor, "has been added to our database!")
+#    new_amount = int(input("Please enter a donation amount:\n"
+#                           ">>>"))
+#    # add new donor and new donations to teh donor_data dictionary
+#    donor_database[new_donor] = [new_amount]
+#    # print updated donor data
+#    print("a peak into the donor database...", donor_database, "\n")
+#    print(gen_letter(new_donor, new_amount))
 
 
 def gen_letter(donor: object, amount: object) -> object:
@@ -120,11 +148,14 @@ def gen_letter(donor: object, amount: object) -> object:
 
 def gen_donation_stats():
     stats = []
-    for donor, donations in donor_database.items():
-        total = sum(donations)
-        num = len(donations)
-        average = total / num
-        stats.append([donor, total, num, average])
+    try:
+        for donor, donations in donor_database.items():
+            total = sum(donations)
+            num = len(donations)
+            average = total / num
+            stats.append([donor, total, num, average])
+    except ZeroDivisionError:
+        print("Learn Math dummy, zero is non-divisible.")
     return stats
 
 
@@ -159,12 +190,6 @@ def gen_stats_report():
               f"|{'($) Average Donation':>22}|", "-" * 76]
     for line in stats:
         header.append("{:<10}|{:>21,.2f}|{:>19}|{:>22,.2f}|".format(*line))
-        # I want to [header.append] with f-string formatting but I'm
-        #   not getting it to work
-        # header.append(
-        #              f"{donors:<10}|{total:>21,.2f}|{num:>19}|"
-        #              f"{average:>22,.2f}|"
-        #              )
     return "\n".join(header)
 
 
@@ -206,3 +231,4 @@ if __name__ == "__main__":
     donor_data = donor_database
 
     main_menu()
+

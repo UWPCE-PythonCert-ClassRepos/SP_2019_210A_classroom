@@ -10,6 +10,7 @@
 # -----------------------------------------------------------------
 
 import mailroom4 as test_mailroom
+import os
 
 
 def test_donation_stats():
@@ -26,4 +27,41 @@ def test_print_donor_list():
     assert "Guile" in result
 
 
+# Add tests:
+#  Adding a new donor
+def test_new_donor_data():
+    user = 'BrianB'
+    # this function needs to be implemented
+    new_donor = test_mailroom.select_donor(user)
+    assert new_donor[0] == user
+    assert new_donor[1] == []
+
+
+#  Updating an existing donor
+def test_amend_donor_data():
+    user = "Guile"
+    # this function needs to be implemented
+    existing_donor = test_mailroom.select_donor(user)
+    assert existing_donor[0] == user
+    assert existing_donor[1] is not None
+
+
+def validate_donor_in_stats(donor, list_of_lists):
+    for sublist in list_of_lists:
+        if donor in sublist:
+            # if the item shows up in any of the sublists, it will return True
+            return True
+    # if the item is not in any of the sublists, it will return False
+    return False
+
+
+#  Print all thank you letters
+def test_send_letter_to_all():
+    # no parameter stats_list[0] necessary
+    result = test_mailroom.gen_donation_stats()
+    assert validate_donor_in_stats("Guile", result)
+    assert validate_donor_in_stats("Blanca", result)
+    assert validate_donor_in_stats("Ken", result)
+    assert validate_donor_in_stats("M. Bison", result)
+    assert validate_donor_in_stats("Chun-Li", result)
 

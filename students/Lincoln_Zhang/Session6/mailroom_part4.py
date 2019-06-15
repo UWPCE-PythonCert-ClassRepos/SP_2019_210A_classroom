@@ -16,7 +16,7 @@ donors_db = {"Fred Flintstone":[100, 200, 50],
 class user_input():
 
     """
-    In Mailroom application, there is 2 places asking for user input
+    In Mailroom application, there are 2 places asking for user input
     one is at main_menu(), the other is at Thank_You()
     This class is to provide common way for both cases
     and more important to test

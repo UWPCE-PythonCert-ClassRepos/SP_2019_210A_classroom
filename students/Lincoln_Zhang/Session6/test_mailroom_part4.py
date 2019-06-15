@@ -21,35 +21,38 @@ def test_find_donor():
     assert result["Bob"] == [11.2]
     assert result["Fred Flintstone"] == [100, 200, 50]
 
-# def test_Thank_You():
+@unittest.mock.patch('builtins.input')
+def test_Thank_You():
     
-#     result = mailroom_part4.Thank_You()
-#     unittest.mock.patch('builtins.input', return_value="y")
-#     unittest.mock.patch('builtins.input', return_value="Bob")
-#     unittest.mock.patch('builtins.input', return_value=11.2)
+    result = mailroom_part4.Thank_You()
+    unittest.mock.patch('builtins.input', return_value="y")
+    unittest.mock.patch('builtins.input', return_value="Bob")
+    unittest.mock.patch('builtins.input', return_value=11.2)
 
-#     # with mock.patch('builtins.input', return_value="y"):
-#     # assert from_user.user_donation() == True
-#     #     if from_user.user_donation():
-#     #         with mock.patch('builtins.input', return_value="bob"):
-#     #         assert donor_name == "Bob"
-#     #         assert builtins.output == "Please tell me how much you would like to donate: "
-#     #         with mock.patch('builtins.input', return_value=11.2):
-#     #         assert donation_amount == 11.2
-#     #    else:
-#     #         with mock.patch('builtins.input', return_value="n"):
-#     #         assert from_user.user_donation() == False
+    with mock.patch('builtins.input', return_value="y"):
+        assert from_user.user_donation() == True
+        if from_user.user_donation():
+            with mock.patch('builtins.input', return_value="bob"):
+                assert donor_name == "Bob"
+                assert builtins.output == "Please tell me how much you would like to donate: "
+            with mock.patch('builtins.input', return_value=11.2):
+                assert donation_amount == 11.2
+        else:
+            with mock.patch('builtins.input', return_value="n"):
+                assert from_user.user_donation() == False
 
-#     file_path = os.path.join(os.getcwd(),"Bob.txt")
-#     expanded_file_path = os.path.expanduser(file_path)
-#     assert os.path.isfile(file_path)
-#     assert os.path.isfile(expanded_file_path)
-#     assert result["Bob"] == [11.2]
+    file_path = os.path.join(os.getcwd(),"Bob.txt")
+    expanded_file_path = os.path.expanduser(file_path)
+    assert os.path.isfile(file_path)
+    assert os.path.isfile(expanded_file_path)
+    assert result["Bob"] == [11.2]
 
 def test_gen_stats():
     result = mailroom_part4.gen_stats([1,2,3])
+    #the third element has special format
     assert result[:2] == (6,3)
 
-def test_gen_report():
-    mailroom_part4.gen_report({"Bob":[11.2]})
-    assert row == "Donor Name            | Total Given |  Num Gifts  | Average Gift"
+# def test_gen_report():
+#     #mailroom_part4.gen_report({"Bob":[11.2]})
+#     #for function doesn't have return value, how to test it
+#     assert mailroom_part4.gen_report({"Bob":[11.2]}).header == "Donor Name            | Total Given |  Num Gifts  | Average Gift"

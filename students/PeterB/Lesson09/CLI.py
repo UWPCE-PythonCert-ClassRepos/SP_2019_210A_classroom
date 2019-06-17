@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
+from Lesson9mailboxmoneyOO import Donor
+from Lesson9mailboxmoneyOO import DonorDB
+
 
 DONOR_DICT = d.DonorDB()
 DONOR_DICT.add(d.Donor("Road Runner", [4839283.32, 17842102.94]))
